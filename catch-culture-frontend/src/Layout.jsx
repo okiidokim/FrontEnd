@@ -5,16 +5,14 @@ import NavBar from './components/NavBar.jsx'
 function Layout() {
     return (
     <>
-        <header>
-
-        </header>
-        <content>
-
-            <Outlet />
-
-        </content>
-    
-        <NavBar />
+        <div id='grid'>
+            <content>
+                <Outlet />
+            </content>
+            <div id='nav'>
+                <NavBar />
+            </div>
+        </div>
     </>
     );
   }
