@@ -1,21 +1,20 @@
 import { Outlet } from 'react-router-dom';
 import './Layout.css';
-import NavBar from './components/NavBar.jsx'
+import NavBar from './components/NavBar.jsx';
 
 function Layout() {
-    return (
+  return (
     <>
-        <div id='grid'>
-            <content>
-                <Outlet />
-            </content>
-            <div id='nav'>
-                <NavBar />
-            </div>
+      <div id="grid">
+        <content>
+          <Outlet />
+        </content>
+        <div id="nav">
+          <NavBar />
         </div>
+      </div>
     </>
-    );
-  }
-  
-  export default Layout;
-  
+  );
+}
+
+export default Layout;
