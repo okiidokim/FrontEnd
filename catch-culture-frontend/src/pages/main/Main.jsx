@@ -55,7 +55,9 @@ function Main() {
             <S.EventHeaderMore>더보기</S.EventHeaderMore>
           </S.EventHeader>
 
-          <S.EventList></S.EventList>
+          <S.EventList>
+            <S.EventCard></S.EventCard>
+          </S.EventList>
         </S.EventWrapper>
       </S.MainWrapper>
     </>

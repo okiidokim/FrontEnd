@@ -6,6 +6,7 @@ export const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 27px;
+  font-family: Noto Sans KR;
 `;
 
 // 헤더
@@ -99,7 +100,6 @@ export const EventHeader = styled.div`
 export const EventHeaderTitle = styled.div`
   display: flex;
   color: #000;
-  /* font-family: Noto Sans KR; */
   font-size: 20px;
   font-weight: 700;
   line-height: normal;
@@ -107,7 +107,6 @@ export const EventHeaderTitle = styled.div`
 export const EventHeaderMore = styled.div`
   display: flex;
   color: #acacac;
-  /* font-family: Noto Sans KR; */
   font-size: 10px;
   font-weight: 700;
   line-height: normal;
