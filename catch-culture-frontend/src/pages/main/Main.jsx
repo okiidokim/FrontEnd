@@ -5,7 +5,7 @@ import SearchImg from '../../assets/images/search/searchIcon.png';
 import BannerImg1 from '../../assets/images/main/banner1.png';
 import BannerImg2 from '../../assets/images/main/banner2.png';
 import BannerImg3 from '../../assets/images/main/banner3.png';
-import CardImg from '../../assets/images/main/card.png';
+import EventCard from '../../components/eventCard/EventCard';
 
 // 슬라이더
 import { SwiperSlide } from 'swiper/react';
@@ -23,6 +23,7 @@ function Main() {
   return (
     <>
       <S.MainWrapper>
+        {/* 헤더 */}
         <S.Header>
           <S.HeaderLogo src={LogoImg} alt="로고 이미지" />
           <S.HeaderSearchWrapper>
@@ -36,6 +37,7 @@ function Main() {
           </S.HeaderSearchWrapper>
         </S.Header>
 
+        {/* 배너 */}
         <S.Banner>
           <S.MySwiper pagination={true} modules={[Pagination]}>
             <SwiperSlide>
@@ -50,36 +52,13 @@ function Main() {
           </S.MySwiper>
         </S.Banner>
 
+        {/*문화 행사 목록*/}
         <S.EventWrapper>
           <S.EventHeader>
             <S.EventHeaderTitle>이런 행사는 어떠세요?</S.EventHeaderTitle>
             <S.EventHeaderMore>더보기</S.EventHeaderMore>
           </S.EventHeader>
-
-          <S.EventList>
-            <S.EventCard>
-              <S.EventCardImgWrapper>
-                <S.EventCardImgTag>D-7</S.EventCardImgTag>
-                <S.EventCardImg src={CardImg} alt="카드 이미지" />
-              </S.EventCardImgWrapper>
-
-              <S.EventCardContentWrapper>
-                <S.EventCardTitle>응봉산 개나리 축제</S.EventCardTitle>
-                <S.EventCardLocation>성동구 응봉산</S.EventCardLocation>
-                <S.EventCardDate>2023.09.24 ~ 2023.10.24</S.EventCardDate>
-                <S.EventCardInfo>
-                  <S.EventCardInfoViewWrapper>
-                    <S.EventCardInfoViewIcon />
-                    <S.EventCardInfoViewCnt>257만</S.EventCardInfoViewCnt>
-                  </S.EventCardInfoViewWrapper>
-                  <S.EventCardInfoHeartWrapper>
-                    <S.EventCardInfoHeartIcon />
-                    <S.EventCardInfoHeartCnt>246만</S.EventCardInfoHeartCnt>
-                  </S.EventCardInfoHeartWrapper>
-                </S.EventCardInfo>
-              </S.EventCardContentWrapper>
-            </S.EventCard>
-          </S.EventList>
+          <EventCard />
         </S.EventWrapper>
       </S.MainWrapper>
     </>
