@@ -48,6 +48,15 @@ function Main() {
             </SwiperSlide>
           </S.MySwiper>
         </S.Banner>
+
+        <S.EventWrapper>
+          <S.EventHeader>
+            <S.EventHeaderTitle>이런 행사는 어떠세요?</S.EventHeaderTitle>
+            <S.EventHeaderMore>더보기</S.EventHeaderMore>
+          </S.EventHeader>
+
+          <S.EventList></S.EventList>
+        </S.EventWrapper>
       </S.MainWrapper>
     </>
   );

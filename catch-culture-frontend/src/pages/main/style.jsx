@@ -86,3 +86,31 @@ export const SwiperSlideImg = styled.img`
   height: 188px;
   border-radius: 5px;
 `;
+
+// 추천 이벤트
+export const EventWrapper = styled.div`
+  margin-top: 20px;
+`;
+export const EventHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+export const EventHeaderTitle = styled.div`
+  display: flex;
+  color: #000;
+  /* font-family: Noto Sans KR; */
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+`;
+export const EventHeaderMore = styled.div`
+  display: flex;
+  color: #acacac;
+  /* font-family: Noto Sans KR; */
+  font-size: 10px;
+  font-weight: 700;
+  line-height: normal;
+`;
+export const EventList = styled.div``;
+export const EventCard = styled.div``;
