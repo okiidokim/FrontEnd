@@ -10,13 +10,14 @@
 }
 
 body {
-  background-color:grey;
+  background-color: grey;
 }
 
 .wrapper {
   /* padding-top: 60px; */
   margin: 0 auto;
   width: 100%;
+  min-height: 100vh;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -28,8 +29,6 @@ body {
 
 .content {
   flex-grow: 1;
-  min-height: 100vh;
-  
   width: 100%;
   display: flex;
   flex-direction: column;
