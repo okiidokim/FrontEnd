@@ -1,14 +1,3 @@
-.backGround {
-  /* width: 100vw;
-  min-height: 100vh;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-size: 100%;
-  background-repeat: repeat; */
-}
-
 body {
   background-color: grey;
 }
