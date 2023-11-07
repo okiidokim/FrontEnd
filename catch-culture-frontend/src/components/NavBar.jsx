@@ -11,6 +11,8 @@ const Nav = styled.nav`
     display:flex;
     border-top: solid 1px grey;
     flex-direction: row;
+    position:sticky;
+    bottom:0;
   `;
 
   const NavTab = styled(NavLink)`
@@ -22,6 +24,7 @@ const Nav = styled.nav`
     align-items: center;
     box-sizing: border-box;
     text-decoration-line: none;
+    background-color:white;
 
     :first-child {
       width: 30px;
