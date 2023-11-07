@@ -3,25 +3,26 @@ import styled from "styled-components";
 import { IoIosArrowBack } from 'react-icons/io';
 import { RiFileList2Line } from 'react-icons/ri';
 import { LiaCommentsSolid } from 'react-icons/lia';
-import { AiFillHeart, AiFillStar } from 'react-icons/ai';
+import { AiOutlineHeart, AiFillHeart, AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import './culturalEventDetail.css'
 
 const state = {
-    title: null,            //제목
-    category: null,         //카테고리
-    isAuthenticated: false, //방문인증 여부
-    likeCount: null,        //좋아요 수
-    description: null,      //행사 소개
-    place: null,            //행사 위치
-    wayToCome: null,        //오는 길
-    startDate: null,        //시작일
-    endDate: null,          //종료일
-    isFree: null,           //요금 정보
-    storedFileURL: null,    //행사 사진? 모르게씀 DB에있어서
-    telephont: null,        //전화번호
-    sns: null,              //sns 주소
-    reservationLink: null,  //예약 링크
+    title: '더 크림 갤러리',            //제목
+    category: '팝업스토어',         //카테고리
+    isAuthenticated: true,      //방문인증 여부
+    likeCount: 123,             //좋아요 수
+    bookmarkCount: 321,         //즐겨찾기 수
+    description: null,          //행사 소개
+    place: null,                //행사 위치
+    wayToCome: null,            //오는 길
+    startDate: null,            //시작일
+    endDate: null,              //종료일
+    isFree: null,               //요금 정보
+    storedFileURL: null,        //행사 사진? 모르게씀 DB에있어서
+    telephont: null,            //전화번호
+    sns: null,                  //sns 주소
+    reservationLink: null,      //예약 링크
 }
 
 const Header = styled.div`
@@ -75,6 +76,10 @@ const Header = styled.div`
     }
 `;
 
+const AuthArea = styled.div`
+    font-size: 12px;
+`;
+
 function culturalEventDetail() {
     return (
         <div class="content">
@@ -91,41 +96,83 @@ function culturalEventDetail() {
                     </button>
                 </div>
             </Header>
-            <div id="info">
+            
+            <div id="infoArea">
                 <div id='titleArea'>
-                    
+                    {state.title}
                 </div>
                 <div id='categoryArea'>
-
+                    {state.category}
                 </div>
-                <div id='authArea'>
-
-                </div>
+                <AuthArea style={ state.isAuthenticated ? {color: '#018C0D'} : {color: 'red'}}>
+                    {state.isAuthenticated ? '방문 인증 완료' : '방문 인증 미완료'}
+                </AuthArea>
+                
                 <div id='pictureArea'>
-
-                </div>
-                <div id='personalButtonArea'>
-
-                </div>
-                <div id='descriptionArea'>
-
-                </div>
-                <div id='placeArea'>
-
-                </div>
-                <div id='dateArea'>
                     
                 </div>
-                <div id='costArea'>
+                <div id='personalButtonArea'>
+                    <button id= 'likeButton'>
+                        <AiOutlineHeart />
+                        <text> {state.likeCount} </text>
+                    </button>
 
+                    <button id= 'bookmarkButton'>
+                        <AiOutlineStar />
+                        <text> {state.bookmarkCount} </text>
+                    </button>
+                </div>
+                <div id='descriptionArea' style={ state.description == null ? {display:'none'} : {}}>
+                    <div class='subTitle'>
+                        행사 소개
+                    </div>
+                    <div class='infoValue'>
+                        프리미엄 어쩌구
+                    </div>
+                </div>
+                <div id='placeArea'>
+                    <div class='subTitle'>
+                        행사 위치
+                    </div>
+                    <div class='infoValue'>
+                        집
+                    </div>
+                </div>
+                <div id='dateArea'>
+                    <div class='subTitle'>
+                        운영 기간
+                    </div>
+                    <div class='infoValue'>
+                        시작일 : 
+                        <br/>
+                        종료일 : 
+                    </div>
+                </div>
+                <div id='costArea'>
+                    <div class='subTitle'>
+                        요금 정보
+                    </div>
+                    <div class='infoValue'></div>
+                </div>
+                <div id='contactArea'>
+                    <div class='subTitle'>
+                        연락처
+                    </div>
+                    <div class='infoValue'></div>
                 </div>
                 <div id='reservationArea'>
-
+                    <div class='subTitle'>
+                        예약 정보
+                    </div>
+                    <div class='infoValue'></div>
                 </div>
             </div>
             <div id="visitAuthSection">
                 <button>
-                    
+                    이동하기
+                </button>
+                <button>
+                    방문 인증
                 </button>
             </div>
         </div> 
