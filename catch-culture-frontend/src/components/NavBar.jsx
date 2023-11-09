@@ -13,6 +13,7 @@ const Nav = styled.nav`
     flex-direction: row;
     position:sticky;
     bottom:0;
+    z-index: 10;
   `;
 
   const NavTab = styled(NavLink)`
