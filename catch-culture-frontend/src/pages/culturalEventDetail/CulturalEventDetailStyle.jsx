@@ -1,6 +1,12 @@
 import { styled } from 'styled-components';
 import { Swiper } from 'swiper/react';
 
+export const Wrapper = styled.div`
+    flex-direction: column;
+    padding: 28px;
+    font-family: noto Sans KR;
+`;
+
 /************
  * 헤더 영역 *
  ************/ 
@@ -52,11 +58,21 @@ export const PageChangeArea = styled.div`
 export const DetailInfoButton = styled.button`
     border-radius: 12px 0px 0px 12px;
     margin-right: -2px;
+
+    svg {
+        width: 12px;
+        height: 12px;
+    }
 `;
 
 // 리뷰 버튼
 export const EventReviewButton = styled.button`
     border-radius: 0px 12px 12px 0px;
+
+    svg {
+        width: 12px;
+        height: 12px;
+    }
 `;
 
 
@@ -69,9 +85,6 @@ export const InfoArea = styled.div`
     div {
         width: 300px;
         min-height: 25px;
-        margin-left: 45px;
-        margin-right: 45px;
-        display:inline-block;s
     }
 `;
 
@@ -96,6 +109,32 @@ export const PictureArea = styled.div`
     width; 100%;
     margin-top: 35px;
     display: flex;
+    max-height: 100px;
+`;
+
+export const MySwiper = styled(Swiper)`
+    width: 336px;
+    height: auto;
+    padding-bottom: 30px;
+
+    // Pagination 버튼의 비활성 상태 스타일
+    .swiper-pagination-bullet {
+        width: 8x;
+        height: 8px;
+    }
+
+    // Pagination 버튼의 활성 상태 스타일
+    .swiper-pagination-bullet-active {
+        background-color: #018c0d;
+        width: 8x;
+        height: 8px;
+    }
+`;
+
+export const SwiperSlideImg = styled.img`
+    width: 100%;
+    height: 188px;
+    border-radius: 5px;
 `;
 
 export const PersonalButtonArea = styled.div`
@@ -126,29 +165,6 @@ export const PersonalButtonArea = styled.div`
         display: flex;
         align-items: center;
     }
-`;
-
-export const MySwiper = styled(Swiper)`
-    width: 336px;
-    height: auto;
-    padding-bottom: 30px;
-
-    .swiper-pagination-bullet {
-        width: 8px;
-        height: 8px;
-    }
-
-    .swiper pagination-bullet-active {
-        background-color: #018c0d;
-        width: 8px;
-        height: 8px;
-    }
-`;
-
-export const SwiperSlideImg = styled.img`
-    width: 100%;
-    height: 188px;
-    border-radius: 5px;
 `;
 
 export const SubTitle = styled.div`
