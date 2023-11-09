@@ -5,7 +5,7 @@ import Main from './pages/main/Main';
 import Map from './pages/map/Map';
 import Category from './pages/category/Category';
 import Mypage from './pages/mypage/Mypage';
-import CulturalEventDetail from './pages/culturalEventDetail/culturalEventDetail';
+import CulturalEventDetail from './pages/culturalEventDetail/CulturalEventDetail';
 
 const router = createBrowserRouter([
   {
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '',
+        path: '/',
         element: <CulturalEventDetail />,
       },
       {

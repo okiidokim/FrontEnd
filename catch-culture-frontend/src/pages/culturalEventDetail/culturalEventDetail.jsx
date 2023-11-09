@@ -5,7 +5,13 @@ import { RiFileList2Line } from 'react-icons/ri';
 import { LiaCommentsSolid } from 'react-icons/lia';
 import { AiOutlineHeart, AiFillHeart, AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
-import './culturalEventDetail.css'
+//import './culturalEventDetail.css'
+import * as style from './CulturalEventDetailStyle.jsx';
+import { SwiperSlide } from 'swiper/react';
+//import 'swiper/css';
+//import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+
 
 const state = {
     title: '더 크림 갤러리',            //제목
@@ -25,93 +31,48 @@ const state = {
     reservationLink: null,      //예약 링크
 }
 
-const Header = styled.div`
-    width:100%;
-    height:75px;
-    display:flex;
-    border: 1px solid black;
-    justify-content: flex-start;
-    align-items: center;
-
-    .backButton {
-        display: flex;
-        margin-right: auto;
-        margin-left: 30px;
-        border-radius: 30px;
-        align-items: center;
-        aspect-ratio: 1;
-        background-color: white;
-        width: 24px;
-        height: 24px;
-    }
-
-    .backButton > * {
-        width:16px;
-        height:16px;
-    }
-
-    .pageChange {
-        margin-right: 30px;
-    }
-
-    .pageChange > * {
-        font-size: 8px;
-        width: 64px;
-        height: 24px;
-        background-color: white;
-    }
-
-    .pageChange > * .active {
-        background-color: #247E2C;
-        color:white;
-    }
-
-    .pageChange button:first-child {
-        border-radius: 12px 0px 0px 12px;
-        margin-right: -2px;
-    }
-
-    .pageChange button:last-child {
-        border-radius: 0px 12px 12px 0px;
-    }
-`;
-
-const AuthArea = styled.div`
-    font-size: 12px;
-`;
-
-function culturalEventDetail() {
+function CulturalEventDetail() {
     return (
-        <div class="content">
-            <Header>
-                <button class='backButton'>
+        <div>
+            <style.Header>
+                <style.BackButton>
                     <IoIosArrowBack />
-                </button>
-                <div class='pageChange'>
-                    <button id='detailInfo'>
+                </style.BackButton>
+                <style.PageChangeArea>
+                    <style.DetailInfoButton>
                         <RiFileList2Line /> 상세정보
-                    </button>
-                    <button id='eventReview'>
+                    </style.DetailInfoButton>
+                    <style.EventReviewButton>
                         <LiaCommentsSolid /> 리뷰
-                    </button>
-                </div>
-            </Header>
+                    </style.EventReviewButton>
+                </style.PageChangeArea>
+            </style.Header>
             
-            <div id="infoArea">
-                <div id='titleArea'>
+            <style.InfoArea>
+                <style.TitleArea>
                     {state.title}
-                </div>
-                <div id='categoryArea'>
+                </style.TitleArea>
+                <style.CategoryArea>
                     {state.category}
-                </div>
-                <AuthArea style={ state.isAuthenticated ? {color: '#018C0D'} : {color: 'red'}}>
+                </style.CategoryArea>
+                <style.AuthArea style={ state.isAuthenticated ? {color: '#018C0D'} : {color: 'red'}}>
                     {state.isAuthenticated ? '방문 인증 완료' : '방문 인증 미완료'}
-                </AuthArea>
+                </style.AuthArea>
                 
-                <div id='pictureArea'>
-                    
-                </div>
-                <div id='personalButtonArea'>
+                <style.PictureArea>
+                    <style.MySwiper pagination={true} modules={[Pagination]}>
+                        <SwiperSlide>
+                        <style.SwiperSlideImg src='https://storage.googleapis.com/elegant-bucket/jinwoo.png' alt="배너 이미지" />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                        <style.SwiperSlideImg src='https://storage.googleapis.com/elegant-bucket/jinwoo.png' alt="배너 이미지" />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                        <style.SwiperSlideImg src='https://storage.googleapis.com/elegant-bucket/jinwoo.png' alt="배너 이미지" />
+                        </SwiperSlide>
+                    </style.MySwiper>
+                </style.PictureArea>
+                <style.PersonalButtonArea>
                     <button id= 'likeButton'>
                         <AiOutlineHeart />
                         <text> {state.likeCount} </text>
@@ -121,62 +82,65 @@ function culturalEventDetail() {
                         <AiOutlineStar />
                         <text> {state.bookmarkCount} </text>
                     </button>
-                </div>
+                </style.PersonalButtonArea>
                 <div id='descriptionArea' style={ state.description == null ? {display:'none'} : {}}>
-                    <div class='subTitle'>
+                    <style.SubTitle>
                         행사 소개
-                    </div>
-                    <div class='infoValue'>
+                    </style.SubTitle>
+                    <style.InfoValue>
                         프리미엄 어쩌구
-                    </div>
+                    </style.InfoValue>
                 </div>
                 <div id='placeArea'>
-                    <div class='subTitle'>
+                    <styled.SubTitle>
                         행사 위치
-                    </div>
-                    <div class='infoValue'>
+                    </styled.SubTitle>
+                    <style.InfoValue>
                         집
-                    </div>
+                    </style.InfoValue>
                 </div>
                 <div id='dateArea'>
-                    <div class='subTitle'>
+                    <styled.SubTitle>
                         운영 기간
-                    </div>
-                    <div class='infoValue'>
+                    </styled.SubTitle>
+                    <style.InfoValue>
                         시작일 : 
                         <br/>
                         종료일 : 
-                    </div>
+                    </style.InfoValue>
                 </div>
                 <div id='costArea'>
-                    <div class='subTitle'>
+                    <styled.SubTitle>
                         요금 정보
-                    </div>
-                    <div class='infoValue'></div>
+                    </styled.SubTitle>
+                    <style.InfoValue>
+                    </style.InfoValue>
                 </div>
                 <div id='contactArea'>
-                    <div class='subTitle'>
+                    <styled.SubTitle>   
                         연락처
-                    </div>
-                    <div class='infoValue'></div>
+                    </styled.SubTitle>
+                    <style.InfoValue>
+                    </style.InfoValue>
                 </div>
                 <div id='reservationArea'>
-                    <div class='subTitle'>
+                    <styled.SubTitle>
                         예약 정보
-                    </div>
-                    <div class='infoValue'></div>
+                    </styled.SubTitle>
+                    <style.InfoValue>
+                    </style.InfoValue>
                 </div>
-            </div>
-            <div id="visitAuthSection">
+            </style.InfoArea>
+            <style.ButtonArea>
                 <button>
                     이동하기
                 </button>
                 <button>
                     방문 인증
                 </button>
-            </div>
+            </style.ButtonArea>
         </div> 
     );
 };
 
-export default culturalEventDetail;
+export default CulturalEventDetail;
