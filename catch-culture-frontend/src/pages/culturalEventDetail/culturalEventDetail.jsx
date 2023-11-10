@@ -4,7 +4,7 @@ import { RiFileList2Line } from 'react-icons/ri';
 import { LiaCommentsSolid } from 'react-icons/lia';
 import { AiOutlineHeart, AiFillHeart, AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
-import './culturalEventDetail.css'
+
 import * as S from './culturalEventDetailStyle';
 import { SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -44,6 +44,11 @@ function culturalEventDetail() {
         navigate(-1);
     }
 
+    const onClickAuthButton = () => {
+        if(!state.isAuthenticated)
+            navigate('/');
+    }
+
     // 행사 설명 더보기 스위치
     const [isShowMore, setIsShowMore] = useState(false);
     // 글자 수 제한
@@ -60,6 +65,8 @@ function culturalEventDetail() {
         }
         return state.description;
     }, [isShowMore]);
+
+    
 
     return (
         <S.Wrapper>
@@ -186,7 +193,7 @@ function culturalEventDetail() {
             </S.InfoArea>
 
             <S.ButtonSection>           
-                <button>
+                <button onClick={onClickAuthButton} disabled={state.isAuthenticated} style={ state.isAuthenticated ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
                     방문 인증
                 </button>
             </S.ButtonSection>
