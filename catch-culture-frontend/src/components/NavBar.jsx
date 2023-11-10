@@ -55,19 +55,19 @@ function NavBar() {
             홈
           </div>
         </NavTab>
-        <NavTab to="/Map">
+        <NavTab to="/map">
           <MdLocationPin />
           <div>
             지도
           </div>
         </NavTab>
-        <NavTab to="/Category">
+        <NavTab to="/category">
           <TbCategory />
           <div>
             카테고리
           </div>
         </NavTab>
-        <NavTab to="/Mypage">
+        <NavTab to="/mypage">
           <BiSolidUser />
           <div>
             마이페이지

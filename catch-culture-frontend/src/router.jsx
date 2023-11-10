@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <CulturalEventDetail />,
+        element: <Main />,
       },
       {
         path: '/map',
@@ -27,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: '/mypage',
         element: <Mypage />,
+      },
+      {
+        path: '/test',
+        element: <CulturalEventDetail />,
       },
     ],
   },
