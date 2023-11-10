@@ -34,7 +34,16 @@ const state = {
     reservationLink: 'https://github.com/ElegantChildren/FrontEnd',      //예약 링크
 }
 
+
 function culturalEventDetail() {
+    // 페이지 이동을 위한 변수
+    const navigate = useNavigate();
+
+    // 페이지 뒤로가기
+    const onClickBackButton = () => {
+        navigate(-1);
+    }
+
     // 행사 설명 더보기 스위치
     const [isShowMore, setIsShowMore] = useState(false);
     // 글자 수 제한
@@ -55,7 +64,7 @@ function culturalEventDetail() {
     return (
         <S.Wrapper>
             <S.Header>
-                <S.BackButton>
+                <S.BackButton onClick={onClickBackButton}> 
                     <IoIosArrowBack />
                 </S.BackButton>
                 <S.PageChangeArea>
@@ -82,7 +91,7 @@ function culturalEventDetail() {
                 </S.AuthArea>
                 
                 <S.PictureArea>
-                    <S.MySwiper pagination={true} modules={[Pagination, Autoplay]} slidesPerView={1} autoplay={{delay: 1000, disableOnInteraction: false}} loop={true}>
+                    <S.MySwiper pagination={true} modules={[Pagination, Autoplay]} slidesPerView={1} autoplay={{delay: 2000, disableOnInteraction: false}} loop={true}>
                         <SwiperSlide>
                             <S.SwiperSlideImg src={imgUrl2} alt="배너 이미지" />
                         </SwiperSlide>
