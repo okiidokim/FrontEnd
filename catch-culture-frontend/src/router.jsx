@@ -5,6 +5,7 @@ import Main from './pages/main/Main';
 import Map from './pages/map/Map';
 import Category from './pages/category/Category';
 import Mypage from './pages/mypage/Mypage';
+import CulturalEventDetail from './pages/culturalEventDetail/culturalEventDetail';
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '',
+        path: '/',
         element: <Main />,
       },
       {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: '/mypage',
         element: <Mypage />,
+      },
+      {
+        path: '/test',
+        element: <CulturalEventDetail />,
       },
     ],
   },

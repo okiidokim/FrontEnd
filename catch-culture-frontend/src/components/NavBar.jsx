@@ -11,6 +11,9 @@ const Nav = styled.nav`
     display:flex;
     border-top: solid 1px grey;
     flex-direction: row;
+    position:sticky;
+    bottom:0;
+    z-index: 10;
   `;
 
   const NavTab = styled(NavLink)`
@@ -22,6 +25,7 @@ const Nav = styled.nav`
     align-items: center;
     box-sizing: border-box;
     text-decoration-line: none;
+    background-color:white;
 
     :first-child {
       width: 30px;
@@ -51,19 +55,19 @@ function NavBar() {
             홈
           </div>
         </NavTab>
-        <NavTab to="/Map">
+        <NavTab to="/map">
           <MdLocationPin />
           <div>
             지도
           </div>
         </NavTab>
-        <NavTab to="/Category">
+        <NavTab to="/category">
           <TbCategory />
           <div>
             카테고리
           </div>
         </NavTab>
-        <NavTab to="/Mypage">
+        <NavTab to="/mypage">
           <BiSolidUser />
           <div>
             마이페이지
