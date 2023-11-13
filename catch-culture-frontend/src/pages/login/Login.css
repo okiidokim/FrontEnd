@@ -7,7 +7,7 @@
 .buttonlist {
     position: absolute;
     top: 50%;
-    margin: -108px 0 0 -160px;
+    margin: -108px 0 0 -150px;
 
     display: flex;
     flex-direction: column;
@@ -24,8 +24,8 @@
     gap: 16px;
     position: relative;
 
-    width: 320px;
-    height: 56px;
+    width: 300px;
+    height: 48px;
 
     background-color: #ffe812;
     border-radius: 4px;
@@ -39,8 +39,8 @@
     gap: 16px;
 
     position: relative;
-    width: 320px;
-    height: 56px;
+    width: 300px;
+    height: 48px;
 
     background-color: white;
 }
@@ -52,8 +52,8 @@
     gap: 16px;
 
     position: relative;
-    width: 320px;
-    height: 56px;
+    width: 300px;
+    height: 48px;
 
     background: #03c75a;
     border-radius: 4px;
