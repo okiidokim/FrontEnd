@@ -1,0 +1,72 @@
+.header {
+    width: 300px;
+    position: absolute;
+    left: 50%;
+    margin: 20px 0 0 -150px;
+}
+.buttonlist {
+    position: absolute;
+    top: 50%;
+    margin: -108px 0 0 -160px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+}
+.kakao {
+    display: flex;
+    flex-direction: row;
+    border: none;
+    background-color: transparent;
+    padding: 16px;
+    gap: 16px;
+    position: relative;
+
+    width: 320px;
+    height: 56px;
+
+    background-color: #ffe812;
+    border-radius: 4px;
+}
+.google {
+    display: flex;
+    flex-direction: row;
+    border-radius: 4px;
+    border-width: 1px;
+    padding: 16px;
+    gap: 16px;
+
+    position: relative;
+    width: 320px;
+    height: 56px;
+
+    background-color: white;
+}
+.naver {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+
+    position: relative;
+    width: 320px;
+    height: 56px;
+
+    background: #03c75a;
+    border-radius: 4px;
+    border: none;
+}
+.kl {
+    width: 24px;
+    border-radius: 4px;
+}
+.gl {
+    width: 24px;
+}
+.nl {
+    width: 24px;
+    border-radius: 4px;
+}
