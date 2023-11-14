@@ -41,7 +41,11 @@ function Main() {
         <S.Banner>
           <S.MySwiper pagination={true} modules={[Pagination]}>
             <SwiperSlide>
-              <S.SwiperSlideImg src={BannerImg1} alt="배너 이미지" />
+              {/* <S.SwiperSlideImg src={BannerImg1} alt="배너 이미지" /> */}
+              <S.SwiperSlideImg
+                src="https://storage.googleapis.com/elegant-bucket/jinwoo.png"
+                alt="배너 이미지"
+              />
             </SwiperSlide>
             <SwiperSlide>
               <S.SwiperSlideImg src={BannerImg2} alt="배너 이미지" />
