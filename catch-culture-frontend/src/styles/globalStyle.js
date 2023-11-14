@@ -1,4 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
+import NotoSansKR_Thin from '../assets/fonts/NotoSansKR-Thin.ttf';
+import NotoSansKR_Light from '../assets/fonts/NotoSansKR-Light.ttf';
+import NotoSansKR_Regular from '../assets/fonts/NotoSansKR-Regular.ttf';
+import NotoSansKR_Medium from '../assets/fonts/NotoSansKR-Medium.ttf';
+import NotoSansKR_Bold from '../assets/fonts/NotoSansKR-Bold.ttf';
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -15,12 +20,40 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
+
+
+	@font-face {
+    font-family: 'NotoSansKR_Thin';
+    src: url(${NotoSansKR_Thin});
+  }
+
+  @font-face {
+    font-family: 'NotoSansKR_Light';
+    src: url(${NotoSansKR_Light});
+  }
+
+  @font-face {
+    font-family: 'NotoSansKR_Regular';
+    src: url(${NotoSansKR_Regular});
+  }
+
+  @font-face {
+    font-family: 'NotoSansKR_Medium';
+    src: url(${NotoSansKR_Medium});
+  }
+
+  @font-face {
+    font-family: 'NotoSansKR_Bold';
+    src: url(${NotoSansKR_Bold});
+  }
+
 	margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+	vertical-align: baseline;    
+	font-family: "NotoSansKR_Regular";
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
