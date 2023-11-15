@@ -9,11 +9,11 @@ export const Wrapper = styled.div`
 
 /************
  * 헤더 영역 *
- ************/ 
+ ************/
 export const Header = styled.div`
-    width:100%;
-    height:75px;
-    display:flex;
+    width: 100%;
+    height: 75px;
+    display: flex;
     justify-content: flex-start;
     align-items: center;
     position: sticky;
@@ -34,8 +34,8 @@ export const BackButton = styled.button`
     height: 24px;
 
     * {
-        width:16px;
-        height:16px;
+        width: 16px;
+        height: 16px;
     }
 `;
 
@@ -53,11 +53,12 @@ export const PageChangeArea = styled.div`
     }
 
     * .active {
-        background-color: #247E2C;
-        color:white;
+        background-color: #247e2c;
+        color: white;
     }
 
-    * > svg, * > svg > * {
+    * > svg,
+    * > svg > * {
         width: 20px;
         height: 20px;
     }
@@ -66,7 +67,7 @@ export const PageChangeArea = styled.div`
 // 상세 정보 버튼
 export const DetailInfoButton = styled.button`
     border-radius: 12px 0px 0px 12px;
-    margin-right: -2px; 
+    margin-right: -2px;
 `;
 
 // 리뷰 버튼
@@ -84,7 +85,7 @@ export const InfoArea = styled.div`
     align-items: center;
     justify-items: center;
     flex-direction: column;
-    
+
     margin-bottom: 20px;
 `;
 
@@ -107,7 +108,7 @@ export const CategoryArea = styled.div`
 `;
 
 export const PictureArea = styled.div`
-    width; 100%;
+    width: 100%;
     margin-top: 35px;
     display: flex;
 `;
@@ -192,7 +193,7 @@ export const ReservationButton = styled.button`
     height: 32px;
     border-radius: 10px;
     border: 0px;
-    background-color: #018C0D;
+    background-color: #018c0d;
     color: white;
     margin-bottom: 10px;
 `;
@@ -209,7 +210,7 @@ export const ButtonSection = styled.div`
         height: 32px;
         border-radius: 10px;
         border: 0px;
-        background-color: #018C0D;
+        background-color: #018c0d;
         color: white;
         margin-top: 20px;
     }
@@ -219,4 +220,3 @@ export const ButtonSection = styled.div`
 export const AuthArea = styled.div`
     font-size: 12px;
 `;
-
