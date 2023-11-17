@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         element: <Mypage />,
       },
       {
-        path: '/test',
+        path: '/event/:id',
         element: <CulturalEventDetail />,
       },
       {
