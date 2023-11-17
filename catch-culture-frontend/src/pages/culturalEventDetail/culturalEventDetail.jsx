@@ -11,15 +11,17 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { Pagination, Autoplay } from 'swiper/modules';
+import axios from 'axios';
 
 let imgUrl1 = 'https://storage.googleapis.com/elegant-bucket/jinwoo.png';
 let imgUrl2 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg';
 let imgUrl3 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
 
 
-
-
 function culturalEventDetail() {
+    /**
+     * TODO useState 각자 분리
+     */
     const [state, setState] = useState({
         title: '더 크림 갤러리',     //제목
         category: '팝업스토어',      //카테고리
@@ -34,11 +36,45 @@ function culturalEventDetail() {
         startDate: null,            //시작일
         endDate: null,              //종료일
         isFree: null,               //요금 정보
-        storedFileURL: null,        //행사 사진? 모르게씀 DB에있어서
+        storedFileURL: null,        //행사 사진
         telephone: '010-1234-3213',            //전화번호
         sns: null,                  //sns 주소
         reservationLink: 'https://github.com/ElegantChildren/FrontEnd',      //예약 링크
     });
+
+    /**
+     * 변경됨
+     */
+    const [storedFileURL, setStoredFileURL] = useState(''); // string: 이미지 URL 
+    const [startDate, setStartDate] = useState(''); // LocalDateTime: 시작일
+    const [endDate, setEndDate] = useState(''); // LocalDateTime: 종료일
+    const [title, setTitle] = useState(''); // String: 제목
+    const [place, setPlace] = useState(''); // String: 행사 위치
+    const [category, setCategory] = useState(''); // Category(): 카테고리 Enumerated(EnumType.STRING)
+    const [description, setDescription] = useState(''); // String: 행사 설명
+    const [wayToCome, setWayToCome] = useState(''); // String: 오시는길
+    const [sns, setSns] = useState(''); // String: sns 주소
+    const [telephone, setTelephone] = useState('') // String: 전화번호
+    const [isFree, setIsFree] = useState(False) // Boolean: 요금
+    const [reservationLink, setReservationLink] = useState('') // String: 예약 링크
+    /**
+     * 여기부턴 git에 없는거
+     */
+    const [isAuthenticated, setIsAuthenticated] = useState(true) // Boolean: 인증 여부
+    const [likeCount, setLikeCount] = useState(123) // int: 좋아요 수
+    const [bookmarkCount, setBookMarkCount] = useState(123) // int: 즐겨찾기 수
+    const [isLike, setIsLike] = useState(False) // Boolean: 좋아요 여부
+    const [isBookMark, setIsBookMark] = useState(False) // Boolean: 즐겨찾기 여부
+
+    // 최초 로딩시 값 불러오기
+    useEffect(() => {
+        axios.get('elegant.kro.kr/cultural-event/{culturalEventId}')
+        .then(response => {
+            console.log(response.data);
+            // setVariable(response.data); // 값 설정
+        })
+    }, []);
+
 
     // 페이지 이동을 위한 변수
     const navigate = useNavigate();
@@ -49,17 +85,21 @@ function culturalEventDetail() {
     }
 
     // 좋아요 버튼 클릭
-    const onClickLikeButton = () => {
+    const onClickLikeButton = async (e) => {
         if(state.isLike) {
             setState.likeCount--;
             /***********************
              * TODO 좋아요 빼기 api *
              ***********************/
+            await axios.delete('elegant.kro.kr/cultural-event/{culturalEventId}/like')
+                .then(() => this.setState({likeCount: state.likeCount--}));
         } else {
             setState.likeCount++;
             /***********************
              * TODO 좋아요 추가 api *
              ***********************/
+            await axios.post('elegant.kro.kr/cultural-event/{culturalEventId}/like')
+                .then(() => this.setState({likeCount: state.likeCount++}));
         }
         setState.isLike = !state.isLike;
     }
