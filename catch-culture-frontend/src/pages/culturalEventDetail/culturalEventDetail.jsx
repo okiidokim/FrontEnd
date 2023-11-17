@@ -19,6 +19,9 @@ let imgUrl3 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_
 
 
 function culturalEventDetail() {
+
+    // TODO : useState 선언 최초 로딩 쪽으로 옮기기, 초기값 세팅
+    // 문화 행사 id 어떻게 가져올지
     const [culturalEventId, setCulturalEventId] = useState(1);
     // /**
     //  * 변경됨
@@ -46,11 +49,11 @@ function culturalEventDetail() {
 
     // // 최초 로딩시 값 불러오기
     // useEffect(() => {
-    //     axios.get('elegant.kro.kr/cultural-event/{culturalEventId}')
-    //     .then(response => {
-    //         console.log(response.data);
-    //         // setVariable(response.data); // 값 설정
-    //     })
+    //     axios.get('http://elegant.kro.kr/cultural-event/' + culturalEventId)
+    //         .then(response => {
+    //             console.log(response.data);
+    //             setIsAuthenticated(response.data.authenticated);
+    //         })
     // }, []);
 
 
