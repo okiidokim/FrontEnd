@@ -15,6 +15,7 @@ import Bookmarks from './pages/mypage/BookmarkList';
 import Visited from './pages/mypage/Visited';
 import ProfileEdit from './pages/mypage/ProfileDetail';
 import PointLevel from './pages/mypage/PointLevel';
+import Search from './pages/search/Search';
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: '/level',
         element: <PointLevel />,
+      },
+      {
+        path: '/search',
+        element: <Search />,
       },
     ],
   },

@@ -110,7 +110,7 @@ function Category() {
         </S.CategoryContentWrapper>
 
         <S.CategorySubmitButtonWrapper>
-          <Link to={'/'}>
+          <Link to={'/search'}>
             <S.CategorySubmitButton
               color={selectedCategories.length === 0 ? '#a7a7a7' : '#018C0D'}
               disabled={selectedCategories.length === 0}
