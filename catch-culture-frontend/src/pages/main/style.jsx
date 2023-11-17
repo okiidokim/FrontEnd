@@ -38,10 +38,15 @@ export const HeaderSearch = styled.input`
   outline: none;
   padding-left: 10px;
   padding-right: 30px;
-  font-size: 12px;
+
+  color: rgba(1, 140, 13, 0.56);
+  font-family: NotoSansKR_Regular;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
 
   &::placeholder {
-    color: #71be77;
+    color: rgba(1, 140, 13, 0.56);
   }
 
   &:focus {
