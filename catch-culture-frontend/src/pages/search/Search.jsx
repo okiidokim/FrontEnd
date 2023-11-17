@@ -63,6 +63,8 @@ function Search() {
       const response = await axios.get(
         `cultural-event?${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
       );
+
+      // 데이터 저장
       setData(response.data);
     } catch (e) {
       console.log(e);
@@ -103,7 +105,7 @@ function Search() {
           </>
         ) : (
           <>
-            <EventCard />
+            <EventCard data={data} />
           </>
         )}
       </S.SearchWrapper>
