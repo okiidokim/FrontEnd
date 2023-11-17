@@ -4,18 +4,39 @@ import CategorySelectorItem from './categorySelectorItem/CategorySelectorItem';
 
 function CategorySelector(props) {
   const handlerClickCategory = selectedCategory => {
-    const IsSelected = props.selectedCategories.includes(selectedCategory);
+    if (selectedCategory === 'ALL') {
+      const allCategories =
+        props.selectedCategories.length === 12
+          ? []
+          : [
+              'POPUP_STORE',
+              'FESTIVAL',
+              'TRADITIONAL_MUSIC',
+              'ORCHESTRA_CLASSIC',
+              'RECITAL',
+              'DANCE',
+              'CONCERT',
+              'MOVIE',
+              'THEATER',
+              'MUSICAL_OPERA',
+              'EDUCATION_EXPERIENCE',
+              'EXHIBITION_ART',
+            ];
+      props.setSelectedCategories(allCategories);
+    } else {
+      const isSelected = props.selectedCategories.includes(selectedCategory);
 
-    IsSelected
-      ? props.setSelectedCategories(
-          props.selectedCategories.filter(
-            category => category !== selectedCategory
+      isSelected
+        ? props.setSelectedCategories(
+            props.selectedCategories.filter(
+              category => category !== selectedCategory
+            )
           )
-        )
-      : props.setSelectedCategories([
-          ...props.selectedCategories,
-          selectedCategory,
-        ]);
+        : props.setSelectedCategories([
+            ...props.selectedCategories,
+            selectedCategory,
+          ]);
+    }
   };
 
   return (
