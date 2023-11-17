@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import * as S from './style';
 import LogoImg from '../../assets/images/logo.png';
-import SearchImg from '../../assets/images/search/searchIcon.png';
+
 import BannerImg1 from '../../assets/images/main/banner1.png';
 import BannerImg2 from '../../assets/images/main/banner2.png';
 import BannerImg3 from '../../assets/images/main/banner3.png';
 import EventCard from '../../components/eventCard/EventCard';
+import SearchBox from '../../components/search/SearchBox';
 
 // 슬라이더
 import { SwiperSlide } from 'swiper/react';
@@ -14,27 +15,13 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 
 function Main() {
-  const [search, setSearch] = useState('');
-
-  const onChange = e => {
-    setSearch(e.target.value);
-  };
-
   return (
     <>
       <S.MainWrapper>
         {/* 헤더 */}
         <S.Header>
           <S.HeaderLogo src={LogoImg} alt="로고 이미지" />
-          <S.HeaderSearchWrapper>
-            <S.HeaderSearch
-              type="text"
-              value={search}
-              onChange={onChange}
-              placeholder="다양한 행사를 검색해보세요"
-            />
-            <S.HeaderSearchImg src={SearchImg} alt="검색 이미지" />
-          </S.HeaderSearchWrapper>
+          <SearchBox width={'180px'} />
         </S.Header>
 
         {/* 배너 */}
