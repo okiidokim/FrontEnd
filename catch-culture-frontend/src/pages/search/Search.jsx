@@ -12,7 +12,14 @@ function Search() {
   return (
     <>
       <S.SearchWrapper>
+        {/* 검색창 */}
         <SearchBox width="280px" />
+
+        {/* 헤더 */}
+        <S.SearchHeader>
+          <S.SearchHeaderTitle>검색 결과</S.SearchHeaderTitle>
+          <S.SearchHeaderResultCnt>총 123개</S.SearchHeaderResultCnt>
+        </S.SearchHeader>
       </S.SearchWrapper>
     </>
   );
