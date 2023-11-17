@@ -34,5 +34,5 @@ export const SearchHeaderResultCnt = styled.div`
 export const SortSelectorWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin: 20px 0px;
+  margin: 20px 0px 28px 0px;
 `;
