@@ -31,7 +31,7 @@ function Search() {
   const [selectedSort, setSelectedSort] = useState(0);
 
   // 임시 cnt
-  const cnt = 0;
+  const cnt = 2;
 
   // 카테고리 바뀔 때 마다 리렌더링
   useEffect(() => {

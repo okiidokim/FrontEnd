@@ -5,6 +5,7 @@ export const NoResultWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 100px;
 `;
 
 export const NoResultIcon = styled.img`
@@ -27,4 +28,5 @@ export const NoResultContent = styled.div`
   font-size: 12px;
   font-weight: 700;
   line-height: normal;
+  margin-top: 4px;
 `;
