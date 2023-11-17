@@ -25,15 +25,17 @@ export const CategorySelectorItem = styled.div`
   align-items: center;
   width: auto;
 
-  background: #fff;
+  background: ${props => props.bgcolor};
   border: 1px solid #018c0d;
   border-radius: 10px;
 
-  color: #018c0d;
+  color: ${props => props.color};
   text-align: center;
   font-size: 10px;
   font-weight: 700;
   white-space: nowrap;
 
-  padding: 5px 16px;
+  padding: 5px 20px;
+
+  box-shadow: ${props => props.shadow};
 `;
