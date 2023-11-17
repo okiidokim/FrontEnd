@@ -3,7 +3,6 @@ import { styled } from 'styled-components';
 // 검색창
 export const HeaderSearchWrapper = styled.div`
   display: flex;
-  justify-content: end;
   align-items: center;
   position: relative;
   flex-direction: row;

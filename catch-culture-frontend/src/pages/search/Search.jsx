@@ -20,7 +20,7 @@ function Search() {
     <>
       <S.SearchWrapper>
         {/* 검색창 */}
-        <SearchBox width="280px" />
+        <SearchBox width="300px" />
 
         {/* 헤더 */}
         <S.SearchHeader>

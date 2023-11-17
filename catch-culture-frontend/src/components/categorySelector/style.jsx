@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 
 export const CategorySelector = styled.div`
   display: flex;
-  width: 340px;
+  width: 320px;
   padding: 6px 8px;
   align-items: flex-start;
   gap: 10px;
