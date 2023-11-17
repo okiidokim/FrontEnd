@@ -5,19 +5,14 @@ import * as S from './style';
 import ToggleIcon from '../../assets/images/sort/toggle.png';
 
 function SortSelector(props) {
-  const options = [
-    { value: 1, label: '최신순' },
-    { value: 2, label: '조회순' },
-    { value: 3, label: '좋아요순' },
-  ];
   const [isShow, setIsShow] = useState(false);
-  const [selectedSort, setSelectedSort] = useState(0);
+
   const handleClickToggle = () => {
     setIsShow(!isShow);
   };
 
   const handleSortSelected = index => {
-    setSelectedSort(index);
+    props.setSelectedSort(index);
     setIsShow(false);
   };
 
@@ -31,14 +26,14 @@ function SortSelector(props) {
             rotate={isShow ? '180deg' : '0deg'}
           />
           <S.SortSelectorSelectedItemTitle>
-            {options[selectedSort].label}
+            {props.options[props.selectedSort].label}
           </S.SortSelectorSelectedItemTitle>
         </S.SortSelectorSelectedItem>
 
         {isShow && (
           <>
-            {options.map((option, index) => {
-              if (index !== selectedSort) {
+            {props.options.map((option, index) => {
+              if (index !== props.selectedSort) {
                 return (
                   <S.SortSelectorSelectedItem
                     key={option.value}

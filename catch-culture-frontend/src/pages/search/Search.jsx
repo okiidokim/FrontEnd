@@ -11,12 +11,24 @@ function Search() {
   const { state } = useLocation();
   const category = state && state.category;
 
+  // 카테고리 상태
   const [selectedCategories, setSelectedCategories] = useState([]);
+
+  // 정렬 옵션
+  const options = [
+    { value: 1, label: '최신순' },
+    { value: 2, label: '조회순' },
+    { value: 3, label: '좋아요순' },
+  ];
+
+  // 정렬 상태
+  const [selectedSort, setSelectedSort] = useState(0);
 
   // 카테고리 바뀔 때 마다 리렌더링
   useEffect(() => {
     console.log(selectedCategories);
-  }, [selectedCategories]);
+    console.log(options[selectedSort].label);
+  }, [selectedCategories, selectedSort]);
 
   return (
     <>
@@ -38,7 +50,11 @@ function Search() {
 
         {/* 정렬 선택 */}
         <S.SortSelectorWrapper>
-          <SortSelector />
+          <SortSelector
+            options={options}
+            selectedSort={selectedSort}
+            setSelectedSort={setSelectedSort}
+          />
         </S.SortSelectorWrapper>
       </S.SearchWrapper>
     </>
