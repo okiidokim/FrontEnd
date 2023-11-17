@@ -16,6 +16,8 @@ function Search() {
   const { state } = useLocation();
   const category = state && state.category;
 
+  console.log(category);
+
   // state 값 유무에 따른 초기값 설정
   const initialCategories = category ? category : [];
 
@@ -41,8 +43,8 @@ function Search() {
 
   // 카테고리 바뀔 때 마다 리렌더링
   useEffect(() => {
-    console.log(selectedCategories);
-    console.log(options[selectedSort].name);
+    // console.log(selectedCategories);
+    // console.log(options[selectedSort].name);
     fetchData();
   }, [selectedCategories, selectedSort]);
 
@@ -53,11 +55,15 @@ function Search() {
 
   const fetchData = async () => {
     try {
+      // URL 만들기 - 카테고리 선택
+      const categoryUrl = selectedCategories
+        .map(item => 'category=' + item)
+        .join('&');
+
       const response = await axios.get(
-        `cultural-event?category=DANCE&offset=0&sortType=${options[selectedSort].label}`
+        `cultural-event?${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
       );
       setData(response.data);
-      console.log(response.data);
     } catch (e) {
       console.log(e);
     }
