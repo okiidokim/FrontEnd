@@ -13,7 +13,7 @@ function EventCard({ data }) {
       {/* 문화 행사 목록 */}
       <S.EventList>
         {data.map((event, index) => (
-          <Link to={`/event/${event.culturalEventId}`}>
+          <Link to={`/event/${event.culturalEventId}`} key={index}>
             {/* 문화 행사 카드 */}
             <S.EventCard key={index}>
               {/* 문화 행사 카드 - 이미지 */}
@@ -24,8 +24,16 @@ function EventCard({ data }) {
 
               {/* 문화 행사 카드 - 내용 */}
               <S.EventCardContentWrapper>
-                <S.EventCardTitle>{event.title}</S.EventCardTitle>
-                <S.EventCardLocation>{event.place}</S.EventCardLocation>
+                <S.EventCardTitle>
+                  {String(event.title) < 10
+                    ? event.title
+                    : `${String(event.title).slice(0, 9)}...`}
+                </S.EventCardTitle>
+                <S.EventCardLocation>
+                  {String(event.place) < 16
+                    ? event.place
+                    : `${String(event.place).slice(0, 15)}...`}
+                </S.EventCardLocation>
                 <S.EventCardDate>
                   {event.startDate} ~ {event.endDate}
                 </S.EventCardDate>
