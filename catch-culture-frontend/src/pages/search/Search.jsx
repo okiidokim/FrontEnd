@@ -3,7 +3,7 @@ import * as S from './style';
 import { useLocation } from 'react-router-dom';
 
 // 컴포넌트
-import SearchBox from '../../components/search/SearchBox';
+import SearchBox from '../../components/search/searchBox/SearchBox';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
 import SortSelector from '../../components/sortSelector/SortSelector';
 import EventCard from '../../components/eventCard/EventCard';

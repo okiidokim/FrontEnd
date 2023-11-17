@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as S from './style';
 
 // 아이콘
-import SearchImg from '../../assets/images/search/searchIcon.png';
+import SearchImg from '../../../assets/images/search/searchIcon.png';
 
 function SearchBox(props) {
   const [search, setSearch] = useState('');
