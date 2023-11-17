@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './style';
 import { useLocation } from 'react-router-dom';
 
@@ -9,6 +9,12 @@ import CategorySelector from '../../components/categorySelector/CategorySelector
 function Search() {
   const { state } = useLocation();
   const category = state && state.category;
+
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  useEffect(() => {
+    console.log(selectedCategories);
+  }, selectedCategories);
 
   return (
     <>
@@ -23,7 +29,10 @@ function Search() {
         </S.SearchHeader>
 
         {/* 카테고리 선택창 */}
-        <CategorySelector />
+        <CategorySelector
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}
+        />
       </S.SearchWrapper>
     </>
   );
