@@ -14,8 +14,6 @@ function Category() {
           selectedCategories.filter(category => category !== selectedCategory)
         )
       : setSelectedCategories([...selectedCategories, selectedCategory]);
-
-    console.log(selectedCategories);
   };
 
   return (
