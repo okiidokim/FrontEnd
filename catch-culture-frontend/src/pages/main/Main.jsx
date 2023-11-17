@@ -7,7 +7,7 @@ import BannerImg1 from '../../assets/images/main/banner1.png';
 import BannerImg2 from '../../assets/images/main/banner2.png';
 import BannerImg3 from '../../assets/images/main/banner3.png';
 import EventCard from '../../components/eventCard/EventCard';
-import SearchBox from '../../components/search/SearchBox';
+import SearchBox from '../../components/search/searchBox/SearchBox';
 
 // 슬라이더
 import { SwiperSlide } from 'swiper/react';

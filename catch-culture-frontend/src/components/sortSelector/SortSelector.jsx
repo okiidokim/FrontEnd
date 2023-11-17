@@ -19,30 +19,31 @@ function SortSelector(props) {
   return (
     <>
       <S.SortSelectorWrapper>
-        <S.SortSelectorSelectedItem onClick={handleClickToggle}>
+        <S.SortSelectorItem onClick={handleClickToggle}>
           <S.ToggleIcon
             src={ToggleIcon}
             alt="토글 아이콘"
             rotate={isShow ? '180deg' : '0deg'}
           />
-          <S.SortSelectorSelectedItemTitle>
+          <S.SortSelectorItemTitle>
             {props.options[props.selectedSort].label}
-          </S.SortSelectorSelectedItemTitle>
-        </S.SortSelectorSelectedItem>
+          </S.SortSelectorItemTitle>
+        </S.SortSelectorItem>
 
+        {/* 토글 클릭 시 보임 */}
         {isShow && (
           <>
             {props.options.map((option, index) => {
               if (index !== props.selectedSort) {
                 return (
-                  <S.SortSelectorSelectedItem
+                  <S.SortSelectorItem
                     key={option.value}
                     onClick={() => handleSortSelected(index)}
                   >
-                    <S.SortSelectorSelectedItemTitle>
+                    <S.SortSelectorItemTitle>
                       {option.label}
-                    </S.SortSelectorSelectedItemTitle>
-                  </S.SortSelectorSelectedItem>
+                    </S.SortSelectorItemTitle>
+                  </S.SortSelectorItem>
                 );
               }
               return null;
