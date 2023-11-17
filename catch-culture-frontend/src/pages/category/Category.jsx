@@ -6,6 +6,7 @@ import CategoryItem from '../../components/category/CategoryItem';
 function Category() {
   const [selectedCategories, setSelectedCategories] = useState([]);
 
+  // 카테고리 아이템 클릭 핸들러
   const handlerClickCategory = selectedCategory => {
     const isCategorySelected = selectedCategories.includes(selectedCategory);
 
@@ -21,6 +22,7 @@ function Category() {
       <S.CategoryWrapper>
         <S.CategoryHeader>카테고리</S.CategoryHeader>
 
+        {/* 카테고리 선택 아이템 */}
         <S.CategoryContentWrapper>
           <CategoryItem
             name="팝업 스토어"
@@ -107,6 +109,7 @@ function Category() {
           />
         </S.CategoryContentWrapper>
 
+        {/* 결과 확인 버튼 */}
         <S.CategorySubmitButtonWrapper>
           <Link to={'/search'} state={{ category: selectedCategories }}>
             <S.CategorySubmitButton
