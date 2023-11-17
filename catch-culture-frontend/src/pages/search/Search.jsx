@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 // 컴포넌트
 import SearchBox from '../../components/search/SearchBox';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
+import SortSelector from '../../components/sortSelector/SortSelector';
 
 function Search() {
   const { state } = useLocation();
@@ -12,6 +13,7 @@ function Search() {
 
   const [selectedCategories, setSelectedCategories] = useState([]);
 
+  // 카테고리 바뀔 때 마다 리렌더링
   useEffect(() => {
     console.log(selectedCategories);
   }, [selectedCategories]);
@@ -33,6 +35,9 @@ function Search() {
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
         />
+
+        {/* 정렬 선택 */}
+        <SortSelector />
       </S.SearchWrapper>
     </>
   );
