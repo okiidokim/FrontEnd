@@ -14,7 +14,7 @@ function Search() {
 
   useEffect(() => {
     console.log(selectedCategories);
-  }, selectedCategories);
+  }, [selectedCategories]);
 
   return (
     <>

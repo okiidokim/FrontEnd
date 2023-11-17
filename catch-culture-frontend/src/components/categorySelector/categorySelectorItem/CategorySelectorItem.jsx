@@ -2,7 +2,6 @@ import React from 'react';
 import * as S from './style';
 
 function CategorySelectorItem(props) {
-  console.log(props.selectedCategories);
   return (
     <>
       <S.CategorySelectorItem

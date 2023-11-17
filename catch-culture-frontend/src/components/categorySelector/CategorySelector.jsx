@@ -3,7 +3,6 @@ import * as S from './style';
 import CategorySelectorItem from './categorySelectorItem/CategorySelectorItem';
 
 function CategorySelector(props) {
-  console.log(props.selectedCategories);
   const handlerClickCategory = selectedCategory => {
     const IsSelected = props.selectedCategories.includes(selectedCategory);
 
