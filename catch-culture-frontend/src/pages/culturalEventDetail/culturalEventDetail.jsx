@@ -16,26 +16,30 @@ let imgUrl1 = 'https://storage.googleapis.com/elegant-bucket/jinwoo.png';
 let imgUrl2 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg';
 let imgUrl3 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
 
-const state = {
-    title: '더 크림 갤러리',     //제목
-    category: '팝업스토어',      //카테고리
-    isAuthenticated: true,      //방문인증 여부
-    likeCount: 123,             //좋아요 수
-    bookmarkCount: 321,         //즐겨찾기 수
-    description: '프리미엄 티 브랜드 알디프가 론칭한 세컨드 브랜드 크림차. 크림차는 작년 성수에서 연 ‘드림 팝업’의 호응에 힘입어 올해 두 번째 팝업스토어를 공개했다... 더보기더더더더더더더더더더더더더더보기',          //행사 소개
-    place: null,                //행사 위치
-    wayToCome: null,            //오는 길
-    startDate: null,            //시작일
-    endDate: null,              //종료일
-    isFree: null,               //요금 정보
-    storedFileURL: null,        //행사 사진? 모르게씀 DB에있어서
-    telephone: '010-1234-3213',            //전화번호
-    sns: null,                  //sns 주소
-    reservationLink: 'https://github.com/ElegantChildren/FrontEnd',      //예약 링크
-}
+
 
 
 function culturalEventDetail() {
+    const [state, setState] = useState({
+        title: '더 크림 갤러리',     //제목
+        category: '팝업스토어',      //카테고리
+        isAuthenticated: true,      //방문인증 여부
+        likeCount: 123,             //좋아요 수
+        bookmarkCount: 321,         //즐겨찾기 수
+        isLike: false,              //좋아요 여부
+        isBookmark: true,          //즐겨찾기 여부
+        description: '프리미엄 티 브랜드 알디프가 론칭한 세컨드 브랜드 크림차. 크림차는 작년 성수에서 연 ‘드림 팝업’의 호응에 힘입어 올해 두 번째 팝업스토어를 공개했다... 더보기더더더더더더더더더더더더더더보기',          //행사 소개
+        place: null,                //행사 위치
+        wayToCome: null,            //오는 길
+        startDate: null,            //시작일
+        endDate: null,              //종료일
+        isFree: null,               //요금 정보
+        storedFileURL: null,        //행사 사진? 모르게씀 DB에있어서
+        telephone: '010-1234-3213',            //전화번호
+        sns: null,                  //sns 주소
+        reservationLink: 'https://github.com/ElegantChildren/FrontEnd',      //예약 링크
+    });
+
     // 페이지 이동을 위한 변수
     const navigate = useNavigate();
 
@@ -44,6 +48,44 @@ function culturalEventDetail() {
         navigate(-1);
     }
 
+    // 좋아요 버튼 클릭
+    const onClickLikeButton = () => {
+        if(state.isLike) {
+            setState.likeCount--;
+            /***********************
+             * TODO 좋아요 빼기 api *
+             ***********************/
+        } else {
+            setState.likeCount++;
+            /***********************
+             * TODO 좋아요 추가 api *
+             ***********************/
+        }
+        setState.isLike = !state.isLike;
+    }
+
+    // 좋아요 아이콘 변경
+    const HeartComponent = useState(() => {
+        if(!state.isLike)
+            return <AiOutlineHeart />
+        else
+            return <AiFillHeart style={{color:'red'}}/>
+    }, [state.isLike])
+
+    // 즐겨찾기 아이콘 변경
+    const StarComponent = useState(() => {
+        if(!state.isBookmark)
+            return <AiOutlineStar />
+        else
+            return <AiFillStar style={{color: "#FFF000"}}/>
+    }, [state.isBookmark])
+
+    // 즐겨찾기 버튼 클릭
+    const onClickBookmarkButton = () => {
+            
+    }
+
+    // 방문인증 버튼 클릭
     const onClickAuthButton = () => {
         if(!state.isAuthenticated)
             navigate('/');
@@ -70,6 +112,7 @@ function culturalEventDetail() {
 
     return (
         <S.Wrapper>
+            {/* 헤더 영역 (상단 고정) */}
             <S.Header>
                 <S.BackButton onClick={onClickBackButton}> 
                     <IoIosArrowBack />
@@ -86,17 +129,24 @@ function culturalEventDetail() {
                 </S.PageChangeArea>
             </S.Header>
             
+            {/* 문화 행사 정보 영역 */}
             <S.InfoArea>
+                {/* 행사 제목 */}
                 <S.TitleArea>
                     {state.title}
                 </S.TitleArea>
+
+                {/* 카테고리 영역 */}
                 <S.CategoryArea>
                     {state.category}
                 </S.CategoryArea>
+
+                {/* 방문인증 여부 */}
                 <S.AuthArea style={ state.isAuthenticated ? {color: '#018C0D'} : {color: 'red'}}>
                     {state.isAuthenticated ? '방문 인증 완료' : '방문 인증 미완료'}
                 </S.AuthArea>
                 
+                {/* 사진 영역 */}
                 <S.PictureArea>
                     <S.MySwiper pagination={true} modules={[Pagination, Autoplay]} slidesPerView={1} autoplay={{delay: 2000, disableOnInteraction: false}} loop={true}>
                         <SwiperSlide>
@@ -110,15 +160,16 @@ function culturalEventDetail() {
                         </SwiperSlide>
                     </S.MySwiper>
                 </S.PictureArea>
-
+                
+                {/* 좋아요, 즐겨찾기 버튼 */}
                 <S.PersonalButtonArea>
-                    <button id= 'likeButton'>
-                        <AiOutlineHeart />
-                        <b> {state.likeCount} </b>
+                    <button id= 'likeButton' onClick={onClickLikeButton}>
+                        {HeartComponent}
+                        <b> {state.likeCount} </b> 
                     </button>
 
                     <button id= 'bookmarkButton'>
-                        <AiOutlineStar />
+                        {StarComponent}
                         <b> {state.bookmarkCount} </b>
                     </button>
                 </S.PersonalButtonArea>
@@ -130,6 +181,7 @@ function culturalEventDetail() {
                     <S.InfoValue>
                         <div id="descriptionInfo" onClick={() => setIsShowMore(!isShowMore)}>
                             { commenter }
+                            {/* 더보기 버튼 */}
                             <span style={{color:'grey'}}>
                                 {state.description.length > textLimit ? (isShowMore ? ' 닫기' : ' ...더보기') : null}
                             </span>
@@ -180,9 +232,11 @@ function culturalEventDetail() {
                     <S.SubTitle>
                         예약 정보
                     </S.SubTitle>
+                    {/* 예약 링크 설명 */}
                     <S.InfoValue>
                         { state.reservationLink != null ? "예약링크" + state.reservationLink : null }
                     </S.InfoValue>
+                    {/* 예약 버튼 */}
                     <S.ButtonSection style={ state.reservationLink != null ? null : {display:'none'}}>
                         <button onClick={() => {window.open(state.reservationLink,'_blank')}}>
                             이동하기
