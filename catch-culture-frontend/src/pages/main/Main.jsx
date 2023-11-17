@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 import LogoImg from '../../assets/images/logo.png';
 
@@ -47,7 +48,9 @@ function Main() {
         <S.EventWrapper>
           <S.EventHeader>
             <S.EventHeaderTitle>이런 행사는 어떠세요?</S.EventHeaderTitle>
-            <S.EventHeaderMore>더보기</S.EventHeaderMore>
+            <Link to="/search">
+              <S.EventHeaderMore>더보기</S.EventHeaderMore>
+            </Link>
           </S.EventHeader>
           <EventCard />
         </S.EventWrapper>
