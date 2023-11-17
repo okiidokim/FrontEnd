@@ -4,6 +4,10 @@ import * as S from './style';
 import CardImg from '../../assets/images/main/card.png';
 
 function EventCard({ data }) {
+  if (!data) {
+    return null;
+  }
+
   return (
     <>
       {/* 문화 행사 목록 */}
