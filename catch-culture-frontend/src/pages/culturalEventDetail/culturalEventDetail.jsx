@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { RiFileList2Line } from 'react-icons/ri';
 import { LiaCommentsSolid } from 'react-icons/lia';
@@ -28,7 +28,7 @@ function culturalEventDetail() {
         isAuthenticated: true,      //방문인증 여부
         likeCount: 123,             //좋아요 수
         bookmarkCount: 321,         //즐겨찾기 수
-        isLike: false,              //좋아요 여부
+        //isLike: false,              //좋아요 여부
         isBookmark: true,          //즐겨찾기 여부
         description: '프리미엄 티 브랜드 알디프가 론칭한 세컨드 브랜드 크림차. 크림차는 작년 성수에서 연 ‘드림 팝업’의 호응에 힘입어 올해 두 번째 팝업스토어를 공개했다... 더보기더더더더더더더더더더더더더더보기',          //행사 소개
         place: null,                //행사 위치
@@ -42,38 +42,40 @@ function culturalEventDetail() {
         reservationLink: 'https://github.com/ElegantChildren/FrontEnd',      //예약 링크
     });
 
-    /**
-     * 변경됨
-     */
-    const [storedFileURL, setStoredFileURL] = useState(''); // string: 이미지 URL 
-    const [startDate, setStartDate] = useState(''); // LocalDateTime: 시작일
-    const [endDate, setEndDate] = useState(''); // LocalDateTime: 종료일
-    const [title, setTitle] = useState(''); // String: 제목
-    const [place, setPlace] = useState(''); // String: 행사 위치
-    const [category, setCategory] = useState(''); // Category(): 카테고리 Enumerated(EnumType.STRING)
-    const [description, setDescription] = useState(''); // String: 행사 설명
-    const [wayToCome, setWayToCome] = useState(''); // String: 오시는길
-    const [sns, setSns] = useState(''); // String: sns 주소
-    const [telephone, setTelephone] = useState('') // String: 전화번호
-    const [isFree, setIsFree] = useState(False) // Boolean: 요금
-    const [reservationLink, setReservationLink] = useState('') // String: 예약 링크
-    /**
-     * 여기부턴 git에 없는거
-     */
-    const [isAuthenticated, setIsAuthenticated] = useState(true) // Boolean: 인증 여부
-    const [likeCount, setLikeCount] = useState(123) // int: 좋아요 수
-    const [bookmarkCount, setBookMarkCount] = useState(123) // int: 즐겨찾기 수
-    const [isLike, setIsLike] = useState(False) // Boolean: 좋아요 여부
-    const [isBookMark, setIsBookMark] = useState(False) // Boolean: 즐겨찾기 여부
+    const [culturalEventId, setCulturalEventId] = useState(1);
 
-    // 최초 로딩시 값 불러오기
-    useEffect(() => {
-        axios.get('elegant.kro.kr/cultural-event/{culturalEventId}')
-        .then(response => {
-            console.log(response.data);
-            // setVariable(response.data); // 값 설정
-        })
-    }, []);
+    // /**
+    //  * 변경됨
+    //  */
+    // const [storedFileURL, setStoredFileURL] = useState(''); // string: 이미지 URL 
+    // const [startDate, setStartDate] = useState(''); // LocalDateTime: 시작일
+    // const [endDate, setEndDate] = useState(''); // LocalDateTime: 종료일
+    // const [title, setTitle] = useState(''); // String: 제목
+    // const [place, setPlace] = useState(''); // String: 행사 위치
+    // const [category, setCategory] = useState(''); // Category(): 카테고리 Enumerated(EnumType.STRING)
+    // const [description, setDescription] = useState(''); // String: 행사 설명
+    // const [wayToCome, setWayToCome] = useState(''); // String: 오시는길
+    // const [sns, setSns] = useState(''); // String: sns 주소
+    // const [telephone, setTelephone] = useState('') // String: 전화번호
+    // const [isFree, setIsFree] = useState(False) // Boolean: 요금
+    // const [reservationLink, setReservationLink] = useState('') // String: 예약 링크
+    // /**
+    //  * 여기부턴 git에 없는거
+    //  */
+    // const [isAuthenticated, setIsAuthenticated] = useState(true) // Boolean: 인증 여부
+    const [likeCount, setLikeCount] = useState(123) // int: 좋아요 수
+    const [bookmarkCount, setBookmarkCount] = useState(321) // int: 즐겨찾기 수
+    const [isLike, setIsLike] = useState(true) // Boolean: 좋아요 여부
+    const [isBookmark, setIsBookmark] = useState(false) // Boolean: 즐겨찾기 여부
+
+    // // 최초 로딩시 값 불러오기
+    // useEffect(() => {
+    //     axios.get('elegant.kro.kr/cultural-event/{culturalEventId}')
+    //     .then(response => {
+    //         console.log(response.data);
+    //         // setVariable(response.data); // 값 설정
+    //     })
+    // }, []);
 
 
     // 페이지 이동을 위한 변수
@@ -86,43 +88,44 @@ function culturalEventDetail() {
 
     // 좋아요 버튼 클릭
     const onClickLikeButton = async (e) => {
-        if(state.isLike) {
-            setState.likeCount--;
+        console.log(isLike);
+        if(isLike) {
+            setLikeCount(likeCount-1);
             /***********************
              * TODO 좋아요 빼기 api *
              ***********************/
-            await axios.delete('elegant.kro.kr/cultural-event/{culturalEventId}/like')
-                .then(() => this.setState({likeCount: state.likeCount--}));
+            // await axios.delete('http://elegant.kro.kr/cultural-event/'+{culturalEventId}+'/like')
+            //     .then(() => this.setLikeCount(likeCount-1));
         } else {
-            setState.likeCount++;
+            setLikeCount(likeCount+1);
             /***********************
              * TODO 좋아요 추가 api *
              ***********************/
-            await axios.post('elegant.kro.kr/cultural-event/{culturalEventId}/like')
-                .then(() => this.setState({likeCount: state.likeCount++}));
+            // await axios.post('http://elegant.kro.kr/cultural-event/'+{culturalEventId}+'/like')
+            //     .then(() => this.setLikeCount(likeCount+1));
         }
-        setState.isLike = !state.isLike;
+        setIsLike(!isLike);
     }
 
-    // 좋아요 아이콘 변경
-    const HeartComponent = useState(() => {
-        if(!state.isLike)
-            return <AiOutlineHeart />
-        else
-            return <AiFillHeart style={{color:'red'}}/>
-    }, [state.isLike])
-
-    // 즐겨찾기 아이콘 변경
-    const StarComponent = useState(() => {
-        if(!state.isBookmark)
-            return <AiOutlineStar />
-        else
-            return <AiFillStar style={{color: "#FFF000"}}/>
-    }, [state.isBookmark])
-
     // 즐겨찾기 버튼 클릭
-    const onClickBookmarkButton = () => {
-            
+    const onClickBookmarkButton = async (e) => {
+        console.log(isBookmark);
+        if(isBookmark) {
+            setBookmarkCount(bookmarkCount-1);
+            /***********************
+             * TODO 즐겨찾기 빼기 api *
+             ***********************/
+            // await axios.delete('http://elegant.kro.kr/cultural-event/'+{culturalEventId}+'/star')
+            //     .then(() => this.setBookmarkCount(bookmarkCount-1));
+        } else {
+            setBookmarkCount(bookmarkCount+1);
+            /***********************
+             * TODO 즐겨찾기 추가 api *
+             ***********************/
+            // await axios.post('http://elegant.kro.kr/cultural-event/'+{culturalEventId}+'/star')
+            //     .then(() => this.setBookmarkCount(bookmarkCount+1));
+        }
+        setIsBookmark(!isBookmark);
     }
 
     // 방문인증 버튼 클릭
@@ -204,13 +207,13 @@ function culturalEventDetail() {
                 {/* 좋아요, 즐겨찾기 버튼 */}
                 <S.PersonalButtonArea>
                     <button id= 'likeButton' onClick={onClickLikeButton}>
-                        {HeartComponent}
-                        <b> {state.likeCount} </b> 
+                        {isLike ? <AiFillHeart style={{color:'red'}}/> : <AiOutlineHeart />}
+                        <b> {likeCount} </b> 
                     </button>
 
-                    <button id= 'bookmarkButton'>
-                        {StarComponent}
-                        <b> {state.bookmarkCount} </b>
+                    <button id= 'bookmarkButton'onClick={onClickBookmarkButton}>
+                        {isBookmark ? <AiFillStar style={{color: "#FFF000"}}/> : <AiOutlineStar />}
+                        <b> {bookmarkCount} </b>
                     </button>
                 </S.PersonalButtonArea>
 
