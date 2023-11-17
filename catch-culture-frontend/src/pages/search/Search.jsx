@@ -7,6 +7,7 @@ import SearchBox from '../../components/search/searchBox/SearchBox';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
 import SortSelector from '../../components/sortSelector/SortSelector';
 import EventCard from '../../components/eventCard/EventCard';
+import NoResult from '../../components/search/noResult/NoResult';
 
 function Search() {
   const { state } = useLocation();
@@ -29,6 +30,9 @@ function Search() {
   // 정렬 상태
   const [selectedSort, setSelectedSort] = useState(0);
 
+  // 임시 cnt
+  const cnt = 0;
+
   // 카테고리 바뀔 때 마다 리렌더링
   useEffect(() => {
     console.log(selectedCategories);
@@ -44,7 +48,7 @@ function Search() {
         {/* 헤더 */}
         <S.SearchHeader>
           <S.SearchHeaderTitle>검색 결과</S.SearchHeaderTitle>
-          <S.SearchHeaderResultCnt>총 123개</S.SearchHeaderResultCnt>
+          <S.SearchHeaderResultCnt>총 {cnt}개</S.SearchHeaderResultCnt>
         </S.SearchHeader>
 
         {/* 카테고리 선택창 */}
@@ -63,7 +67,15 @@ function Search() {
         </S.SortSelectorWrapper>
 
         {/* 문화 행사 출력 */}
-        <EventCard />
+        {cnt === 0 ? (
+          <>
+            <NoResult />
+          </>
+        ) : (
+          <>
+            <EventCard />
+          </>
+        )}
       </S.SearchWrapper>
     </>
   );
