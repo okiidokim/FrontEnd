@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
-import CardImg from '../../assets/images/main/card.png';
 
 function EventCard({ data }) {
   if (!data) {
     return null;
   }
+
+  const getTagColor = remainDay => {
+    if (remainDay === 0) {
+      return '#E00000';
+    } else if (remainDay >= 1 && remainDay <= 3) {
+      return '#EB6565';
+    } else if (remainDay >= 4 && remainDay <= 9) {
+      return '#E3C00C';
+    } else {
+      return '#018C0D';
+    }
+  };
 
   return (
     <>
@@ -18,7 +29,9 @@ function EventCard({ data }) {
             <S.EventCard key={index}>
               {/* 문화 행사 카드 - 이미지 */}
               <S.EventCardImgWrapper>
-                <S.EventCardImgTag>D-{event.remainDay}</S.EventCardImgTag>
+                <S.EventCardImgTag color={getTagColor(event.remainDay)}>
+                  D-{event.remainDay === 0 ? 'Day' : event.remainDay}
+                </S.EventCardImgTag>
                 <S.EventCardImg src={event.storedFileURL} alt="카드 이미지" />
               </S.EventCardImgWrapper>
 
@@ -37,6 +50,7 @@ function EventCard({ data }) {
                 <S.EventCardDate>
                   {event.startDate} ~ {event.endDate}
                 </S.EventCardDate>
+
                 <S.EventCardInfo>
                   {/* 문화 행사 카드 - 내용 - 조회수 */}
                   <S.EventCardInfoViewWrapper>
@@ -45,6 +59,7 @@ function EventCard({ data }) {
                       {event.viewCount}
                     </S.EventCardInfoViewCnt>
                   </S.EventCardInfoViewWrapper>
+
                   {/* 문화 행사 카드 - 내용 - 좋아요수 */}
                   <S.EventCardInfoHeartWrapper>
                     <S.EventCardInfoHeartIcon />
