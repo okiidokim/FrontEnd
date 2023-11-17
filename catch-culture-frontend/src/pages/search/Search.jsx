@@ -9,6 +9,9 @@ import SortSelector from '../../components/sortSelector/SortSelector';
 import EventCard from '../../components/eventCard/EventCard';
 import NoResult from '../../components/search/noResult/NoResult';
 
+// api
+import axios from '../../api/axios';
+
 function Search() {
   const { state } = useLocation();
   const category = state && state.category;
@@ -22,13 +25,16 @@ function Search() {
 
   // 정렬 옵션
   const options = [
-    { value: 1, label: '최신순' },
-    { value: 2, label: '조회순' },
-    { value: 3, label: '좋아요순' },
+    { value: 1, label: 'RECENT', name: '최신순' },
+    { value: 2, label: 'VIEW_COUNT', name: '조회순' },
+    { value: 3, label: 'LIKE', name: '좋아요순' },
   ];
 
   // 정렬 상태
   const [selectedSort, setSelectedSort] = useState(0);
+
+  // data
+  const [data, setData] = useState([]);
 
   // 임시 cnt
   const cnt = 2;
@@ -36,8 +42,26 @@ function Search() {
   // 카테고리 바뀔 때 마다 리렌더링
   useEffect(() => {
     console.log(selectedCategories);
-    console.log(options[selectedSort].label);
+    console.log(options[selectedSort].name);
+    fetchData();
   }, [selectedCategories, selectedSort]);
+
+  // 초기
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `cultural-event?category=DANCE&offset=0&sortType=${options[selectedSort].label}`
+      );
+      setData(response.data);
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <>

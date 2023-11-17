@@ -26,7 +26,7 @@ function SortSelector(props) {
             rotate={isShow ? '180deg' : '0deg'}
           />
           <S.SortSelectorItemTitle>
-            {props.options[props.selectedSort].label}
+            {props.options[props.selectedSort].name}
           </S.SortSelectorItemTitle>
         </S.SortSelectorItem>
 
@@ -41,7 +41,7 @@ function SortSelector(props) {
                     onClick={() => handleSortSelected(index)}
                   >
                     <S.SortSelectorItemTitle>
-                      {option.label}
+                      {option.name}
                     </S.SortSelectorItemTitle>
                   </S.SortSelectorItem>
                 );
