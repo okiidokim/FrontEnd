@@ -12,6 +12,8 @@ export const SearchHeader = styled.div`
   display: flex;
   margin-top: 15px;
   align-items: baseline;
+  margin-left: 4px;
+  margin-bottom: 10px;
 `;
 
 export const SearchHeaderTitle = styled.div`
