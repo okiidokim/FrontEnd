@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import SearchBox from '../../components/search/SearchBox';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
 import SortSelector from '../../components/sortSelector/SortSelector';
+import EventCard from '../../components/eventCard/EventCard';
 
 function Search() {
   const { state } = useLocation();
@@ -56,6 +57,9 @@ function Search() {
             setSelectedSort={setSelectedSort}
           />
         </S.SortSelectorWrapper>
+
+        {/* 문화 행사 출력 */}
+        <EventCard />
       </S.SearchWrapper>
     </>
   );

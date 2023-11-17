@@ -9,7 +9,7 @@ function EventCard() {
     <>
       {/* 문화 행사 목록 */}
       <S.EventList>
-        <Link to={`event/${id}`}>
+        <Link to={`/event/${id}`}>
           {/* 문화 행사 카드 */}
           <S.EventCard>
             {/* 문화 행사 카드 - 이미지 */}
