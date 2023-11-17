@@ -31,7 +31,7 @@ export const CategoryItem = styled.div`
   padding-bottom: 20px;
   border-bottom: 1px solid #e2e2e2;
   margin-bottom: 20px;
-  color: #777;
+  color: ${props => props.color};
   text-align: center;
   font-size: 16px;
   font-weight: 700;
@@ -43,13 +43,14 @@ export const CategoryItem = styled.div`
   }
 `;
 
-export const CategorySubmitButton = styled.div`
+export const CategorySubmitButton = styled.button`
   display: flex;
+  border: none;
   width: 300px;
   height: 36px;
   flex-shrink: 0;
   border-radius: 8px;
-  background: #a7a7a7;
+  background: ${props => props.color};
   color: #fff;
   text-align: center;
   font-size: 16px;
@@ -57,6 +58,7 @@ export const CategorySubmitButton = styled.div`
   line-height: normal;
   justify-content: center;
   align-items: center;
+  cursor: ${props => props.cursor};
 `;
 
 export const CategorySubmitButtonWrapper = styled.div`
@@ -64,5 +66,4 @@ export const CategorySubmitButtonWrapper = styled.div`
   justify-content: center;
   margin-top: 28px;
   margin-bottom: 28px;
-  cursor: pointer;
 `;
