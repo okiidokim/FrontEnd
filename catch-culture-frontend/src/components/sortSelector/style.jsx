@@ -1,6 +1,9 @@
 import { styled } from 'styled-components';
 
-export const SortSelectorWrapper = styled.div``;
+export const SortSelectorWrapper = styled.div`
+  position: fixed;
+  z-index: 1;
+`;
 
 export const SortSelectorSelectedItem = styled.div`
   position: relative;

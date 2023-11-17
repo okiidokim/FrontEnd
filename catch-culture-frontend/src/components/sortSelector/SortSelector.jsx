@@ -45,7 +45,7 @@ function SortSelector(props) {
                   </S.SortSelectorSelectedItem>
                 );
               }
-              return null; // 선택된 항목은 드롭다운 목록에 표시하지 않음
+              return null;
             })}
           </>
         )}
