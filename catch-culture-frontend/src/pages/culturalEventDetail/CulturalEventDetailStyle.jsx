@@ -89,7 +89,6 @@ export const InfoArea = styled.div`
     align-items: center;
     justify-items: center;
     flex-direction: column;
-    
     margin-bottom: 20px;
 `;
 
@@ -189,6 +188,9 @@ export const InfoValue = styled.div`
     text-align: left;
     padding-left: 30px;
     margin-top: 8px;
+    display:flex;
+    flex-direction: column;
+    line-height: 20px;
 `;
 
 export const ReservationButton = styled.button`
