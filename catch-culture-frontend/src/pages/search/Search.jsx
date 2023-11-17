@@ -12,8 +12,12 @@ function Search() {
   const { state } = useLocation();
   const category = state && state.category;
 
+  // state 값 유무에 따른 초기값 설정
+  const initialCategories = category ? category : [];
+
   // 카테고리 상태
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] =
+    useState(initialCategories);
 
   // 정렬 옵션
   const options = [
