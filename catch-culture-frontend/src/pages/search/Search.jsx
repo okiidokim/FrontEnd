@@ -37,7 +37,9 @@ function Search() {
         />
 
         {/* 정렬 선택 */}
-        <SortSelector />
+        <S.SortSelectorWrapper>
+          <SortSelector />
+        </S.SortSelectorWrapper>
       </S.SearchWrapper>
     </>
   );

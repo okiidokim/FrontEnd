@@ -30,3 +30,9 @@ export const SearchHeaderResultCnt = styled.div`
   line-height: normal;
   margin-left: 10px;
 `;
+
+export const SortSelectorWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+`;
