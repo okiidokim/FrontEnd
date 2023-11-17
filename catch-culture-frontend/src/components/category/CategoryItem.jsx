@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from './style';
+import CheckIcon from '../../assets/images/category/check.png';
 
 function CategoryItem(props) {
   return (
@@ -11,6 +12,15 @@ function CategoryItem(props) {
         }
       >
         {props.name}
+        <S.CheckIcon
+          src={CheckIcon}
+          alt="체크 이미지"
+          visibility={
+            props.selectedCategories.includes(props.category)
+              ? 'visible'
+              : 'hidden'
+          }
+        />
       </S.CategoryItem>
     </>
   );
