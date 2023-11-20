@@ -1,0 +1,8 @@
+.bookmarktext {
+  display: flex;
+  position: absolute;
+  top: 8%;
+  margin: 0 0 0 -176px;
+  font-size: 20px;
+  font-weight: bold;
+}

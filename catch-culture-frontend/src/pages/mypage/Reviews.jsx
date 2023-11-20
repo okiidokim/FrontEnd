@@ -1,7 +1,12 @@
 import React from 'react';
+import Backitem from '../../components/Backitem';
 
-function Notify() {
-  return <div>리뷰 내역 페이지</div>;
+function Reviews() {
+  return (
+    <div>
+      <Backitem />
+    </div>
+  );
 }
 
-export default Notify;
+export default Reviews;

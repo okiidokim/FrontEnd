@@ -1,7 +1,12 @@
 import React from 'react';
+import Backitem from '../../components/Backitem';
 
-function Notify() {
-  return <div>방문 내역 페이지</div>;
+function Visited() {
+  return (
+    <div>
+      <Backitem />
+    </div>
+  );
 }
 
-export default Notify;
+export default Visited;
