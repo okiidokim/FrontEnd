@@ -16,6 +16,7 @@ import Visited from './pages/mypage/Visited';
 import ProfileEdit from './pages/mypage/ProfileDetail';
 import PointLevel from './pages/mypage/PointLevel';
 import Search from './pages/search/Search';
+import VisitAuth from './pages/visitAuth/VisitAuth';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Main />,
+        element: <VisitAuth />,
       },
       {
         path: '/map',
