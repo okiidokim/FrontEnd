@@ -90,6 +90,7 @@ export const InfoArea = styled.div`
     align-items: center;
     justify-items: center;
     flex-direction: column;
+`;
 
 export const TitleArea = styled.div`
     width: 200px !important;
