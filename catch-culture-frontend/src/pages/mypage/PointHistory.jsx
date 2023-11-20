@@ -1,7 +1,12 @@
 import React from 'react';
+import Backitem from '../../components/Backitem';
 
 function PointHistory() {
-    return <div>포인트 내역 페이지</div>;
+  return (
+    <div>
+      <Backitem />
+    </div>
+  );
 }
 
 export default PointHistory;

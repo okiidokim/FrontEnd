@@ -1,29 +1,19 @@
 import React from 'react';
-import { IoIosArrowDropleft } from 'react-icons/io';
 import { IoHeartOutline, IoStarOutline } from 'react-icons/io5';
-import { useNavigate } from 'react-router-dom';
 import { PiNotificationBold, PiMapPin } from 'react-icons/pi';
 import { AiOutlineDollar, AiOutlineMessage } from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
 import './Mypage.css';
 import Level0 from '../../assets/pointimg/level0.png';
+import Backitem from '../../components/Backitem';
 
 let profimg =
   'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
 
 function Mypage() {
-  const navigate = useNavigate();
-
-  // 페이지 뒤로가기
-  const onClickBackButton = () => {
-    navigate(-1);
-  };
-
   return (
-    <div class="wrap">
-      <div class="backicon">
-        <IoIosArrowDropleft size="24" onClick={onClickBackButton} />
-      </div>
+    <div className="wrap">
+      <Backitem />
       <div className="mypage-body">
         <div className="information">
           <div className="profileimg">
