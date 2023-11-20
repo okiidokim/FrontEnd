@@ -1,7 +1,12 @@
 import React from 'react';
+import Backitem from '../../components/Backitem';
 
 function Notify() {
-    return <div>공지 페이지</div>;
+  return (
+    <div>
+      <Backitem />
+    </div>
+  );
 }
 
 export default Notify;

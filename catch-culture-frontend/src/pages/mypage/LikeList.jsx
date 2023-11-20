@@ -1,7 +1,12 @@
 import React from 'react';
+import Backitem from '../../components/Backitem';
 
-function Notify() {
-  return <div>좋아요 목록 페이지</div>;
+function Likes() {
+  return (
+    <div>
+      <Backitem />
+    </div>
+  );
 }
 
-export default Notify;
+export default Likes;
