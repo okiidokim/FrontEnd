@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <VisitAuth />,
+        element: <Main />,
       },
       {
         path: '/map',
@@ -83,6 +83,10 @@ const router = createBrowserRouter([
         path: '/search',
         element: <Search />,
       },
+      {
+        path: '/event/:id/visit',
+        element: <VisitAuth />,
+      }
     ],
   },
 ]);
