@@ -5,7 +5,7 @@ import Main from './pages/main/Main';
 import Map from './pages/map/Map';
 import Category from './pages/category/Category';
 import Mypage from './pages/mypage/Mypage';
-import CulturalEventDetail from './pages/culturalEventDetail/culturalEventDetail';
+import CulturalEventDetail from './pages/culturalEventDetail/CulturalEventDetail';
 import Login from './pages/login/Login';
 import Notify from './pages/mypage/Notify';
 import PointHistory from './pages/mypage/PointHistory';
