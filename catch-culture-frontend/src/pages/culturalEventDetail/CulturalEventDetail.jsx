@@ -5,7 +5,7 @@ import { LiaCommentsSolid } from 'react-icons/lia';
 import { AiOutlineHeart, AiFillHeart, AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 
-import * as S from './culturalEventDetailStyle';
+import * as S from './CulturalEventDetailStyle';
 import { SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
