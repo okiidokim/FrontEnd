@@ -3,7 +3,7 @@ import { IoIosArrowBack } from 'react-icons/io';
 import { RiFileList2Line } from 'react-icons/ri';
 import { LiaCommentsSolid } from 'react-icons/lia';
 import { AiOutlineHeart, AiFillHeart, AiOutlineStar, AiFillStar } from 'react-icons/ai';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './culturalEventDetailStyle';
 import { SwiperSlide } from 'swiper/react';
@@ -11,7 +11,9 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { Pagination, Autoplay } from 'swiper/modules';
-import axios from 'axios';
+
+// api
+import axios from '../../api/axios';
 
 let imgUrl1 = 'https://storage.googleapis.com/elegant-bucket/jinwoo.png';
 let imgUrl2 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg';
@@ -22,7 +24,7 @@ function culturalEventDetail() {
 
     // TODO : useState 선언 최초 로딩 쪽으로 옮기기, 초기값 세팅
     // 문화 행사 id 어떻게 가져올지
-    const [culturalEventId, setCulturalEventId] = useState(1);
+    const params = useParams();
     // /**
     //  * 변경됨
     //  */
@@ -44,18 +46,20 @@ function culturalEventDetail() {
     const [isAuthenticated, setIsAuthenticated] = useState(true) // Boolean: 인증 여부
     const [likeCount, setLikeCount] = useState(123) // int: 좋아요 수
     const [bookmarkCount, setBookmarkCount] = useState(321) // int: 즐겨찾기 수
-    const [isLike, setIsLike] = useState(true) // Boolean: 좋아요 여부
+    const [isLike, setIsLike] = useState(false) // Boolean: 좋아요 여부
     const [isBookmark, setIsBookmark] = useState(false) // Boolean: 즐겨찾기 여부
 
     // // 최초 로딩시 값 불러오기
     // useEffect(() => {
-    //     axios.get('http://elegant.kro.kr/cultural-event/' + culturalEventId)
-    //         .then(response => {
-    //             console.log(response.data);
-    //             setIsAuthenticated(response.data.authenticated);
-    //         })
-    // }, []);
+    //     try {
+    //         const response = await axios.get(
+    //             `cultural-event/${culturalEventId}`
+    //         )
 
+    //        setCulturalEventId(response.culturalEventId);
+    //     }
+        
+    // }, []);
 
     // 페이지 이동을 위한 변수
     const navigate = useNavigate();
@@ -65,25 +69,47 @@ function culturalEventDetail() {
         navigate(-1);
     }
 
+    useEffect(() => {
+        fetchData();
+    }, [isLike])
+
     // 좋아요 버튼 클릭
-    const onClickLikeButton = async (e) => {
-        console.log(isLike);
-        if(isLike) {
-            setLikeCount(likeCount-1);
-            /***********************
-             * TODO 좋아요 빼기 api *
-             ***********************/
-            // await axios.delete('http://elegant.kro.kr/cultural-event/'+{culturalEventId}+'/like')
-            //     .then(() => this.setLikeCount(likeCount-1));
-        } else {
-            setLikeCount(likeCount+1);
-            /***********************
-             * TODO 좋아요 추가 api *
-             ***********************/
-            // await axios.post('http://elegant.kro.kr/cultural-event/'+{culturalEventId}+'/like')
-            //     .then(() => this.setLikeCount(likeCount+1));
-        }
+    const onClickLikeButton = () => {
         setIsLike(!isLike);
+    }
+
+    const fetchData = async () => {
+        /***************************************************
+         * TODO 요청에 로그인 정보 담거나 백에서 처리하면 구현 *
+         ***************************************************/
+        // try {
+        //     if(!isLike) {
+        //         setLikeCount(likeCount-1);
+
+        //         const response = await axios.delete(
+        //             `cultural-event/${params.id}/like`,
+        //             {
+        //                 headers: {
+        //                     Accept: 'rO0ABXQA4kJlYXJlciBleUpoYkdjaU9pSklVelV4TWlKOS5leUp6ZFdJaU9pSkJZMk5sYzNOVWIydGxiaUlzSW1WdFlXbHNJam9pYzJ0a2FYZHNjMlJ1TlVCdVlYWmxjaTVqYjIwaUxDSnliMnhsSWpvaVZWTkZVaUlzSW1WNGNDSTZNVGN3TURVME1qSTBPSDAuN3h6c1VIV2JhYzF6ZVlkUGhzTm90di1SZEhMenlidHZxY0k2aGhmbnQwRE1CRzMwSFlqbEJ2Slk4bzJpVlNyWHdWMGQ3dS1aTFROREIxQmRsWDM0ZEE=',
+        //                 },
+        //             },
+        //         );
+                
+        //     } else {
+        //         setLikeCount(likeCount+1);
+
+        //         const response = await axios.post(
+        //             `cultural-event/${params.id}/like`,
+        //             {
+        //                 headers: {
+        //                     'Authorization': 'rO0ABXQA4kJlYXJlciBleUpoYkdjaU9pSklVelV4TWlKOS5leUp6ZFdJaU9pSkJZMk5sYzNOVWIydGxiaUlzSW1WdFlXbHNJam9pYzJ0a2FYZHNjMlJ1TlVCdVlYWmxjaTVqYjIwaUxDSnliMnhsSWpvaVZWTkZVaUlzSW1WNGNDSTZNVGN3TURVME1qSTBPSDAuN3h6c1VIV2JhYzF6ZVlkUGhzTm90di1SZEhMenlidHZxY0k2aGhmbnQwRE1CRzMwSFlqbEJ2Slk4bzJpVlNyWHdWMGQ3dS1aTFROREIxQmRsWDM0ZEE=',
+        //                 },
+        //             },
+        //         );
+        //     }
+        // } catch (e) {
+        //     console.log(e);
+        // }
     }
 
     // 즐겨찾기 버튼 클릭
@@ -225,8 +251,8 @@ function culturalEventDetail() {
                         운영 기간
                     </S.SubTitle>
                     <S.InfoValue>
-                        <t>시작일 : { startDate }</t>
-                        <t>종료일 : { endDate }</t>
+                        <div>시작일 : { startDate }</div>
+                        <div>종료일 : { endDate }</div>
                     </S.InfoValue>
                 </div>
 
@@ -244,8 +270,8 @@ function culturalEventDetail() {
                         연락처
                     </S.SubTitle>
                     <S.InfoValue>
-                        <t>{ telephone != null ? "전화번호 : " + telephone : null }</t>
-                        <t>{ sns != null ? "SNS : " + sns : null }</t>
+                        <div>{ telephone != null ? "전화번호 : " + telephone : null }</div>
+                        <div>{ sns != null ? "SNS : " + sns : null }</div>
                     </S.InfoValue>
                 </div>
 
