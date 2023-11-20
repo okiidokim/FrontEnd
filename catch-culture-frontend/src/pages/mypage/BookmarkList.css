@@ -1,8 +1,26 @@
-.bookmarktext {
+.textrow {
   display: flex;
   position: absolute;
-  top: 8%;
-  margin: 0 0 0 -176px;
+  top: 12%;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 0 -169px;
+}
+.bookmarkCnt {
+  font-size: 12px;
+}
+.liketext {
   font-size: 20px;
   font-weight: bold;
+}
+.cateSel {
+  display: flex;
+  position: absolute;
+  top: 6%;
+  margin: 0 0 0 -169px;
+}
+.eventlist {
+  display: flex;
+  position: absolute;
+  top: 14%;
 }

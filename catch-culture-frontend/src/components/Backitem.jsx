@@ -7,7 +7,7 @@ const BackNavi = styled.div`
   display: flex;
   position: absolute;
   top: 2%;
-  margin: 0 0 0 -176px;
+  margin: 0 0 0 -169px;
   cursor: pointer;
 `;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IoHeartOutline, IoStarOutline } from 'react-icons/io5';
 import { PiNotificationBold, PiMapPin } from 'react-icons/pi';
 import { AiOutlineDollar, AiOutlineMessage } from 'react-icons/ai';
@@ -11,6 +11,8 @@ let profimg =
   'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
 
 function Mypage() {
+  const nickname = '@teletub_kim'; //fetchData 해야 함
+
   return (
     <div className="wrap">
       <Backitem />
@@ -18,7 +20,6 @@ function Mypage() {
         <div className="information">
           <div className="profileimg">
             <img className="profileimage" src={profimg} />
-            <p>nickname</p>
           </div>
           <div class="twobutton">
             <NavLink to="/profile-edit">
@@ -28,6 +29,7 @@ function Mypage() {
               <button class="logout">로그아웃</button>
             </NavLink>
           </div>
+          <p className="nick">{`${nickname}`}</p>
         </div>
         <div className="buttonl">
           <div className="row1">
