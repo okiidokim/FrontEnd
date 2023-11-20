@@ -37,6 +37,12 @@
 .profileimg {
   text-align: center;
 }
+.nick {
+  display: flex;
+  position: absolute;
+  top: 112%;
+  font-size: 12px;
+}
 
 /* 버튼 6개 */
 .buttonl {
