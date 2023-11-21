@@ -10,18 +10,5 @@ export const Wrapper = styled.div`
     flex-direction: column;
     padding: 0px 28px 28px 28px;
     font-family: NotoSansKR_Light;
+    width:336px;
 `;
-
-// 상세 정보 버튼
-export const DetailInfoButton = styled.button`
-    border-radius: 12px 0px 0px 12px;
-    margin-right: -2px;
-`;
-
-// 리뷰 버튼
-export const EventReviewButton = styled.button`
-    border-radius: 0px 12px 12px 0px;
-`;
-
-
-

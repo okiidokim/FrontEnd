@@ -5,6 +5,7 @@ import * as S from './CulturalEventDetailStyle';
 
 import EventHeader from './eventHeader/EventHeader'
 import EventInfo from './eventInfo/EventInfo'
+import EventReview from './eventReview/EventReview';
 
 // api
 import axios from '../../api/axios';
@@ -20,14 +21,20 @@ function culturalEventDetail() {
         setSelector(select);
     }
 
+    const selectedInfo = useMemo(() => {
+        if(selector == 0)
+            return <EventInfo EventId={culturalEventId}/>;
+        else
+            return <EventReview EventId={culturalEventId}/>;
+    }, [selector]);
+
     return (
         <S.Wrapper>
             {/* 헤더 영역 (상단 고정) */}        
             <EventHeader onSelectorChange={selectorHandler}/>
 
             {/* 정보 영역 */}
-            <EventInfo EventId={culturalEventId}/>
-            
+            {selectedInfo}
             
         </S.Wrapper> 
     );

@@ -63,22 +63,22 @@ function EventInfo (EventId) {
 
     console.log(EventId);
 
-     // 행사 설명 더보기 스위치
-     const [isShowMore, setIsShowMore] = useState(false);
-     // 글자 수 제한
-     const textLimit = 85;
- 
-     // 글자 자르기
-     const commenter = useMemo(() => {
-         const shortView = description.slice(0, textLimit);
-         if (description.length > textLimit) {
-             if (isShowMore)
-                 return description;
-             else
-                 return shortView;
-         }
-         return description;
-     }, [isShowMore]);
+    // 행사 설명 더보기 스위치
+    const [isShowMore, setIsShowMore] = useState(false);
+    // 글자 수 제한
+    const textLimit = 85;
+
+    // 글자 자르기
+    const commenter = useMemo(() => {
+        const shortView = description.slice(0, textLimit);
+        if (description.length > textLimit) {
+            if (isShowMore)
+                return description;
+            else
+                return shortView;
+        }
+        return description;
+    }, [isShowMore]);
 
      
     useEffect(() => {

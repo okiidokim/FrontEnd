@@ -17,12 +17,12 @@ function EventHeader ( {onSelectorChange} ) {
 
     const onClickInfoButton = () => {
         setSelect(0);
-        onSelectorChange(select);
+        onSelectorChange(0);
     }
 
     const onClickReviewButton = () => {
         setSelect(1);
-        onSelectorChange(select)
+        onSelectorChange(1)
     }
 
 
