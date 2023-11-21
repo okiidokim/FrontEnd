@@ -15,6 +15,7 @@ import axios from '../../api/axios';
 function Search() {
   const { state } = useLocation();
   const category = state && state.category;
+  const [count, setCount] = useState(0);
 
   console.log(category);
 
@@ -65,7 +66,8 @@ function Search() {
       );
 
       // 데이터 저장
-      setData(response.data);
+      setData(response.data.content);
+      setCount(response.data.totalElements);
     } catch (e) {
       console.log(e);
     }
@@ -80,7 +82,7 @@ function Search() {
         {/* 헤더 */}
         <S.SearchHeader>
           <S.SearchHeaderTitle>검색 결과</S.SearchHeaderTitle>
-          <S.SearchHeaderResultCnt>총 {cnt}개</S.SearchHeaderResultCnt>
+          <S.SearchHeaderResultCnt>총 {count}개</S.SearchHeaderResultCnt>
         </S.SearchHeader>
 
         {/* 카테고리 선택창 */}
@@ -99,7 +101,7 @@ function Search() {
         </S.SortSelectorWrapper>
 
         {/* 문화 행사 출력 */}
-        {cnt === 0 ? (
+        {count === 0 ? (
           <>
             <NoResult />
           </>
