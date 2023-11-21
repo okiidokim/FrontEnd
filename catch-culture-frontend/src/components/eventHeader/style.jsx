@@ -39,16 +39,23 @@ export const PageChangeArea = styled.div`
         align-items: center;
         justify-content: center;
     }
-
-    * .active {
+    & .active {
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
         background-color: #247e2c;
-        color: white;
+        * {
+            color: white;
+        }
     }
 
     * > svg,
     * > svg > * {
         width: 20px;
         height: 20px;
+        background-color:rgba(0,0,0,0);
+    }
+
+    b {
+        background-color:rgba(0,0,0,0);
     }
 `;
 

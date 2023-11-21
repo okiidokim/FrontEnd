@@ -178,29 +178,13 @@ function culturalEventDetail() {
         return description;
     }, [isShowMore]);
 
-    const selectorHandler = (selector) => {
-
+    const selectorHandler = (select) => {
+        setSelector(select);
     }
 
     return (
         <S.Wrapper>
-            {/* 헤더 영역 (상단 고정) */}
-            {/* <S.Header>
-                <S.BackButton onClick={onClickBackButton}> 
-                    <IoIosArrowBack />
-                </S.BackButton>
-                <S.PageChangeArea>
-                    <S.DetailInfoButton>
-                        <RiFileList2Line /> 
-                        <b>상세정보</b>
-                    </S.DetailInfoButton>
-                    <S.EventReviewButton>
-                        <LiaCommentsSolid /> 
-                        <b>리뷰</b>
-                    </S.EventReviewButton>
-                </S.PageChangeArea>
-            </S.Header> */}
-            
+            {/* 헤더 영역 (상단 고정) */}        
             <EventHeader onSelectorChange={selectorHandler}/>
 
             {/* 문화 행사 정보 영역 */}
