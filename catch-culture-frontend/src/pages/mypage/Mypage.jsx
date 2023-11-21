@@ -7,29 +7,28 @@ import './Mypage.css';
 import Level0 from '../../assets/pointimg/level0.png';
 import Backitem from '../../components/Backitem';
 
-let profimg =
-  'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
-
 function Mypage() {
   const nickname = '@teletub_kim'; //fetchData 해야 함
+  const profimg =
+    'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
 
   return (
-    <div className="wrap">
+    <div className="total">
       <Backitem />
       <div className="mypage-body">
         <div className="information">
-          <div className="profileimg">
+          <div className="inforow">
             <img className="profileimage" src={profimg} />
+            <div class="twobutton">
+              <NavLink to="/profile-edit">
+                <button class="putprofile">개인정보 수정</button>
+              </NavLink>
+              <NavLink to="/login">
+                <button class="logout">로그아웃</button>
+              </NavLink>
+            </div>
           </div>
-          <div class="twobutton">
-            <NavLink to="/profile-edit">
-              <button class="putprofile">개인정보 수정</button>
-            </NavLink>
-            <NavLink to="/login">
-              <button class="logout">로그아웃</button>
-            </NavLink>
-          </div>
-          <p className="nick">{`${nickname}`}</p>
+          <p className="nick">{nickname}</p>
         </div>
         <div className="buttonl">
           <div className="row1">

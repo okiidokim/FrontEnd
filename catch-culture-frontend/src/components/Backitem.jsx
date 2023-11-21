@@ -5,10 +5,10 @@ import { IoIosArrowDropleft } from 'react-icons/io';
 
 const BackNavi = styled.div`
   display: flex;
-  position: absolute;
-  top: 2%;
-  margin: 0 0 0 -169px;
+  position: sticky;
+  top: 24px;
   cursor: pointer;
+  z-index: 1;
 `;
 
 export default function Backitem() {
