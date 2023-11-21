@@ -57,11 +57,11 @@ function Search() {
     try {
       // URL 만들기 - 카테고리 선택
       const categoryUrl = selectedCategories
-        .map(item => 'category=' + item)
+        .map((item) => 'category=' + item)
         .join('&');
 
       const response = await axios.get(
-        `cultural-event?${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
+        `/cultural-event/list?${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
       );
 
       // 데이터 저장
