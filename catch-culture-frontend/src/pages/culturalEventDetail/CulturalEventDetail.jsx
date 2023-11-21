@@ -50,33 +50,33 @@ function culturalEventDetail() {
     const [isLike, setIsLike] = useState(false) // Boolean: 좋아요 여부
     const [isBookmark, setIsBookmark] = useState(false) // Boolean: 즐겨찾기 여부
 
-    // 최초 로딩시 값 불러오기
-    useEffect(() => {
-        try {
-            const response = axios.get(
-                `cultural-event/10`
-            )
-            console.log(response);
-            // setStoredFileURL(response.culturalEventDetail.storedFileUrl);
-            // setStartDate(response.culturalEventDetail.startDate);
-            // setEndDate(response.culturalEventDetail.endDate);
-            // setTitle(response.culturalEventDetail.title);
-            // setPlace(response.culturalEventDetail.place);
-            // setCategory(response.culturalEventDetail.category);
-            // setDescription(response.culturalEventDetail.description);
-            // setReservationLink(response.culturalEventDetail.reservationLink);
-            // setWayToCome(response.culturalEventDetail.wayToCome);
-            // setSns(response.culturalEventDetail.sns);
-            // setTelephone(response.culturalEventDetail.telephone);
-            // setIsFree(response.culturalEventDetail.isFree);
-            // setIsAuthenticated(response.authenticated);
-            // setIsBookmark(response.bookmarked);
-            // setIsLike(response.liked);
-        } catch {
-            //console.log(response);
-        }
+    // // 최초 로딩시 값 불러오기
+    // useEffect(() => {
+    //     try {
+    //         const response = axios.get(
+    //             `cultural-event/10`
+    //         )
+    //         console.log(response);
+    //         // setStoredFileURL(response.culturalEventDetail.storedFileUrl);
+    //         // setStartDate(response.culturalEventDetail.startDate);
+    //         // setEndDate(response.culturalEventDetail.endDate);
+    //         // setTitle(response.culturalEventDetail.title);
+    //         // setPlace(response.culturalEventDetail.place);
+    //         // setCategory(response.culturalEventDetail.category);
+    //         // setDescription(response.culturalEventDetail.description);
+    //         // setReservationLink(response.culturalEventDetail.reservationLink);
+    //         // setWayToCome(response.culturalEventDetail.wayToCome);
+    //         // setSns(response.culturalEventDetail.sns);
+    //         // setTelephone(response.culturalEventDetail.telephone);
+    //         // setIsFree(response.culturalEventDetail.isFree);
+    //         // setIsAuthenticated(response.authenticated);
+    //         // setIsBookmark(response.bookmarked);
+    //         // setIsLike(response.liked);
+    //     } catch {
+    //         //console.log(response);
+    //     }
         
-    }, []);
+    // }, []);
 
     // 페이지 이동을 위한 변수
     const navigate = useNavigate();
