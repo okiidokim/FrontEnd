@@ -12,6 +12,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { Pagination, Autoplay } from 'swiper/modules';
 
+import EventHeader from '../../components/eventHeader/EventHeader'
+
 // api
 import axios from '../../api/axios';
 
@@ -26,6 +28,9 @@ function culturalEventDetail() {
     // 문화 행사 id 어떻게 가져올지
     const params = useParams();
     const culturalEventId = params.id;
+
+    const [selector, setSelector] = useState(0);
+
     // /**
     //  * 변경됨
     //  */
@@ -173,12 +178,14 @@ function culturalEventDetail() {
         return description;
     }, [isShowMore]);
 
-    
+    const selectorHandler = (selector) => {
+
+    }
 
     return (
         <S.Wrapper>
             {/* 헤더 영역 (상단 고정) */}
-            <S.Header>
+            {/* <S.Header>
                 <S.BackButton onClick={onClickBackButton}> 
                     <IoIosArrowBack />
                 </S.BackButton>
@@ -192,8 +199,10 @@ function culturalEventDetail() {
                         <b>리뷰</b>
                     </S.EventReviewButton>
                 </S.PageChangeArea>
-            </S.Header>
+            </S.Header> */}
             
+            <EventHeader onSelectorChange={selectorHandler}/>
+
             {/* 문화 행사 정보 영역 */}
             <S.InfoArea>
                 {/* 행사 제목 */}
