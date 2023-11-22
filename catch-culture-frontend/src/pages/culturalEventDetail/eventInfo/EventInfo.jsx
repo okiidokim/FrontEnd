@@ -12,43 +12,40 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import axios from '../../../api/axios';
 
 function EventInfo (params) {
+
+    let _isInit = false;
+
     let imgUrl1 = 'https://storage.googleapis.com/elegant-bucket/jinwoo.png';
     let imgUrl2 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg';
     let imgUrl3 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
 
 
-    const [storedFileURL, setStoredFileURL] = useState(''); // string: 이미지 URL 
-    const [startDate, setStartDate] = useState(''); // LocalDateTime: 시작일
-    const [endDate, setEndDate] = useState(''); // LocalDateTime: 종료일
-    const [title, setTitle] = useState('더 크림 갤러리'); // String: 제목
-    const [place, setPlace] = useState(''); // String: 행사 위치
-    const [category, setCategory] = useState('팝업스토어'); // Category(): 카테고리 Enumerated(EnumType.STRING)
-    const [description, setDescription] = useState('프리미엄 티 브랜드 알디프가 론칭한 세컨드 브랜드 크림차. 크림차는 작년 성수에서 연 ‘드림 팝업’의 호응에 힘입어 올해 두 번째 팝업스토어를 공개했다. 프리미엄 티 브랜드 알디프가 론칭한 세컨드 브랜드 크림차. 크림차는 작년 성수에서 연 ‘드림 팝업’의 호응에 힘입어 올해 두 번째 팝업스토어를 공개했다.'); // String: 행사 설명
-    const [wayToCome, setWayToCome] = useState(''); // String: 오시는길
-    const [sns, setSns] = useState(''); // String: sns 주소
-    const [telephone, setTelephone] = useState('010-1234-3213') // String: 전화번호
+    const [storedFileURL, setStoredFileURL] = useState(); // string: 이미지 URL 
+    const [startDate, setStartDate] = useState(); // LocalDateTime: 시작일
+    const [endDate, setEndDate] = useState(); // LocalDateTime: 종료일
+    const [title, setTitle] = useState(); // String: 제목
+    const [place, setPlace] = useState(); // String: 행사 위치
+    const [category, setCategory] = useState(); // Category(): 카테고리 Enumerated(EnumType.STRING)
+    const [description, setDescription] = useState(' '); // String: 행사 설명
+    const [wayToCome, setWayToCome] = useState(); // String: 오시는길
+    const [sns, setSns] = useState(); // String: sns 주소
+    const [telephone, setTelephone] = useState() // String: 전화번호
     const [isFree, setIsFree] = useState(false) // Boolean: 요금
-    const [reservationLink, setReservationLink] = useState('https://github.com/ElegantChildren/FrontEnd') // String: 예약 링크
+    const [reservationLink, setReservationLink] = useState() // String: 예약 링크
 
-    const [isAuthenticated, setIsAuthenticated] = useState(true) // Boolean: 인증 여부
-    const [likeCount, setLikeCount] = useState(123) // int: 좋아요 수
-    const [bookmarkCount, setBookmarkCount] = useState(321) // int: 즐겨찾기 수
-    const [isLike, setIsLike] = useState(false) // Boolean: 좋아요 여부
-    const [isBookmark, setIsBookmark] = useState(false) // Boolean: 즐겨찾기 여부
-
-    // 최초 로딩시 값 불러오기
-    useEffect(() => {
-       fetchData();
-    }, []);
+    const [isAuthenticated, setIsAuthenticated] = useState() // Boolean: 인증 여부
+    const [likeCount, setLikeCount] = useState(0) // int: 좋아요 수
+    const [bookmarkCount, setBookmarkCount] = useState(0) // int: 즐겨찾기 수
+    const [isLike, setIsLike] = useState() // Boolean: 좋아요 여부
+    const [isBookmark, setIsBookmark] = useState() // Boolean: 즐겨찾기 여부
 
     const fetchData = async () => {
-        console.log(params.EventId);
+        console.log(params);
         try {
             const response = axios.get(
                 `cultural-event/${parseInt(params.EventId)}`
             )
-            console.log((await response).data);
-
+            
             setStoredFileURL((await response).data.culturalEventDetail.storedFileUrl);
             setStartDate((await response).data.culturalEventDetail.startDate);
             setEndDate((await response).data.culturalEventDetail.endDate);
@@ -67,11 +64,21 @@ function EventInfo (params) {
             setIsBookmark((await response).data.bookmarked);
             setIsLike((await response).data.liked);
             setLikeCount((await response).data.likeCount);
-            setBookmarkCount((await response).data.bookmarkCount);
-        } catch {
-            //console.log(response);
+            setBookmarkCount((await response).data.viewCount);
+            
+        } catch (e) {
+            console.log(e);
         }
+        _isInit = true;
+        console.log(_isInit);
     }
+
+    // 최초 로딩시 값 불러오기
+    useEffect(() => {
+       fetchData();
+       console.log(_isInit);
+    }, []);
+    
 
     // 행사 설명 더보기 스위치
     const [isShowMore, setIsShowMore] = useState(false);
@@ -91,51 +98,45 @@ function EventInfo (params) {
     }, [isShowMore]);
 
      
-    useEffect(() => {
-        fetchData();
-    }, [isLike])
+    
 
     // 좋아요 버튼 클릭
     const onClickLikeButton = () => {
         setIsLike(!isLike);
+        console.log(_isInit);
     }
 
-    const fetchData11 = async () => {
-        /***************************************************
-         * TODO 요청에 로그인 정보 담거나 백에서 처리하면 구현 *
-         ***************************************************/
-        // try {
-        //     if(!isLike) {
-        //         setLikeCount(likeCount-1);
+    useEffect(() => {
+        if(!_isInit) {
+            
+            return;
+        }
+        
+        fetchLike();
+    }, [isLike]);
 
-        //         const response = await axios.delete(
-        //             `cultural-event/${params.id}/like`,
-        //             {
-        //                 headers: {
-        //                     Accept: 'rO0ABXQA4kJlYXJlciBleUpoYkdjaU9pSklVelV4TWlKOS5leUp6ZFdJaU9pSkJZMk5sYzNOVWIydGxiaUlzSW1WdFlXbHNJam9pYzJ0a2FYZHNjMlJ1TlVCdVlYWmxjaTVqYjIwaUxDSnliMnhsSWpvaVZWTkZVaUlzSW1WNGNDSTZNVGN3TURVME1qSTBPSDAuN3h6c1VIV2JhYzF6ZVlkUGhzTm90di1SZEhMenlidHZxY0k2aGhmbnQwRE1CRzMwSFlqbEJ2Slk4bzJpVlNyWHdWMGQ3dS1aTFROREIxQmRsWDM0ZEE=',
-        //                 },
-        //             },
-        //         );
-                
-        //     } else {
-        //         setLikeCount(likeCount+1);
-
-        //         const response = await axios.post(
-        //             `cultural-event/${params.id}/like`,
-        //             {
-        //                 headers: {
-        //                     'Authorization': 'rO0ABXQA4kJlYXJlciBleUpoYkdjaU9pSklVelV4TWlKOS5leUp6ZFdJaU9pSkJZMk5sYzNOVWIydGxiaUlzSW1WdFlXbHNJam9pYzJ0a2FYZHNjMlJ1TlVCdVlYWmxjaTVqYjIwaUxDSnliMnhsSWpvaVZWTkZVaUlzSW1WNGNDSTZNVGN3TURVME1qSTBPSDAuN3h6c1VIV2JhYzF6ZVlkUGhzTm90di1SZEhMenlidHZxY0k2aGhmbnQwRE1CRzMwSFlqbEJ2Slk4bzJpVlNyWHdWMGQ3dS1aTFROREIxQmRsWDM0ZEE=',
-        //                 },
-        //             },
-        //         );
-        //     }
-        // } catch (e) {
-        //     console.log(e);
-        // }
+    const fetchLike = async () => {
+        
+        try {
+            if(isLike) {
+                const response = axios.delete(
+                    `cultural-event/${parseInt(params.EventId)}/like`
+                );
+                setLikeCount(likeCount-1);
+            } else {
+                const response = axios.post(
+                    `cultural-event/${parseInt(params.EventId)}/like`,
+                );
+                setLikeCount(likeCount+1);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+        
     }
 
     // 즐겨찾기 버튼 클릭
-    const onClickBookmarkButton = async (e) => {
+    const onClickBookmarkButton = () => {
         console.log(isBookmark);
         if(isBookmark) {
             setBookmarkCount(bookmarkCount-1);
@@ -227,7 +228,8 @@ function EventInfo (params) {
                     행사 위치
                 </S.SubTitle>
                 <S.InfoValue>
-                    { place }
+                    <div>{ place }</div>
+                    <div>오시는길 : {wayToCome}</div>
                 </S.InfoValue>
                 </div>
 

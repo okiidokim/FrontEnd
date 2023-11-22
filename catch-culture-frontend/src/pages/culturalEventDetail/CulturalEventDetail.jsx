@@ -22,6 +22,7 @@ function culturalEventDetail() {
     }
 
     const selectedInfo = useMemo(() => {
+        
         if(selector == 0)
             return <EventInfo EventId={culturalEventId}/>;
         else
@@ -34,6 +35,7 @@ function culturalEventDetail() {
             <EventHeader onSelectorChange={selectorHandler}/>
 
             {/* 정보 영역 */}
+            {console.log("call")}
             {selectedInfo}
             
         </S.Wrapper> 
