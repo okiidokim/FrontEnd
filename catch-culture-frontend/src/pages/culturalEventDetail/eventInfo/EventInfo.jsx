@@ -11,7 +11,7 @@ import { Pagination, Autoplay } from 'swiper/modules';
 // api
 import axios from '../../../api/axios';
 
-function EventInfo (EventId) {
+function EventInfo (params) {
     let imgUrl1 = 'https://storage.googleapis.com/elegant-bucket/jinwoo.png';
     let imgUrl2 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg';
     let imgUrl3 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
@@ -37,31 +37,42 @@ function EventInfo (EventId) {
     const [isBookmark, setIsBookmark] = useState(false) // Boolean: 즐겨찾기 여부
 
     // 최초 로딩시 값 불러오기
-    // useEffect(() => {
-    //     try {
-    //         const response = axios.get(
-    //             `cultural-event/10`
-    //         )
-    //         console.log(response);
-    //         // setStoredFileURL(response.culturalEventDetail.storedFileUrl);
-    //         // setStartDate(response.culturalEventDetail.startDate);
-    //         // setEndDate(response.culturalEventDetail.endDate);
-    //         // setTitle(response.culturalEventDetail.title);
-    //         // setPlace(response.culturalEventDetail.place);
-    //         // setCategory(response.culturalEventDetail.category);
-    //         // setDescription(response.culturalEventDetail.description);
-    //         // setReservationLink(response.culturalEventDetail.reservationLink);
-    //         // setWayToCome(response.culturalEventDetail.wayToCome);
-    //         // setSns(response.culturalEventDetail.sns);
-    //         // setTelephone(response.culturalEventDetail.telephone);
-    //         // setIsFree(response.culturalEventDetail.isFree);
-    //         // setIsAuthenticated(response.authenticated);
-    //         // setIsBookmark(response.bookmarked);
-    //         // setIsLike(response.liked);
-    //     } catch {
-    //         //console.log(response);
-    //     }
-    // }, []);
+    useEffect(() => {
+       fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        console.log(params.EventId);
+        try {
+            const response = axios.get(
+                `cultural-event/${parseInt(params.EventId)}`
+            )
+            console.log((await response).data);
+
+            setStoredFileURL((await response).data.culturalEventDetail.storedFileUrl);
+            setStartDate((await response).data.culturalEventDetail.startDate);
+            setEndDate((await response).data.culturalEventDetail.endDate);
+            setTitle((await response).data.culturalEventDetail.title);
+            setPlace((await response).data.culturalEventDetail.place);
+            setCategory((await response).data.culturalEventDetail.category);
+            if((await response).data.culturalEventDetail.description != null) {
+                setDescription((await response).data.culturalEventDetail.description);
+            }
+            setReservationLink((await response).data.culturalEventDetail.reservationLink);
+            setWayToCome((await response).data.culturalEventDetail.wayToCome);
+            setSns((await response).data.culturalEventDetail.sns);
+            setTelephone((await response).data.culturalEventDetail.telephone);
+            setIsFree((await response).data.culturalEventDetail.isFree);
+            setIsAuthenticated((await response).data.authenticated);
+            setIsBookmark((await response).data.bookmarked);
+            setIsLike((await response).data.liked);
+            setLikeCount((await response).data.likeCount);
+            setBookmarkCount((await response).data.bookmarkCount);
+        } catch {
+            //console.log(response);
+        }
+    }
+
     // 행사 설명 더보기 스위치
     const [isShowMore, setIsShowMore] = useState(false);
     // 글자 수 제한
@@ -89,7 +100,7 @@ function EventInfo (EventId) {
         setIsLike(!isLike);
     }
 
-    const fetchData = async () => {
+    const fetchData11 = async () => {
         /***************************************************
          * TODO 요청에 로그인 정보 담거나 백에서 처리하면 구현 *
          ***************************************************/

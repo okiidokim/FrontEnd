@@ -1,9 +1,12 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://elegant.kro.kr/',
+  baseURL: 'https://elegant.kro.kr/',
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
 });
+
+axios.defaults.withCredentials = true;
 export default instance;
