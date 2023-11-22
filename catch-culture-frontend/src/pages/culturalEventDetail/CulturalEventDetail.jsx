@@ -35,7 +35,6 @@ function culturalEventDetail() {
             <EventHeader onSelectorChange={selectorHandler}/>
 
             {/* 정보 영역 */}
-            {console.log("call")}
             {selectedInfo}
             
         </S.Wrapper> 

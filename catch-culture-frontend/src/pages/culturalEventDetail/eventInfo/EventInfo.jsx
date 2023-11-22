@@ -12,9 +12,6 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import axios from '../../../api/axios';
 
 function EventInfo (params) {
-
-    let _isInit = false;
-
     let imgUrl1 = 'https://storage.googleapis.com/elegant-bucket/jinwoo.png';
     let imgUrl2 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg';
     let imgUrl3 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
@@ -39,46 +36,40 @@ function EventInfo (params) {
     const [isLike, setIsLike] = useState() // Boolean: 좋아요 여부
     const [isBookmark, setIsBookmark] = useState() // Boolean: 즐겨찾기 여부
 
+    // 최초 로딩시 값 불러오기
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     const fetchData = async () => {
-        console.log(params);
         try {
-            const response = axios.get(
+            const response = await axios.get(
                 `cultural-event/${parseInt(params.EventId)}`
             )
-            
-            setStoredFileURL((await response).data.culturalEventDetail.storedFileUrl);
-            setStartDate((await response).data.culturalEventDetail.startDate);
-            setEndDate((await response).data.culturalEventDetail.endDate);
-            setTitle((await response).data.culturalEventDetail.title);
-            setPlace((await response).data.culturalEventDetail.place);
-            setCategory((await response).data.culturalEventDetail.category);
-            if((await response).data.culturalEventDetail.description != null) {
-                setDescription((await response).data.culturalEventDetail.description);
+
+            setStoredFileURL(response.data.culturalEventDetail.storedFileUrl);
+            setStartDate(response.data.culturalEventDetail.startDate);
+            setEndDate(response.data.culturalEventDetail.endDate);
+            setTitle(response.data.culturalEventDetail.title);
+            setPlace(response.data.culturalEventDetail.place);
+            setCategory(response.data.culturalEventDetail.category);
+            if(response.data.culturalEventDetail.description != null) {
+                setDescription(response.data.culturalEventDetail.description);
             }
-            setReservationLink((await response).data.culturalEventDetail.reservationLink);
-            setWayToCome((await response).data.culturalEventDetail.wayToCome);
-            setSns((await response).data.culturalEventDetail.sns);
-            setTelephone((await response).data.culturalEventDetail.telephone);
-            setIsFree((await response).data.culturalEventDetail.isFree);
-            setIsAuthenticated((await response).data.authenticated);
-            setIsBookmark((await response).data.bookmarked);
-            setIsLike((await response).data.liked);
-            setLikeCount((await response).data.likeCount);
-            setBookmarkCount((await response).data.viewCount);
-            
+            setReservationLink(response.data.culturalEventDetail.reservationLink);
+            setWayToCome(response.data.culturalEventDetail.wayToCome);
+            setSns(response.data.culturalEventDetail.sns);
+            setTelephone(response.data.culturalEventDetail.telephone);
+            setIsFree(response.data.culturalEventDetail.isFree);
+            setIsAuthenticated(response.data.authenticated);
+            setIsBookmark(response.data.bookmarked);
+            setIsLike(response.data.liked);
+            setLikeCount(response.data.likeCount);
+            setBookmarkCount(response.data.viewCount);
         } catch (e) {
             console.log(e);
         }
-        _isInit = true;
-        console.log(_isInit);
-    }
-
-    // 최초 로딩시 값 불러오기
-    useEffect(() => {
-       fetchData();
-       console.log(_isInit);
-    }, []);
-    
+    }    
 
     // 행사 설명 더보기 스위치
     const [isShowMore, setIsShowMore] = useState(false);
@@ -97,63 +88,54 @@ function EventInfo (params) {
         return description;
     }, [isShowMore]);
 
-     
-    
-
     // 좋아요 버튼 클릭
     const onClickLikeButton = () => {
         setIsLike(!isLike);
-        console.log(_isInit);
+        fetchLike();
     }
 
-    useEffect(() => {
-        if(!_isInit) {
-            
-            return;
-        }
-        
-        fetchLike();
-    }, [isLike]);
-
-    const fetchLike = async () => {
-        
+    const fetchLike = () => {
         try {
-            if(isLike) {
-                const response = axios.delete(
-                    `cultural-event/${parseInt(params.EventId)}/like`
-                );
-                setLikeCount(likeCount-1);
-            } else {
+            if(!isLike) {
                 const response = axios.post(
                     `cultural-event/${parseInt(params.EventId)}/like`,
                 );
                 setLikeCount(likeCount+1);
+                console.log("post like");
+            } else {
+                const response = axios.delete(
+                    `cultural-event/${parseInt(params.EventId)}/like`
+                );
+                setLikeCount(likeCount-1);
             }
         } catch (e) {
             console.log(e);
         }
-        
     }
 
-    // 즐겨찾기 버튼 클릭
+    // 좋아요 버튼 클릭
     const onClickBookmarkButton = () => {
-        console.log(isBookmark);
-        if(isBookmark) {
-            setBookmarkCount(bookmarkCount-1);
-            /***********************
-             * TODO 즐겨찾기 빼기 api *
-             ***********************/
-            // await axios.delete('http://elegant.kro.kr/cultural-event/'+{culturalEventId}+'/star')
-            //     .then(() => this.setBookmarkCount(bookmarkCount-1));
-        } else {
-            setBookmarkCount(bookmarkCount+1);
-            /***********************
-             * TODO 즐겨찾기 추가 api *
-             ***********************/
-            // await axios.post('http://elegant.kro.kr/cultural-event/'+{culturalEventId}+'/star')
-            //     .then(() => this.setBookmarkCount(bookmarkCount+1));
-        }
         setIsBookmark(!isBookmark);
+        fetchBookMark();
+    }
+
+    const fetchBookMark = () => {
+        try {
+            if(!isBookmark) {
+                const response = axios.post(
+                    `cultural-event/${parseInt(params.EventId)}/star`
+                );
+                setBookmarkCount(bookmarkCount+1);
+                console.log("post book");
+            } else {
+                const response = axios.delete(
+                    `cultural-event/${parseInt(params.EventId)}/star`
+                );
+                setBookmarkCount(bookmarkCount-1);
+            }
+        } catch (e) {
+            console.log(e);
+        }
     }
     
     // 방문인증 버튼 클릭
