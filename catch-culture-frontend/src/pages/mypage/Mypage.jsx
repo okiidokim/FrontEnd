@@ -1,34 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IoHeartOutline, IoStarOutline } from 'react-icons/io5';
 import { PiNotificationBold, PiMapPin } from 'react-icons/pi';
 import { AiOutlineDollar, AiOutlineMessage } from 'react-icons/ai';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './Mypage.css';
 import Level0 from '../../assets/pointimg/level0.png';
 import Backitem from '../../components/Backitem';
+import axios from '../../api/axios';
 
 function Mypage() {
-  const nickname = '@teletub_kim'; //fetchData 해야 함
-  const profimg =
-    'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
+  const [nick, setNick] = useState([]);
+  const [pimg, setPimg] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/user`);
+        setNick(response.nickname);
+        setPimg(response.storedFileUrl);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log(nick);
 
   return (
-    <div className="total">
+    <div className="tota">
       <Backitem />
       <div className="mypage-body">
         <div className="information">
           <div className="inforow">
-            <img className="profileimage" src={profimg} />
-            <div class="twobutton">
+            {pimg &&
+              pimg.map((d) => (
+                <Link key={pimg} to={'/mypage'}>
+                  <img className="profileimage" src={pimg}></img>
+                </Link>
+              ))}
+            <div className="twobutton">
               <NavLink to="/profile-edit">
-                <button class="putprofile">개인정보 수정</button>
+                <button className="putprofile">개인정보 수정</button>
               </NavLink>
               <NavLink to="/login">
-                <button class="logout">로그아웃</button>
+                <button className="logout">로그아웃</button>
               </NavLink>
             </div>
           </div>
-          <p className="nick">{nickname}</p>
+          {nick &&
+            nick.map((d) => (
+              <Link key={nick} to={'/mypage'}>
+                {nick}
+              </Link>
+            ))}
         </div>
         <div className="buttonl">
           <div className="row1">

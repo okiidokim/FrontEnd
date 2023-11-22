@@ -52,9 +52,9 @@ function Likes() {
   };
 
   return (
-    <div>
+    <div className="total">
+      <Backitem />
       <div className="wrap">
-        <Backitem />
         <div className="cateSel">
           <CategorySelector
             selectedCategories={selectedCategories}
@@ -68,9 +68,9 @@ function Likes() {
         <div className="eventlist">
           {/* 문화 행사 출력 */}
           {cnt === 0 ? (
-            <>
+            <div className="nors">
               <NoResult />
-            </>
+            </div>
           ) : (
             <>
               <EventCard data={data} />
