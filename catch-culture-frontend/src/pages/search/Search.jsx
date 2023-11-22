@@ -62,7 +62,7 @@ function Search() {
         .join('&');
 
       const response = await axios.get(
-        `cultural-event?${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
+        `cultural-event/list?${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
       );
 
       // 데이터 저장
