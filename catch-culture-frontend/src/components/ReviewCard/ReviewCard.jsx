@@ -6,7 +6,7 @@ let rvimg =
 
 const Userinfo = styled.div`
   display: flex;
-  position: absolute;
+  position: relative;
   flex-direction: row;
   gap: 12px;
   align-items: baseline;
@@ -25,10 +25,10 @@ const Rvimg = styled.img`
 `;
 const Reviewrow = styled.div`
   display: flex;
-  position: absolute;
-  top: 28px;
+  position: relative;
+  margin-top: 12px;
   gap: 12px;
-  width: 340px;
+  width: 100%;
 `;
 const Rvcontent = styled.div`
   width: max-content;
@@ -36,20 +36,21 @@ const Rvcontent = styled.div`
 
 const Star = styled.div`
   display: flex;
-  position: absolute;
-  top: 92px;
+  position: relative;
+  height: auto;
+  margin-top: 10px;
 `;
 const Event = styled.div`
   display: flex;
-  position: absolute;
+  position: relative;
   flex-direction: row;
   gap: 12px;
-  top: 120px;
+  top: 10px;
   align-items: center;
 `;
 const Eventimg = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 0px;
   border-radius: 4px;
 `;
 const Eventtitle = styled.div`
@@ -57,24 +58,32 @@ const Eventtitle = styled.div`
   font-weight: bold;
 `;
 
+const Wrapper = styled.div`
+  position: relative;
+  display: block;
+  width:300px;
+  height: 140px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+`;
+
 export default function ReviewCard() {
   return (
-    <div>
-      <div className="wrap">
-        <Userinfo>
-          <Nick>진우</Nick>
-          <Date>2023-10-14</Date>
-        </Userinfo>
-        <Reviewrow>
-          <Rvimg src={rvimg} />
-          <Rvcontent>daksfasdf</Rvcontent>
-        </Reviewrow>
-        <Star>⬛⬛⬛⬜⬜</Star>
-        <Event>
-          <Eventimg src={rvimg} />
-          <Eventtitle>응봉산 개나리 축제</Eventtitle>
-        </Event>
-      </div>
-    </div>
+    <Wrapper>
+      <Userinfo>
+        <Nick>진우</Nick>
+        <Date>2023-10-14</Date>
+      </Userinfo>
+      <Reviewrow>
+        <Rvimg src={rvimg} />
+        <Rvcontent>daksfasdf</Rvcontent>
+      </Reviewrow>
+      <Star>⬛⬛⬛⬜⬜</Star>
+      <Event>
+        <Eventimg src={rvimg} />
+        <Eventtitle>응봉산 개나리 축제</Eventtitle>
+      </Event>
+    </Wrapper>
   );
 }
