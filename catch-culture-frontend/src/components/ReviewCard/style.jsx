@@ -7,7 +7,7 @@ export const ReveiwCard = styled.div`
   height: 150px;
   padding: 10px;
   border: 1px solid black;
-  border-radius: 4px;
+  border-radius: 8px;
 `;
 
 export const UserInfo = styled.div`

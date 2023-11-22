@@ -1,6 +1,9 @@
 import * as S from './style.jsx';
 import { useEffect, useState } from 'react';
 
+import ReviewCard from '../../../components/ReviewCard/ReviewCard';
+
+
 function EventReview ( {EventId} ) {
     console.log(EventId);
 
@@ -24,7 +27,17 @@ function EventReview ( {EventId} ) {
             <S.AuthArea style={ isAuthenticated ? {color: '#018C0D'} : {color: 'red'}}>
                 {isAuthenticated ? '방문 인증 완료' : '방문 인증 미완료'}
             </S.AuthArea>
-
+            
+            <ReviewCard data={{
+                "id": 0,
+                "nickname": "string",
+                "description": "string",
+                "storedFileUrl": [
+                  "string"
+                ],
+                "rating": 0,
+                "createdAt": "2023-11-22T04:16:03.872Z"
+            }}/>
         </S.EventInfo>
     );
 }
