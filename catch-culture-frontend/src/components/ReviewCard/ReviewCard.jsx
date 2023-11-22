@@ -1,89 +1,56 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, {useEffect, useState} from 'react';
 
-let rvimg =
-  'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
+import {  AiOutlineStar, AiFillStar } from 'react-icons/ai';
+import * as S from './style'
 
-const Userinfo = styled.div`
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  gap: 12px;
-  align-items: baseline;
-  width: max-content;
-`;
-const Nick = styled.div`
-  font-weight: bold;
-`;
-const Date = styled.div`
-  font-size: 12px;
-`;
+let rvImg = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
 
-const Rvimg = styled.img`
-  width: 56px;
-  height: 56px;
-`;
-const Reviewrow = styled.div`
-  display: flex;
-  position: relative;
-  margin-top: 12px;
-  gap: 12px;
-  width: 100%;
-`;
-const Rvcontent = styled.div`
-  width: max-content;
-`;
+export default function ReviewCard(data) {
+  console.log(data);
 
-const Star = styled.div`
-  display: flex;
-  position: relative;
-  height: auto;
-  margin-top: 10px;
-`;
-const Event = styled.div`
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  gap: 12px;
-  top: 10px;
-  align-items: center;
-`;
-const Eventimg = styled.img`
-  width: 32px;
-  height: 0px;
-  border-radius: 4px;
-`;
-const Eventtitle = styled.div`
-  width: max-content;
-  font-weight: bold;
-`;
+  // if(data) {
+  //   return '';
+  // }
 
-const Wrapper = styled.div`
-  position: relative;
-  display: block;
-  width:300px;
-  height: 140px;
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 4px;
-`;
+  const [userName, setUserName] = useState();
+  const [date, setDate] = useState();
+  const [rvImgUrl, setRvImgUrl] = useState();
+  const [rvComment, setRvComment] = useState();
+  const [rvStarCount, setRvStar] = useState();
+  const [eventImgUrl, setEventImgUrl] = useState();
+  const [eventTitle, setEventTitle] = useState();
+  
+  useEffect(() => {
+    setUserName('나');
+    setDate('2023-10-14');
+    setRvImgUrl('https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg');
+    setRvComment('ㄹㄴㅁㅇㄻㅈㄷ');
+    setRvStar(3);
+    setEventImgUrl('https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg');
+    setEventTitle('응 개 축');
+  }, []);
 
-export default function ReviewCard() {
   return (
-    <Wrapper>
-      <Userinfo>
-        <Nick>진우</Nick>
-        <Date>2023-10-14</Date>
-      </Userinfo>
-      <Reviewrow>
-        <Rvimg src={rvimg} />
-        <Rvcontent>daksfasdf</Rvcontent>
-      </Reviewrow>
-      <Star>⬛⬛⬛⬜⬜</Star>
-      <Event>
-        <Eventimg src={rvimg} />
-        <Eventtitle>응봉산 개나리 축제</Eventtitle>
-      </Event>
-    </Wrapper>
+    <S.ReveiwCard>
+      <S.UserInfo>
+        <S.UserName>{userName}</S.UserName>
+        <S.Date>{date}</S.Date>
+      </S.UserInfo>
+      <S.ReviewRow>
+        <S.RvImg src={rvImgUrl} />
+        <S.RvComment>{rvComment}</S.RvComment>
+      </S.ReviewRow>
+      <S.Star>
+        <AiFillStar />
+        <AiFillStar />
+        <AiOutlineStar />
+        <AiOutlineStar />
+        <AiOutlineStar />
+      </S.Star>
+      <S.Event>
+        <S.EventImg src={eventImgUrl} />
+        <S.EventTitle>{eventTitle}</S.EventTitle>
+      </S.Event>
+    </S.ReveiwCard>
   );
 }
