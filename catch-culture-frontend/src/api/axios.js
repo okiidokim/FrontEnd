@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://elegant.kro.kr/',
+  baseURL: 'https://elegant.kro.kr/',
   headers: {
     'Content-Type': 'application/json',
     'Cross-Domain': true,
@@ -10,5 +10,8 @@ const instance = axios.create({
     },
     'Access-Control-Allow-Origin': 'http://elegant.kro.kr',
   },
+  withCredentials: true,
 });
+
+axios.defaults.withCredentials = true;
 export default instance;
