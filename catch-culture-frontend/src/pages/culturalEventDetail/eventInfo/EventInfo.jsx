@@ -71,6 +71,25 @@ function EventInfo (params) {
         }
     }    
 
+    // 카테고리 한글로 변환
+    const printCategory = (category) => {
+        switch(category) {
+            case "POPUP-STORE" : return "팝업 스토어";
+            case "FESTIVAL" : return "축제";
+            case "TRADITIONAL_MUSIC" : return "국악";
+            case "ORCHESTRA_CLASSIC" : return "오케스트라 / 클래식";
+            case "RECITAL" : return "독주 / 독창회";
+            case "DANCE" : return "무용";
+            case "CONCERT" : return "콘서트";
+            case "MOVIE" : return "영화";
+            case "THEATER" : return "연극";
+            case "MUSICAL_OPERA" : return "오페라 / 뮤지컬";
+            case "EDUCATION_EXPERIENCE" : return "교육 / 체험";
+            case "EXHIBITION_ART" : return "전시 / 미술";
+            default : return "기타";
+        }
+    }
+
     // 행사 설명 더보기 스위치
     const [isShowMore, setIsShowMore] = useState(false);
     // 글자 수 제한
@@ -153,7 +172,7 @@ function EventInfo (params) {
 
             {/* 카테고리 영역 */}
             <S.CategoryArea>
-                {category}
+                {printCategory(category)}
             </S.CategoryArea>
 
             {/* 방문인증 여부 */}
