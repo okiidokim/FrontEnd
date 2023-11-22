@@ -6,7 +6,7 @@ function CategorySelector(props) {
   const handlerClickCategory = selectedCategory => {
     if (selectedCategory === 'ALL') {
       const allCategories =
-        props.selectedCategories.length === 12
+        props.selectedCategories.length === 13
           ? []
           : [
               'POPUP_STORE',
@@ -21,6 +21,7 @@ function CategorySelector(props) {
               'MUSICAL_OPERA',
               'EDUCATION_EXPERIENCE',
               'EXHIBITION_ART',
+              'ETC',
             ];
       props.setSelectedCategories(allCategories);
     } else {
@@ -129,6 +130,13 @@ function CategorySelector(props) {
         <CategorySelectorItem
           name="전시 / 미술"
           category="EXHIBITION_ART"
+          handlerClickCategory={handlerClickCategory}
+          selectedCategories={props.selectedCategories}
+        />
+
+        <CategorySelectorItem
+          name="기타"
+          category="ETC"
           handlerClickCategory={handlerClickCategory}
           selectedCategories={props.selectedCategories}
         />
