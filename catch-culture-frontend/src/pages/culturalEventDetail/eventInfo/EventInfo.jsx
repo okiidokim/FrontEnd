@@ -182,7 +182,7 @@ function EventInfo (params) {
 
             {/* 사진 영역 */}
             <S.PictureArea>
-                <S.MySwiper pagination={true} modules={[Pagination, Autoplay]} slidesPerView={1} autoplay={{delay: 2000, disableOnInteraction: false}} loop={true}>
+                <S.MySwiper pagination={true} modules={[Pagination]} slidesPerView={1} loop={true}>
                     <SwiperSlide>
                         <S.SwiperSlideImg src={imgUrl2} alt="배너 이미지" />
                     </SwiperSlide>
