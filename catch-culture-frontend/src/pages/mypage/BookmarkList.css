@@ -1,10 +1,26 @@
+.total {
+  display: flex;
+  position: relative;
+  gap: 40px;
+}
+
+.wrap {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cateSel {
+  position: relative;
+  display: flex;
+}
+
 .textrow {
   display: flex;
-  position: absolute;
-  top: 12%;
+  position: relative;
   align-items: baseline;
   gap: 8px;
-  margin: 0 0 0 -169px;
 }
 .bookmarkCnt {
   font-size: 12px;
@@ -13,14 +29,14 @@
   font-size: 20px;
   font-weight: bold;
 }
-.cateSel {
-  display: flex;
-  position: absolute;
-  top: 6%;
-  margin: 0 0 0 -169px;
-}
+
 .eventlist {
   display: flex;
-  position: absolute;
-  top: 14%;
+  position: relative;
+}
+.nors {
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: center;
 }

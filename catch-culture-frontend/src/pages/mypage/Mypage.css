@@ -1,4 +1,4 @@
-.total {
+.tota {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -9,7 +9,7 @@
   flex-direction: column;
   position: relative;
   justify-content: center;
-  gap: 140px;
+  gap: 128px;
 }
 
 /* 개인정보 수정 */
