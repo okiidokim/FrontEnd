@@ -39,9 +39,6 @@ function Search() {
   // data
   const [data, setData] = useState([]);
 
-  // 임시 cnt
-  const cnt = 2;
-
   // 카테고리 바뀔 때 마다 리렌더링
   useEffect(() => {
     // console.log(selectedCategories);
@@ -56,18 +53,22 @@ function Search() {
 
   const fetchData = async () => {
     try {
-      // URL 만들기 - 카테고리 선택
-      const categoryUrl = selectedCategories
-        .map((item) => 'category=' + item)
-        .join('&');
+      if (selectedCategories.length === 0) {
+        setCount(0);
+      } else {
+        // URL 만들기 - 카테고리 선택
+        const categoryUrl = selectedCategories
+          .map(item => 'category=' + item)
+          .join('&');
 
-      const response = await axios.get(
-        `/cultural-event/list?${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
-      );
+        const response = await axios.get(
+          `cultural-event/list?${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
+        );
 
-      // 데이터 저장
-      setData(response.data.content);
-      setCount(response.data.totalElements);
+        // 데이터 저장
+        setData(response.data.content);
+        setCount(response.data.totalElements);
+      }
     } catch (e) {
       console.log(e);
     }
