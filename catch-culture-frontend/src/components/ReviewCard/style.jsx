@@ -1,13 +1,15 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
+import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 
 export const ReveiwCard = styled.div`
   position: relative;
   display: block;
   width:300px;
-  height: 150px;
+  height: auto;
   padding: 10px;
   border: 1px solid black;
   border-radius: 8px;
+  margin-top: 12px;
 `;
 
 export const UserInfo = styled.div`
@@ -28,7 +30,7 @@ export const Date = styled.div`
 `;
 
 export const RvImg = styled.img`
-  width: 56px;
+  width: 80px;
   height: 56px;
 `;
 
@@ -36,7 +38,7 @@ export const ReviewRow = styled.div`
   display: flex;
   position: relative;
   margin-top: 12px;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
 `;
 
@@ -50,18 +52,12 @@ export const Star = styled.div`
   height: auto;
   margin-top: 10px;
   svg {
-    fill: black;
     box-sizing: border-box;
-    border: 1px solid black;
-  }
-
-  svg > svg {
-    fill: yellow;
   }
 `;
 
 export const Event = styled.div`
-  display: flex;
+  display: ${props => props.display};
   position: relative;
   flex-direction: row;
   gap: 12px;
@@ -71,7 +67,7 @@ export const Event = styled.div`
 
 export const EventImg = styled.img`
   width: 32px;
-  height:32px;
+  height: 32px;
   border-radius: 4px;
 `;
 
@@ -80,3 +76,10 @@ export const EventTitle = styled.div`
   font-weight: bold;
 `;
 
+export const ActiveStar = styled(AiFillStar)`
+  fill: yellow;
+`;
+
+export const InActiveStar = styled(AiFillStar)`
+  fill: #bbbbbb;
+`;

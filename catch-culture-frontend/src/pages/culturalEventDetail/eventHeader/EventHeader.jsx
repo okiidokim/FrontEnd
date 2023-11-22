@@ -6,7 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function EventHeader ( {onSelectorChange} ) {
-    console.log(onSelectorChange);
     const navigate = useNavigate();
 
     let [select,setSelect] = useState(0);

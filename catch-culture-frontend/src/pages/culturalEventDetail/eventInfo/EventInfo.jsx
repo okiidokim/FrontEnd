@@ -8,6 +8,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { Pagination, Autoplay } from 'swiper/modules';
 
+// api
+import axios from '../../../api/axios';
+
 function EventInfo (EventId) {
     let imgUrl1 = 'https://storage.googleapis.com/elegant-bucket/jinwoo.png';
     let imgUrl2 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg';
@@ -33,7 +36,7 @@ function EventInfo (EventId) {
     const [isLike, setIsLike] = useState(false) // Boolean: 좋아요 여부
     const [isBookmark, setIsBookmark] = useState(false) // Boolean: 즐겨찾기 여부
 
-    // // 최초 로딩시 값 불러오기
+    // 최초 로딩시 값 불러오기
     // useEffect(() => {
     //     try {
     //         const response = axios.get(
@@ -58,11 +61,7 @@ function EventInfo (EventId) {
     //     } catch {
     //         //console.log(response);
     //     }
-        
     // }, []);
-
-    console.log(EventId);
-
     // 행사 설명 더보기 스위치
     const [isShowMore, setIsShowMore] = useState(false);
     // 글자 수 제한

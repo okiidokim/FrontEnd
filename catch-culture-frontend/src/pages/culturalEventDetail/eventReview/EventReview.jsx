@@ -33,10 +33,13 @@ function EventReview ( {EventId} ) {
                 "nickname": "string",
                 "description": "string",
                 "storedFileUrl": [
-                  "string"
+                  "https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg",
+                  'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg'
                 ],
-                "rating": 0,
-                "createdAt": "2023-11-22T04:16:03.872Z"
+                "rating": 3,
+                "createdAt": "2023-11-22",
+                "eventImgUrl" : null,
+                "eventTitle": null,
             }}/>
         </S.EventInfo>
     );
