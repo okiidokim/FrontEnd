@@ -17,8 +17,9 @@ function Report2() {
         <ReportHeader ReportPaginationIcon={ReportPaginationIcon} />
 
         <S.ReportContent>
+          {/* 제보하기 버튼 */}
           <Link to="/report3">
-            <S.ReportButton>다음</S.ReportButton>
+            <S.ReportButton>제보하기</S.ReportButton>
           </Link>
         </S.ReportContent>
       </S.ReportWrapper>
