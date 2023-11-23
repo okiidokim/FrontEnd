@@ -52,7 +52,7 @@ function Likes() {
   };
 
   return (
-    <div className="total">
+    <div className="tota">
       <Backitem />
       <div className="wrap">
         <div className="cateSel">

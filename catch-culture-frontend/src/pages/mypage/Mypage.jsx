@@ -9,15 +9,15 @@ import Backitem from '../../components/Backitem';
 import axios from '../../api/axios';
 
 function Mypage() {
-  const [nick, setNick] = useState([]);
-  const [pimg, setPimg] = useState([]);
+  const [nick, setNick] = useState('');
+  const [img, setImg] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`/user`);
-        setNick(response.nickname);
-        setPimg(response.storedFileUrl);
+        setNick(response.data.nickname);
+        setImg(response.data.storedFileUrl);
       } catch (e) {
         console.log(e);
       }
@@ -26,34 +26,23 @@ function Mypage() {
   }, []);
 
   console.log(nick);
+  console.log(img);
 
   return (
-    <div className="tota">
+    <div className="mypageall">
       <Backitem />
       <div className="mypage-body">
         <div className="information">
-          <div className="inforow">
-            {pimg &&
-              pimg.map((d) => (
-                <Link key={pimg} to={'/mypage'}>
-                  <img className="profileimage" src={pimg}></img>
-                </Link>
-              ))}
-            <div className="twobutton">
-              <NavLink to="/profile-edit">
-                <button className="putprofile">개인정보 수정</button>
-              </NavLink>
-              <NavLink to="/login">
-                <button className="logout">로그아웃</button>
-              </NavLink>
-            </div>
+          <img className="profileimage" src={img}></img>
+          {nick}
+          <div className="twobutton">
+            <NavLink to="/profile-edit">
+              <button className="putprofile">개인정보 수정</button>
+            </NavLink>
+            <NavLink to="/login">
+              <button className="logout">로그아웃</button>
+            </NavLink>
           </div>
-          {nick &&
-            nick.map((d) => (
-              <Link key={nick} to={'/mypage'}>
-                {nick}
-              </Link>
-            ))}
         </div>
         <div className="buttonl">
           <div className="row1">

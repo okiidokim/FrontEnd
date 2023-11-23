@@ -1,29 +1,24 @@
-.tota {
+.mypageall {
   display: flex;
   flex-direction: column;
   position: relative;
-  gap: 80px;
+  gap: 100px;
 }
 .mypage-body {
   display: flex;
   flex-direction: column;
   position: relative;
   justify-content: center;
-  gap: 128px;
+  gap: 60px;
 }
 
 /* 개인정보 수정 */
 .information {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.inforow {
-  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .twobutton {
@@ -51,16 +46,9 @@
   border-radius: 40px;
 }
 
-.nick {
-  display: flex;
-  font-size: 12px;
-  width: max-content;
-  position: relative;
-  left: 14px;
-}
-
 /* 버튼 6개 */
 .buttonl {
+  width: 320px;
   display: flex;
   position: relative;
   flex-direction: column;
