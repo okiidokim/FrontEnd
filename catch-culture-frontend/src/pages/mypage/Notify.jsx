@@ -3,8 +3,9 @@ import Backitem from '../../components/Backitem';
 
 function Notify() {
   return (
-    <div>
+    <div className="tota">
       <Backitem />
+      <div className="wrap"></div>
     </div>
   );
 }

@@ -1,15 +1,7 @@
-.reviewcard {
-  display: flex;
-  position: absolute;
-  top: 10%;
-  margin: 0 0 0 -169px;
-}
 .reviewrow {
   display: flex;
-  position: absolute;
-  top: 6%;
-  margin: 0 0 0 -169px;
-  gap: 4px;
+  gap: 8px;
+  width: 322px;
   align-items: baseline;
 }
 .reviewtext {
@@ -18,4 +10,8 @@
 }
 .reviewCnt {
   font-size: 12px;
+}
+.reviewcard {
+  display: flex;
+  justify-content: center;
 }
