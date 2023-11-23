@@ -28,6 +28,32 @@ function Report2() {
               />
             </S.ReportEvent>
 
+            {/* 요금 정보 */}
+            <S.ReportEvent>
+              <S.ReportEventTitle>요금 정보 *</S.ReportEventTitle>
+              <S.ReportEventCost>
+                <S.ReportEventInputRadioWrapper>
+                  <S.ReportEventLabel for="무료">무료</S.ReportEventLabel>
+                  <S.ReportEventInputRadio
+                    type="radio"
+                    id="무료"
+                    name="options"
+                    value="무료"
+                  />
+                </S.ReportEventInputRadioWrapper>
+
+                <S.ReportEventInputRadioWrapper>
+                  <S.ReportEventLabel for="유료">유료</S.ReportEventLabel>
+                  <S.ReportEventInputRadio
+                    type="radio"
+                    id="유료"
+                    name="options"
+                    value="유료"
+                  />
+                </S.ReportEventInputRadioWrapper>
+              </S.ReportEventCost>
+            </S.ReportEvent>
+
             {/* SNS 주소 */}
             <S.ReportEvent>
               <S.ReportEventTitle>SNS 주소</S.ReportEventTitle>

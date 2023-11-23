@@ -71,6 +71,34 @@ export const ReportEventInput = styled.input`
     border-radius: 3px;
   }
 `;
+export const ReportEventInputRadioWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+export const ReportEventInputRadio = styled.input`
+  accent-color: #018c0d;
+  cursor: pointer;
+  margin-left: 8px;
+
+  &[type='radio'] {
+    border: max(2px, 0.1em) solid gray;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+  }
+`;
+export const ReportEventCost = styled.div`
+  display: flex;
+  margin-left: 12px;
+  gap: 40px;
+`;
+export const ReportEventLabel = styled.label`
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.3px;
+`;
 
 // 제보 버튼
 export const ReportButton = styled.div`
