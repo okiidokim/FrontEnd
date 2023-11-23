@@ -36,6 +36,7 @@ export const ReportSuccessContent = styled.div`
   font-weight: 300;
   line-height: normal;
   margin-top: 6px;
+  margin-bottom: 255px;
 `;
 
 // 제보 버튼
@@ -53,7 +54,6 @@ export const ReportButton = styled.div`
   font-size: 16px;
   font-weight: 700;
   line-height: normal;
-  margin-top: 255px;
   bottom: 10px;
   cursor: pointer;
 `;

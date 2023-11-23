@@ -10,6 +10,7 @@ export const ReportContent = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 12px;
+  margin-bottom: 70px;
 `;
 
 // 필수 사항 공지
@@ -106,7 +107,7 @@ export const ReportButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 317px;
   height: 38px;
   border-radius: 8px;
   border: 1px solid #018c0d;
@@ -117,7 +118,6 @@ export const ReportButton = styled.div`
   font-size: 16px;
   font-weight: 700;
   line-height: normal;
-  margin-top: 70px;
   cursor: pointer;
 `;
 

@@ -88,11 +88,12 @@ function Report2() {
               />
             </S.ReportEvent>
           </S.ReportForm>
-          {/* 제보하기 버튼 */}
-          <Link to="/report3">
-            <S.ReportButton>제보하기</S.ReportButton>
-          </Link>
         </S.ReportContent>
+
+        {/* 제보하기 버튼 */}
+        <Link to="/report3">
+          <S.ReportButton>제보하기</S.ReportButton>
+        </Link>
       </S.ReportWrapper>
     </>
   );
