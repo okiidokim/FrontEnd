@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import * as S from './CulturalEventDetailStyle';
 
@@ -32,7 +32,7 @@ function culturalEventDetail() {
 
             data = {
                 'EventId' : culturalEventId,
-                'storedFileUrl' : response.data.culturalEventDetail.storedFileURL,
+                'storedFileUrl' : response.data.culturalEventDetail.storedFileUrl,
                 'startDate' : response.data.culturalEventDetail.startDate,
                 'endDate' : response.data.culturalEventDetail.endDate,
                 'title' : response.data.culturalEventDetail.title,

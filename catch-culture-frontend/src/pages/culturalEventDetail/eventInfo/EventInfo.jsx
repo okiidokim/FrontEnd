@@ -7,19 +7,14 @@ import { SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 
 // api
 import axios from '../../../api/axios';
 
 
 function EventInfo (params) {
-    
     const navigate = useNavigate();
-
-    let imgUrl1 = 'https://storage.googleapis.com/elegant-bucket/jinwoo.png';
-    let imgUrl2 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg';
-    let imgUrl3 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
 
     const [likeCount, setLikeCount] = useState(0) // int: 좋아요 수
     const [bookmarkCount, setBookmarkCount] = useState(0) // int: 즐겨찾기 수
@@ -50,6 +45,14 @@ function EventInfo (params) {
             case "EXHIBITION_ART" : return "전시 / 미술";
             default : return "기타";
         }
+    }
+
+    const printPictures = (File) => {
+        File.map((Url) => {
+            <SwiperSlide>
+                <S.SwiperSlideImg src={Url} alt="배너 이미지" />
+            </SwiperSlide>
+        })
     }
 
     // 행사 설명 더보기 스위치
@@ -143,13 +146,11 @@ function EventInfo (params) {
             {/* 사진 영역 */}
             <S.PictureArea>
                 <S.MySwiper pagination={true} modules={[Pagination]} slidesPerView={1} loop={true}>
-                    
-                    <SwiperSlide>
-                        <S.SwiperSlideImg src={imgUrl2} alt="배너 이미지" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <S.SwiperSlideImg src={imgUrl1} alt="배너 이미지" />
-                    </SwiperSlide>
+                    {params.data.storedFileUrl.map((Url, index) => (
+                        <SwiperSlide key={index}>
+                            <S.SwiperSlideImg src={Url} alt="배너 이미지" />
+                        </SwiperSlide>
+                    ))}
                 </S.MySwiper>
             </S.PictureArea>
 
