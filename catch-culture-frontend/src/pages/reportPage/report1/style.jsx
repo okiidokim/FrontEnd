@@ -1,28 +1,9 @@
 import { styled } from 'styled-components';
+import { Swiper } from 'swiper/react';
 
 export const ReportWrapper = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-export const ReportHeader = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-`;
-
-export const ReportHeaderTitle = styled.div`
-  display: flex;
-  margin-left: 10px;
-
-  color: #000;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: normal;
-`;
-
-export const ReportHeaderSlide = styled.div`
-  display: flex;
 `;
 
 export const ReportContent = styled.div`
@@ -104,4 +85,23 @@ export const ReportButton = styled.div`
   line-height: normal;
   margin-top: 70px;
   cursor: pointer;
+`;
+
+export const MySwiper = styled(Swiper)`
+  width: 336px;
+  height: auto;
+  padding-bottom: 30px;
+
+  // Pagination 버튼의 비활성 상태 스타일
+  .swiper-pagination-bullet {
+    width: 8x;
+    height: 8px;
+  }
+
+  // Pagination 버튼의 활성 상태 스타일
+  .swiper-pagination-bullet-active {
+    background-color: #018c0d;
+    width: 8x;
+    height: 8px;
+  }
 `;

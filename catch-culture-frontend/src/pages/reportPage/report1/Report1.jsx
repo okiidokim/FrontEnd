@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './style';
-import Backitem from '../../components/Backitem';
 
 // 아이콘
-import LogoIcon from '../../assets/images/logo.png';
+import LogoIcon from '../../../assets/images/logo.png';
+import ReportPaginationIcon from '../../../assets/images/reportPage/report1.png';
 
-function Report() {
+// 컴포넌트
+import ReportHeader from '../../../components/reportPage/reportHeader/ReportHeader';
+
+function Report1() {
   return (
     <>
       <S.ReportWrapper>
-        <S.ReportHeader>
-          <Backitem />
-          <S.ReportHeaderTitle>제보하기</S.ReportHeaderTitle>
-          <S.ReportHeaderSlide></S.ReportHeaderSlide>
-        </S.ReportHeader>
-
+        <ReportHeader ReportPaginationIcon={ReportPaginationIcon} />
         <S.ReportContent>
           <S.ReportLogo src={LogoIcon} alt="로고 이미지" />
 
@@ -41,11 +40,13 @@ function Report() {
             2. 제보한 행사가 서비스에 등록 <br />
           </S.ReportNumber>
 
-          <S.ReportButton>다음</S.ReportButton>
+          <Link to="/report2">
+            <S.ReportButton>다음</S.ReportButton>
+          </Link>
         </S.ReportContent>
       </S.ReportWrapper>
     </>
   );
 }
 
-export default Report;
+export default Report1;
