@@ -4,12 +4,12 @@ import * as S from './style';
 import Backitem from '../../../components/Backitem';
 
 // 아이콘
-import ReportPaginationIcon from '../../../assets/images/reportPage/report2.png';
+import ReportPaginationIcon from '../../../assets/images/reportPage/report3.png';
 
 // 컴포넌트
 import ReportHeader from '../../../components/reportPage/reportHeader/ReportHeader';
 
-function Report2() {
+function Report3() {
   return (
     <>
       <S.ReportWrapper>
@@ -17,7 +17,7 @@ function Report2() {
         <ReportHeader ReportPaginationIcon={ReportPaginationIcon} />
 
         <S.ReportContent>
-          <Link to="/report3">
+          <Link to="/">
             <S.ReportButton>다음</S.ReportButton>
           </Link>
         </S.ReportContent>
@@ -26,4 +26,4 @@ function Report2() {
   );
 }
 
-export default Report2;
+export default Report3;
