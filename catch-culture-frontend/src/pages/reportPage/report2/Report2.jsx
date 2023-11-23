@@ -25,7 +25,14 @@ function Report2() {
               <S.ReportEventInput
                 type="text"
                 placeholder="행사명을 입력해주세요."
+                minLength={30}
               />
+            </S.ReportEvent>
+
+            {/* 행사 설명 */}
+            <S.ReportEvent>
+              <S.ReportEventTitle>행사 설명 *</S.ReportEventTitle>
+              <S.ReportEventTextArea placeholder="행사에 대해서 설명해주세요. (최소 30자 이상)" />
             </S.ReportEvent>
 
             {/* 요금 정보 */}
@@ -65,7 +72,7 @@ function Report2() {
 
             {/* 전화번호 */}
             <S.ReportEvent>
-              <S.ReportEventTitle>SNS 주소</S.ReportEventTitle>
+              <S.ReportEventTitle>전화번호</S.ReportEventTitle>
               <S.ReportEventInput
                 type="text"
                 placeholder="행사 담당 전화번호를 입력해주세요."

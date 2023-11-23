@@ -50,16 +50,16 @@ export const ReportEventTitle = styled.div`
 
 export const ReportEventInput = styled.input`
   display: flex;
-  width: 284px;
+  width: 300px;
   text-decoration: none;
   border: none;
   border-bottom: 1px solid #777;
-  color: #018c0d;
   font-size: 12px;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.3px;
-  padding: 8px;
+  padding: 10px 8px;
+  font-family: NotoSansKR_Regular;
 
   /* &::placeholder {
     color: rgba(1, 140, 13, 0.56);
@@ -71,6 +71,7 @@ export const ReportEventInput = styled.input`
     border-radius: 3px;
   }
 `;
+
 export const ReportEventInputRadioWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -118,4 +119,27 @@ export const ReportButton = styled.div`
   line-height: normal;
   margin-top: 70px;
   cursor: pointer;
+`;
+
+// TextArea
+export const ReportEventTextArea = styled.textarea`
+  display: flex;
+  width: 284px;
+  height: 168px;
+  padding: 16px;
+  border: 1px solid black;
+  border-radius: 5px;
+  align-items: center;
+  resize: none;
+  font-family: NotoSansKR_Regular;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
+
+  &:focus {
+    border: none;
+    outline: 2px solid #71be77;
+    border-radius: 3px;
+  }
 `;
