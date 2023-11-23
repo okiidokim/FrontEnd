@@ -10,24 +10,71 @@ import EventReview from './eventReview/EventReview';
 // api
 import axios from '../../api/axios';
 
-function culturalEventDetail() {
+let data = "sample";
 
+function culturalEventDetail() {
     const params = useParams();
     const culturalEventId = params.id;
+    
+    const [_isInit, setInit] = useState(false);
 
-    const [selector, setSelector] = useState(0);
+    // 최초 로딩시 값 불러오기
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(
+                `cultural-event/${parseInt(culturalEventId)}`
+            )
+            setInit(true);
+
+            data = {
+                'EventId' : culturalEventId,
+                'storedFileUrl' : response.data.culturalEventDetail.storedFileURL,
+                'startDate' : response.data.culturalEventDetail.startDate,
+                'endDate' : response.data.culturalEventDetail.endDate,
+                'title' : response.data.culturalEventDetail.title,
+                'place' : response.data.culturalEventDetail.place,
+                'category' : response.data.culturalEventDetail.category,
+                'description' : response.data.culturalEventDetail.description ? response.data.culturalEventDetail.description: "null",
+                'wayToCome' : response.data.culturalEventDetail.wayToCome,
+                'sns' : response.data.culturalEventDetail.sns,
+                'telephone' : response.data.culturalEventDetail.telephone,
+                'isFree' : response.data.culturalEventDetail.isFree,
+                'reservationLink' : response.data.culturalEventDetail.reservationLink,
+                'isAuthenticated' : response.data.culturalEventDetail.isAuthenticated,
+                'likeCount' : response.data.likeCount,
+                'bookmarkCount' : response.data.viewCount,
+                'liked' : response.data.liked,
+                'bookmarked' : response.data.bookmarked,
+            };
+            selectorHandler(0);
+            
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const [selector, setSelector] = useState();
 
     const selectorHandler = (select) => {
         setSelector(select);
     }
 
     const selectedInfo = useMemo(() => {
-        
+        if(!_isInit) {
+            return;
+        }
+
         if(selector == 0)
-            return <EventInfo EventId={culturalEventId}/>;
+            return <EventInfo data={data}/>;
         else
             return <EventReview EventId={culturalEventId}/>;
     }, [selector]);
+
+    
 
     return (
         <S.Wrapper>

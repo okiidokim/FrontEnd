@@ -12,64 +12,22 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import axios from '../../../api/axios';
 
 function EventInfo (params) {
+    
     let imgUrl1 = 'https://storage.googleapis.com/elegant-bucket/jinwoo.png';
     let imgUrl2 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg';
     let imgUrl3 = 'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
 
-
-    const [storedFileURL, setStoredFileURL] = useState(); // string: 이미지 URL 
-    const [startDate, setStartDate] = useState(); // LocalDateTime: 시작일
-    const [endDate, setEndDate] = useState(); // LocalDateTime: 종료일
-    const [title, setTitle] = useState(); // String: 제목
-    const [place, setPlace] = useState(); // String: 행사 위치
-    const [category, setCategory] = useState(); // Category(): 카테고리 Enumerated(EnumType.STRING)
-    const [description, setDescription] = useState(' '); // String: 행사 설명
-    const [wayToCome, setWayToCome] = useState(); // String: 오시는길
-    const [sns, setSns] = useState(); // String: sns 주소
-    const [telephone, setTelephone] = useState() // String: 전화번호
-    const [isFree, setIsFree] = useState(false) // Boolean: 요금
-    const [reservationLink, setReservationLink] = useState() // String: 예약 링크
-
-    const [isAuthenticated, setIsAuthenticated] = useState() // Boolean: 인증 여부
     const [likeCount, setLikeCount] = useState(0) // int: 좋아요 수
     const [bookmarkCount, setBookmarkCount] = useState(0) // int: 즐겨찾기 수
-    const [isLike, setIsLike] = useState() // Boolean: 좋아요 여부
-    const [isBookmark, setIsBookmark] = useState() // Boolean: 즐겨찾기 여부
+    const [isLike, setIsLike] = useState(false) // Boolean: 좋아요 여부
+    const [isBookmark, setIsBookmark] = useState(false) // Boolean: 즐겨찾기 여부        
 
-    // 최초 로딩시 값 불러오기
     useEffect(() => {
-        fetchData();
+        setLikeCount(params.data.likeCount);
+        setBookmarkCount(params.data.bookmarkCount);
+        setIsLike(params.data.liked);
+        setIsBookmark(params.data.bookmarked);
     }, []);
-
-    const fetchData = async () => {
-        try {
-            const response = await axios.get(
-                `cultural-event/${parseInt(params.EventId)}`
-            )
-
-            setStoredFileURL(response.data.culturalEventDetail.storedFileUrl);
-            setStartDate(response.data.culturalEventDetail.startDate);
-            setEndDate(response.data.culturalEventDetail.endDate);
-            setTitle(response.data.culturalEventDetail.title);
-            setPlace(response.data.culturalEventDetail.place);
-            setCategory(response.data.culturalEventDetail.category);
-            if(response.data.culturalEventDetail.description != null) {
-                setDescription(response.data.culturalEventDetail.description);
-            }
-            setReservationLink(response.data.culturalEventDetail.reservationLink);
-            setWayToCome(response.data.culturalEventDetail.wayToCome);
-            setSns(response.data.culturalEventDetail.sns);
-            setTelephone(response.data.culturalEventDetail.telephone);
-            setIsFree(response.data.culturalEventDetail.isFree);
-            setIsAuthenticated(response.data.authenticated);
-            setIsBookmark(response.data.bookmarked);
-            setIsLike(response.data.liked);
-            setLikeCount(response.data.likeCount);
-            setBookmarkCount(response.data.viewCount);
-        } catch (e) {
-            console.log(e);
-        }
-    }    
 
     // 카테고리 한글로 변환
     const printCategory = (category) => {
@@ -97,14 +55,14 @@ function EventInfo (params) {
 
     // 글자 자르기
     const commenter = useMemo(() => {
-        const shortView = description.slice(0, textLimit);
-        if (description.length > textLimit) {
+        const shortView = params.data.description.slice(0, textLimit);
+        if (params.data.description.length > textLimit) {
             if (isShowMore)
-                return description;
+                return params.data.description;
             else
                 return shortView;
         }
-        return description;
+        return params.data.description;
     }, [isShowMore]);
 
     // 좋아요 버튼 클릭
@@ -117,13 +75,13 @@ function EventInfo (params) {
         try {
             if(!isLike) {
                 const response = axios.post(
-                    `cultural-event/${parseInt(params.EventId)}/like`,
+                    `cultural-event/${parseInt(params.data.EventId)}/like`,
                 );
                 setLikeCount(likeCount+1);
                 console.log("post like");
             } else {
                 const response = axios.delete(
-                    `cultural-event/${parseInt(params.EventId)}/like`
+                    `cultural-event/${parseInt(params.data.EventId)}/like`
                 );
                 setLikeCount(likeCount-1);
             }
@@ -142,13 +100,12 @@ function EventInfo (params) {
         try {
             if(!isBookmark) {
                 const response = axios.post(
-                    `cultural-event/${parseInt(params.EventId)}/star`
+                    `cultural-event/${parseInt(params.data.EventId)}/star`
                 );
                 setBookmarkCount(bookmarkCount+1);
-                console.log("post book");
             } else {
                 const response = axios.delete(
-                    `cultural-event/${parseInt(params.EventId)}/star`
+                    `cultural-event/${parseInt(params.data.EventId)}/star`
                 );
                 setBookmarkCount(bookmarkCount-1);
             }
@@ -159,7 +116,7 @@ function EventInfo (params) {
     
     // 방문인증 버튼 클릭
     const onClickAuthButton = () => {
-        if(!isAuthenticated)
+        if(!params.data.isAuthenticated)
             navigate('/');
     }
 
@@ -167,17 +124,17 @@ function EventInfo (params) {
         <S.EventInfo>
             {/* 행사 제목 */}
             <S.TitleArea>
-                {title}
+                {params.data.title}
             </S.TitleArea>
 
             {/* 카테고리 영역 */}
             <S.CategoryArea>
-                {printCategory(category)}
+                {printCategory(params.data.category)}
             </S.CategoryArea>
 
             {/* 방문인증 여부 */}
-            <S.AuthArea style={ isAuthenticated ? {color: '#018C0D'} : {color: 'red'}}>
-                {isAuthenticated ? '방문 인증 완료' : '방문 인증 미완료'}
+            <S.AuthArea style={ params.data.isAuthenticated ? {color: '#018C0D'} : {color: 'red'}}>
+                {params.data.isAuthenticated ? '방문 인증 완료' : '방문 인증 미완료'}
             </S.AuthArea>
 
             {/* 사진 영역 */}
@@ -208,7 +165,7 @@ function EventInfo (params) {
                 </button>
             </S.PersonalButtonArea>
 
-            <div id='descriptionArea' style={ description == null ? {display:'none'} : {display:'block'}}>
+            <div id='descriptionArea' style={ params.data.description == null ? {display:'none'} : {display:'block'}}>
                 <S.SubTitle>
                     행사 소개
                 </S.SubTitle>
@@ -218,7 +175,7 @@ function EventInfo (params) {
 
                         {/* 더보기 버튼 */}
                         <span style={{color:'grey'}}>
-                            {description.length > textLimit ? (isShowMore ? ' 닫기' : ' ...더보기') : null}
+                            {params.data.description.length > textLimit ? (isShowMore ? ' 닫기' : ' ...더보기') : null}
                         </span>
                     </div>
                 </S.InfoValue>
@@ -229,8 +186,8 @@ function EventInfo (params) {
                     행사 위치
                 </S.SubTitle>
                 <S.InfoValue>
-                    <div>{ place }</div>
-                    <div>오시는길 : {wayToCome}</div>
+                    <div>{ params.data.place }</div>
+                    <div>오시는길 : {params.data.wayToCome}</div>
                 </S.InfoValue>
                 </div>
 
@@ -239,8 +196,8 @@ function EventInfo (params) {
                     운영 기간
                 </S.SubTitle>
                 <S.InfoValue>
-                    <div>시작일 : { startDate }</div>
-                    <div>종료일 : { endDate }</div>
+                    <div>시작일 : { params.data.startDate }</div>
+                    <div>종료일 : { params.data.endDate }</div>
                 </S.InfoValue>
                 </div>
 
@@ -249,7 +206,7 @@ function EventInfo (params) {
                     요금 정보
                 </S.SubTitle>
                 <S.InfoValue>
-                    { isFree ? "무료" : "유료"}
+                    { params.data.isFree ? "무료" : "유료"}
                 </S.InfoValue>
                 </div>
 
@@ -258,8 +215,8 @@ function EventInfo (params) {
                     연락처
                 </S.SubTitle>
                 <S.InfoValue>
-                    <div>{ telephone != null ? "전화번호 : " + telephone : null }</div>
-                    <div>{ sns != null ? "SNS : " + sns : null }</div>
+                    <div>{ params.data.telephone != null ? "전화번호 : " + params.data.telephone : null }</div>
+                    <div>{ params.data.sns != null ? "SNS : " + params.data.sns : null }</div>
                 </S.InfoValue>
                 </div>
 
@@ -270,19 +227,19 @@ function EventInfo (params) {
 
                 {/* 예약 링크 설명 */}
                 <S.InfoValue>
-                    { reservationLink != null ? "예약링크 : " + reservationLink : null }
+                    { params.data.reservationLink != null ? "예약링크 : " + params.data.reservationLink : null }
                 </S.InfoValue>
 
                 {/* 예약 버튼 */}
-                <S.ButtonSection style={ reservationLink != null ? null : {display:'none'}}>
-                    <button onClick={() => {window.open(reservationLink,'_blank')}}>
+                <S.ButtonSection style={params.data. reservationLink != null ? null : {display:'none'}}>
+                    <button onClick={() => {window.open(params.data.reservationLink,'_blank')}}>
                         이동하기
                     </button>
                 </S.ButtonSection>
             </div>
 
             <S.ButtonSection>           
-                <button onClick={onClickAuthButton} disabled={isAuthenticated} style={ isAuthenticated ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
+                <button onClick={onClickAuthButton} disabled={params.data.isAuthenticated} style={ params.data.isAuthenticated ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
                     방문 인증
                 </button>
             </S.ButtonSection>
