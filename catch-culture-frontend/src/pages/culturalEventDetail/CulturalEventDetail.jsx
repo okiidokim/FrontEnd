@@ -71,7 +71,7 @@ function culturalEventDetail() {
         if(selector == 0)
             return <EventInfo data={data}/>;
         else
-            return <EventReview EventId={culturalEventId}/>;
+            return <EventReview data={data}/>;
     }, [selector]);
 
     

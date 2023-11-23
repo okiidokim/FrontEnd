@@ -6,11 +6,11 @@ import { Swiper } from 'swiper/react';
  *****************************/
 export const EventInfo = styled.div`
     text-align: center;
-
     display: flex;
     align-items: center;
     justify-items: center;
     flex-direction: column;
+    margin-bottom: 20px;
 `;
 
 export const TitleArea = styled.div`
@@ -26,9 +26,14 @@ export const TitleArea = styled.div`
 `;
 
 export const CategoryArea = styled.div`
-    width: 40px;
+    width: 100px;
     height: 12px;
     font-size: 8px;
+`;
+
+// 방문 인증 영역
+export const AuthArea = styled.div`
+    font-size: 12px;
 `;
 
 export const PictureArea = styled.div`
@@ -144,7 +149,4 @@ export const ButtonSection = styled.div`
     }
 `;
 
-// 방문 인증 영역
-export const AuthArea = styled.div`
-    font-size: 12px;
-`;
+

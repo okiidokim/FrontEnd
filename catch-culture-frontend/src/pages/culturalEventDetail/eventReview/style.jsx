@@ -1,8 +1,10 @@
 import { styled } from 'styled-components';
 
+/*****************************
+ *         정보 영역          *
+ *****************************/
 export const EventInfo = styled.div`
     text-align: center;
-
     display: flex;
     align-items: center;
     justify-items: center;
@@ -10,10 +12,10 @@ export const EventInfo = styled.div`
 `;
 
 export const TitleArea = styled.div`
-    width: 200px !important;
+    width: auto;
     height: 38px;
     text-align: center;
-    font: 20px bold;
+    font: 16px bold;
     font-weight: bold;
     font-family: NotoSansKR_Bold;
     margin-top: 20px;
@@ -22,11 +24,12 @@ export const TitleArea = styled.div`
 `;
 
 export const CategoryArea = styled.div`
-    width: 40px;
+    width: 100px;
     height: 12px;
     font-size: 8px;
 `;
 
+// 방문 인증 영역
 export const AuthArea = styled.div`
     font-size: 12px;
 `;

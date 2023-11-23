@@ -47,14 +47,6 @@ function EventInfo (params) {
         }
     }
 
-    const printPictures = (File) => {
-        File.map((Url) => {
-            <SwiperSlide>
-                <S.SwiperSlideImg src={Url} alt="배너 이미지" />
-            </SwiperSlide>
-        })
-    }
-
     // 행사 설명 더보기 스위치
     const [isShowMore, setIsShowMore] = useState(false);
     // 글자 수 제한
