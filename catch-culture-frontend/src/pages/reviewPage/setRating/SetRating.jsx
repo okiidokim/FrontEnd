@@ -1,5 +1,6 @@
 import * as S from './style.jsx';
 import { useEffect, useState } from 'react';
+import { AiFillStar } from 'react-icons/ai';
 
 function SetRating () {
     const [rating, setRating] = useState([false, false, false, false, false]);
@@ -13,17 +14,28 @@ function SetRating () {
         }
         setRating(clickStates);
     };
+
+    useEffect(() => {
+        sendReview();
+    }, [rating]);
     
+    const sendReview = () => {
+        let score = rating.filter(Boolean).length;
+        console.log("score : " + score);
+    };
+
     return (
-        <S.Wrapper>
+        <S.Stars>
             {array.map((el, idx) =>{
-                <S.ActiveStar
-                    key={idx}
-                    onClick={() => handleClickRating(el)}
-                    className={clicked[el] && 'https://velog.io/@whoyoung90/TIL-35-WECODE-%EB%B3%84%EC%A0%90-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84'}
-                />
+                return(
+                    <AiFillStar
+                        key={idx}
+                        onClick={() => handleClickRating(el)}
+                        className={rating[el] && 'activeStar'}
+                    />
+                );
             })}
-        </S.Wrapper>
+        </S.Stars>
     );
 }
 

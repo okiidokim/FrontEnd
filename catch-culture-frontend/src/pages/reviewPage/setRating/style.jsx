@@ -1,21 +1,19 @@
 import { styled } from 'styled-components';
-import { AiFillStar } from 'react-icons/ai';
 
-export const Wrapper = styled.div`
+
+export const Stars = styled.div`
   width: auto;
   height: auto;
   margin-top: 20px;
   margin-bottom: 20px;
-`;
 
-export const ActiveStar = styled(AiFillStar)`
-  width: 40px;
-  height: 40px;
-  fill: yellow;
-`;
+  * {
+    width: 40px;
+    height: 40px;
+    fill: #bbbbbb;
+  }
 
-export const InActiveStar = styled(AiFillStar)`
-  width: 40px;
-  height: 40px;
-  fill: #bbbbbb;
+  .activeStar > path {
+    fill: yellow;
+  }
 `;
