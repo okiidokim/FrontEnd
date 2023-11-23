@@ -46,7 +46,7 @@ function culturalEventDetail() {
                 'reservationLink' : response.data.culturalEventDetail.reservationLink,
                 'isAuthenticated' : response.data.culturalEventDetail.isAuthenticated,
                 'likeCount' : response.data.likeCount,
-                'bookmarkCount' : response.data.viewCount,
+                'bookmarkCount' : response.data.bookmarkCount,
                 'liked' : response.data.liked,
                 'bookmarked' : response.data.bookmarked,
             };
