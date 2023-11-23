@@ -54,7 +54,7 @@ function Bookmarks() {
     }
   };
   return (
-    <div className="tota">
+    <div className="listall">
       <Backitem />
       <div className="wrap">
         <div className="cateSel">

@@ -1,6 +1,7 @@
-.tota {
+.listall {
   display: flex;
   position: relative;
+  flex-direction: column;
   gap: 40px;
 }
 
@@ -8,7 +9,7 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .cateSel {

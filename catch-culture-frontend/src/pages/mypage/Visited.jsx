@@ -10,7 +10,7 @@ import axios from '../../api/axios';
 function Visited() {
   const { state } = useLocation();
   const category = state && state.category;
-  const cnt = 0; //api 확인 후 짜두기
+  const cnt = 12; //api 확인 후 짜두기
   const offsetnum = 0;
 
   // state 값 유무에 따른 초기값 설정
@@ -52,7 +52,7 @@ function Visited() {
   };
 
   return (
-    <div className="tota">
+    <div className="listall">
       <Backitem />
       <div className="wrap">
         <div className="cateSel">

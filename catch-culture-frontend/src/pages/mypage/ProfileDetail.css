@@ -2,13 +2,20 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  gap: 100px;
+  gap: 80px;
 }
 .editwrap {
   display: flex;
   position: relative;
   flex-direction: column;
   gap: 40px;
+}
+.sctype {
+  display: flex;
+  position: relative;
+  font-weight: bold;
+  flex-direction: column;
+  gap: 4px;
 }
 .imgchange {
   display: flex;
@@ -20,6 +27,21 @@
   width: 80px;
   height: 80px;
   border-radius: 40px;
+}
+.imgchbutton {
+  width: 156px;
+  height: 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background-color: #d9d9d9;
+  box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
+    inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
+    -1px -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+.imgchbutton:hover {
+  background-color: #018c0d;
+  font-weight: bold;
 }
 hr {
   width: 320px;
@@ -65,28 +87,24 @@ hr {
   font-weight: bold;
 }
 .nickpatchbox {
-  width: 300px;
+  width: 296px;
   height: 30px;
   background-color: #d9d9d9;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 2px;
+  border-width: 0.5px;
+  border-color: #acacac;
 
-  color: rgba(1, 140, 13, 0.56);
   font-family: NotoSansKR_Regular;
   font-size: 13px;
   font-weight: 400;
-  line-height: normal;
   &:focus {
     border: none;
-    outline: 2px solid #71be77;
-    border-radius: 3px;
-  }
-  &::placeholder {
-    color: rgba(1, 140, 13, 0.56);
+    outline: 2px solid #018c0d;
+    border-radius: 2px;
   }
 }
-/*지금 이게 제일 문제 얘 css랑 jsx에서 patch 해결하기
-*/
 
 /* .withdraw {
 } */
