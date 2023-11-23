@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import * as S from './VisitAuthStyle';
+import Backitem from '../../components/Backitem';
 
 function VisitAuth() {
     const onClickBackButton = () => {
@@ -9,12 +10,7 @@ function VisitAuth() {
 
     return (
         <S.Wrapper>
-            <S.Header>
-                <S.BackButton onClick={onClickBackButton}> 
-                    <IoIosArrowBack />
-                </S.BackButton>
-                
-            </S.Header>
+                <Backitem/>
             {/* <S.InfoArea>
 
             </S.InfoArea> */}

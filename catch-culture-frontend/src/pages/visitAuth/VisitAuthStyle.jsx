@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 
 export const Wrapper = styled.div`
     flex-direction: column;
-    padding: 0px 28px 28px 28px;
+    
     font-family: noto Sans KR;
 `;
 
