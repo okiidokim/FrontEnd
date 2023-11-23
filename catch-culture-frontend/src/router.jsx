@@ -17,7 +17,9 @@ import ProfileEdit from './pages/mypage/ProfileDetail';
 import PointLevel from './pages/mypage/PointLevel';
 import Search from './pages/search/Search';
 import VisitAuth from './pages/visitAuth/VisitAuth';
-import Report from './pages/reportPage/Report';
+import Report1 from './pages/reportPage/report1/Report1';
+import Report2 from './pages/reportPage/report2/Report2';
+import Report3 from './pages/reportPage/report3/Report3';
 
 const router = createBrowserRouter([
   {
@@ -85,8 +87,16 @@ const router = createBrowserRouter([
         element: <VisitAuth />,
       },
       {
-        path: '/report',
-        element: <Report />,
+        path: '/report1',
+        element: <Report1 />,
+      },
+      {
+        path: '/report2',
+        element: <Report2 />,
+      },
+      {
+        path: '/report3',
+        element: <Report3 />,
       },
     ],
   },
