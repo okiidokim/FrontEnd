@@ -3,17 +3,20 @@ import * as S from './style';
 import Backitem from '../../../components/Backitem';
 
 // 아이콘
-import LogoIcon from '../../../assets/images/logo.png';
+import ReportPaginationIcon from '../../../assets/images/reportPage/report2.png';
+
+// 컴포넌트
+import ReportHeader from '../../../components/reportPage/reportHeader/ReportHeader';
 
 function Report2() {
   return (
     <>
       <S.ReportWrapper>
-        <S.ReportHeader>
+        <ReportHeader ReportPaginationIcon={ReportPaginationIcon}>
           <Backitem />
           <S.ReportHeaderTitle>제보하기</S.ReportHeaderTitle>
           <S.ReportHeaderSlide></S.ReportHeaderSlide>
-        </S.ReportHeader>
+        </ReportHeader>
 
         <S.ReportContent>
           gd
