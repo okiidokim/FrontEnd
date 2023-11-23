@@ -14,10 +14,10 @@ export const EventInfo = styled.div`
 `;
 
 export const TitleArea = styled.div`
-    width: 200px !important;
+    width: auto;
     height: 38px;
     text-align: center;
-    font: 20px bold;
+    font: 16px bold;
     font-weight: bold;
     font-family: NotoSansKR_Bold;
     margin-top: 20px;
@@ -85,7 +85,7 @@ export const PersonalButtonArea = styled.div`
         height: 20px;
     }
 
-    button > text {
+    button > b {
         height: 20px;
         font-size: 12px;
         margin-left: 5px;
@@ -112,6 +112,7 @@ export const InfoValue = styled.div`
     display:flex;
     flex-direction: column;
     line-height: 20px;
+    overflow: hidden; 
 `;
 
 export const ReservationButton = styled.button`
