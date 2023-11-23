@@ -46,7 +46,7 @@ function Mypage() {
         </div>
         <div className="buttonl">
           <div className="row1">
-            <NavLink to="/notify">
+            <NavLink to="/report">
               <button className="notify">
                 <PiNotificationBold size="40" />
                 제보

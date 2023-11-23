@@ -49,10 +49,6 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: '/notify',
-        element: <Notify />,
-      },
-      {
         path: '/point-history',
         element: <PointHistory />,
       },
