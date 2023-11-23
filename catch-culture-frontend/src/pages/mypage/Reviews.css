@@ -2,13 +2,14 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  gap: 48px;
+  gap: 68px;
 }
 .reviewrow {
   display: flex;
   gap: 8px;
   width: 322px;
   align-items: baseline;
+  padding-left: 8px;
 }
 .reviewtext {
   font-size: 20px;
