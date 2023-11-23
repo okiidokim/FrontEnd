@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import * as S from './VisitAuthStyle';
+import Backitem from '../../components/Backitem';
 
 import Backitem from '../../components/Backitem';
 import UploadBox from '../../components/uploadImg/UploadBox'
@@ -15,11 +16,8 @@ function VisitAuth() {
 
     return (
         <S.Wrapper>
-            <S.Header>
-                <Backitem> 
-                    <IoIosArrowBack />
-                </Backitem>
-            </S.Header>
+
+            <Backitem/>
 
             <S.Container>
                 <S.TitleArea>

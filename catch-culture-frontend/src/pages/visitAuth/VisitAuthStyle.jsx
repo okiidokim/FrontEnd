@@ -4,8 +4,6 @@ export const Wrapper = styled.div`
     min-height: 700px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 0px 28px 28px 28px;
     font-family: noto Sans KR;
 `;
 
