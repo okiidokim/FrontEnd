@@ -9,6 +9,8 @@
   position: relative;
   flex-direction: column;
   gap: 40px;
+  width: 320px;
+  padding-left: 35px;
 }
 .sctype {
   display: flex;
