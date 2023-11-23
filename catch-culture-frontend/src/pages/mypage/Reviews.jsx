@@ -1,11 +1,11 @@
 import React from 'react';
 import Backitem from '../../components/Backitem';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
-import NoResult from '../../components/search/noResult/NoResult';
+import NoReviews from '../../components/search/noResult/NoReviews';
 import './Reviews.css';
 
 function Reviews() {
-  const cnt = 5;
+  const cnt = 0;
   return (
     <div className="reviewall">
       <Backitem />
@@ -17,7 +17,7 @@ function Reviews() {
         <div className="reviewcard">
           {cnt === 0 ? (
             <div className="nors">
-              <NoResult />
+              <NoReviews />
             </div>
           ) : (
             <>
