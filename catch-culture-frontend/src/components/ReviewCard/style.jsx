@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
+import { AiFillStar } from 'react-icons/ai';
 
 export const ReveiwCard = styled.div`
   position: relative;

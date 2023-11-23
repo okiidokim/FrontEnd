@@ -18,6 +18,7 @@ import PointLevel from './pages/mypage/PointLevel';
 import Search from './pages/search/Search';
 import VisitAuth from './pages/visitAuth/VisitAuth';
 import Report from './pages/reportPage/Report';
+import Review from './pages/reviewPage/Review'
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: '/event/:id',
         element: <CulturalEventDetail />,
+      },
+      {
+        path: '/event/:id/visit',
+        element: <VisitAuth />,
+      },
+      {
+        path: '/event/:id/review',
+        element: <Review />,
       },
       {
         path: '/login',
@@ -83,10 +92,6 @@ const router = createBrowserRouter([
       {
         path: '/search',
         element: <Search />,
-      },
-      {
-        path: '/event/:id/visit',
-        element: <VisitAuth />,
       },
       {
         path: '/report',
