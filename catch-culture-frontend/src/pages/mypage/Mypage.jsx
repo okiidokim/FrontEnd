@@ -46,10 +46,10 @@ function Mypage() {
         </div>
         <div className="buttonl">
           <div className="row1">
-            <NavLink to="/notify">
+            <NavLink to="/report">
               <button className="notify">
                 <PiNotificationBold size="40" />
-                공지
+                제보
               </button>
             </NavLink>
             <NavLink to="/point-history">

@@ -5,7 +5,7 @@ import Backitem from '../../components/Backitem';
 import './BookmarkList.css';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
 import EventCard from '../../components/eventCard/EventCard';
-import NoResult from '../../components/search/noResult/NoResult';
+import NoBookmarks from '../../components/search/noResult/NoBookmarks';
 import axios from '../../api/axios';
 
 function Bookmarks() {
@@ -23,7 +23,7 @@ function Bookmarks() {
   const [data, setData] = useState([]);
 
   // 임시 cnt
-  const cnt = 5;
+  const cnt = 0;
   const offsetnum = 0;
 
   // 카테고리 바뀔 때 마다 리렌더링
@@ -54,7 +54,7 @@ function Bookmarks() {
     }
   };
   return (
-    <div className="tota">
+    <div className="listall">
       <Backitem />
       <div className="wrap">
         <div className="cateSel">
@@ -70,7 +70,7 @@ function Bookmarks() {
         <div className="eventlist">
           {cnt === 0 ? (
             <div className="nors">
-              <NoResult />
+              <NoBookmarks />
             </div>
           ) : (
             <>

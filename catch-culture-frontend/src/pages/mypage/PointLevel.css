@@ -1,0 +1,88 @@
+.plall {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  gap: 40px;
+}
+.mypointinfo {
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  gap: 12px;
+}
+.infoimg {
+  width: 300px;
+}
+.mylevel {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  gap: 16px;
+  padding-top: 20px;
+}
+.mylevtext {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-weight: bold;
+}
+.mylevimg {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  gap: 12px;
+}
+.mylevimgbig {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 120px;
+  border-radius: 60px;
+}
+.mylevtextbig {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+}
+.restlev {
+  display: flex;
+  gap: 32px;
+  position: relative;
+  padding-top: 48px;
+}
+.rest1,
+.rest2,
+.rest3 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  gap: 12px;
+}
+.mylevimg1,
+.mylevimg2,
+.mylevimg3 {
+  width: 60px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.mylevtext1,
+.mylevtext2,
+.mylevtext3 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-align: center;
+  font-size: 12px;
+}

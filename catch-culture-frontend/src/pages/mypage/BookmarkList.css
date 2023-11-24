@@ -1,14 +1,17 @@
-.tota {
+.listall {
   display: flex;
   position: relative;
-  gap: 40px;
+  flex-direction: column;
+  gap: 68px;
 }
 
 .wrap {
   display: flex;
   position: relative;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+  width: 338px;
+  padding-left: 26px;
 }
 
 .cateSel {

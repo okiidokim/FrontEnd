@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom';
 import Backitem from '../../components/Backitem';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
 import EventCard from '../../components/eventCard/EventCard';
-import NoResult from '../../components/search/noResult/NoResult';
+import NoLikes from '../../components/search/noResult/NoLikes';
 import axios from '../../api/axios';
 import './BookmarkList.css';
 
 function Likes() {
   const { state } = useLocation();
-  const cnt = 12;
+  const cnt = 0;
   const offsetnum = 0;
   const category = state && state.category;
 
@@ -52,7 +52,7 @@ function Likes() {
   };
 
   return (
-    <div className="tota">
+    <div className="listall">
       <Backitem />
       <div className="wrap">
         <div className="cateSel">
@@ -69,7 +69,7 @@ function Likes() {
           {/* 문화 행사 출력 */}
           {cnt === 0 ? (
             <div className="nors">
-              <NoResult />
+              <NoLikes />
             </div>
           ) : (
             <>

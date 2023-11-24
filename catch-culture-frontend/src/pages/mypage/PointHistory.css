@@ -1,0 +1,77 @@
+.phisall {
+  display: flex;
+  position: relative;
+  gap: 40px;
+  flex-direction: column;
+  align-items: center;
+}
+.pointbox {
+  padding-top: 40px;
+}
+.currentpoint {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 112px;
+  height: 48px;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  background-color: #d9d9d9;
+  border-radius: 12px;
+  padding: 2px;
+}
+.textcp {
+  font-weight: 600;
+  font-size: 12px;
+}
+.curricon {
+  display: flex;
+  position: relative;
+  gap: 4px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.pointinfo {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 8px;
+}
+.pointrow1 {
+  display: flex;
+  position: relative;
+  gap: 160px;
+  height: 20px;
+  align-items: center;
+}
+.phdate {
+  font-size: 16px;
+}
+.pointplus {
+  font-size: 11px;
+  background-color: red;
+  width: 80px;
+  height: 16x;
+  text-align: center;
+  border-radius: 10px;
+  padding-top: 4px;
+  font-weight: bold;
+}
+.pointminus {
+  font-size: 11px;
+  background-color: green;
+  width: 80px;
+  height: 16px;
+  text-align: center;
+  border-radius: 10px;
+  padding-top: 4px;
+  font-weight: bold;
+}
+.pointcontent {
+  font-weight: bold;
+}
+.pointnum {
+  font-weight: bold;
+  padding-bottom: 4px;
+}

@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import './BookmarkList.css';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
 import EventCard from '../../components/eventCard/EventCard';
-import NoResult from '../../components/search/noResult/NoResult';
+import NoVisits from '../../components/search/noResult/NoVisits';
 import axios from '../../api/axios';
 
 function Visited() {
@@ -52,7 +52,7 @@ function Visited() {
   };
 
   return (
-    <div className="tota">
+    <div className="listall">
       <Backitem />
       <div className="wrap">
         <div className="cateSel">
@@ -69,7 +69,7 @@ function Visited() {
           {/* 문화 행사 출력 */}
           {cnt === 0 ? (
             <div className="nors">
-              <NoResult />
+              <NoVisits />
             </div>
           ) : (
             <>
