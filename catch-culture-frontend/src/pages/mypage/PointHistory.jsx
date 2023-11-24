@@ -2,6 +2,7 @@ import React from 'react';
 import Backitem from '../../components/Backitem';
 import './PointHistory.css';
 import { BiSolidCoinStack } from 'react-icons/bi';
+import NoPointHistory from '../../components/search/noResult/NoPointHistory';
 
 function PointHistory() {
   const currpoint = 150;
@@ -9,11 +10,13 @@ function PointHistory() {
   return (
     <div class="phisall">
       <Backitem />
-      <div className="currentpoint">
-        <div className="textcp">현재포인트</div>
-        <div className="curricon">
-          <BiSolidCoinStack />
-          {currpoint}
+      <div className="pointbox">
+        <div className="currentpoint">
+          <div className="textcp">현재포인트</div>
+          <div className="curricon">
+            <BiSolidCoinStack />
+            {currpoint}
+          </div>
         </div>
       </div>
       <div className="pointinfo">
