@@ -7,7 +7,6 @@ import Category from './pages/category/Category';
 import Mypage from './pages/mypage/Mypage';
 import CulturalEventDetail from './pages/culturalEventDetail/CulturalEventDetail';
 import Login from './pages/login/Login';
-import Notify from './pages/mypage/Notify';
 import PointHistory from './pages/mypage/PointHistory';
 import Reviews from './pages/mypage/Reviews';
 import Likes from './pages/mypage/LikeList';
@@ -17,7 +16,7 @@ import ProfileEdit from './pages/mypage/ProfileDetail';
 import PointLevel from './pages/mypage/PointLevel';
 import Search from './pages/search/Search';
 import VisitAuth from './pages/visitAuth/VisitAuth';
-import Review from './pages/reviewPage/Review'
+import Review from './pages/reviewPage/Review';
 import Report1 from './pages/reportPage/report1/Report1';
 import Report2 from './pages/reportPage/report2/Report2';
 import Report3 from './pages/reportPage/report3/Report3';
@@ -28,7 +27,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '/',
+        path: '/main',
         element: <Main />,
       },
       {
@@ -56,7 +55,7 @@ const router = createBrowserRouter([
         element: <Review />,
       },
       {
-        path: '/login',
+        path: '/',
         element: <Login />,
       },
       {
@@ -64,19 +63,19 @@ const router = createBrowserRouter([
         element: <PointHistory />,
       },
       {
-        path: '/review-list',
+        path: '/review/list',
         element: <Reviews />,
       },
       {
-        path: '/like-list',
+        path: '/like/list',
         element: <Likes />,
       },
       {
-        path: '/bookmark-list',
+        path: '/bookmark/list',
         element: <Bookmarks />,
       },
       {
-        path: '/visited-list',
+        path: '/visited/list',
         element: <Visited />,
       },
       {
@@ -102,7 +101,6 @@ const router = createBrowserRouter([
       {
         path: '/report3',
         element: <Report3 />,
-
       },
     ],
   },

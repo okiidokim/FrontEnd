@@ -37,6 +37,7 @@
   flex-direction: column;
   position: relative;
   gap: 8px;
+  padding-bottom: 8px;
 }
 .pointrow1 {
   display: flex;
@@ -49,18 +50,16 @@
   font-size: 16px;
 }
 .pointplus {
-  font-size: 11px;
-  background-color: red;
-  width: 80px;
-  height: 16x;
-  text-align: center;
-  border-radius: 10px;
-  padding-top: 4px;
-  font-weight: bold;
+  background-color: #e00000;
+  color: #ffffff;
 }
 .pointminus {
-  font-size: 11px;
   background-color: green;
+  color: #ffffff;
+}
+.pointminus,
+.pointplus {
+  font-size: 11px;
   width: 80px;
   height: 16px;
   text-align: center;
@@ -74,4 +73,9 @@
 .pointnum {
   font-weight: bold;
   padding-bottom: 4px;
+}
+.pointhislist {
+  display: flex;
+  position: relative;
+  flex-direction: column;
 }
