@@ -22,7 +22,8 @@ export const Header = styled.div`
 `;
 
 export const Container = styled.div`
-
+    margin-top: 50px;
+    padding: 30px;
     text-align: center;
     display: flex;
     align-items: center;

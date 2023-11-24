@@ -8,7 +8,7 @@ import NotoSansKR_Bold from '../../assets/fonts/NotoSansKR-Bold.ttf';
 
 export const Wrapper = styled.div`
     flex-direction: column;
-    padding: 0px 28px 28px 28px;
+    padding: 0px;
     font-family: NotoSansKR_Light;
-    width:336px;
+    width:390px;
 `;

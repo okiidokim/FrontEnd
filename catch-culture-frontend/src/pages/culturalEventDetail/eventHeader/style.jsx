@@ -5,11 +5,11 @@ export const Header = styled.div`
     height: 75px;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     position: sticky;
     top: 0px;
     background-color: white;
-    z-index: 2;
+    z-index: 1;
 `;
 
 export const BackButton = styled.button`
@@ -29,6 +29,13 @@ export const BackButton = styled.button`
 `;
 
 export const PageChangeArea = styled.div`
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    right: 40px;
+    top: 24px;
+
     * {
         font-size: 8px;
         width: 60px;
@@ -39,6 +46,7 @@ export const PageChangeArea = styled.div`
         align-items: center;
         justify-content: center;
     }
+    
     & .active {
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
         background-color: #247e2c;
