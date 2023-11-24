@@ -10,7 +10,7 @@ import axios from '../../api/axios';
 function Visited() {
   const { state } = useLocation();
   const category = state && state.category;
-  const cnt = 0; //api 확인 후 짜두기
+  const [cnt, setCnt] = useState(0);
   const offsetnum = 0;
 
   // state 값 유무에 따른 초기값 설정
@@ -41,11 +41,12 @@ function Visited() {
         .join('&');
 
       const response = await axios.get(
-        `cultural-event?${categoryUrl}&offset=${offsetnum}}`
+        `user/cultural-event?${categoryUrl}&offset=${offsetnum}&classification=VISIT_AUTH`
       ); //api 짜는 대로 다시 불러오기
 
       // 데이터 저장
-      setData(response.data);
+      setData(response.data.content);
+      setCnt(response.data.numberOfElements);
     } catch (e) {
       console.log(e);
     }

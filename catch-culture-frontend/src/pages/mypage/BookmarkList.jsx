@@ -23,7 +23,7 @@ function Bookmarks() {
   const [data, setData] = useState([]);
 
   // 임시 cnt
-  const cnt = 0;
+  const [cnt, setCnt] = useState(0);
   const offsetnum = 0;
 
   // 카테고리 바뀔 때 마다 리렌더링
@@ -44,11 +44,12 @@ function Bookmarks() {
         .join('&');
 
       const response = await axios.get(
-        `cultural-event?${categoryUrl}&offset=${offsetnum}}`
+        `/user/cultural-event?${categoryUrl}&offset=${offsetnum}&classification=STAR`
       );
 
       // 데이터 저장
-      setData(response.data);
+      setData(response.data.content);
+      setCnt(response.data.numberOfElements);
     } catch (e) {
       console.log(e);
     }
