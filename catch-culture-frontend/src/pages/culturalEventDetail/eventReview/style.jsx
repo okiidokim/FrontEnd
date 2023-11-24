@@ -33,3 +33,29 @@ export const CategoryArea = styled.div`
 export const AuthArea = styled.div`
     font-size: 12px;
 `;
+
+export const MyArea = styled.div`
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+`;
+
+export const StarArea = styled.div`
+    width: 100%;
+    height: 180px;
+`;
+
+export const ReviewButton = styled.button`
+    display: block;
+    width: 280px;
+    height: 32px;
+    border-radius: 10px;
+    border: 0px;
+    background-color: #018c0d;
+    color: white;
+    margin-top: 20px;
+`;

@@ -3,13 +3,50 @@ import { useEffect, useState } from 'react';
 
 import ReviewCard from '../../../components/ReviewCard/ReviewCard';
 
+import axios from '../../../api/axios'
 
 function EventReview ( params ) {
-    console.log(params);
 
-    const [title, setTitle] = useState('더 크림 갤러리'); // String: 제목
-    const [category, setCategory] = useState('팝업스토어'); // Category(): 카테고리 Enumerated(EnumType.STRING)
-    const [isAuthenticated, setIsAuthenticated] = useState(true) // Boolean: 인증 여부
+    const [myData, setMyData] = useState();
+    let starCount = [0, 0, 0, 0, 0];
+
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(
+                `review/${parseInt(params.data.EventId)}/my-review`
+            )
+            setMyData({
+                "id": params.data.eventId,
+                "nickname": response.data.nickname,
+                "description": response.data.description,
+                "storedFileUrl": response.data.storedFileUrl,
+                "rating": response.data.rating,
+                "createdAt": response.data.createdAt,
+                "eventImgUrl" : null,
+                "eventTitle": null,
+                "isMyReview": true,
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const getStar = async () => {
+        try {
+            const response = await axios.get(
+                `cultural-event/${parseInt(params.data.eventId)}/rating`
+            );
+            
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     // 카테고리 한글로 변환
     const printCategory = (category) => {
@@ -47,9 +84,20 @@ function EventReview ( params ) {
                 {params.data.isAuthenticated ? '방문 인증 완료' : '방문 인증 미완료'}
             </S.AuthArea>
 
-            
+            <S.MyArea>
+                {/* {myData == null ? "내 리뷰가 없습니다." : <ReviewCard data = {myData} />} */}
+
+                <S.ReviewButton >
+                    리뷰 작성
+                </S.ReviewButton>
+            </S.MyArea>
+
+            <S.StarArea>
+
+            </S.StarArea>
+
             <ReviewCard data={{
-                "id": 0,
+                "id": params.data.EventId,
                 "nickname": "string",
                 "description": "string",
                 "storedFileUrl": [
@@ -59,6 +107,7 @@ function EventReview ( params ) {
                 "createdAt": "2023-11-22",
                 "eventImgUrl" : null,
                 "eventTitle": null,
+                "isMyReview": false,
             }}/>
         </S.EventInfo>
     );

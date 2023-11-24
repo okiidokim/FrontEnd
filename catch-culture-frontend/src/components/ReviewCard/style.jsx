@@ -1,14 +1,14 @@
 import { styled } from 'styled-components';
 import { AiFillStar } from 'react-icons/ai';
 
-export const ReveiwCard = styled.div`
+
+export const ReviewCard = styled.div`
   position: relative;
   display: block;
   width:300px;
   height: auto;
   padding: 10px;
-  border: 1px solid black;
-  border-radius: 8px;
+  border-top: 2px solid black;
   margin-top: 12px;
 `;
 
@@ -17,8 +17,9 @@ export const UserInfo = styled.div`
   position: relative;
   flex-direction: row;
   gap: 12px;
-  align-items: baseline;
+  align-items: flex-start;
   width: max-content;
+  width: 300px;
 `;
 
 export const UserName = styled.div`
@@ -27,6 +28,22 @@ export const UserName = styled.div`
 
 export const Date = styled.div`
   font-size: 12px;
+`;
+
+export const MyReview = styled.div`
+  width: 40px;
+  margin-left:auto;
+  display:flex;
+  justify-content: space-between;
+
+  svg > path {
+    width: 16px;
+    height: 16px;
+  }
+`;
+
+export const MyButton = styled.button`
+  display: none;
 `;
 
 export const RvImg = styled.img`
