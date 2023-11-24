@@ -1,9 +1,8 @@
 import * as S from './style.jsx';
-import { IoIosArrowBack } from 'react-icons/io';
 import { RiFileList2Line } from 'react-icons/ri';
 import { LiaCommentsSolid } from 'react-icons/lia';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 import Backitem from '../../../components/Backitem.jsx'
 
@@ -11,10 +10,6 @@ function EventHeader ( {onSelectorChange} ) {
     const navigate = useNavigate();
 
     let [select,setSelect] = useState(0);
-    // 페이지 뒤로가기
-    const onClickBackButton = () => {
-        navigate(-1);
-    }
 
     const onClickInfoButton = () => {
         setSelect(0);
@@ -28,9 +23,6 @@ function EventHeader ( {onSelectorChange} ) {
 
     return (
         <S.Header>
-            {/* <S.BackButton onClick={onClickBackButton}> 
-                <IoIosArrowBack />
-            </S.BackButton> */}
             <Backitem />
             <S.PageChangeArea>
                 <S.DetailInfoButton
