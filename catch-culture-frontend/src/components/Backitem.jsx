@@ -6,7 +6,7 @@ import { IoIosArrowDropleft } from 'react-icons/io';
 const BackWrapper = styled.div`
   position: sticky;
   width: 390px;
-`
+`;
 const BackNavi = styled.div`
   position: absolute;
   top: 24px;

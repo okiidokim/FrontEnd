@@ -46,7 +46,7 @@ function Mypage() {
         </div>
         <div className="buttonl">
           <div className="row1">
-            <NavLink to="/report">
+            <NavLink to="/report1">
               <button className="notify">
                 <PiNotificationBold size="40" />
                 제보
@@ -58,7 +58,7 @@ function Mypage() {
                 <p>포인트 내역</p>
               </button>
             </NavLink>
-            <NavLink to="/review-list">
+            <NavLink to="/review/list">
               <button className="myreviews">
                 <AiOutlineMessage size="40" />
                 <p>리뷰 내역</p>
@@ -66,19 +66,19 @@ function Mypage() {
             </NavLink>
           </div>
           <div className="row2">
-            <NavLink to="/like-list">
+            <NavLink to="/like/list">
               <button className="mylikes">
                 <IoHeartOutline size="40" />
                 <p>좋아요</p>
               </button>
             </NavLink>
-            <NavLink to="/bookmark-list">
+            <NavLink to="/bookmark/list">
               <button className="mybookmarks">
                 <IoStarOutline size="40" />
                 <p>즐겨찾기</p>
               </button>
             </NavLink>
-            <NavLink to="/visited-list">
+            <NavLink to="/visited/list">
               <button className="visited">
                 <PiMapPin size="40" />
                 <p>방문 내역</p>

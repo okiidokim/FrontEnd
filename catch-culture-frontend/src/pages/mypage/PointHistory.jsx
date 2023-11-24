@@ -4,9 +4,29 @@ import './PointHistory.css';
 import { BiSolidCoinStack } from 'react-icons/bi';
 import NoPointHistory from '../../components/search/noResult/NoPointHistory';
 
+function Pointeach() {
+  const ppm = '+'; //api
+
+  return (
+    <div className="pointinfo">
+      <hr />
+      <div className="pointrow1">
+        <div className="phdate">2023.10.17</div>
+        {ppm === '+' ? (
+          <div className="pointplus">포인트 지급</div>
+        ) : (
+          <div className="pointminus">포인트 차감</div>
+        )}
+      </div>
+      <div className="pointcontent">커피쿠폰구매</div>
+      <div className="pointnum">{ppm}5000p</div>
+    </div>
+  );
+}
+
 function PointHistory() {
+  const cnt = 10;
   const currpoint = 150;
-  const ppm = '-';
   return (
     <div class="phisall">
       <Backitem />
@@ -19,20 +39,13 @@ function PointHistory() {
           </div>
         </div>
       </div>
-      <div className="pointinfo">
-        <hr />
-        <div className="pointrow1">
-          <div className="phdate">2023.10.17</div>
-          {ppm === '+' ? (
-            <div className="pointplus">포인트 지급</div>
-          ) : (
-            <div className="pointminus">포인트 차감</div>
-          )}
-        </div>
-        <div className="pointcontent">커피쿠폰구매</div>
-        <div className="pointnum">{ppm}5000p</div>
-        <hr />
-      </div>
+      {cnt === 0 ? (
+        <>
+          <NoPointHistory />
+        </>
+      ) : (
+        <div className="pointhislist">{Array(cnt).fill(<Pointeach />)}</div>
+      )}
     </div>
   );
 }
