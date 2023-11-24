@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
-import Backitem from '../../../components/Backitem';
+import DaumPostcode from 'react-daum-postcode';
 
 // 아이콘
 import ReportPaginationIcon from '../../../assets/images/reportPage/report2.png';
@@ -18,6 +18,8 @@ function Report2() {
       <S.ReportWrapper>
         <S.ReportContent>
           <S.ReportRequired>* 는 필수 입력 사항입니다</S.ReportRequired>
+
+          {/* 행사 폼 */}
           <S.ReportForm>
             {/* 행사명 */}
             <S.ReportEvent>
@@ -25,14 +27,38 @@ function Report2() {
               <S.ReportEventInput
                 type="text"
                 placeholder="행사명을 입력해주세요."
-                minLength={30}
+              />
+            </S.ReportEvent>
+
+            {/* 행사 위치 */}
+            <S.ReportEvent>
+              <S.ReportEventTitle>행사 위치 *</S.ReportEventTitle>
+              <S.ReportEventAddressTop>
+                <S.ReportEventAddressZipCode
+                  type="text"
+                  placeholder="우편번호를 입력하세요."
+                />
+                <S.ReportEventAddressZipCodeButton>
+                  우편번호 찾기
+                </S.ReportEventAddressZipCodeButton>
+              </S.ReportEventAddressTop>
+              <S.ReportEventAddressMore
+                type="text"
+                placeholder="도로명 주소를 입력하세요."
+              />
+              <S.ReportEventAddressMore
+                type="text"
+                placeholder="상세 주소를 입력하세요."
               />
             </S.ReportEvent>
 
             {/* 행사 설명 */}
             <S.ReportEventTitle2>행사 설명 *</S.ReportEventTitle2>
             <S.ReportEventTextAreaWrap>
-              <S.ReportEventTextArea placeholder="행사에 대해서 설명해주세요. (최소 30자 이상)" />
+              <S.ReportEventTextArea
+                placeholder="행사에 대해서 설명해주세요. (최소 30자 이상)"
+                minLength={30}
+              />
             </S.ReportEventTextAreaWrap>
 
             {/* 요금 정보 */}

@@ -169,3 +169,76 @@ export const ReportEventTextAreaWrap = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+// 행사 주소 입력
+export const ReportEventAddressTop = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+`;
+
+export const ReportEventAddressZipCode = styled.input`
+  display: flex;
+  width: 130px;
+  text-decoration: none;
+  border: none;
+  border-bottom: 1px solid #777;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  padding: 10px 8px;
+  font-family: NotoSansKR_Regular;
+
+  /* &::placeholder {
+    color: rgba(1, 140, 13, 0.56);
+  } */
+
+  &:focus {
+    border: none;
+    outline: 2px solid #71be77;
+    border-radius: 3px;
+    color: #018c0d;
+  }
+`;
+
+export const ReportEventAddressZipCodeButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 98px;
+  height: 29px;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: #000;
+  font-family: NotoSansKR_Regular;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  cursor: pointer;
+`;
+
+export const ReportEventAddressMore = styled.input`
+  display: flex;
+  width: 300px;
+  text-decoration: none;
+  border: none;
+  border-bottom: 1px solid #777;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  padding: 10px 8px;
+  font-family: NotoSansKR_Regular;
+
+  &:focus {
+    border: none;
+    outline: 2px solid #71be77;
+    border-radius: 3px;
+    color: #018c0d;
+  }
+
+  margin-top: 20px;
+`;
