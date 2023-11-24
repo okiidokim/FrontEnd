@@ -8,6 +8,7 @@ import ReportPaginationIcon from '../../../assets/images/reportPage/report2.png'
 
 // 컴포넌트
 import ReportHeader from '../../../components/reportPage/reportHeader/ReportHeader';
+import UploadBox from '../../../components/uploadImg/UploadBox';
 
 function Report2() {
   return (
@@ -29,10 +30,10 @@ function Report2() {
             </S.ReportEvent>
 
             {/* 행사 설명 */}
-            <S.ReportEvent>
-              <S.ReportEventTitle>행사 설명 *</S.ReportEventTitle>
+            <S.ReportEventTitle2>행사 설명 *</S.ReportEventTitle2>
+            <S.ReportEventTextAreaWrap>
               <S.ReportEventTextArea placeholder="행사에 대해서 설명해주세요. (최소 30자 이상)" />
-            </S.ReportEvent>
+            </S.ReportEventTextAreaWrap>
 
             {/* 요금 정보 */}
             <S.ReportEvent>
@@ -77,6 +78,12 @@ function Report2() {
                 placeholder="행사 담당 전화번호를 입력해주세요."
               />
             </S.ReportEvent>
+
+            {/* 행사 사진 */}
+            <S.ReportEventTitle2>행사 사진</S.ReportEventTitle2>
+            <S.ReportEventUploadBox>
+              <UploadBox />
+            </S.ReportEventUploadBox>
 
             {/* 오시는 길 */}
             <S.ReportEvent>

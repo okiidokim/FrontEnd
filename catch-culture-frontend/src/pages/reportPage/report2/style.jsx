@@ -49,6 +49,17 @@ export const ReportEventTitle = styled.div`
   margin-bottom: 16px;
 `;
 
+export const ReportEventTitle2 = styled.div`
+  display: flex;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  margin-bottom: 16px;
+  margin-top: 24px;
+`;
+
 export const ReportEventInput = styled.input`
   display: flex;
   width: 300px;
@@ -95,6 +106,14 @@ export const ReportEventCost = styled.div`
   margin-left: 12px;
   gap: 40px;
 `;
+
+export const ReportEventUploadBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+`;
+
 export const ReportEventLabel = styled.label`
   color: #000;
   font-size: 16px;
@@ -125,7 +144,7 @@ export const ReportButton = styled.div`
 // TextArea
 export const ReportEventTextArea = styled.textarea`
   display: flex;
-  width: 284px;
+  width: 268px;
   height: 168px;
   padding: 16px;
   border: 1px solid black;
@@ -144,4 +163,9 @@ export const ReportEventTextArea = styled.textarea`
     border-radius: 3px;
     color: #018c0d;
   }
+`;
+
+export const ReportEventTextAreaWrap = styled.div`
+  display: flex;
+  justify-content: center;
 `;
