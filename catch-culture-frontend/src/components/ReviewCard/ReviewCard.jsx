@@ -80,21 +80,21 @@ export default function ReviewCard(data) {
   return (
     <S.ReveiwCard>
       <S.UserInfo>
-        <S.UserName>{data.nickname}</S.UserName>
-        <S.Date>{data.createdAt}</S.Date>
+        <S.UserName>{data.data.nickname}</S.UserName>
+        <S.Date>{data.data.createdAt}</S.Date>
       </S.UserInfo>
       <S.ReviewRow>
-        <S.RvImg src={data.storedFileUrl} />
-        <S.RvComment>{data.description}</S.RvComment>
+        <S.RvImg src={data.data.storedFileUrl} />
+        <S.RvComment>{data.data.description}</S.RvComment>
       </S.ReviewRow>
-      <S.Star>{printStar(data.rating)}</S.Star>
+      <S.Star>{printStar(data.data.rating)}</S.Star>
       <S.Event
         display={
-          data.eventImgUrl == null || data.eventTitle == null ? 'none' : 'flex'
+          data.data.eventImgUrl == null || data.data.eventTitle == null ? 'none' : 'flex'
         }
       >
-        <S.EventImg src={data.eventImgUrl} />
-        <S.EventTitle>{data.eventTitle}</S.EventTitle>
+        <S.EventImg src={data.data.eventImgUrl} />
+        <S.EventTitle>{data.data.eventTitle}</S.EventTitle>
       </S.Event>
     </S.ReveiwCard>
   );

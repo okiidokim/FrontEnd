@@ -54,7 +54,6 @@ function EventReview ( params ) {
                 "description": "string",
                 "storedFileUrl": [
                   "https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg",
-                  'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg'
                 ],
                 "rating": 3,
                 "createdAt": "2023-11-22",
