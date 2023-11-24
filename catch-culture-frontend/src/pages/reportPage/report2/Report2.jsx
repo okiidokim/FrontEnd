@@ -12,10 +12,9 @@ import ReportHeader from '../../../components/reportPage/reportHeader/ReportHead
 function Report2() {
   return (
     <>
+      {/* 헤더 */}
+      <ReportHeader ReportPaginationIcon={ReportPaginationIcon} />
       <S.ReportWrapper>
-        {/* 헤더 */}
-        <ReportHeader ReportPaginationIcon={ReportPaginationIcon} />
-
         <S.ReportContent>
           <S.ReportRequired>* 는 필수 입력 사항입니다</S.ReportRequired>
           <S.ReportForm>

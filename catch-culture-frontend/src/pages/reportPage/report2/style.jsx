@@ -70,6 +70,7 @@ export const ReportEventInput = styled.input`
     border: none;
     outline: 2px solid #71be77;
     border-radius: 3px;
+    color: #018c0d;
   }
 `;
 
@@ -141,5 +142,6 @@ export const ReportEventTextArea = styled.textarea`
     border: none;
     outline: 2px solid #71be77;
     border-radius: 3px;
+    color: #018c0d;
   }
 `;

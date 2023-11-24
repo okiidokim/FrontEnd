@@ -3,8 +3,9 @@ import { styled } from 'styled-components';
 export const ReportHeader = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 10px;
-  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+  justify-content: flex-end;
 `;
 
 export const ReportHeaderLeft = styled.div`
@@ -24,4 +25,6 @@ export const ReportHeaderTitle = styled.div`
 export const ReportHeaderPagination = styled.img`
   display: flex;
   width: 40px;
+  margin-right: 40px;
+  margin-left: 165px;
 `;
