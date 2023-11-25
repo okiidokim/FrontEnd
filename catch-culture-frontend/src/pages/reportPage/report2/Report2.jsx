@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import DaumPostcode from 'react-daum-postcode';
 
@@ -11,9 +11,33 @@ import ReportHeader from '../../../components/reportPage/reportHeader/ReportHead
 import UploadBox from '../../../components/uploadImg/UploadBox';
 
 function Report2() {
+  const navigate = useNavigate();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [postalCode, setPostalCode] = useState('');
+  const [address, setAddress] = useState('');
+
+  // 우편번호 찾기 모달창
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleComplete = data => {
+    setPostalCode(data.zonecode);
+    setAddress(data.address);
+    handleModalClose();
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
+    navigate('/report3');
   };
+
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -41,15 +65,33 @@ function Report2() {
               <S.ReportEventAddressTop>
                 <S.ReportEventAddressZipCode
                   type="text"
+                  value={postalCode}
                   placeholder="우편번호를 입력하세요."
                   required
                 />
-                <S.ReportEventAddressZipCodeButton>
+                <S.ReportEventAddressZipCodeButton onClick={handleModalOpen}>
                   우편번호 찾기
                 </S.ReportEventAddressZipCodeButton>
+
+                {isModalOpen && (
+                  <>
+                    <S.ReportEvnetAddressModalBackground
+                      onClick={handleModalClose}
+                    />
+
+                    <S.ReportEvnetAddressModal>
+                      <DaumPostcode
+                        onComplete={handleComplete}
+                        autoClose
+                        animation
+                      />
+                    </S.ReportEvnetAddressModal>
+                  </>
+                )}
               </S.ReportEventAddressTop>
               <S.ReportEventAddressMore
                 type="text"
+                value={address}
                 placeholder="도로명 주소를 입력하세요."
                 required
               />
@@ -90,7 +132,7 @@ function Report2() {
               <S.ReportEventTitle>요금 정보 *</S.ReportEventTitle>
               <S.ReportEventCost>
                 <S.ReportEventInputRadioWrapper>
-                  <S.ReportEventLabel for="무료">무료</S.ReportEventLabel>
+                  <S.ReportEventLabel>무료</S.ReportEventLabel>
                   <S.ReportEventInputRadio
                     type="radio"
                     id="무료"
@@ -101,7 +143,7 @@ function Report2() {
                 </S.ReportEventInputRadioWrapper>
 
                 <S.ReportEventInputRadioWrapper>
-                  <S.ReportEventLabel for="유료">유료</S.ReportEventLabel>
+                  <S.ReportEventLabel>유료</S.ReportEventLabel>
                   <S.ReportEventInputRadio
                     type="radio"
                     id="유료"

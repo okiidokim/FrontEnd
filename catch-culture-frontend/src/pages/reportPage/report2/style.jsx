@@ -138,6 +138,7 @@ export const ReportButton = styled.button`
   font-weight: 700;
   line-height: normal;
   cursor: pointer;
+  margin-top: 40px;
 `;
 
 // TextArea
@@ -170,6 +171,24 @@ export const ReportEventTextAreaWrap = styled.div`
 `;
 
 // 행사 주소 입력
+export const ReportEvnetAddressModal = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 20%;
+  left: 0;
+  z-index: 999;
+`;
+
+export const ReportEvnetAddressModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+`;
+
 export const ReportEventAddressTop = styled.div`
   display: flex;
   align-items: flex-end;
@@ -201,7 +220,7 @@ export const ReportEventAddressZipCode = styled.input`
   }
 `;
 
-export const ReportEventAddressZipCodeButton = styled.button`
+export const ReportEventAddressZipCodeButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
