@@ -116,9 +116,9 @@ export default function ReviewCard(data) {
         <S.EventTitle>{data.data.eventTitle}</S.EventTitle>
       </S.Event>
       
-      <div style={{display : isModal ? "block" : "none"}}>
+      {isModal && (
         <DeleteModal eventId={data.data.id} setModal={changeModal}/>
-      </div>
+      )}
     </S.ReviewCard>
   );
 }

@@ -10,6 +10,7 @@ export const Header = styled.div`
     top: 0px;
     background-color: white;
     z-index: 1;
+
 `;
 
 export const BackButton = styled.button`

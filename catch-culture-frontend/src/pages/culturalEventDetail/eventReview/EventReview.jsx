@@ -1,5 +1,6 @@
 import * as S from './style.jsx';
 import { useEffect, useState } from 'react';
+import { TbMessageOff } from 'react-icons/tb';
 
 import ReviewCard from '../../../components/ReviewCard/ReviewCard';
 
@@ -8,11 +9,13 @@ import axios from '../../../api/axios'
 function EventReview ( params ) {
 
     const [myData, setMyData] = useState();
-    let starCount = [0, 0, 0, 0, 0];
+    const [starCount, setStarCount] = useState([0, 0, 0, 0, 0]);
+    const [starAvg, setStarAvg] = useState();
 
 
     useEffect(() => {
         fetchData();
+        getStar();
     }, []);
 
     const fetchData = async () => {
@@ -20,17 +23,20 @@ function EventReview ( params ) {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/my-review`
             )
-            setMyData({
-                "id": params.data.eventId,
-                "nickname": response.data.nickname,
-                "description": response.data.description,
-                "storedFileUrl": response.data.storedFileUrl,
-                "rating": response.data.rating,
-                "createdAt": response.data.createdAt,
-                "eventImgUrl" : null,
-                "eventTitle": null,
-                "isMyReview": true,
-            });
+
+            if(response.data != "") {
+                setMyData({
+                    "id": params.data.EventId,
+                    "nickname": response.data.nickname,
+                    "description": response.data.description,
+                    "storedFileUrl": response.data.storedFileUrl,
+                    "rating": response.data.rating,
+                    "createdAt": response.data.createdAt,
+                    "eventImgUrl" : null,
+                    "eventTitle": null,
+                    "isMyReview": true,
+                });
+            }
         } catch (e) {
             console.log(e);
         }
@@ -39,14 +45,17 @@ function EventReview ( params ) {
     const getStar = async () => {
         try {
             const response = await axios.get(
-                `cultural-event/${parseInt(params.data.eventId)}/rating`
+                `review/${parseInt(params.data.EventId)}/rating`
             );
             
-
+            setStarCount([response.data.countOne, response.data.countTwo, response.data.countThree, response.data.countFour, response.data.countFive]);
+            setStarAvg(response.data.avgRating);
         } catch (e) {
             console.log(e);
         }
     }
+
+    
 
     // 카테고리 한글로 변환
     const printCategory = (category) => {
@@ -67,6 +76,83 @@ function EventReview ( params ) {
         }
     }
 
+    const printAvgStar = (starAvg) => {
+        return(
+            <>
+                <S.InActiveStar width={"200px"}/>
+                <S.InActiveStar />
+                <S.InActiveStar />
+                <S.InActiveStar />
+                <S.InActiveStar />
+            </>
+        )
+    };
+
+    const printStar = (rating) => {
+        switch (rating) {
+          case 0:
+            return (
+              <div>
+                <S.InActiveStar />
+                <S.InActiveStar />
+                <S.InActiveStar />
+                <S.InActiveStar />
+                <S.InActiveStar />
+              </div>
+            );
+          case 1:
+            return (
+              <div>
+                <S.ActiveStar />
+                <S.InActiveStar />
+                <S.InActiveStar />
+                <S.InActiveStar />
+                <S.InActiveStar />
+              </div>
+            );
+          case 2:
+            return (
+              <div>
+                <S.ActiveStar />
+                <S.ActiveStar />
+                <S.InActiveStar />
+                <S.InActiveStar />
+                <S.InActiveStar />
+              </div>
+            );
+          case 3:
+            return (
+              <div>
+                <S.ActiveStar />
+                <S.ActiveStar />
+                <S.ActiveStar />
+                <S.InActiveStar />
+                <S.InActiveStar />
+              </div>
+            );
+          case 4:
+            return (
+              <div>
+                <S.ActiveStar />
+                <S.ActiveStar />
+                <S.ActiveStar />
+                <S.ActiveStar />
+                <S.InActiveStar />
+              </div>
+            );
+          case 5:
+            return (
+              <div>
+                <S.ActiveStar />
+                <S.ActiveStar />
+                <S.ActiveStar />
+                <S.ActiveStar />
+                <S.ActiveStar />
+              </div>
+            );
+        }
+    };
+
     return (
         <S.EventInfo>
             {/* 행사 제목 */}
@@ -83,18 +169,64 @@ function EventReview ( params ) {
             <S.AuthArea style={ params.data.isAuthenticated ? {color: '#018C0D'} : {color: 'red'}}>
                 {params.data.isAuthenticated ? '방문 인증 완료' : '방문 인증 미완료'}
             </S.AuthArea>
-
+            
             <S.MyArea>
-                {/* {myData == null ? "내 리뷰가 없습니다." : <ReviewCard data = {myData} />} */}
+                <S.subTitle>내 리뷰</S.subTitle>
+                {myData == undefined ? 
+                    <>
+                        <TbMessageOff size="80" color="018c0d" />
+                        <S.NoResultTitle>리뷰 작성 내역이 없습니다.</S.NoResultTitle>
+                    </>
+                    : 
+                    <ReviewCard data = {myData} />
+                }
 
-                <S.ReviewButton >
+                <S.ReviewButton 
+                    disabled={!(params.data.isAuthenticated && myData == undefined)}
+                    style={!(params.data.isAuthenticated && myData == undefined) ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}
+                >
                     리뷰 작성
                 </S.ReviewButton>
+                
+                {!params.data.isAuthenticated && (
+                    <S.authNotification>
+                        *리뷰 작성을 위해 방문 인증이 필요합니다.
+                    </S.authNotification>
+                )}
+
             </S.MyArea>
 
-            <S.StarArea>
+            <S.AvgStar>
+                {printAvgStar(starAvg)}
+            </S.AvgStar>
 
-            </S.StarArea>
+            <S.MiddleContent>
+                <S.StarArea>
+                    <S.RateArea>
+                        {printStar(5)}
+                        {starCount[4]}
+                    </S.RateArea>
+                    <S.RateArea>
+                        {printStar(4)}
+                        {starCount[3]}
+                    </S.RateArea>
+                    <S.RateArea>
+                        {printStar(3)}
+                        {starCount[2]}
+                    </S.RateArea>
+                    <S.RateArea>
+                        {printStar(2)}
+                        {starCount[1]}
+                    </S.RateArea>
+                    <S.RateArea>
+                        {printStar(1)}
+                        {starCount[0]}
+                    </S.RateArea>
+                </S.StarArea>
+                <S.PictureArea>
+                    <S.RvImg src={params.data.storedFileUrl} />
+                </S.PictureArea>
+            </S.MiddleContent>
 
             <ReviewCard data={{
                 "id": params.data.EventId,
