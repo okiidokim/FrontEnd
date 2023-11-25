@@ -123,7 +123,7 @@ export const ReportEventLabel = styled.label`
 `;
 
 // 제보 버튼
-export const ReportButton = styled.div`
+export const ReportButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

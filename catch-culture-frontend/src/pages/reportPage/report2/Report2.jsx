@@ -11,6 +11,10 @@ import ReportHeader from '../../../components/reportPage/reportHeader/ReportHead
 import UploadBox from '../../../components/uploadImg/UploadBox';
 
 function Report2() {
+  const handleSubmit = event => {
+    event.preventDefault();
+  };
+
   return (
     <>
       {/* 헤더 */}
@@ -20,13 +24,14 @@ function Report2() {
           <S.ReportRequired>* 는 필수 입력 사항입니다</S.ReportRequired>
 
           {/* 행사 폼 */}
-          <S.ReportForm>
+          <S.ReportForm onSubmit={handleSubmit}>
             {/* 행사명 */}
             <S.ReportEvent>
               <S.ReportEventTitle>행사명 *</S.ReportEventTitle>
               <S.ReportEventInput
                 type="text"
                 placeholder="행사명을 입력해주세요."
+                required
               />
             </S.ReportEvent>
 
@@ -37,6 +42,7 @@ function Report2() {
                 <S.ReportEventAddressZipCode
                   type="text"
                   placeholder="우편번호를 입력하세요."
+                  required
                 />
                 <S.ReportEventAddressZipCodeButton>
                   우편번호 찾기
@@ -45,10 +51,12 @@ function Report2() {
               <S.ReportEventAddressMore
                 type="text"
                 placeholder="도로명 주소를 입력하세요."
+                required
               />
               <S.ReportEventAddressMore
                 type="text"
                 placeholder="상세 주소를 입력하세요."
+                required
               />
             </S.ReportEvent>
 
@@ -58,11 +66,11 @@ function Report2() {
               <S.ReportEventDate>
                 <S.ReportEventDateItem>
                   시작일
-                  <S.ReportEventInputDate type="date" />
+                  <S.ReportEventInputDate type="date" required />
                 </S.ReportEventDateItem>
                 <S.ReportEventDateItem>
                   종료일
-                  <S.ReportEventInputDate type="date" />
+                  <S.ReportEventInputDate type="date" required />
                 </S.ReportEventDateItem>
               </S.ReportEventDate>
             </S.ReportEvent>
@@ -73,6 +81,7 @@ function Report2() {
               <S.ReportEventTextArea
                 placeholder="행사에 대해서 설명해주세요. (최소 30자 이상)"
                 minLength={30}
+                required
               />
             </S.ReportEventTextAreaWrap>
 
@@ -87,6 +96,7 @@ function Report2() {
                     id="무료"
                     name="options"
                     value="무료"
+                    required
                   />
                 </S.ReportEventInputRadioWrapper>
 
@@ -134,13 +144,11 @@ function Report2() {
                 placeholder="행사에 쉽게 올 수 있는 방법을 설명해주세요."
               />
             </S.ReportEvent>
+
+            {/* 제보하기 버튼 */}
+            <S.ReportButton type="submit">제보하기</S.ReportButton>
           </S.ReportForm>
         </S.ReportContent>
-
-        {/* 제보하기 버튼 */}
-        <Link to="/report3">
-          <S.ReportButton>제보하기</S.ReportButton>
-        </Link>
       </S.ReportWrapper>
     </>
   );
