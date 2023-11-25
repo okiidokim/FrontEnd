@@ -1,7 +1,14 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 
-const UploadBox = () => {
+
+/*************************************
+ * 호출 형식                          *
+ * <UploadBox setUrl={setImgUrl}/>    *
+ * setImageUrl은 state 변경하는 함수   *
+ *************************************/
+
+const UploadBox = (params) => {
     const [imageSrc, setImageSrc] = useState(null);
 
     const ImgSvg = () => (
@@ -41,6 +48,10 @@ const UploadBox = () => {
                 </>
             );
         }
+    }, [imageSrc]);
+
+    useEffect (() => {
+        params.setUrl(imageSrc);
     }, [imageSrc]);
 
     return(
