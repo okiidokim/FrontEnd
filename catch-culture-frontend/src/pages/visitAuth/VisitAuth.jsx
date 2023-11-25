@@ -4,13 +4,19 @@ import * as S from './VisitAuthStyle';
 import Backitem from '../../components/Backitem';
 import UploadBox from '../../components/uploadImg/UploadBox'
 
+import axios from '../../api/axios';
+
 function VisitAuth( params ) {
 
     const [disabled, setDisabled] = useState(false);
-    const [imageUrl, setImageUrl] = useState();
+    const formData = new FormData();
 
-    const handleImgUrl = (url) => {
-        setImageUrl(url);
+    const handleImgUrl = (file) => {
+        console.log(file);
+        formData.append('Blob', file);
+        // for (var key of imageData.entries()) {
+        //     console.log(key[0] + ', ' + key[1]);
+        // }f
     }
 
     const handleSubmit = (event) => {
@@ -21,8 +27,16 @@ function VisitAuth( params ) {
             // const response= axios.post(
             //     `cultural-event/${parseInt(eventId)}/like`,
             // );
-            console.log(imageUrl);
 
+            const response = axios.post(
+                `gcs/uploadImage`,
+                formData,
+                {
+                    headers: {
+                      'Content-Type': 'multipart/form-data', 
+                    },
+                }
+            );
         } catch (e) {
             console.log(e);
         }
@@ -47,7 +61,7 @@ function VisitAuth( params ) {
                 <UploadBox setUrl={handleImgUrl}/>
 
                 <S.ButtonSection>           
-                    <button type='submit' disabled={disabled && imageUrl==null} style={ imageUrl == null ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
+                    <button type='submit' disabled={disabled && formData==null} style={ formData == null ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
                         방문 인증 요청
                     </button>
                 </S.ButtonSection>

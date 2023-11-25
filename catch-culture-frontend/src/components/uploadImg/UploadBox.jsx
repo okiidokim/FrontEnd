@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import * as S from './style';
 
 
@@ -12,7 +12,7 @@ import * as S from './style';
 
 const UploadBox = (params) => {
     const [imageSrc, setImageSrc] = useState(null);
-    const image = new FormData();
+    const imageRef = useRef();
 
     const ImgSvg = () => (
         <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
@@ -28,10 +28,14 @@ const UploadBox = (params) => {
     );
 
     const onUpload = (e) => {
+        // 서버 전송용
+        params.setUrl(e.target.files[0]);
+
+        // 사진 출력용
         const file = e.target.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(file);
-
+        
         return new Promise((resolve) => {
             reader.onload = () => {
                 setImageSrc(reader.result || null);
@@ -53,16 +57,14 @@ const UploadBox = (params) => {
         }
     }, [imageSrc]);
 
-    useEffect (() => {
-        params.setUrl(imageSrc);
-    }, [imageSrc]);
-
     return(
         <div>
             <S.Label>
                 <S.Input 
                     accept="image/*"
                     type="file"
+                    multiple
+                    ref = {imageRef}
                     onChange={e => onUpload(e)}>
                 </S.Input>
                 {showImage}
