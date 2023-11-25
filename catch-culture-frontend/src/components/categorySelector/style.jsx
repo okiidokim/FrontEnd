@@ -6,7 +6,7 @@ export const CategorySelector = styled.div`
   padding: 6px 8px;
   align-items: flex-start;
   gap: 10px;
-  border-radius: 16px;
+  border-radius: 18px;
   border: 1px solid #888;
   background: #fff;
   overflow-x: scroll;
@@ -25,11 +25,11 @@ export const CategorySelectorItem = styled.div`
   align-items: center;
   width: auto;
 
-  background: ${props => props.bgcolor};
+  background: ${(props) => props.bgcolor};
   border: 1px solid #018c0d;
   border-radius: 10px;
 
-  color: ${props => props.color};
+  color: ${(props) => props.color};
   text-align: center;
   font-size: 10px;
   font-weight: 700;
@@ -37,5 +37,5 @@ export const CategorySelectorItem = styled.div`
 
   padding: 5px 20px;
 
-  box-shadow: ${props => props.shadow};
+  box-shadow: ${(props) => props.shadow};
 `;

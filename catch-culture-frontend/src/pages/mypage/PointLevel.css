@@ -6,17 +6,17 @@
   gap: 40px;
 }
 .mypointinfo {
-  padding-top: 60px;
+  padding-top: 72px;
   display: flex;
   flex-direction: column;
   position: relative;
   text-align: center;
   font-weight: bold;
   font-size: 20px;
-  gap: 12px;
+  gap: 20px;
 }
 .infoimg {
-  width: 300px;
+  height: 220px;
 }
 .mylevel {
   display: flex;
@@ -24,7 +24,6 @@
   position: relative;
   align-items: center;
   gap: 16px;
-  padding-top: 20px;
 }
 .mylevtext {
   display: flex;
@@ -57,7 +56,7 @@
   display: flex;
   gap: 32px;
   position: relative;
-  padding-top: 48px;
+  padding-top: 36px;
 }
 .rest1,
 .rest2,
