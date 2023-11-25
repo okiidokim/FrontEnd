@@ -9,11 +9,6 @@ const NoResultWrapper = styled.div`
   margin-top: 100px;
 `;
 
-const NoResultIcon = styled.img`
-  width: 96px;
-  height: 96px;
-`;
-
 const NoResultTitle = styled.div`
   display: flex;
   color: #000;

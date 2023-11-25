@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { IoHeartOutline, IoStarOutline } from 'react-icons/io5';
 import { PiNotificationBold, PiMapPin } from 'react-icons/pi';
 import { AiOutlineDollar, AiOutlineMessage } from 'react-icons/ai';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Mypage.css';
 import Level0 from '../../assets/pointimg/level0.png';
 import Backitem from '../../components/Backitem';
@@ -51,7 +51,7 @@ function Mypage() {
         </div>
         <div className="buttonl">
           <div className="row1">
-            <NavLink to="/report1">
+            <NavLink to="/report/list">
               <button className="notify">
                 <PiNotificationBold size="40" />
                 제보

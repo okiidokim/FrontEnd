@@ -21,6 +21,7 @@ import Report1 from './pages/reportPage/report1/Report1';
 import Report2 from './pages/reportPage/report2/Report2';
 import Report3 from './pages/reportPage/report3/Report3';
 import Admin from './pages/admin/Admin';
+import ReportList from './pages/mypage/ReportList';
 
 const router = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: '/admin',
         element: <Admin />,
+      },
+      {
+        path: '/report/list',
+        element: <ReportList />,
       },
     ],
   },
