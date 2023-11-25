@@ -132,7 +132,6 @@ export const ReportButton = styled.div`
   border-radius: 8px;
   border: 1px solid #018c0d;
   background: #018c0d;
-
   color: #fff;
   text-align: center;
   font-size: 16px;
@@ -215,7 +214,7 @@ export const ReportEventAddressZipCodeButton = styled.button`
   font-family: NotoSansKR_Regular;
   font-size: 12px;
   font-weight: 400;
-  line-height: normal;
+  padding-bottom: 3px;
   letter-spacing: -0.3px;
   cursor: pointer;
 `;
@@ -241,4 +240,38 @@ export const ReportEventAddressMore = styled.input`
   }
 
   margin-top: 20px;
+`;
+
+// 행사 기간
+export const ReportEventDate = styled.div`
+  display: flex;
+  gap: 15px;
+`;
+
+export const ReportEventDateItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const ReportEventInputDate = styled.input`
+  display: flex;
+  width: 135px;
+  text-decoration: none;
+  border: none;
+  border: 1px solid #000;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  padding: 10px 8px;
+  font-family: NotoSansKR_Regular;
+  cursor: pointer;
+  &:focus {
+    border: none;
+    outline: 2px solid #71be77;
+    border-radius: 3px;
+    color: #018c0d;
+  }
 `;

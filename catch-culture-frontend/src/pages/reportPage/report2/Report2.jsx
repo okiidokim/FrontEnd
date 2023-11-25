@@ -52,6 +52,21 @@ function Report2() {
               />
             </S.ReportEvent>
 
+            {/* 행사 기간 */}
+            <S.ReportEvent>
+              <S.ReportEventTitle>행사 기간 *</S.ReportEventTitle>
+              <S.ReportEventDate>
+                <S.ReportEventDateItem>
+                  시작일
+                  <S.ReportEventInputDate type="date" />
+                </S.ReportEventDateItem>
+                <S.ReportEventDateItem>
+                  종료일
+                  <S.ReportEventInputDate type="date" />
+                </S.ReportEventDateItem>
+              </S.ReportEventDate>
+            </S.ReportEvent>
+
             {/* 행사 설명 */}
             <S.ReportEventTitle2>행사 설명 *</S.ReportEventTitle2>
             <S.ReportEventTextAreaWrap>
