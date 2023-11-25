@@ -10,7 +10,7 @@ function Reviews() {
   return (
     <div className="reviewall">
       <Backitem />
-      <div className="wrap">
+      <div className="reviewwrap">
         <div className="reviewrow">
           <div className="reviewtext">리뷰 목록</div>
           <div className="reviewCnt">총 {cnt} 개</div>

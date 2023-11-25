@@ -1,15 +1,17 @@
 .reviewall {
+  align-items: center;
   display: flex;
   flex-direction: column;
   position: relative;
   gap: 68px;
 }
+.reviewwrap {
+  width: 320px;
+}
 .reviewrow {
   display: flex;
   gap: 8px;
-  width: 322px;
   align-items: baseline;
-  padding-left: 8px;
 }
 .reviewtext {
   font-size: 20px;
