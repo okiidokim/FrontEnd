@@ -27,11 +27,10 @@ export const EventCardImgTag = styled.div`
   top: 10px;
   left: 10px;
   justify-content: center;
-  align-items: center;
   min-width: 33px;
   padding: 0px 2px;
   height: 16px;
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
   border-radius: 10px;
   color: #fff;
   font-size: 10px;

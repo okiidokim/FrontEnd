@@ -32,6 +32,11 @@ function Mypage() {
     <div className="mypageall">
       <Backitem />
       <div className="mypage-body">
+        <div className="admin">
+          <NavLink to="/admin">
+            <p>관리자 메뉴</p>
+          </NavLink>
+        </div>
         <div className="information">
           <img className="profileimage" src={img}></img>
           {nick}
