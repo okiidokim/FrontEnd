@@ -56,12 +56,12 @@ export const subTitle = styled.div`
 
 
 export const NoResultTitle = styled.div`
-  display: flex;
-  color: #000;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: normal;
-  margin-top: 16px;
+    display: flex;
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 16px;
 `;
 
 
@@ -77,16 +77,33 @@ export const ReviewButton = styled.button`
 `;
 
 export const authNotification = styled.div`
-
     margin-top: 20px;
     color: red;
     font-size: 15px;
-    
 `;
 
-export const AvgStar = styled.div`
-    width: 300px;
+export const AvgStarArea = styled.div`
+    width: 330px;
+    height: 30px;
+    display: flex;
+`;
 
+export const StarCountArea = styled.div`
+    width: 30px;
+    height: 30px;
+    overfolow: hidden;
+
+    * {
+        position: absolute;
+    }
+`;
+
+export const printRating = styled.div`
+    height: 100%;
+    margin-left: 30px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
 `;
 
 export const MiddleContent = styled.div`
@@ -94,7 +111,8 @@ export const MiddleContent = styled.div`
     height: auto;
     display: flex;
     flex-direction: row;
-    padding: 30px;
+    padding-top: 0px;
+    padding: 15px 0px 30px 0px;
     justify-content: space-between;
 `;
 
@@ -111,23 +129,40 @@ export const RateArea = styled.div`
 `;
 
 export const PictureArea = styled.div`
+    width: 160px;
     display: flex;
     flex-direction: row;
-    border: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-radius: 8px;
     align-items: center;
+    overflow: scroll;
+    gap: 10px;
+    padding: 10px;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+`;
+
+export const AvgStar = styled(AiFillStar)`
+    width: 30px;
+    height: 30px;
+    clip: rect(0px, ${props => props.rating * 30}px, 30px, 0px);
+    fill : yellow;
 `;
 
 export const ActiveStar = styled(AiFillStar)`
-  fill: yellow;
+    fill: yellow;
 `;
 
 export const InActiveStar = styled(AiFillStar)`
-  fill: #bbbbbb;
+    fill: #bbbbbb;
 `;
 
 export const RvImg = styled.img`
-  width: 80px;
-  height: 56px;
+    width: 56px;
+    height: 56px;
+    aspect-ratio : 1;
 `;
-
 

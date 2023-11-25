@@ -79,11 +79,30 @@ function EventReview ( params ) {
     const printAvgStar = (starAvg) => {
         return(
             <>
-                <S.InActiveStar width={"200px"}/>
-                <S.InActiveStar />
-                <S.InActiveStar />
-                <S.InActiveStar />
-                <S.InActiveStar />
+                <S.StarCountArea>
+                    <S.InActiveStar style={{width:"30px", height:"30px"}}/>
+                    <S.AvgStar rating={starAvg-1}/>
+                </S.StarCountArea>
+                <S.StarCountArea>
+                    <S.InActiveStar style={{width:"30px", height:"30px"}}/>
+                    <S.AvgStar rating={starAvg-2}/>
+                </S.StarCountArea>
+                <S.StarCountArea>
+                    <S.InActiveStar style={{width:"30px", height:"30px"}}/>
+                    <S.AvgStar rating={starAvg-3}/>
+                </S.StarCountArea>
+                <S.StarCountArea>
+                    <S.InActiveStar style={{width:"30px", height:"30px"}}/>
+                    <S.AvgStar rating={starAvg-4}/>
+                </S.StarCountArea>
+                <S.StarCountArea>
+                    <S.InActiveStar style={{width:"30px", height:"30px"}}/>
+                    <S.AvgStar rating={starAvg-5}/>
+                </S.StarCountArea>
+
+                <S.printRating>
+                    {starAvg} / 5.0
+                </S.printRating>
             </>
         )
     };
@@ -187,7 +206,7 @@ function EventReview ( params ) {
                 >
                     리뷰 작성
                 </S.ReviewButton>
-                
+
                 {!params.data.isAuthenticated && (
                     <S.authNotification>
                         *리뷰 작성을 위해 방문 인증이 필요합니다.
@@ -196,9 +215,9 @@ function EventReview ( params ) {
 
             </S.MyArea>
 
-            <S.AvgStar>
+            <S.AvgStarArea>
                 {printAvgStar(starAvg)}
-            </S.AvgStar>
+            </S.AvgStarArea>
 
             <S.MiddleContent>
                 <S.StarArea>
@@ -224,6 +243,9 @@ function EventReview ( params ) {
                     </S.RateArea>
                 </S.StarArea>
                 <S.PictureArea>
+                    <S.RvImg src={params.data.storedFileUrl} />
+                    <S.RvImg src={params.data.storedFileUrl} />
+                    <S.RvImg src={params.data.storedFileUrl} />
                     <S.RvImg src={params.data.storedFileUrl} />
                 </S.PictureArea>
             </S.MiddleContent>
