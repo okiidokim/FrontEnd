@@ -4,34 +4,54 @@ import * as S from './VisitAuthStyle';
 import Backitem from '../../components/Backitem';
 import UploadBox from '../../components/uploadImg/UploadBox'
 
-function VisitAuth() {
+function VisitAuth( params ) {
 
-    const [isAuthenticated, setIsAuth] = useState();
+    const [disabled, setDisabled] = useState(false);
+    const [imageUrl, setImageUrl] = useState();
 
-    const onClickBackButton = () => {
-        navigate(-1);
+    const handleImgUrl = (url) => {
+        setImageUrl(url);
+    }
+
+    const handleSubmit = (event) => {
+        setDisabled(true);
+
+        event.preventDefault();
+        try {
+            // const response= axios.post(
+            //     `cultural-event/${parseInt(eventId)}/like`,
+            // );
+            console.log(imageUrl);
+
+        } catch (e) {
+            console.log(e);
+        }
+
+        setDisabled(false);
     }
 
     return (
         <S.Wrapper>
-
             <Backitem/>
 
-            <S.Container>
+            <S.Container onSubmit={handleSubmit}>
                 <S.TitleArea>
                     더 크림 갤러리
                 </S.TitleArea>
                 <S.SubTitle>
                     사진 등록 (최대 3개)
                 </S.SubTitle>
-                <UploadBox/>
-            </S.Container>
+                
+                <UploadBox setUrl={handleImgUrl}/>
+                <UploadBox setUrl={handleImgUrl}/>
+                <UploadBox setUrl={handleImgUrl}/>
 
-            <S.ButtonSection>           
-                <button onClick={''} disabled={isAuthenticated} style={ isAuthenticated ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
-                    방문 인증 요청
-                </button>
-            </S.ButtonSection>
+                <S.ButtonSection>           
+                    <button type='submit' disabled={disabled && imageUrl==null} style={ imageUrl == null ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
+                        방문 인증 요청
+                    </button>
+                </S.ButtonSection>
+            </S.Container>  
         </S.Wrapper>
     )
 }

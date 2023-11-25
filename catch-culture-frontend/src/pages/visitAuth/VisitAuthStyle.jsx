@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
     min-height: 700px;
     display: flex;
     flex-direction: column;
-    font-family: noto Sans KR;
+    font-family: NotoSansKR_Regular;
 `;
 
 /************
@@ -21,7 +21,7 @@ export const Header = styled.div`
     z-index: 2;
 `;
 
-export const Container = styled.div`
+export const Container = styled.form`
     margin-top: 50px;
     padding: 30px;
     text-align: center;
@@ -39,7 +39,7 @@ export const TitleArea = styled.div`
     text-align: center;
     font: 20px bold;
     font-weight: bold;
-    font-family: noto Sans KR;
+    font-family: NotoSansKR_Regular;
     margin-top: 20px;
     margin-bottom: 10px;
     border-bottom: 2px solid black;

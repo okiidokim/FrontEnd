@@ -2,14 +2,17 @@ import React, { useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 
 
+
 /*************************************
  * 호출 형식                          *
- * <UploadBox setUrl={setImgUrl}/>    *
+ * <UploadBox setUrl={setImgUrl}/>   *
+ * setUrl은 고정                      *
  * setImageUrl은 state 변경하는 함수   *
  *************************************/
 
 const UploadBox = (params) => {
     const [imageSrc, setImageSrc] = useState(null);
+    const image = new FormData();
 
     const ImgSvg = () => (
         <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
@@ -39,7 +42,7 @@ const UploadBox = (params) => {
 
     const showImage = useMemo(() => {
         if (imageSrc) {
-            return <img src={imageSrc} style={{width:'100%', borderRadius:'8px'}} />;
+            return <img src={imageSrc} style={{Width:'100%', maxHeight:'200px', borderRadius:'8px'}} />;
         } else {
             return (
                 <>
@@ -59,7 +62,7 @@ const UploadBox = (params) => {
             <S.Label>
                 <S.Input 
                     accept="image/*"
-                    multiple type="file"
+                    type="file"
                     onChange={e => onUpload(e)}>
                 </S.Input>
                 {showImage}
