@@ -6,11 +6,10 @@ import Backitem from '../../Backitem';
 function ReportHeader(props) {
   return (
     <>
+      <Backitem />
       <S.ReportHeader>
-        <S.ReportHeaderLeft>
-          <Backitem />
-          <S.ReportHeaderTitle>제보하기</S.ReportHeaderTitle>
-        </S.ReportHeaderLeft>
+        <S.ReportHeaderTitle>제보하기</S.ReportHeaderTitle>
+
         <S.ReportHeaderPagination src={props.ReportPaginationIcon} />
       </S.ReportHeader>
     </>
