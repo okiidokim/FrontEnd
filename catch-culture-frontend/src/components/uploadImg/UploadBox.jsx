@@ -1,7 +1,22 @@
 import React, { useMemo, useState } from 'react';
 import * as S from './style';
 
-const UploadBox = () => {
+/********************************************************
+ * @param {                                             *
+ *    부모 컴포넌트 선언                                 *
+ *    const formData = new FormData();                  *
+ *    handleImageFile = () => {                         *
+ *      formData.append('file', file)                   *
+ *    }                                                 *
+ *                                                      *
+ *  호출 형식                                           *
+ *  <UploadBox setFile={handleImageFile}/>              *
+ *  setFile은 고정                                      *
+ *  handleImageFile은 값 추가하는 함수                   *
+ * }                                                    *
+ ********************************************************/
+
+const UploadBox = (params) => {
     const [imageSrc, setImageSrc] = useState(null);
 
     const ImgSvg = () => (
@@ -18,10 +33,14 @@ const UploadBox = () => {
     );
 
     const onUpload = (e) => {
+        // 부모 컴포넌트 전송용
+        params.setFile(e.target.files[0]);
+
+        // 사진 출력용
         const file = e.target.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(file);
-
+        
         return new Promise((resolve) => {
             reader.onload = () => {
                 setImageSrc(reader.result || null);
@@ -32,7 +51,7 @@ const UploadBox = () => {
 
     const showImage = useMemo(() => {
         if (imageSrc) {
-            return <img src={imageSrc} style={{width:'100%', borderRadius:'8px'}} />;
+            return <img src={imageSrc} style={{Width:'100%', maxHeight:'200px', borderRadius:'8px'}} />;
         } else {
             return (
                 <>
@@ -48,7 +67,8 @@ const UploadBox = () => {
             <S.Label>
                 <S.Input 
                     accept="image/*"
-                    multiple type="file"
+                    type="file"
+                    multiple
                     onChange={e => onUpload(e)}>
                 </S.Input>
                 {showImage}

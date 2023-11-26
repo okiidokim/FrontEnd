@@ -44,14 +44,13 @@ function culturalEventDetail() {
                 'telephone' : response.data.culturalEventDetail.telephone,
                 'isFree' : response.data.culturalEventDetail.isFree,
                 'reservationLink' : response.data.culturalEventDetail.reservationLink,
-                'isAuthenticated' : response.data.culturalEventDetail.isAuthenticated,
+                'isAuthenticated' : response.data.authenticated,
                 'likeCount' : response.data.likeCount,
                 'bookmarkCount' : response.data.bookmarkCount,
                 'liked' : response.data.liked,
                 'bookmarked' : response.data.bookmarked,
             };
             selectorHandler(0);
-            
         } catch (e) {
             console.log(e);
         }

@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
 
 `;
 
-export const Content = styled.div`
+export const Content = styled.form`
     margin-top: 100px;
     display: flex;
     flex-direction: column;
@@ -33,6 +33,47 @@ export const TitleArea = styled.div`
     margin-top: 20px;
     margin-bottom: 10px;
     border-bottom: 2px solid black;
+`;
+
+export const SubTitle = styled.div`
+    width: 300px;
+    display: flex;
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    margin-bottom: 16px;
+    margin-top: 32px;
+`;
+
+// TextArea
+export const ReviewTextAreaWrap = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const ReviewTextArea = styled.textarea`
+  display: flex;
+  width: 268px;
+  height: 100px;
+  padding: 16px;
+  border: 1px solid black;
+  border-radius: 5px;
+  align-items: center;
+  resize: none;
+  font-family: NotoSansKR_Regular;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
+
+  &:focus {
+    border: none;
+    outline: 2px solid #71be77;
+    border-radius: 3px;
+    color: #018c0d;
+  }
 `;
 
 export const ButtonSection = styled.div`
