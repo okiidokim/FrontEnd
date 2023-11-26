@@ -12,7 +12,7 @@ function EventReview ( params ) {
 
     const [myData, setMyData] = useState();
     const [starCount, setStarCount] = useState([0, 0, 0, 0, 0]);
-    const [starAvg, setStarAvg] = useState();
+    const [starAvg, setStarAvg] = useState(0.0);
 
     let countReviewList = 10;
     const [reviewList, setReviewList] = useState([]);
@@ -75,7 +75,6 @@ function EventReview ( params ) {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/list?lastId=${countReviewList}`
             );
-            console.log(response.data)
             setReviewList(response.data);
         } catch (e) {
             console.log(e);
@@ -198,8 +197,6 @@ function EventReview ( params ) {
     };
 
     const onClickReviewButton = () => {
-        console.log('click');
-        
         navigate(`/event/${params.data.EventId}/review`)
     }
 
