@@ -12,11 +12,11 @@ function VisitAuth( params ) {
     const formData = new FormData();
 
     const handleImgUrl = (file) => {
-        console.log(file);
-        formData.append('Blob', file);
-        // for (var key of imageData.entries()) {
+        formData.append('file', file);
+        
+        // for (var key of formData.entries()) {
         //     console.log(key[0] + ', ' + key[1]);
-        // }f
+        // }
     }
 
     const handleSubmit = (event) => {
@@ -27,7 +27,7 @@ function VisitAuth( params ) {
             // const response= axios.post(
             //     `cultural-event/${parseInt(eventId)}/like`,
             // );
-
+            
             const response = axios.post(
                 `gcs/uploadImage`,
                 formData,
@@ -37,6 +37,7 @@ function VisitAuth( params ) {
                     },
                 }
             );
+
         } catch (e) {
             console.log(e);
         }
