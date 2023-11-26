@@ -1,13 +1,20 @@
 import React, { useMemo, useState } from 'react';
 import * as S from './style';
 
-/***************************************************
- * 호출 형식                                        *
- * <UploadBox setFile={handleImageFile}/>           *
- * setFile은 고정                                   *
- * setImageFile은 값 추가하는 함수                   *
- *   -> formData.append('file', file); 가 들어가있음 *
- ****************************************************/
+/********************************************************
+ * @param {                                             *
+ *    부모 컴포넌트 선언                                 *
+ *    const formData = new FormData();                  *
+ *    handleImageFile = () => {                         *
+ *      formData.append('file', file)                   *
+ *    }                                                 *
+ *                                                      *
+ *  호출 형식                                           *
+ *  <UploadBox setFile={handleImageFile}/>              *
+ *  setFile은 고정                                      *
+ *  handleImageFile은 값 추가하는 함수                   *
+ * }                                                    *
+ ********************************************************/
 
 const UploadBox = (params) => {
     const [imageSrc, setImageSrc] = useState(null);

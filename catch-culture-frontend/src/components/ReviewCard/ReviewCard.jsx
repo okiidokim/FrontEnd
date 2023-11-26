@@ -8,14 +8,14 @@ import { useNavigate } from 'react-router-dom';
 
 /******************************************************
  * @param data = {                                    *
- *   "id": params.data.EventId,                       *
- *   "nickname": response.data.nickname,              *
- *   "description": response.data.description,        *
- *   "storedFileUrl": response.data.storedFileUrl,    *
- *   "rating": response.data.rating,                  *
- *   "createdAt": response.data.createdAt,            *
- *   "eventImgUrl" : null,                            *
- *   "eventTitle": null,                              *
+ *   "id": int,                                       *
+ *   "nickname": string"("username"),                 *
+ *   "description": string("de"scription"),           *
+ *   "storedFileUrl": string([url, url2]),            *
+ *   "rating": int(rating),                           *
+ *   "createdAt": string("yyyy-mm-dd"),               *
+ *   "eventImgUrl" : string([url1]),                  *
+ *   "eventTitle": string(event description),         *
  *   "isMyReview": true,                              *
  * }                                                  *
  ******************************************************/ 

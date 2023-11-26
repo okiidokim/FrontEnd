@@ -284,7 +284,6 @@ function EventReview ( params ) {
             
             {
                 reviewList.map((info) => {
-                    {console.log(info)}
                     return (
                         <ReviewCard key={info.id} data={{
                             "id": params.data.eventId,
