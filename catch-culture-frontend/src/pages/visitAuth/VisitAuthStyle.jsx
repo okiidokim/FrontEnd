@@ -57,12 +57,13 @@ export const SubTitle = styled.div`
 `;
 
 
-export const ButtonSection = styled.div`
+export const ButtonArea = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     flex-grow: 1;
+    margin-top: auto;
 
     button {
         display: block;
@@ -74,4 +75,44 @@ export const ButtonSection = styled.div`
         color: white;
         margin-top: 20px;
     }
+`;
+
+export const Label = styled.label`
+    width: 300px;
+    min-height: 120px;
+    border-radius: 8px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+`;
+
+export const ImageArea = styled.div`
+    display: flex;  
+    flex-direction: column;
+`;
+
+export const ThumbnailArea = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+`;
+
+export const Input = styled.input `
+    display:none;
+`;
+
+export const InfoText = styled.p `
+    height: 10px;
+    color: #777;
+    font-family: NotoSansKR_Medium;
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.3px;
 `;
