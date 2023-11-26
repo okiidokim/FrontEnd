@@ -23,7 +23,7 @@ function Review ( params ) {
         setRating(rating);
     }
 
-    const handleImgUrl = (file) => {
+    const handleImgFile = (file) => {
         formData.append('file', file);
     }
 
@@ -78,7 +78,7 @@ function Review ( params ) {
                 <SetRating setRating={handleRating}/>
 
                 <S.SubTitle>사진 등록</S.SubTitle>
-                <UploadBox setUrl={handleImgUrl}/>
+                <UploadBox setFile={handleImgFile}/>
 
                 <S.SubTitle>리뷰 등록 *</S.SubTitle>
                 <S.ReviewTextAreaWrap>

@@ -1,18 +1,16 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import * as S from './style';
 
-
-
-/*************************************
- * 호출 형식                          *
- * <UploadBox setUrl={setImgUrl}/>   *
- * setUrl은 고정                      *
- * setImageUrl은 state 변경하는 함수   *
- *************************************/
+/***************************************************
+ * 호출 형식                                        *
+ * <UploadBox setFile={handleImageFile}/>           *
+ * setFile은 고정                                   *
+ * setImageFile은 값 추가하는 함수                   *
+ *   -> formData.append('file', file); 가 들어가있음 *
+ ****************************************************/
 
 const UploadBox = (params) => {
     const [imageSrc, setImageSrc] = useState(null);
-    const imageRef = useRef();
 
     const ImgSvg = () => (
         <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
@@ -28,8 +26,8 @@ const UploadBox = (params) => {
     );
 
     const onUpload = (e) => {
-        // 서버 전송용
-        params.setUrl(e.target.files[0]);
+        // 부모 컴포넌트 전송용
+        params.setFile(e.target.files[0]);
 
         // 사진 출력용
         const file = e.target.files[0];
@@ -64,7 +62,6 @@ const UploadBox = (params) => {
                     accept="image/*"
                     type="file"
                     multiple
-                    ref = {imageRef}
                     onChange={e => onUpload(e)}>
                 </S.Input>
                 {showImage}
