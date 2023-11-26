@@ -166,3 +166,9 @@ export const RvImg = styled.img`
     aspect-ratio : 1;
 `;
 
+export const SelectorWrapper = styled.div`
+    display: flex;
+    width: 300px;
+    height: 28px;
+    flex-direction: row-reverse;
+`;

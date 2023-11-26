@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { TbMessageOff } from 'react-icons/tb';
 
 import ReviewCard from '../../../components/ReviewCard/ReviewCard';
+import SortSelector from '../../../components/sortSelector/SortSelector.jsx';
 
 import axios from '../../../api/axios'
 
@@ -12,10 +13,23 @@ function EventReview ( params ) {
     const [starCount, setStarCount] = useState([0, 0, 0, 0, 0]);
     const [starAvg, setStarAvg] = useState();
 
+    let countReviewList = 10;
+    const [reviewList, setReviewList] = useState([]);
+
+    // 정렬 상태
+    const [selectedSort, setSelectedSort] = useState(0);
+
+    // 정렬 옵션
+    const options = [
+        { value: 1, label: 'RECENT', name: '최신순' },
+        { value: 2, label: 'VIEW_COUNT', name: '조회순' },
+        { value: 3, label: 'LIKE', name: '좋아요순' },
+    ];
 
     useEffect(() => {
         fetchData();
         getStar();
+        fetchReviewList();
     }, []);
 
     const fetchData = async () => {
@@ -47,7 +61,6 @@ function EventReview ( params ) {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/rating`
             );
-            
             setStarCount([response.data.countOne, response.data.countTwo, response.data.countThree, response.data.countFour, response.data.countFive]);
             setStarAvg(response.data.avgRating);
         } catch (e) {
@@ -55,7 +68,16 @@ function EventReview ( params ) {
         }
     }
 
-    
+    const fetchReviewList = async () => {
+        try {
+            const response = await axios.get(
+                `review/${parseInt(params.data.EventId)}/list?lastId=${countReviewList}`
+            );
+            setReviewList(response.data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     // 카테고리 한글로 변환
     const printCategory = (category) => {
@@ -250,19 +272,36 @@ function EventReview ( params ) {
                 </S.PictureArea>
             </S.MiddleContent>
 
-            <ReviewCard data={{
-                "id": params.data.EventId,
-                "nickname": "string",
-                "description": "string",
-                "storedFileUrl": [
-                  "https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg",
-                ],
-                "rating": 3,
-                "createdAt": "2023-11-22",
-                "eventImgUrl" : null,
-                "eventTitle": null,
-                "isMyReview": false,
-            }}/>
+            <S.SelectorWrapper>
+                <SortSelector
+                    options={options}
+                    selectedSort={selectedSort}
+                    setSelectedSort={setSelectedSort}
+                />
+            </S.SelectorWrapper>
+
+            
+            {
+                
+                reviewList.map((info, index) => {
+                    return (
+                        <ReviewCard key={info.id} data={{
+                            "id": params.data.eventId,
+                            "nickname": info.nickname,
+                            "description": info.description,
+                            "storedFileUrl": [
+                                info.storedFileUrl
+                            ],
+                            "rating": info.rating,
+                            "createdAt": info.createdAt,
+                            "eventImgUrl" : null,
+                            "eventTitle": null,
+                            "isMyReview": false,
+                        }}/>
+                    )
+                })
+            }
+
         </S.EventInfo>
     );
 }
