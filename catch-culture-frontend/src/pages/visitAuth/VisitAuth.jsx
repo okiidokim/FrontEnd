@@ -11,9 +11,9 @@ function VisitAuth( params ) {
     const [disabled, setDisabled] = useState(false);
     const formData = new FormData();
 
-    const handleImgUrl = (file) => {
+    const handleImgFile = (file) => {
         formData.append('file', file);
-        
+
         // for (var key of formData.entries()) {
         //     console.log(key[0] + ', ' + key[1]);
         // }
@@ -28,7 +28,7 @@ function VisitAuth( params ) {
             //     `cultural-event/${parseInt(eventId)}/like`,
             // );
             
-            const response = axios.post(
+            axios.post(
                 `gcs/uploadImage`,
                 formData,
                 {
@@ -45,6 +45,7 @@ function VisitAuth( params ) {
         setDisabled(false);
     }
 
+
     return (
         <S.Wrapper>
             <Backitem/>
@@ -57,9 +58,11 @@ function VisitAuth( params ) {
                     사진 등록 (최대 3개)
                 </S.SubTitle>
                 
-                <UploadBox setUrl={handleImgUrl}/>
-                <UploadBox setUrl={handleImgUrl}/>
-                <UploadBox setUrl={handleImgUrl}/>
+                <UploadBox setFile={handleImgFile}/>
+
+                <UploadBox setFile={handleImgFile}/>
+
+                <UploadBox setFile={handleImgFile}/>
 
                 <S.ButtonSection>           
                     <button type='submit' disabled={disabled && formData==null} style={ formData == null ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
