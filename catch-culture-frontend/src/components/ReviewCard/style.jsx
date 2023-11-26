@@ -61,6 +61,7 @@ export const ReviewRow = styled.div`
 
 export const RvComment = styled.div`
   width: max-content;
+  min-height: 56px;
 `;
 
 export const Star = styled.div`

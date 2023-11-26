@@ -281,16 +281,17 @@ function EventReview ( params ) {
             </S.SelectorWrapper>
 
             
+            
             {
-                
-                reviewList.map((info, index) => {
+                reviewList.map((info) => {
+                    {console.log(info)}
                     return (
                         <ReviewCard key={info.id} data={{
                             "id": params.data.eventId,
                             "nickname": info.nickname,
                             "description": info.description,
                             "storedFileUrl": [
-                                info.storedFileUrl
+                                info.storedFileUrl,
                             ],
                             "rating": info.rating,
                             "createdAt": info.createdAt,

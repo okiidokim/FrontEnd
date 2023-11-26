@@ -1,14 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { HiOutlineTrash } from "react-icons/hi";
 import { FaRegPenToSquare } from "react-icons/fa6";
 
 import * as S from './style';
 import DeleteModal from './deleteModal/DeleteModal';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-
-let rvImg =
-  'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686.jpg';
+/******************************************************
+ * @param data = {                                    *
+ *   "id": params.data.EventId,                       *
+ *   "nickname": response.data.nickname,              *
+ *   "description": response.data.description,        *
+ *   "storedFileUrl": response.data.storedFileUrl,    *
+ *   "rating": response.data.rating,                  *
+ *   "createdAt": response.data.createdAt,            *
+ *   "eventImgUrl" : null,                            *
+ *   "eventTitle": null,                              *
+ *   "isMyReview": true,                              *
+ * }                                                  *
+ ******************************************************/ 
 
 export default function ReviewCard(data) {
   
@@ -107,7 +117,7 @@ export default function ReviewCard(data) {
         }
       </S.UserInfo>
       <S.ReviewRow>
-        <S.RvImg src={data.data.storedFileUrl} />
+        <S.RvImg src={data.data.storedFileUrl[0]} style={{display : data.data.storedFileUrl[0] == null ? 'none': "flex"}}/>
         <S.RvComment>{data.data.description}</S.RvComment>
       </S.ReviewRow>
       <S.Star>{printStar(data.data.rating)}</S.Star>
