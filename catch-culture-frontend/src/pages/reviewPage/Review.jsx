@@ -16,15 +16,15 @@ function Review ( params ) {
     const [disabled, setDisabled] = useState(false);
     
     const [rating, setRating] = useState();
-    const [imgUrl, setImgUrl] = useState();
+    const formData = new FormData();
     const [description, setDescription] = useState("");
 
     const handleRating = (rating) => {
         setRating(rating);
     }
 
-    const handleImgUrl = (url) => {
-        setImgUrl(url);
+    const handleImgUrl = (file) => {
+        formData.append('file', file);
     }
 
     const handleDescription = ({ target: {value}}) => {
@@ -42,8 +42,20 @@ function Review ( params ) {
                 // const response= axios.post(
                 //     `cultural-event/${parseInt(eventId)}/like`,
                 // );
+                
+                if(!formData.get('file') === null) {
+                    await axios.post(
+                        `gcs/uploadImage`,
+                        formData,
+                        {
+                            headers: {
+                            'Content-Type': 'multipart/form-data', 
+                            },
+                        }
+                    )
+                }
+
                 console.log(rating);
-                console.log(imgUrl);
                 console.log(description);
 
             } catch (e) {
