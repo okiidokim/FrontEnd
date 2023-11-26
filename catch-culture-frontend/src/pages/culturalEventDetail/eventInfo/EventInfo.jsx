@@ -129,7 +129,7 @@ function EventInfo (params) {
             <S.CategoryArea>
                 {printCategory(params.data.category)}
             </S.CategoryArea>
-
+            {console.log(params.data)}
             {/* 방문인증 여부 */}
             <S.AuthArea style={ params.data.isAuthenticated ? {color: '#018C0D'} : {color: 'red'}}>
                 {params.data.isAuthenticated ? '방문 인증 완료' : '방문 인증 미완료'}

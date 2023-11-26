@@ -93,7 +93,7 @@ function Review ( params ) {
 
                 <S.ButtonSection>           
                     <button type='submit' style={ description.length < 30 ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
-                        방문 인증 요청
+                        리뷰 등록
                     </button>
                 </S.ButtonSection>
             </S.Content>

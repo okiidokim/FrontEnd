@@ -6,6 +6,7 @@ import ReviewCard from '../../../components/ReviewCard/ReviewCard';
 import SortSelector from '../../../components/sortSelector/SortSelector.jsx';
 
 import axios from '../../../api/axios'
+import { useNavigate } from 'react-router-dom';
 
 function EventReview ( params ) {
 
@@ -15,6 +16,7 @@ function EventReview ( params ) {
 
     let countReviewList = 10;
     const [reviewList, setReviewList] = useState([]);
+    const navigate = useNavigate();
 
     // 정렬 상태
     const [selectedSort, setSelectedSort] = useState(0);
@@ -37,7 +39,7 @@ function EventReview ( params ) {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/my-review`
             )
-
+                
             if(response.data != "") {
                 setMyData({
                     "id": params.data.EventId,
@@ -73,6 +75,7 @@ function EventReview ( params ) {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/list?lastId=${countReviewList}`
             );
+            console.log(response.data)
             setReviewList(response.data);
         } catch (e) {
             console.log(e);
@@ -194,6 +197,12 @@ function EventReview ( params ) {
         }
     };
 
+    const onClickReviewButton = () => {
+        console.log('click');
+        
+        navigate(`/event/${params.data.EventId}/review`)
+    }
+
     return (
         <S.EventInfo>
             {/* 행사 제목 */}
@@ -225,6 +234,7 @@ function EventReview ( params ) {
                 <S.ReviewButton 
                     disabled={!(params.data.isAuthenticated && myData == undefined)}
                     style={!(params.data.isAuthenticated && myData == undefined) ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}
+                    onClick={onClickReviewButton}
                 >
                     리뷰 작성
                 </S.ReviewButton>
@@ -265,10 +275,13 @@ function EventReview ( params ) {
                     </S.RateArea>
                 </S.StarArea>
                 <S.PictureArea>
-                    <S.RvImg src={params.data.storedFileUrl} />
-                    <S.RvImg src={params.data.storedFileUrl} />
-                    <S.RvImg src={params.data.storedFileUrl} />
-                    <S.RvImg src={params.data.storedFileUrl} />
+                    {
+                        reviewList.map((info) => {
+                            return(
+                                info.storedFileUrl == null ? "" : <S.RvImg src={info.storedFileUrl} />
+                            )
+                        })
+                    }
                 </S.PictureArea>
             </S.MiddleContent>
 
@@ -280,8 +293,6 @@ function EventReview ( params ) {
                 />
             </S.SelectorWrapper>
 
-            
-            
             {
                 reviewList.map((info) => {
                     return (

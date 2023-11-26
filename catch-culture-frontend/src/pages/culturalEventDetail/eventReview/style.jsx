@@ -107,7 +107,7 @@ export const printRating = styled.div`
 `;
 
 export const MiddleContent = styled.div`
-    width: 300px;
+    width: 320px;
     height: auto;
     display: flex;
     flex-direction: row;
