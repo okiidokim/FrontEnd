@@ -15,7 +15,7 @@ function EventReview ( params ) {
     const [starCount, setStarCount] = useState([0, 0, 0, 0, 0]);
     const [starAvg, setStarAvg] = useState(0.0);
 
-    let countReviewList = 10;
+    let countReviewList = 0;
     const [reviewList, setReviewList] = useState([]);
     const navigate = useNavigate();
 
@@ -36,11 +36,6 @@ function EventReview ( params ) {
         fetchReviewList();
     }, []);
 
-    useEffect(() => {
-        redirect('.');
-        console.log('redirect');
-    }, [myData]);
-
     const fetchData = async() => {
         const response = await axios.get(
             `cultural-event/${parseInt(params.data.EventId)}/title`
@@ -50,7 +45,6 @@ function EventReview ( params ) {
     }
 
     const fetchMyReview = async () => {
-        console.log("fetch")
         setMyData(null);
         try {
             const response = await axios.get(
@@ -93,10 +87,19 @@ function EventReview ( params ) {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/list?lastId=${countReviewList}`
             );
-            setReviewList(response.data);
+            // response.data 값이 [{},{},{}] 형식으로 되어있음
+            // -> []를 지운 값을 추가
+            for(let i = 0; i < response.data.length; i++) {
+                reviewList.push(response.data[i])
+            }
+            console.log(document.documentElement.scrollHeight);
+            setFetching(false);
+            
         } catch (e) {
             console.log(e);
         }
+        setScrollHeight(document.documentElement.scrollHeight);
+        setClientHeight(document.documentElement.clientHeight);
     }
 
     // 카테고리 한글로 변환
@@ -218,6 +221,33 @@ function EventReview ( params ) {
         navigate(`/event/${params.data.EventId}/review`)
     }
 
+/** 스크롤 구현중 **/
+/* https://medium.com/@_diana_lee/react-infinite-scroll-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-fbd51a8a099f */
+    const [fetching, setFetching] = useState(false); // 추가 데이터를 로드하는지 아닌지를 담기위한 state
+
+    const [scroll, setScroll] = useState();
+    const [scrollHeight, setScrollHeight] = useState();
+    const [clientHeight, setClientHeight] = useState();
+    
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll, {capture:true});
+        return () => {
+            window.removeEventListener('scroll', handleScroll); //clean up
+        };
+    }, []);
+
+    const handleScroll = () => {
+        
+        const scrollTop = window.scrollY;
+        setScroll(scrollTop);
+        console.log(scrollTop, scrollHeight, clientHeight);
+        if (scroll  >= scrollHeight + clientHeight && fetching === false) {
+            countReviewList += 10;
+            fetchReviewList();
+        }
+    };
+
     return (
         <S.EventInfo>
             {/* 행사 제목 */}
@@ -309,9 +339,9 @@ function EventReview ( params ) {
             </S.SelectorWrapper>
 
             {
-                reviewList.map((info) => {
+                reviewList.map((info, index) => {
                     return (
-                        <ReviewCard key={info.id} data={{
+                        <ReviewCard key={index} data={{
                             "id": params.data.eventId,
                             "nickname": info.nickname,
                             "description": info.description,
