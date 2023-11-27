@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  gap: 30px;
+  gap: 52px;
 }
 .mypage-body {
   display: flex;
@@ -12,7 +12,7 @@
   justify-content: center;
   gap: 72px;
   text-decoration: none;
-  padding-top: 88px;
+  padding-top: 64px;
 }
 
 /* 개인정보 수정 */

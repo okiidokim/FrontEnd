@@ -4,7 +4,6 @@ import Level0 from '../../assets/pointimg/level0.png';
 import Level1 from '../../assets/pointimg/level1.png';
 import Level2 from '../../assets/pointimg/level2.png';
 import Level3 from '../../assets/pointimg/level3.png';
-import Levelinfo from '../../assets/pointimg/levelinfo.png';
 import axios from '../../api/axios';
 import './PointLevel.css';
 
@@ -14,7 +13,52 @@ function PointLevel() {
       <Backitem />
       <div className="mypointinfo">
         MY POINT
-        <img className="infoimg" src={Levelinfo} alt="pinfoimg" />
+        <div className="levelinfo">
+          <div className="levelcolorrow">
+            <div className="greenlev">
+              <div className="greengraph"></div>
+              <p>
+                Catchy
+                <br />
+                Green
+              </p>
+            </div>
+            <div className="yellowlev">
+              <div className="yellowgraph"></div>
+              <p>
+                Catchy
+                <br />
+                Yellow
+              </p>
+            </div>
+            <div className="pinklev">
+              <div className="pinkgraph"></div>
+              <p>
+                Catchy
+                <br />
+                Pink
+              </p>
+            </div>
+            <div className="redlev">
+              <div className="redgraph"></div>
+              <p>
+                Catchy
+                <br />
+                Red
+              </p>
+            </div>
+          </div>
+          <div className="levtextinfo">
+            Catchy Green : 3달 이내에 누적 1000p 획득
+            <br />
+            Catchy Yellow : 3달 이내에 누적 3000p 획득
+            <br />
+            Catchy Pink : 3달 이내에 누적 5000p 획득
+            <br />
+            Catchy Red : 3달 이내에 누적 8000p 획득
+          </div>
+          <hr />
+        </div>
       </div>
       <div className="mylevel">
         <div className="mylevtext">현재 내 등급</div>

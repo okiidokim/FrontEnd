@@ -18,7 +18,7 @@ import axios from '../../api/axios';
 function Mypage() {
   const [nick, setNick] = useState('');
   const [img, setImg] = useState('');
-  const isadmin = false;
+  const [isadmin, setAdmin] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +26,7 @@ function Mypage() {
         const response = await axios.get(`/user`);
         setNick(response.data.nickname);
         setImg(response.data.storedFileUrl);
+        setAdmin(response.data.role);
       } catch (e) {
         console.log(e);
       }
@@ -39,7 +40,7 @@ function Mypage() {
   return (
     <div className="mypageall">
       <Backitem />
-      {isadmin === true ? (
+      {isadmin === 'ADMIN' ? (
         <>
           <div className="mypage-body">
             <div className="infomypage">

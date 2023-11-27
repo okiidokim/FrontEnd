@@ -18,6 +18,7 @@
   position: relative;
   gap: 12px;
   align-items: center;
+  width: 320px;
 }
 .reporttext {
   display: flex;
@@ -25,7 +26,6 @@
   font-weight: bold;
   font-size: 20px;
   justify-content: center;
-  width: 320px;
   padding-top: 14px;
 }
 .repinfo {

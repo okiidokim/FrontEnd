@@ -6,7 +6,7 @@
   gap: 40px;
 }
 .mypointinfo {
-  padding-top: 72px;
+  padding-top: 60px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -15,8 +15,59 @@
   font-size: 20px;
   gap: 20px;
 }
-.infoimg {
-  height: 220px;
+.levelinfo {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+}
+.levelcolorrow {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 20px;
+  margin-top: 24px;
+}
+.greenlev,
+.yellowlev,
+.pinklev,
+.redlev {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+.greengraph {
+  width: 24px;
+  height: 40px;
+  border-radius: 12px 12px 0 0px;
+  background-color: #018c0d;
+}
+.yellowgraph {
+  width: 24px;
+  height: 52px;
+  border-radius: 12px 12px 0 0px;
+  background-color: #f0cc00;
+}
+.pinkgraph {
+  width: 24px;
+  height: 64px;
+  border-radius: 12px 12px 0 0px;
+  background-color: #eb6565;
+}
+.redgraph {
+  width: 24px;
+  height: 76px;
+  border-radius: 12px 12px 0 0px;
+  background-color: #e00000;
+}
+.levtextinfo {
+  font-size: 12px;
+  font-weight: 100;
+  margin-bottom: 12px;
 }
 .mylevel {
   display: flex;

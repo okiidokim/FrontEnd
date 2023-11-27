@@ -24,19 +24,13 @@ function ProfileEdit() {
     fetchData();
   }, []);
 
-  // const [nickput, setNickput] = useState('');
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = axios.patch(`user/profile/nickname`);
-  //       setNickput(res.data);
-  //       console.log(res);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+  const nickPut = async () => {
+    try {
+      await axios.patch(`user/profile/nickname`, nick);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div className="allcontents">
@@ -56,13 +50,7 @@ function ProfileEdit() {
           <div className="nicktextrow">
             <p className="nickbold">닉네임</p>
             <div className="nickstore">
-              <button
-                className="nickbutton"
-                type="submit"
-                onChange={(e) => {
-                  setNick(e.target.value);
-                }}
-              >
+              <button className="nickbutton" onClick={nickPut}>
                 저장
               </button>
             </div>
@@ -70,12 +58,11 @@ function ProfileEdit() {
           <div>
             <input
               className="nickpatchbox"
-              type="text"
               value={nick}
               onChange={(e) => {
-                setNick(e.target.nick.value);
+                setNick(e.target.nick);
               }}
-              placeholder="닉네임을 재설정하세요."
+              placeholder="닉네임을 설정하세요."
             />
           </div>
         </div>

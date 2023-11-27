@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { TbClipboardCheck } from 'react-icons/tb';
 import { TbMapPinCheck } from 'react-icons/tb';
+import { useLocation } from 'react-router';
 
 const Bodyadmin = styled.div`
   padding-top: 20px;
@@ -38,11 +39,19 @@ const Buttonadmin = styled.div`
 function Admin() {
   return (
     <Bodyadmin>
-      <Buttonadmin>
+      <Buttonadmin
+        onClick={() => {
+          location.reload();
+        }}
+      >
         <TbMapPinCheck size="40" />
         방문 인증 수락
       </Buttonadmin>
-      <Buttonadmin>
+      <Buttonadmin
+        onClick={() => {
+          location.reload();
+        }}
+      >
         <TbClipboardCheck size="40" />
         제보 수락
       </Buttonadmin>
