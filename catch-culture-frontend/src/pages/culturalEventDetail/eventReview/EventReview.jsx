@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 function EventReview ( params ) {
 
+    const [title, setTitle] = useState();
     const [myData, setMyData] = useState();
     const [starCount, setStarCount] = useState([0, 0, 0, 0, 0]);
     const [starAvg, setStarAvg] = useState(0.0);
@@ -30,11 +31,20 @@ function EventReview ( params ) {
 
     useEffect(() => {
         fetchData();
+        fetchMyReview();
         getStar();
         fetchReviewList();
     }, []);
 
-    const fetchData = async () => {
+    const fetchData = async() => {
+        const response = await axios.get(
+            `cultural-event/${parseInt(params.data.EventId)}/title`
+        )
+
+        setTitle(response.data);
+    }
+
+    const fetchMyReview = async () => {
         try {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/my-review`
@@ -105,6 +115,10 @@ function EventReview ( params ) {
             <>
                 <S.StarCountArea>
                     <S.InActiveStar style={{width:"30px", height:"30px"}}/>
+                    <S.AvgStar rating={starAvg-0}/>
+                </S.StarCountArea>
+                <S.StarCountArea>
+                    <S.InActiveStar style={{width:"30px", height:"30px"}}/>
                     <S.AvgStar rating={starAvg-1}/>
                 </S.StarCountArea>
                 <S.StarCountArea>
@@ -118,10 +132,6 @@ function EventReview ( params ) {
                 <S.StarCountArea>
                     <S.InActiveStar style={{width:"30px", height:"30px"}}/>
                     <S.AvgStar rating={starAvg-4}/>
-                </S.StarCountArea>
-                <S.StarCountArea>
-                    <S.InActiveStar style={{width:"30px", height:"30px"}}/>
-                    <S.AvgStar rating={starAvg-5}/>
                 </S.StarCountArea>
 
                 <S.printRating>
@@ -204,7 +214,7 @@ function EventReview ( params ) {
         <S.EventInfo>
             {/* 행사 제목 */}
             <S.TitleArea>
-                {params.data.title}
+                {title}
             </S.TitleArea>
 
             {/* 카테고리 영역 */}

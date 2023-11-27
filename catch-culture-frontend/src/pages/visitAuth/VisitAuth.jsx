@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import * as S from './VisitAuthStyle';
 import Backitem from '../../components/Backitem';
 
 import axios from '../../api/axios';
 
-function VisitAuth( params ) {
+function VisitAuth() {
+    const params = useParams();
 
+    const [title, setTitle] = useState();
     const [imageSrc1, setImageSrc1] = useState();
     const [imageSrc2, setImageSrc2] = useState();
     const [imageSrc3, setImageSrc3] = useState();
     const [disabled, setDisabled] = useState(false);
     const formData = new FormData();
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async() => {
+        
+        const response = await axios.get(
+            `cultural-event/${parseInt(params.id)}/title`
+        )
+
+        setTitle(response.data);
+    }
 
     const handleImgFile = (file, index) => {
         formData.append('file'+index, file);
@@ -106,7 +122,7 @@ function VisitAuth( params ) {
 
             <S.Container onSubmit={handleSubmit}>
                 <S.TitleArea>
-                    더 크림 갤러리
+                    {title}
                 </S.TitleArea>
                 <S.SubTitle>
                     사진 등록 (최대 3개)
