@@ -15,7 +15,7 @@ export const DeleteModal = (params) => {
                     },
                 },
             )
-            {params.fetchMyReview}
+            {params.fetchMyReview()}
             {params.setModal()}
         } catch (e) {
             console.log(e);

@@ -128,7 +128,7 @@ export default function ReviewCard(data) {
       </S.Event>
       
       {isModal && (
-        <DeleteModal reviewId={data.data.reviewId} EventId={data.data.id} setModal={changeModal}/>
+        <DeleteModal reviewId={data.data.reviewId} EventId={data.data.id} setModal={changeModal} fetchMyReview={data.fetchMyReview}/>
       )}
     </S.ReviewCard>
   );

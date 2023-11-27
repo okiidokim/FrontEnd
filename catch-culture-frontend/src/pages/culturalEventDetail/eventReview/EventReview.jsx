@@ -6,7 +6,7 @@ import ReviewCard from '../../../components/ReviewCard/ReviewCard';
 import SortSelector from '../../../components/sortSelector/SortSelector.jsx';
 
 import axios from '../../../api/axios'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, redirect } from 'react-router-dom';
 
 function EventReview ( params ) {
 
@@ -36,6 +36,11 @@ function EventReview ( params ) {
         fetchReviewList();
     }, []);
 
+    useEffect(() => {
+        redirect('.');
+        console.log('redirect');
+    }, [myData]);
+
     const fetchData = async() => {
         const response = await axios.get(
             `cultural-event/${parseInt(params.data.EventId)}/title`
@@ -45,6 +50,8 @@ function EventReview ( params ) {
     }
 
     const fetchMyReview = async () => {
+        console.log("fetch")
+        setMyData(null);
         try {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/my-review`
