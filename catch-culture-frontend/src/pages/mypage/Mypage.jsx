@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { IoHeartOutline, IoStarOutline } from 'react-icons/io5';
-import { PiNotificationBold, PiMapPin } from 'react-icons/pi';
-import { AiOutlineDollar, AiOutlineMessage } from 'react-icons/ai';
+import {
+  TbHeart,
+  TbStar,
+  TbMapPin,
+  TbMessage,
+  TbCoin,
+  TbFileImport,
+} from 'react-icons/tb';
+
 import { NavLink } from 'react-router-dom';
 import './Mypage.css';
 import Level0 from '../../assets/pointimg/level0.png';
@@ -69,19 +75,19 @@ function Mypage() {
             <div className="row1">
               <NavLink to="/report/list">
                 <button className="notify">
-                  <PiNotificationBold size="40" />
+                  <TbFileImport size="40" />
                   제보
                 </button>
               </NavLink>
               <NavLink to="/point-history">
                 <button className="pointhis">
-                  <AiOutlineDollar size="40" />
+                  <TbCoin size="40" />
                   <p>포인트 내역</p>
                 </button>
               </NavLink>
               <NavLink to="/review/list">
                 <button className="myreviews">
-                  <AiOutlineMessage size="40" />
+                  <TbMessage size="40" />
                   <p>리뷰 내역</p>
                 </button>
               </NavLink>
@@ -89,19 +95,19 @@ function Mypage() {
             <div className="row2">
               <NavLink to="/like/list">
                 <button className="mylikes">
-                  <IoHeartOutline size="40" />
+                  <TbHeart size="40" />
                   <p>좋아요</p>
                 </button>
               </NavLink>
               <NavLink to="/bookmark/list">
                 <button className="mybookmarks">
-                  <IoStarOutline size="40" />
+                  <TbStar size="40" />
                   <p>즐겨찾기</p>
                 </button>
               </NavLink>
               <NavLink to="/visited/list">
                 <button className="visited">
-                  <PiMapPin size="40" />
+                  <TbMapPin size="40" />
                   <p>방문 내역</p>
                 </button>
               </NavLink>
