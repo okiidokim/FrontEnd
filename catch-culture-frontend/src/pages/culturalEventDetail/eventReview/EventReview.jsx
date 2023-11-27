@@ -61,6 +61,7 @@ function EventReview ( params ) {
                     "eventImgUrl" : null,
                     "eventTitle": null,
                     "isMyReview": true,
+                    "reviewId": response.data.id,
                 });
             }
         } catch (e) {
@@ -235,7 +236,7 @@ function EventReview ( params ) {
                         <S.NoResultTitle>리뷰 작성 내역이 없습니다.</S.NoResultTitle>
                     </>
                     : 
-                    <ReviewCard data = {myData} />
+                    <ReviewCard data = {myData} fetchMyReview = {fetchMyReview} />
                 }
 
                 <S.ReviewButton 
@@ -314,6 +315,7 @@ function EventReview ( params ) {
                             "createdAt": info.createdAt,
                             "eventImgUrl" : null,
                             "eventTitle": null,
+                            "reviewId" : info.id,
                             "isMyReview": false,
                         }}/>
                     )
