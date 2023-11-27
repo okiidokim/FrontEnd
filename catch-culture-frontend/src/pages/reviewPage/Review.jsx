@@ -16,7 +16,7 @@ function Review ( params ) {
     const [disabled, setDisabled] = useState(false);
     
     const [rating, setRating] = useState();
-    const formData = new FormData();
+    const [formData, setFormData] = useState();
     const [description, setDescription] = useState("");
 
     const handleRating = (rating) => {
@@ -24,7 +24,7 @@ function Review ( params ) {
     }
 
     const handleImgFile = (file) => {
-        formData.append('file', file);
+        setFormData(file);
     }
 
     const handleDescription = ({ target: {value}}) => {
@@ -35,29 +35,39 @@ function Review ( params ) {
         setDisabled(true);
         event.preventDefault();
 
-        if(description.length < 30) {
+        if(description.length < 30 || formData == null || rating == 0) {
 
         } else {
             try {
-                // const response= axios.post(
-                //     `cultural-event/${parseInt(eventId)}/like`,
-                // );
-                
-                if(!formData.get('file') === null) {
-                    await axios.post(
-                        `gcs/uploadImage`,
-                        formData,
+                console.log(formData)
+                if(!(formData.get('file') === null)) {
+
+                    const reviewDetail = new FormData();
+                    
+                    // reviewDetail.append("description", description);
+                    // reviewDetail.append("rating", rating);
+
+                    formData.append("reviewDetail", new Blob([`{"description": "${description}", "rating": ${rating}}`, {type:'application/json'}]));
+                     for (var key of formData.entries()) {
+                         console.log(key[0] + ', ' + key[1]);
+                     }
+                    const request = await axios.post(
+                        `review/${parseInt(eventId)}/my-review`,
                         {
-                            headers: {
-                            'Content-Type': 'multipart/form-data', 
-                            },
+                            formData
+                            // file: formData.get('file'),
+                            // reviewDetail: reviewDetail.get('description')
+                        },
+                        {
+                            headers: [{
+                                'Content-Type': 'multipart/form-data', 
+                            }],
                         }
                     )
+                    console.log(request);
                 }
 
-                console.log(rating);
-                console.log(description);
-
+                
             } catch (e) {
                 console.log(e);
             }
@@ -75,10 +85,10 @@ function Review ( params ) {
                     {title}
                 </S.TitleArea>
 
-                <SetRating setRating={handleRating}/>
+                <SetRating setRating={handleRating} required/>
 
-                <S.SubTitle>사진 등록</S.SubTitle>
-                <UploadBox setFile={handleImgFile}/>
+                <S.SubTitle>사진 등록 *</S.SubTitle>
+                <UploadBox setFile={handleImgFile} required/>
 
                 <S.SubTitle>리뷰 등록 *</S.SubTitle>
                 <S.ReviewTextAreaWrap>
@@ -92,7 +102,7 @@ function Review ( params ) {
                 </S.ReviewTextAreaWrap>
 
                 <S.ButtonSection>           
-                    <button type='submit' style={ description.length < 30 ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
+                    <button type='submit' style={ description.length < 30 || formData == null || rating == 0 ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
                         리뷰 등록
                     </button>
                 </S.ButtonSection>
