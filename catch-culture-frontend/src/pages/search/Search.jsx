@@ -19,8 +19,6 @@ function Search() {
 
   const [count, setCount] = useState(0);
 
-  console.log(category);
-
   // state 값 유무에 따른 초기값 설정
   const initialCategories = category ? category : [];
 
@@ -46,7 +44,7 @@ function Search() {
     // console.log(selectedCategories);
     // console.log(options[selectedSort].name);
     fetchData();
-  }, [selectedCategories, selectedSort]);
+  }, [selectedCategories, selectedSort, keyword]);
 
   // 초기
   useEffect(() => {
@@ -55,21 +53,23 @@ function Search() {
 
   const fetchData = async () => {
     try {
-      if (selectedCategories.length === 0) {
-        setCount(0);
-      } else {
+      if (!selectedCategories.length === 0 || keyword) {
         // URL 만들기 - 카테고리 선택
         const categoryUrl = selectedCategories
           .map(item => 'category=' + item)
           .join('&');
 
         const response = await axios.get(
-          `cultural-event/list?${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
+          keyword
+            ? `cultural-event/search?keyword=${keyword}&offset=0&sortType=${options[selectedSort].label}`
+            : `cultural-event/list?${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
         );
 
         // 데이터 저장
         setData(response.data.content);
         setCount(response.data.totalElements);
+      } else {
+        setCount(0);
       }
     } catch (e) {
       console.log(e);
