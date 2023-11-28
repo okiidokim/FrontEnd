@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 // 검색창
 export const HeaderSearchWrapper = styled.div`
@@ -38,4 +39,12 @@ export const HeaderSearchImg = styled.img`
   position: absolute;
   right: 10px;
   height: 16px;
+  cursor: pointer;
+`;
+
+export const StyledLink = styled(Link)`
+  position: absolute;
+  right: 10px;
+  height: 16px;
+  cursor: pointer;
 `;

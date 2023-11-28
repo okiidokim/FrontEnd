@@ -15,6 +15,8 @@ import axios from '../../api/axios';
 function Search() {
   const { state } = useLocation();
   const category = state && state.category;
+  const keyword = state && state.keyword;
+
   const [count, setCount] = useState(0);
 
   console.log(category);
@@ -78,7 +80,7 @@ function Search() {
     <>
       <S.SearchWrapper>
         {/* 검색창 */}
-        <SearchBox width="300px" />
+        <SearchBox keyword={keyword} width="300px" />
 
         {/* 헤더 */}
         <S.SearchHeader>
