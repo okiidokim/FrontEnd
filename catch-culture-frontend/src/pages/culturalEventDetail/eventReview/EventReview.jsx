@@ -90,9 +90,10 @@ function EventReview ( params ) {
             // response.data 값이 [{},{},{}] 형식으로 되어있음
             // -> []를 지운 값을 추가
             for(let i = 0; i < response.data.length; i++) {
-                reviewList.push(response.data[i])
+                reviewList.push(response.data[i]);
+                console.log(reviewList);
             }
-            console.log(document.documentElement.scrollHeight);
+            
             setFetching(false);
             
         } catch (e) {
@@ -243,7 +244,7 @@ function EventReview ( params ) {
         setScroll(scrollTop);
         console.log(scrollTop, scrollHeight, clientHeight);
         if (scroll  >= scrollHeight + clientHeight && fetching === false) {
-            countReviewList += 10;
+            
             fetchReviewList();
         }
     };
