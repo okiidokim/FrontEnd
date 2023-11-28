@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import DaumPostcode from 'react-daum-postcode';
@@ -15,8 +15,8 @@ function Report2() {
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [postalCode, setPostalCode] = useState('');
-  const [address, setAddress] = useState('');
+  const [postalCode, setPostalCode] = useState(''); // 우편번호
+  const [address, setAddress] = useState(''); // 도로명 주소
   const [eventSNS, setEventSNS] = useState(null);
   const [eventPhoneNumber, setEventPhoneNumber] = useState(null);
   const [eventWayToCome, setEventWayToCome] = useState(null);
@@ -37,80 +37,80 @@ function Report2() {
     handleModalClose();
   };
 
-  // 선택사항 append 함수
-  function appendOptional(formData, fieldName, value) {
+  function setValue(value, setValue) {
     if (value) {
-      formData.append(fieldName, value);
+      setValue(value);
     } else {
-      formData.append(fieldName, null);
+      setValue(null);
     }
   }
-
-  // const file = null;
 
   const handleImgFile = file => {
     setImgData(file);
   };
 
+  // 제출 버튼
   const handleSubmit = async event => {
     event.preventDefault();
 
-    // Form 데이터 생성
-    const formData = new FormData();
-
     // 값 추출
     const eventName = document.querySelector('#eventName').value; // 행사명
-    const eventPostalCode = postalCode; // 우편번호
-    const eventAddress = address; // 도로명 주소
-    const eventAddressDetail = document.querySelector(
-      '#eventAddressDetail'
-    ).value; // 상세주소
+
+    // 상세주소
+    const eventLocation = `${address} ${
+      document.querySelector('#eventAddressDetail').value
+    }`;
+
     const eventStartDate = document.querySelector('#eventStartDate').value; // 시작일
     const eventEndDate = document.querySelector('#eventEndDate').value; // 종료일
     const eventDescription = document.querySelector('#eventDescription').value; // 행사 설명
     const eventFee = document.querySelector('#eventFee').value; // 요금 정보
-    setEventSNS(document.querySelector('#eventSNS').value); // SNS 주소
-    setEventPhoneNumber(document.querySelector('#eventPhoneNumber').value); // 전화번호
-    setEventWayToCome(document.querySelector('#eventWayToCome').value); // 오시는 길
-    const eventImg = document.querySelector('#eventImg').value; // 행사 사진
+    const free = eventFee === '무료' ? true : false; // 요금 정보 bool로 전환
 
-    // Appernd
-    // formData.append('eventName', eventName);
-    // formData.append('eventPostalCode', eventPostalCode);
-    // formData.append('eventAddress', eventAddress);
-    // formData.append('eventAddressDetail', eventAddressDetail);
-    // formData.append('eventStartDate', eventStartDate);
-    // formData.append('eventEndDate', eventEndDate);
-    // formData.append('eventDescription', eventDescription);
-    // formData.append('eventFee', eventFee);
-    formData.append('culturalEventReportDTO', {
+    // 선택적인 필드 값 확인 후 값 부여
+    setValue(document.querySelector('#eventSNS').value, setEventSNS);
+    setValue(
+      document.querySelector('#eventPhoneNumber').value,
+      setEventPhoneNumber
+    );
+    setValue(
+      document.querySelector('#eventWayToCome').value,
+      setEventWayToCome
+    );
+
+    let data = {
       eventName: eventName,
-      eventPostalCode: eventPostalCode,
-      eventAddress: eventAddress,
-      eventAddressDetail: eventAddressDetail,
-      eventStartDate: eventStartDate,
-      eventEndDate: eventEndDate,
-      eventDescription: eventDescription,
-      eventFee: eventFee,
-    });
-
-    formData.append('fileList', eventImg);
-    // 선택적인 필드 값 확인 후 FormData에 추가
-    // appendOptional(formData, 'eventSNS', eventSNS);
-    // appendOptional(formData, 'eventPhoneNumber', eventPhoneNumber);
-    // appendOptional(formData, 'eventWayToCome', eventWayToCome);
-    // formData.append('eventImg', eventImg);
-
-    // Content-Type 설정 : FormData
-    const headers = {
-      'Content-Type': 'multipart/form-data',
+      eventLocation: eventLocation,
+      startDate: eventStartDate,
+      endDate: eventEndDate,
+      description: eventDescription,
+      free: free,
+      snsAddress: eventSNS,
+      phoneNumber: eventPhoneNumber,
+      wayToCome: eventWayToCome,
     };
 
-    try {
-      console.log('formData: ', formData);
-      const response = await axios.post('user/report', formData, { headers });
+    // Form 데이터 생성
+    const requestBody = new FormData();
 
-      console.log(response);
+    requestBody.append('fileList', imgData);
+    requestBody.append(
+      'culturalEventReportDTO',
+      new Blob([JSON.stringify(data)], {
+        type: 'application/json',
+      })
+    );
+
+    try {
+      const response = await axios({
+        method: 'POST',
+        url: `user/report`,
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        data: requestBody,
+      });
 
       if (response.status === 200) {
         navigate('/report3');
