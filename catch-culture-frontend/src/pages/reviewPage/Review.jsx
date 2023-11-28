@@ -19,7 +19,7 @@ function Review ( ) {
     const [disabled, setDisabled] = useState(false);
     
     const [rating, setRating] = useState();
-    const [formData, setFormData] = useState();
+    const [imageData, setImageData] = useState();
     const [description, setDescription] = useState("");
 
     const navigate = useNavigate();
@@ -29,7 +29,7 @@ function Review ( ) {
     }
 
     const handleImgFile = (file) => {
-        setFormData(file);
+        setImageData(file);
     }
 
     const handleDescription = ({ target: {value}}) => {
@@ -40,21 +40,19 @@ function Review ( ) {
         setDisabled(true);
         event.preventDefault();
 
-        if(description.length < 30 || formData == null || rating == 0) {
+        if(description.length < 30 || imageData == null || rating == 0) {
 
         } else {
             try {
-                console.log(formData)
-                if(!(formData.get('file') === null)) {
-                    const requestBody = new FormData();
-                    
+                if(!(imageData === null)) {
                     let data = {
                         description: description,
                         rating: rating
                     }
-                    
 
-                    requestBody.append('file', formData.get('file'));
+                    const requestBody = new FormData();
+                    
+                    requestBody.append('file', imageData);
                     requestBody.append('reviewDetail', new Blob([JSON.stringify(data)], { type: "application/json" }));
                     //  for (var key of requestBody.entries()) {
                     //      console.log(key[0] + ', ' + key[1]);
@@ -69,6 +67,7 @@ function Review ( ) {
                         },
                         data: requestBody,
                     }).then(
+                        console.log(requestBody),
                         navigate(`/event/${eventId}`)
                     )
                     
@@ -107,7 +106,7 @@ function Review ( ) {
                 </S.ReviewTextAreaWrap>
 
                 <S.ButtonSection>           
-                    <button type='submit' style={ description.length < 30 || formData == null || rating == 0 ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
+                    <button type='submit' style={ description.length < 30 || imageData == null || rating == 0 ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
                         리뷰 등록
                     </button>
                 </S.ButtonSection>
