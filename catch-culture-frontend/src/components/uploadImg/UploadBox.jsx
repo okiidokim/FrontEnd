@@ -43,8 +43,9 @@ const UploadBox = params => {
 
   const onUpload = e => {
     // 부모 컴포넌트 전송용
-    params.setFile(e.target.files[0]);
-    console.log(e.target.files[0]);
+    const formData = new FormData();
+    formData.append("file", e.target.files[0]);
+    params.setFile(formData);
     // 사진 출력용
     const file = e.target.files[0];
     const reader = new FileReader();

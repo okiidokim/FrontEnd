@@ -7,10 +7,16 @@ export const DeleteModal = (params) => {
     const onClickDelete = async () => {
         try {
             await axios.delete(
-                `cultural-event/${parseInt(params.eventId)}/my-review`
+                `review/${parseInt(params.EventId)}/my-review`,
+                {
+                    data:{reviewId: params.reviewId},
+                    headers: {
+                        'Content-Type': 'application/json', 
+                    },
+                },
             )
-
-            params.setModal();
+            {params.fetchMyReview()}
+            {params.setModal()}
         } catch (e) {
             console.log(e);
         }

@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
  *   "eventImgUrl" : string([url1]),                  *
  *   "eventTitle": string(event description),         *
  *   "isMyReview": true,                              *
+ *   "reviewId": int(reviewId(기본 키)                 *
  * }                                                  *
  ******************************************************/ 
 
@@ -117,7 +118,7 @@ export default function ReviewCard(data) {
         }
       </S.UserInfo>
       <S.ReviewRow>
-        <S.RvImg src={data.data.storedFileUrl[0]} style={{display : data.data.storedFileUrl[0] == null ? 'none': "flex"}}/>
+        <S.RvImg src={data.data.storedFileUrl} style={{display : data.data.storedFileUrl == null ? 'none': "flex"}}/>
         <S.RvComment>{data.data.description}</S.RvComment>
       </S.ReviewRow>
       <S.Star>{printStar(data.data.rating)}</S.Star>
@@ -127,7 +128,7 @@ export default function ReviewCard(data) {
       </S.Event>
       
       {isModal && (
-        <DeleteModal eventId={data.data.id} setModal={changeModal}/>
+        <DeleteModal reviewId={data.data.reviewId} EventId={data.data.id} setModal={changeModal} fetchMyReview={data.fetchMyReview}/>
       )}
     </S.ReviewCard>
   );
