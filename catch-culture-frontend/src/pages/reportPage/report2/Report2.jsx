@@ -15,8 +15,8 @@ function Report2() {
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [postalCode, setPostalCode] = useState('');
-  const [address, setAddress] = useState('');
+  const [postalCode, setPostalCode] = useState(''); // 우편번호
+  const [address, setAddress] = useState(''); // 도로명 주소
   const [eventSNS, setEventSNS] = useState(null);
   const [eventPhoneNumber, setEventPhoneNumber] = useState(null);
   const [eventWayToCome, setEventWayToCome] = useState(null);
@@ -55,12 +55,8 @@ function Report2() {
 
     // 값 추출
     const eventName = document.querySelector('#eventName').value; // 행사명
-    const eventPostalCode = postalCode; // 우편번호
-    const eventAddress = address; // 도로명 주소
-    const eventAddressDetail = document.querySelector(
-      '#eventAddressDetail'
-    ).value; // 상세주소
 
+    // 상세주소
     const eventLocation = `${address} ${
       document.querySelector('#eventAddressDetail').value
     }`;
@@ -95,7 +91,6 @@ function Report2() {
     };
 
     // Form 데이터 생성
-
     const requestBody = new FormData();
 
     requestBody.append('fileList', imgData);
@@ -106,19 +101,7 @@ function Report2() {
       })
     );
 
-    for (var key of requestBody.entries()) {
-      console.log(key[0] + ', ' + key[1]);
-    }
-
-    const headers = {
-      'Content-Type': 'multipart/form-data',
-    };
-
     try {
-      //const response = await axios.post('user/report', requestBody, {
-      //  headers,
-      //});
-
       const response = await axios({
         method: 'POST',
         url: `user/report`,
@@ -128,8 +111,6 @@ function Report2() {
         },
         data: requestBody,
       });
-
-      console.log(response);
 
       if (response.status === 200) {
         navigate('/report3');
