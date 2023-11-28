@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  gap: 100px;
+  gap: 52px;
 }
 .mypage-body {
   display: flex;
@@ -11,10 +11,12 @@
   position: relative;
   justify-content: center;
   gap: 72px;
+  text-decoration: none;
+  padding-top: 64px;
 }
 
 /* 개인정보 수정 */
-.information {
+.infomypage {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,6 +99,8 @@
 .logout:hover,
 .level:hover {
   background-color: #018c0d;
+  color: white;
+  font-weight: bold;
 }
 
 /*캐치 레벨 확인*/

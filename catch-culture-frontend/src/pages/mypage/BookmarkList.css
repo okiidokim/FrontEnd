@@ -3,15 +3,14 @@
   position: relative;
   flex-direction: column;
   gap: 68px;
+  align-items: center;
 }
 
 .wrap {
   display: flex;
   position: relative;
   flex-direction: column;
-  gap: 16px;
   width: 338px;
-  padding-left: 26px;
 }
 
 .cateSel {
@@ -24,6 +23,7 @@
   position: relative;
   align-items: baseline;
   gap: 8px;
+  padding-top: 16px;
 }
 .bookmarkCnt {
   font-size: 12px;
@@ -36,6 +36,7 @@
 .eventlist {
   display: flex;
   position: relative;
+  justify-content: center;
 }
 .nors {
   display: flex;
