@@ -17,6 +17,9 @@ function Report2() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [postalCode, setPostalCode] = useState('');
   const [address, setAddress] = useState('');
+  const [eventSNS, setEventSNS] = useState(null);
+  const [eventPhoneNumber, setEventPhoneNumber] = useState(null);
+  const [eventWayToCome, setEventWayToCome] = useState(null);
 
   // 우편번호 찾기 모달창
   const handleModalOpen = () => {
@@ -33,12 +36,28 @@ function Report2() {
     handleModalClose();
   };
 
+  // 선택사항 append 함수
+  function appendOptional(formData, fieldName, value) {
+    if (value) {
+      formData.append(fieldName, value);
+    } else {
+      formData.append(fieldName, null);
+    }
+  }
+
+  // const file = null;
+
+  const handleImgFile = file => {
+    setFormData(file);
+  };
+
   const handleSubmit = async event => {
     event.preventDefault();
 
     // Form 데이터 생성
     const formData = new FormData();
 
+    // 값 추출
     const eventName = document.querySelector('#eventName').value; // 행사명
     const eventPostalCode = postalCode; // 우편번호
     const eventAddress = address; // 도로명 주소
@@ -49,29 +68,49 @@ function Report2() {
     const eventEndDate = document.querySelector('#eventEndDate').value; // 종료일
     const eventDescription = document.querySelector('#eventDescription').value; // 행사 설명
     const eventFee = document.querySelector('#eventFee').value; // 요금 정보
-    const eventSNS = document.querySelector('#eventSNS').value; // SNS 주소
-    const eventPhoneNumber = document.querySelector('#eventPhoneNumber').value; // 전화번호
+    setEventSNS(document.querySelector('#eventSNS').value); // SNS 주소
+    setEventPhoneNumber(document.querySelector('#eventPhoneNumber').value); // 전화번호
+    setEventWayToCome(document.querySelector('#eventWayToCome').value); // 오시는 길
     const eventImg = document.querySelector('#eventImg').value; // 행사 사진
-    const eventWayToCome = document.querySelector('#eventWayToCome').value; // 오시는 길
 
     // Appernd
-    formData.append('eventName', eventName);
-    formData.append('eventPostalCode', eventPostalCode);
-    formData.append('eventAddress', eventAddress);
-    formData.append('eventAddressDetail', eventAddressDetail);
-    formData.append('eventStartDate', eventStartDate);
-    formData.append('eventEndDate', eventEndDate);
-    formData.append('eventDescription', eventDescription);
-    formData.append('eventFee', eventFee);
-    formData.append('eventSNS', eventSNS);
-    formData.append('eventPhoneNumber', eventPhoneNumber);
+    // formData.append('eventName', eventName);
+    // formData.append('eventPostalCode', eventPostalCode);
+    // formData.append('eventAddress', eventAddress);
+    // formData.append('eventAddressDetail', eventAddressDetail);
+    // formData.append('eventStartDate', eventStartDate);
+    // formData.append('eventEndDate', eventEndDate);
+    // formData.append('eventDescription', eventDescription);
+    // formData.append('eventFee', eventFee);
+    formData.append('culturalEventReportDTO', {
+      eventName: eventName,
+      eventPostalCode: eventPostalCode,
+      eventAddress: eventAddress,
+      eventAddressDetail: eventAddressDetail,
+      eventStartDate: eventStartDate,
+      eventEndDate: eventEndDate,
+      eventDescription: eventDescription,
+      eventFee: eventFee,
+    });
+
+    formData.append('fileList', eventImg);
+    // 선택적인 필드 값 확인 후 FormData에 추가
+    // appendOptional(formData, 'eventSNS', eventSNS);
+    // appendOptional(formData, 'eventPhoneNumber', eventPhoneNumber);
+    // appendOptional(formData, 'eventWayToCome', eventWayToCome);
     // formData.append('eventImg', eventImg);
-    formData.append('eventWayToCome', eventWayToCome);
+
+    // Content-Type 설정 : FormData
+    const headers = {
+      'Content-Type': 'multipart/form-data',
+    };
 
     try {
-      const response = await axios.post('user/report', formData);
+      console.log('formData: ', formData);
+      const response = await axios.post('user/report', formData, { headers });
 
       console.log(response);
+
       if (response.status === 200) {
         navigate('/report3');
       }
@@ -79,8 +118,6 @@ function Report2() {
       alert('제보 실패 :(');
     }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -231,7 +268,7 @@ function Report2() {
             {/* 행사 사진 */}
             <S.ReportEventTitle2>행사 사진</S.ReportEventTitle2>
             <S.ReportEventUploadBox>
-              <UploadBox />
+              <UploadBox setFile={handleImgFile} />
             </S.ReportEventUploadBox>
 
             {/* 오시는 길 */}
