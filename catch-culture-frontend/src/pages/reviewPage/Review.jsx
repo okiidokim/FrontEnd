@@ -8,6 +8,7 @@ import SetRating from './setRating/SetRating.jsx';
 
 // api
 import axios from '../../api/axios';
+import { TbRating18Plus } from 'react-icons/tb';
 
 function Review ( params ) {
     let title = "test"; // params.data.title
@@ -43,24 +44,34 @@ function Review ( params ) {
                 if(!(formData.get('file') === null)) {
 
                     const reviewDetail = new FormData();
-                    
+                    let data = new Object();
                     // reviewDetail.append("description", description);
                     // reviewDetail.append("rating", rating);
-
-                    formData.append("reviewDetail", new Blob([`{"description": "${description}", "rating": ${rating}}`, {type:'application/json'}]));
+                    data.description = description;
+                    data.rating = rating;
+                    
+                    
+                    let des = `description: ${description}`;
+                    let rat = `rating: ${rating}`;
+                    // formData.append("reviewDetail", new Blob([des, rat], { type: 'application/json' }));
+                    formData.append("reviewDetail", JSON.stringify(data), );
                      for (var key of formData.entries()) {
                          console.log(key[0] + ', ' + key[1]);
                      }
+                     console.log(JSON.stringify(data))
+                     console.log(formData.get('reviewDetail'))
+                     
+                
                     const request = await axios.post(
                         `review/${parseInt(eventId)}/my-review`,
-                        {
-                            formData
+                        // {
+                            formData,
                             // file: formData.get('file'),
                             // reviewDetail: reviewDetail.get('description')
-                        },
+                        // },
                         {
                             headers: [{
-                                'Content-Type': 'multipart/form-data', 
+                                'Content-Type': 'multipart/form-data',
                             }],
                         }
                     )
