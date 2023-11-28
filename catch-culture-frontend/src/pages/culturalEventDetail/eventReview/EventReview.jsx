@@ -83,14 +83,17 @@ function EventReview ( params ) {
     }
 
     const fetchReviewList = async () => {
+        
         try {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/list?lastId=${countReviewList}`
             );
+            console.log(response)
             // response.data 값이 [{},{},{}] 형식으로 되어있음
             // -> []를 지운 값을 추가
-            for(let i = 0; i < response.data.length; i++) {
-                reviewList.push(response.data[i]);
+            for(let i = 0; i < response.data.content.length; i++) {
+                console.log("push")
+                reviewList.push(response.data.content[i]);
                 console.log(reviewList);
             }
             
