@@ -20,6 +20,7 @@ function Report2() {
   const [eventSNS, setEventSNS] = useState(null);
   const [eventPhoneNumber, setEventPhoneNumber] = useState(null);
   const [eventWayToCome, setEventWayToCome] = useState(null);
+  const [imgData, setImgData] = useState();
 
   // 우편번호 찾기 모달창
   const handleModalOpen = () => {
@@ -48,7 +49,7 @@ function Report2() {
   // const file = null;
 
   const handleImgFile = file => {
-    setFormData(file);
+    setImgData(file);
   };
 
   const handleSubmit = async event => {
