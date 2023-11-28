@@ -4,9 +4,9 @@ import * as S from './style';
 /********************************************************
  * @param {                                             *
  *    부모 컴포넌트 선언                                 *
- *    const formData = new FormData();                  *
+ *    const [imageData, setImageData] = useState();     *
  *    handleImageFile = () => {                         *
- *      formData.append('file', file)                   *
+ *      setImageData(file);                             *
  *    }                                                 *
  *                                                      *
  *  호출 형식                                           *
@@ -43,9 +43,8 @@ const UploadBox = params => {
 
   const onUpload = e => {
     // 부모 컴포넌트 전송용
-    const formData = new FormData();
-    formData.append("file", e.target.files[0]);
-    params.setFile(formData);
+    params.setFile(e.target.files[0]);
+
     // 사진 출력용
     const file = e.target.files[0];
     const reader = new FileReader();

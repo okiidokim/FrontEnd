@@ -9,23 +9,27 @@ import SetRating from './setRating/SetRating.jsx';
 // api
 import axios from '../../api/axios';
 import { TbRating18Plus } from 'react-icons/tb';
+import { useNavigate, useParams } from 'react-router-dom';
 
-function Review ( params ) {
-    let title = "test"; // params.data.title
-    let eventId = "10"; //params.data.eventId
+function Review ( ) {
+    const params = useParams();
+    let title = "test";
+    const eventId = params.id;
 
     const [disabled, setDisabled] = useState(false);
     
     const [rating, setRating] = useState();
-    const [formData, setFormData] = useState();
+    const [imageData, setImageData] = useState();
     const [description, setDescription] = useState("");
+
+    const navigate = useNavigate();
 
     const handleRating = (rating) => {
         setRating(rating);
     }
 
     const handleImgFile = (file) => {
-        setFormData(file);
+        setImageData(file);
     }
 
     const handleDescription = ({ target: {value}}) => {
@@ -36,49 +40,38 @@ function Review ( params ) {
         setDisabled(true);
         event.preventDefault();
 
-        if(description.length < 30 || formData == null || rating == 0) {
+        if(description.length < 30 || imageData == null || rating == 0) {
 
         } else {
             try {
-                console.log(formData)
-                if(!(formData.get('file') === null)) {
+                if(!(imageData === null)) {
+                    let data = {
+                        description: description,
+                        rating: rating
+                    }
 
-                    const reviewDetail = new FormData();
-                    let data = new Object();
-                    // reviewDetail.append("description", description);
-                    // reviewDetail.append("rating", rating);
-                    data.description = description;
-                    data.rating = rating;
+                    const requestBody = new FormData();
                     
+                    requestBody.append('file', imageData);
+                    requestBody.append('reviewDetail', new Blob([JSON.stringify(data)], { type: "application/json" }));
+                    //  for (var key of requestBody.entries()) {
+                    //      console.log(key[0] + ', ' + key[1]);
+                    //  }
                     
-                    let des = `description: ${description}`;
-                    let rat = `rating: ${rating}`;
-                    // formData.append("reviewDetail", new Blob([des, rat], { type: 'application/json' }));
-                    formData.append("reviewDetail", JSON.stringify(data), );
-                     for (var key of formData.entries()) {
-                         console.log(key[0] + ', ' + key[1]);
-                     }
-                     console.log(JSON.stringify(data))
-                     console.log(formData.get('reviewDetail'))
-                     
-                
-                    const request = await axios.post(
-                        `review/${parseInt(eventId)}/my-review`,
-                        // {
-                            formData,
-                            // file: formData.get('file'),
-                            // reviewDetail: reviewDetail.get('description')
-                        // },
-                        {
-                            headers: [{
-                                'Content-Type': 'multipart/form-data',
-                            }],
-                        }
+                    const request = await axios({
+                        method: "POST",
+                        url: `review/${eventId}/my-review`,
+                        mode: "cors",
+                        headers: {
+                            'Content-Type': 'multipart/form-data',     
+                        },
+                        data: requestBody,
+                    }).then(
+                        console.log(requestBody),
+                        navigate(`/event/${eventId}`)
                     )
-                    console.log(request);
+                    
                 }
-
-                
             } catch (e) {
                 console.log(e);
             }
@@ -113,7 +106,7 @@ function Review ( params ) {
                 </S.ReviewTextAreaWrap>
 
                 <S.ButtonSection>           
-                    <button type='submit' style={ description.length < 30 || formData == null || rating == 0 ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
+                    <button type='submit' style={ description.length < 30 || imageData == null || rating == 0 ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
                         리뷰 등록
                     </button>
                 </S.ButtonSection>
