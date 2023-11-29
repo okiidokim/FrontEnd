@@ -19,16 +19,7 @@ function EventReview ( params ) {
     const navigate = useNavigate();
 
     let countReviewList = 0;
-
-    // 정렬 상태
-    const [selectedSort, setSelectedSort] = useState(0);
-
-    // 정렬 옵션
-    const options = [
-        { value: 1, label: 'RECENT', name: '최신순' },
-        { value: 2, label: 'VIEW_COUNT', name: '조회순' },
-        { value: 3, label: 'LIKE', name: '좋아요순' },
-    ];
+    let isLast = false;
 
     useEffect(() => {
         fetchData();
@@ -90,9 +81,6 @@ function EventReview ( params ) {
     }
 
     const fetchReviewList = async () => {
-        // async 함수에서 setstate가 늦게 동작함
-        //TODO isLoading 상태가 안바뀜
-        // 값 불러오기는 성공
         try {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/list?lastId=${countReviewList}`
@@ -102,6 +90,7 @@ function EventReview ( params ) {
             for(let i = 0; i < response.data.content.length; i++) {
                 reviewList.push(response.data.content[i]);
             }
+            isLast = response.data.last;
 
             countReviewList = reviewList[reviewList.length-1].id;
         } catch (e) {
@@ -235,8 +224,7 @@ function EventReview ( params ) {
     }
 
     const handleScroll = () => {
-        // console.log(window.innerHeight, document.documentElement.scrollTop, document.documentElement.offsetHeight)
-        if(window.innerHeight + document.documentElement.scrollTop <= document.documentElement.offsetHeight-1 || isLoading) {
+        if(window.innerHeight + document.documentElement.scrollTop <= document.documentElement.offsetHeight-1 || isLoading || isLast) {
             return;
         }
         handleMoreReview();
@@ -315,22 +303,14 @@ function EventReview ( params ) {
                 </S.StarArea>
                 <S.PictureArea>
                     {
-                        reviewList.map((info) => {
+                        reviewList.map((info, index) => {
                             return(
-                                info.storedFileUrl == null ? "" : <S.RvImg src={info.storedFileUrl} />
+                                info.storedFileUrl == null ? "" : <S.RvImg key={index} src={info.storedFileUrl} />
                             )
                         })
                     }
                 </S.PictureArea>
             </S.MiddleContent>
-
-            <S.SelectorWrapper>
-                <SortSelector
-                    options={options}
-                    selectedSort={selectedSort}
-                    setSelectedSort={setSelectedSort}
-                />
-            </S.SelectorWrapper>
 
             {
                 reviewList.map((info, index) => {
