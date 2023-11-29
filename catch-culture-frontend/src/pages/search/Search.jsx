@@ -61,13 +61,14 @@ function Search() {
 
         const response = await axios.get(
           keyword
-            ? `cultural-event/search?keyword=${keyword}&offset=0&sortType=${options[selectedSort].label}`
+            ? `cultural-event/search?keyword=${keyword}&${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
             : `cultural-event/list?${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
         );
 
         // 데이터 저장
         setData(response.data.content);
-        setCount(response.data.totalElements);
+        setCount(response.data.content.length);
+
       } else {
         setCount(0);
       }
