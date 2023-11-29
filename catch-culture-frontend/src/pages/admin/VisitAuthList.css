@@ -29,7 +29,6 @@
   flex-direction: column;
   position: relative;
   align-items: center;
-  gap: 24px;
 }
 .novisiticon {
   display: flex;
