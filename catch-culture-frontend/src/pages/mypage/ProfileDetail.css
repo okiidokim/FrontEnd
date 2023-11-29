@@ -3,6 +3,7 @@
   flex-direction: column;
   position: relative;
   gap: 80px;
+  align-items: center;
 }
 .editwrap {
   display: flex;
@@ -10,7 +11,6 @@
   flex-direction: column;
   gap: 40px;
   width: 320px;
-  padding-left: 35px;
 }
 .sctype {
   display: flex;
@@ -53,12 +53,11 @@ hr {
   border: none;
   position: relative;
 }
-.nickch {
+.nickchangebox {
   border-top: #acacac;
   display: flex;
   position: relative;
   flex-direction: column;
-  gap: 12px;
 }
 .nicktextrow {
   display: flex;
@@ -66,14 +65,11 @@ hr {
   align-items: center;
   justify-content: center;
   gap: 200px;
-}
-.nickbold {
   font-size: 20px;
   font-weight: bold;
+  padding-bottom: 12px;
 }
-/* .nickstore {
-} */
-.nickbutton {
+.nickchangebutton {
   width: 64px;
   height: 24px;
   border-radius: 12px;
@@ -84,11 +80,11 @@ hr {
     inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
     -1px -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
-.nickbutton:hover {
+.nickchangebutton:hover {
   background-color: #018c0d;
   font-weight: bold;
 }
-.nickpatchbox {
+.nicktextbox {
   width: 296px;
   height: 30px;
   background-color: #d9d9d9;
@@ -107,7 +103,13 @@ hr {
     border-radius: 2px;
   }
 }
-
+.pagereload {
+  display: flex;
+  position: relative;
+  font-size: 12px;
+  text-decoration: underline;
+  padding-top: 8px;
+}
 /* .withdraw {
 } */
 .wdbutton {
