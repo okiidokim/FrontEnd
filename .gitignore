@@ -1,3 +1,5 @@
+catch-culture-frontend/index.html
+
 # Logs
 logs
 *.log
@@ -22,3 +24,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+#api keys
+.env
