@@ -119,7 +119,6 @@ export default function ReviewCard(data) {
       </S.UserInfo>
       <S.ReviewRow>
         {/* src는 이미지 파일에서 양쪽 ''가 있으면 경로 오류 때문에 substr로 ''를 제거하고 지정 */}
-        {console.log(data.data.storedFileUrl)}
         <S.RvImg src={data.data.storedFileUrl[0] == null ? null : data.data.storedFileUrl.substr(1,data.data.storedFileUrl.length-2)} style={{display : data.data.storedFileUrl == null ? 'none': "flex"}}/>
         <S.RvComment>{data.data.description}</S.RvComment>
       </S.ReviewRow>

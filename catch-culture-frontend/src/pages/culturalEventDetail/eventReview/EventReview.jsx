@@ -14,10 +14,11 @@ function EventReview ( params ) {
     const [myData, setMyData] = useState();
     const [starCount, setStarCount] = useState([0, 0, 0, 0, 0]);
     const [starAvg, setStarAvg] = useState(0.0);
-
-    let countReviewList = 0;
+    const [isLoading, setIsLoading] = useState(false);
     const [reviewList, setReviewList] = useState([]);
     const navigate = useNavigate();
+
+    let countReviewList = 0;
 
     // 정렬 상태
     const [selectedSort, setSelectedSort] = useState(0);
@@ -34,6 +35,10 @@ function EventReview ( params ) {
         fetchMyReview();
         getStar();
         fetchReviewList();
+        window.addEventListener('scroll', handleScroll, {capture:true});
+        return () => {
+            window.removeEventListener('scroll', handleScroll); //clean up
+        };
     }, []);
 
     const fetchData = async() => {
@@ -67,6 +72,8 @@ function EventReview ( params ) {
             }
         } catch (e) {
             console.log(e);
+        } finally {
+            
         }
     }
 
@@ -83,27 +90,29 @@ function EventReview ( params ) {
     }
 
     const fetchReviewList = async () => {
-        
+        // async 함수에서 setstate가 늦게 동작함
+        //TODO isLoading 상태가 안바뀜
+        // 값 불러오기는 성공
         try {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/list?lastId=${countReviewList}`
-            );
-            console.log(response)
+            )
             // response.data 값이 [{},{},{}] 형식으로 되어있음
             // -> []를 지운 값을 추가
             for(let i = 0; i < response.data.content.length; i++) {
-                console.log("push")
                 reviewList.push(response.data.content[i]);
-                console.log(reviewList);
             }
-            
-            setFetching(false);
-            
+
+            countReviewList = reviewList[reviewList.length-1].id;
         } catch (e) {
             console.log(e);
-        }
-        setScrollHeight(document.documentElement.scrollHeight);
-        setClientHeight(document.documentElement.clientHeight);
+        } 
+        setIsLoading(false);
+    }
+
+    const handleMoreReview = () => {
+        setIsLoading(true);
+        fetchReviewList();
     }
 
     // 카테고리 한글로 변환
@@ -225,31 +234,12 @@ function EventReview ( params ) {
         navigate(`/event/${params.data.EventId}/review`)
     }
 
-/** 스크롤 구현중 **/
-/* https://medium.com/@_diana_lee/react-infinite-scroll-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-fbd51a8a099f */
-    const [fetching, setFetching] = useState(false); // 추가 데이터를 로드하는지 아닌지를 담기위한 state
-
-    const [scroll, setScroll] = useState();
-    const [scrollHeight, setScrollHeight] = useState();
-    const [clientHeight, setClientHeight] = useState();
-    
-
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll, {capture:true});
-        return () => {
-            window.removeEventListener('scroll', handleScroll); //clean up
-        };
-    }, []);
-
     const handleScroll = () => {
-        
-        const scrollTop = window.scrollY;
-        setScroll(scrollTop);
-        console.log(scrollTop, scrollHeight, clientHeight);
-        if (scroll  >= scrollHeight + clientHeight && fetching === false) {
-            
-            fetchReviewList();
+        // console.log(window.innerHeight, document.documentElement.scrollTop, document.documentElement.offsetHeight)
+        if(window.innerHeight + document.documentElement.scrollTop <= document.documentElement.offsetHeight-1 || isLoading) {
+            return;
         }
+        handleMoreReview();
     };
 
     return (
