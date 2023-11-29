@@ -8,19 +8,29 @@ import SetRating from './setRating/SetRating.jsx';
 
 // api
 import axios from '../../api/axios';
-import { TbRating18Plus } from 'react-icons/tb';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function Review ( ) {
     const params = useParams();
-    let title = "test";
     const eventId = params.id;
-
-    const [disabled, setDisabled] = useState(false);
     
+    const [title, setTitle] = useState("title");
     const [rating, setRating] = useState();
     const [imageData, setImageData] = useState();
     const [description, setDescription] = useState("");
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async() => {
+        
+        const response = await axios.get(
+            `cultural-event/${parseInt(params.id)}/title`
+        )
+
+        setTitle(response.data);
+    }
 
     const navigate = useNavigate();
 
@@ -37,9 +47,6 @@ function Review ( ) {
     }
     
     const handleSubmit = async(event) => {
-        setDisabled(true);
-        event.preventDefault();
-
         if(description.length < 30 || imageData == null || rating == 0) {
 
         } else {
@@ -76,7 +83,6 @@ function Review ( ) {
                 console.log(e);
             }
         }
-        setDisabled(false);
     }
 
     return (

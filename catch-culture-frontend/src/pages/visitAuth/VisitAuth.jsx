@@ -40,10 +40,6 @@ function VisitAuth() {
 
         event.preventDefault();
         try {
-            // const response= axios.post(
-            //     `cultural-event/${parseInt(eventId)}/like`,
-            // );
-            
             axios.post(
                 `gcs/uploadImage`,
                 formData,
