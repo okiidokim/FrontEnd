@@ -21,6 +21,8 @@ import Report1 from './pages/reportPage/report1/Report1';
 import Report2 from './pages/reportPage/report2/Report2';
 import Report3 from './pages/reportPage/report3/Report3';
 import ReportList from './pages/mypage/ReportList';
+import VistiAuthList from './pages/admin/VisitAuthList';
+import ReportAuthList from './pages/admin/ReportAuthList';
 
 const router = createBrowserRouter([
   {
@@ -106,6 +108,14 @@ const router = createBrowserRouter([
       {
         path: '/report/list',
         element: <ReportList />,
+      },
+      {
+        path: '/visitauth/list',
+        element: <VistiAuthList />,
+      },
+      {
+        path: '/reportauth/list',
+        element: <ReportAuthList />,
       },
     ],
   },
