@@ -4,6 +4,13 @@ import axios from '../../api/axios';
 import { useParams } from 'react-router-dom';
 import './AdminReport.css';
 import { NavLink } from 'react-router-dom';
+import {
+  TbBalloon,
+  TbLocation,
+  TbNotes,
+  TbCash,
+  TbCalendarEvent,
+} from 'react-icons/tb';
 
 function ReportInfo(params) {
   const d = params.data;
@@ -17,25 +24,40 @@ function ReportInfo(params) {
       <hr />
       <div className="reportcontent">
         <div className="reportname">
-          <p className="textname">행사명</p>{' '}
+          <p className="textname">
+            <TbBalloon />
+            행사명
+          </p>
           <p className="textcontent">{d.title} </p>
         </div>
         <div className="reportplace">
-          <p className="textname">행사 위치</p>{' '}
+          <p className="textname">
+            <TbLocation />
+            행사 위치
+          </p>
           <p className="textcontent">{d.place}</p>
         </div>
         <div className="reportduration">
-          <p className="textname">행사 기간</p>
+          <p className="textname">
+            <TbCalendarEvent />
+            행사 기간
+          </p>
           <p className="textcontent">
             {d.startDate} - {d.endDate}
           </p>
         </div>
         <div className="reportdes">
-          <p className="textname">행사 상세 내용</p>
+          <p className="textname">
+            <TbNotes />
+            행사 상세 내용
+          </p>
           <p className="textcontent">{d.description}</p>
         </div>
         <div className="reportisfree">
-          <p className="textname">가격 정보</p>
+          <p className="textname">
+            <TbCash />
+            가격 정보
+          </p>
           <p className="textcontent">
             {d.isFree === true ? <>무료</> : <>유료</>}
           </p>

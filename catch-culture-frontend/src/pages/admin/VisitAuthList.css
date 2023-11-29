@@ -44,14 +44,15 @@
 .visitautheach {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding-bottom: 12px;
+  gap: 4px;
+  padding-bottom: 16px;
 }
 .nickdayrow {
+  padding-top: 12px;
   display: flex;
   position: relative;
   flex-direction: row;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   justify-content: space-between;
 }
