@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import * as S from './style';
 
 function EventCard({ data }) {
-  console.log(data);
 
   if (!data) {
     return null;
