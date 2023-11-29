@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { AiFillHome } from 'react-icons/ai';
 import { MdLocationPin } from 'react-icons/md';
@@ -47,6 +48,14 @@ const NavTab = styled(NavLink)`
 `;
 
 function NavBar() {
+  const location = useLocation();
+  const isLoginPage = location.pathname ==="/";
+  console.log(isLoginPage);
+  
+  if(isLoginPage){
+    return null;
+  }
+
   return (
     <Nav>
       <NavTab to="/main">
