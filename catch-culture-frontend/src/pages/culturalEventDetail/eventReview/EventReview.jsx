@@ -14,26 +14,22 @@ function EventReview ( params ) {
     const [myData, setMyData] = useState();
     const [starCount, setStarCount] = useState([0, 0, 0, 0, 0]);
     const [starAvg, setStarAvg] = useState(0.0);
-
-    let countReviewList = 0;
+    const [isLoading, setIsLoading] = useState(false);
     const [reviewList, setReviewList] = useState([]);
     const navigate = useNavigate();
 
-    // 정렬 상태
-    const [selectedSort, setSelectedSort] = useState(0);
-
-    // 정렬 옵션
-    const options = [
-        { value: 1, label: 'RECENT', name: '최신순' },
-        { value: 2, label: 'VIEW_COUNT', name: '조회순' },
-        { value: 3, label: 'LIKE', name: '좋아요순' },
-    ];
+    let countReviewList = 0;
+    let isLast = false;
 
     useEffect(() => {
         fetchData();
         fetchMyReview();
         getStar();
         fetchReviewList();
+        window.addEventListener('scroll', handleScroll, {capture:true});
+        return () => {
+            window.removeEventListener('scroll', handleScroll); //clean up
+        };
     }, []);
 
     const fetchData = async() => {
@@ -67,6 +63,8 @@ function EventReview ( params ) {
             }
         } catch (e) {
             console.log(e);
+        } finally {
+            
         }
     }
 
@@ -86,20 +84,24 @@ function EventReview ( params ) {
         try {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/list?lastId=${countReviewList}`
-            );
+            )
             // response.data 값이 [{},{},{}] 형식으로 되어있음
             // -> []를 지운 값을 추가
-            for(let i = 0; i < response.data.length; i++) {
-                reviewList.push(response.data[i])
+            for(let i = 0; i < response.data.content.length; i++) {
+                reviewList.push(response.data.content[i]);
             }
-            console.log(document.documentElement.scrollHeight);
-            setFetching(false);
-            
+            isLast = response.data.last;
+
+            countReviewList = reviewList[reviewList.length-1].id;
         } catch (e) {
             console.log(e);
-        }
-        setScrollHeight(document.documentElement.scrollHeight);
-        setClientHeight(document.documentElement.clientHeight);
+        } 
+        setIsLoading(false);
+    }
+
+    const handleMoreReview = () => {
+        setIsLoading(true);
+        fetchReviewList();
     }
 
     // 카테고리 한글로 변환
@@ -221,31 +223,11 @@ function EventReview ( params ) {
         navigate(`/event/${params.data.EventId}/review`)
     }
 
-/** 스크롤 구현중 **/
-/* https://medium.com/@_diana_lee/react-infinite-scroll-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-fbd51a8a099f */
-    const [fetching, setFetching] = useState(false); // 추가 데이터를 로드하는지 아닌지를 담기위한 state
-
-    const [scroll, setScroll] = useState();
-    const [scrollHeight, setScrollHeight] = useState();
-    const [clientHeight, setClientHeight] = useState();
-    
-
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll, {capture:true});
-        return () => {
-            window.removeEventListener('scroll', handleScroll); //clean up
-        };
-    }, []);
-
     const handleScroll = () => {
-        
-        const scrollTop = window.scrollY;
-        setScroll(scrollTop);
-        console.log(scrollTop, scrollHeight, clientHeight);
-        if (scroll  >= scrollHeight + clientHeight && fetching === false) {
-            countReviewList += 10;
-            fetchReviewList();
+        if(window.innerHeight + document.documentElement.scrollTop <= document.documentElement.offsetHeight-1 || isLoading || isLast) {
+            return;
         }
+        handleMoreReview();
     };
 
     return (
@@ -321,22 +303,14 @@ function EventReview ( params ) {
                 </S.StarArea>
                 <S.PictureArea>
                     {
-                        reviewList.map((info) => {
+                        reviewList.map((info, index) => {
                             return(
-                                info.storedFileUrl == null ? "" : <S.RvImg src={info.storedFileUrl} />
+                                info.storedFileUrl == null ? "" : <S.RvImg key={index} src={info.storedFileUrl} />
                             )
                         })
                     }
                 </S.PictureArea>
             </S.MiddleContent>
-
-            <S.SelectorWrapper>
-                <SortSelector
-                    options={options}
-                    selectedSort={selectedSort}
-                    setSelectedSort={setSelectedSort}
-                />
-            </S.SelectorWrapper>
 
             {
                 reviewList.map((info, index) => {

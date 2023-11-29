@@ -14,8 +14,8 @@ export const EventInfo = styled.div`
 `;
 
 export const TitleArea = styled.div`
-    width: auto;
-    height: 38px;
+    max-width: 300px;
+    min-height: 38px;
     text-align: center;
     font: 16px bold;
     font-weight: bold;
@@ -23,6 +23,7 @@ export const TitleArea = styled.div`
     margin-top: 20px;
     margin-bottom: 10px;
     border-bottom: 2px solid black;
+    padding-bottom: 10px;
 `;
 
 export const CategoryArea = styled.div`
