@@ -4,6 +4,76 @@ import Backitem from '../../components/Backitem';
 import axios from '../../api/axios';
 import { NavLink } from 'react-router-dom';
 
+function NickUpdate(props) {
+  const [nick, setNick] = useState('');
+
+  const nickPut = async () => {
+    try {
+      await axios.patch(`user/profile/nickname?nickName=${nick}`, {
+        nickName: props.nick,
+      });
+      console.log();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`user`);
+        setNick(response.data.nickname);
+        console.log(response);
+      } catch (e) {
+        console.log(response);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <div className="nickchangebox">
+      <form
+        onSubmit={(e) => {
+          nickPut(nick);
+          e.preventDefault();
+        }}
+      >
+        <div className="nicktextrow">
+          <p>닉네임</p>
+          <p>
+            <input
+              type="submit"
+              className="nickchangebutton"
+              onClick={nickPut}
+              value="저장"
+            ></input>
+          </p>
+        </div>
+        <p>
+          <input
+            type="text"
+            placeholder="닉네임을 설정하세요."
+            value={nick}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setNick(e.target.value);
+            }}
+            className="nicktextbox"
+          ></input>
+        </p>
+        <NavLink
+          to="/profile-edit"
+          onClick="location.reload();"
+          className="pagereload"
+        >
+          닉네임 저장 후 페이지 새로고침
+        </NavLink>
+      </form>
+    </div>
+  );
+}
+
 function ProfileEdit() {
   const [nick, setNick] = useState('');
   const [img, setImg] = useState('');
@@ -24,13 +94,13 @@ function ProfileEdit() {
     fetchData();
   }, []);
 
-  const nickPut = async () => {
-    try {
-      await axios.patch(`user/profile/nickname`, nick);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const nickPut = async () => {
+  //   try {
+  //     await axios.patch(`user/profile/nickname`, { nickname: { nick } });
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   return (
     <div className="allcontents">
@@ -46,29 +116,16 @@ function ProfileEdit() {
           <button className="imgchbutton">프로필 이미지 변경</button>
         </div>
         <hr />
-        <div className="nickch">
-          <div className="nicktextrow">
-            <p className="nickbold">닉네임</p>
-            <div className="nickstore">
-              <button className="nickbutton" onClick={nickPut}>
-                저장
-              </button>
-            </div>
-          </div>
-          <div>
-            <input
-              className="nickpatchbox"
-              value={nick}
-              onChange={(e) => {
-                setNick(e.target.nick);
-              }}
-              placeholder="닉네임을 설정하세요."
-            />
-          </div>
-        </div>
+        <NickUpdate
+          nick={nick}
+          // onUpdate={(nick) => {
+          //   const updatedNick = { nick: nick };
+          //   nickPut(updatedNick);
+          // }}
+        ></NickUpdate>
         <hr />
         <div className="withdraw">
-          <NavLink to="/login">
+          <NavLink to="/">
             <button className="wdbutton">탈퇴</button>
           </NavLink>
         </div>
