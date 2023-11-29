@@ -1,0 +1,64 @@
+.authlistwrap {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+.authlistcontent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+.visitauthtextrow {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  gap: 4px;
+}
+.visitauthcnt {
+  font-size: 12px;
+  font-weight: 100;
+}
+.visitauthlist {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  gap: 24px;
+}
+.novisiticon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 172px;
+  gap: 24px;
+}
+.novisitauthtext {
+  font-size: 20px;
+  font-weight: bold;
+}
+.visitautheach {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 12px;
+}
+.nickdayrow {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  font-size: 12px;
+  font-weight: bold;
+  justify-content: space-between;
+}
+.visitauthday {
+  display: flex;
+  position: relative;
+  font-weight: 100;
+  font-size: 12px;
+}
