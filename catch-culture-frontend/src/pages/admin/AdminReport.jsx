@@ -62,6 +62,7 @@ function ReportInfo(params) {
             {d.isFree === true ? <>무료</> : <>유료</>}
           </p>
         </div>
+        <div className="otherinfos"></div>
       </div>
       <div className="regisbuttonrow">
         <NavLink to="/reportauth/list">
