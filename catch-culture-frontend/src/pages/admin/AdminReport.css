@@ -29,8 +29,11 @@
 .textcontent {
   font-size: 14px;
   font-weight: bold;
+  word-wrap: break-word;
 }
-
+.descut {
+  font-weight: 100;
+}
 .adminvisitwrap {
   display: flex;
   flex-direction: column;
