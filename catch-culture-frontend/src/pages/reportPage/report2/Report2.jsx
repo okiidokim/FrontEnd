@@ -84,11 +84,13 @@ function Report2() {
       startDate: eventStartDate,
       endDate: eventEndDate,
       description: eventDescription,
-      free: free,
+      isFree: free,
       snsAddress: eventSNS,
       phoneNumber: eventPhoneNumber,
       wayToCome: eventWayToCome,
     };
+
+    console.log("무료인가 유료인가:", free);
 
     // Form 데이터 생성
     const requestBody = new FormData();
@@ -100,6 +102,8 @@ function Report2() {
         type: 'application/json',
       })
     );
+
+    console.log("이걸 전달", data);
 
     try {
       const response = await axios({
