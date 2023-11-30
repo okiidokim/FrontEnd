@@ -1,0 +1,79 @@
+.reportinfowrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.reportimg {
+  width: 320px;
+  border-radius: 8px;
+}
+.reportcontent {
+  gap: 20px;
+}
+.reportname,
+.reportplace,
+.reportduration,
+.reportdes,
+.reportisfree {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 4px;
+}
+.textname {
+  font-size: 12px;
+}
+.textcontent {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.adminvisitwrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+.adminvisitcontent {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  gap: 20px;
+}
+.reporterbox {
+  display: flex;
+  gap: 4px;
+  font-size: 12px;
+  align-items: baseline;
+  justify-content: end;
+}
+.reporter {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.regisbuttonrow {
+  padding-top: 32px;
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+}
+.regis,
+.noregis {
+  font-size: 14px;
+  width: 120px;
+  height: 20px;
+  background-color: #d9d9d9;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
+    inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
+    -1px -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
+  padding-top: 4px;
+}
+.regis:hover,
+.noregis:hover {
+  background-color: #018c0d;
+  font-weight: bold;
+  color: white;
+}

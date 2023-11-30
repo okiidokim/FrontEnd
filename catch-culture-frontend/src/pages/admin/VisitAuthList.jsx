@@ -3,12 +3,54 @@ import Backitem from '../../components/Backitem';
 import * as dayjs from 'dayjs'; //api 반환 받았을 때 사용 예정
 import { TbMapPinOff } from 'react-icons/tb';
 import './VisitAuthList.css';
+import axios from '../../api/axios';
+import { NavLink } from 'react-router-dom';
+
+function VisitAuthItem({ data }) {
+  dayjs.locale('ko');
+
+  return (
+    <>
+      {data.map((e, index) => (
+        <NavLink to={`/visitauth/${e.id}`} key={index}>
+          <div className="visitautheach" key={e.id}>
+            <hr />
+            <div className="nickdayrow">
+              <p>{e.nickname}</p>
+              <p className="visitauthday">
+                {e.createdAt === null ? (
+                  <></>
+                ) : (
+                  <>
+                    {dayjs(`${e.createdAt}`).format(
+                      'YY/MM/DD - dddd - HH:mm:ss'
+                    )}
+                  </>
+                )}
+              </p>
+            </div>
+            <p>{e.title}</p>
+          </div>
+        </NavLink>
+      ))}
+    </>
+  );
+}
 
 export default function VistiAuthList() {
-  const cnt = 12;
-  const nickname = '이름';
-  const title = '제목';
-  const createdAt = '2023-11-29 04:00:24';
+  const [cnt, setCnt] = useState(0);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(`admin/visit-auth/list?lastId=${cnt}`);
+      setCnt(res.data.numberOfElements);
+      setData(res.data.content);
+      console.log(res.data.content);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="authlistwrap">
       <Backitem />
@@ -26,14 +68,9 @@ export default function VistiAuthList() {
               </p>
             </div>
           ) : (
-            <div className="visitautheach">
-              <hr />
-              <div className="nickdayrow">
-                <p>{nickname}</p>
-                <p className="visitauthday">{createdAt}</p>
-              </div>
-              <p>{title}</p>
-            </div>
+            <>
+              <VisitAuthItem data={data} />
+            </>
           )}
         </div>
       </div>
