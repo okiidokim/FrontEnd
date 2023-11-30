@@ -15,12 +15,19 @@ function Report2() {
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [selectedCategory, setSelectedCategory] = useState(''); // 카테고리
   const [postalCode, setPostalCode] = useState(''); // 우편번호
   const [address, setAddress] = useState(''); // 도로명 주소
   const [eventSNS, setEventSNS] = useState(null);
   const [eventPhoneNumber, setEventPhoneNumber] = useState(null);
   const [eventWayToCome, setEventWayToCome] = useState(null);
   const [imgData, setImgData] = useState();
+
+  // 드롭다운 선택 시 카테고리 변경
+  const handleCategoryChange = event => {
+    setSelectedCategory(event.target.value);
+  };
 
   // 우편번호 찾기 모달창
   const handleModalOpen = () => {
@@ -54,6 +61,7 @@ function Report2() {
     event.preventDefault();
 
     // 값 추출
+    const category = document.querySelector('#category').value;
     const eventName = document.querySelector('#eventName').value; // 행사명
 
     // 상세주소
@@ -79,6 +87,7 @@ function Report2() {
     );
 
     let data = {
+      category: category,
       eventName: eventName,
       eventLocation: eventLocation,
       startDate: eventStartDate,
@@ -90,8 +99,6 @@ function Report2() {
       wayToCome: eventWayToCome,
     };
 
-    console.log("무료인가 유료인가:", free);
-
     // Form 데이터 생성
     const requestBody = new FormData();
 
@@ -102,8 +109,6 @@ function Report2() {
         type: 'application/json',
       })
     );
-
-    console.log("이걸 전달", data);
 
     try {
       const response = await axios({
@@ -134,12 +139,67 @@ function Report2() {
 
           {/* 행사 폼 */}
           <S.ReportForm onSubmit={handleSubmit}>
+            {/* 행사 카테고리 */}
+            <S.ReportEvent>
+              <S.ReportEventTitle>행사 카테고리 *</S.ReportEventTitle>
+              <S.ReportCategoryDropBox
+                id="category"
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+                required
+              >
+                <S.ReportCategoryDropBoxOption value="">
+                  카테고리를 선택하세요
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="POPUP_STORE">
+                  팝업스토어
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="FESTIVAL">
+                  축제
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="TRADITIONAL_MUSIC">
+                  국악
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="ORCHESTRA_CLASSIC">
+                  오케스트라/클래식
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="RECITAL">
+                  독주/독창회
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="DANCE">
+                  무용
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="CONCERT">
+                  콘서트
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="MOVIE">
+                  영화
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="THEATER">
+                  연극
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="MUSICAL_OPERA">
+                  뮤지컬/오페라
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="EDUCATION_EXPERIENCE">
+                  교육/체험
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="EXHIBITION_ART">
+                  전시/미술
+                </S.ReportCategoryDropBoxOption>
+                <S.ReportCategoryDropBoxOption value="ETC">
+                  기타
+                </S.ReportCategoryDropBoxOption>
+              </S.ReportCategoryDropBox>
+            </S.ReportEvent>
+
             {/* 행사명 */}
             <S.ReportEvent>
               <S.ReportEventTitle>행사명 *</S.ReportEventTitle>
               <S.ReportEventInput
                 type="text"
                 id="eventName"
+                // onChange={e => setEventName(e.target.value)}
                 placeholder="행사명을 입력해주세요."
                 required
               />
@@ -152,6 +212,7 @@ function Report2() {
                 <S.ReportEventAddressZipCode
                   type="text"
                   value={postalCode}
+                  onChange={e => setPostalCode(e.target.value)}
                   placeholder="우편번호를 입력하세요."
                   required
                 />
@@ -178,6 +239,7 @@ function Report2() {
               <S.ReportEventAddressMore
                 type="text"
                 value={address}
+                onChange={e => setAddress(e.target.value)}
                 placeholder="도로명 주소를 입력하세요."
                 required
               />
