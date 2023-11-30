@@ -199,6 +199,7 @@ function Report2() {
               <S.ReportEventInput
                 type="text"
                 id="eventName"
+                // onChange={e => setEventName(e.target.value)}
                 placeholder="행사명을 입력해주세요."
                 required
               />
@@ -211,6 +212,7 @@ function Report2() {
                 <S.ReportEventAddressZipCode
                   type="text"
                   value={postalCode}
+                  onChange={e => setPostalCode(e.target.value)}
                   placeholder="우편번호를 입력하세요."
                   required
                 />
@@ -237,6 +239,7 @@ function Report2() {
               <S.ReportEventAddressMore
                 type="text"
                 value={address}
+                onChange={e => setAddress(e.target.value)}
                 placeholder="도로명 주소를 입력하세요."
                 required
               />
