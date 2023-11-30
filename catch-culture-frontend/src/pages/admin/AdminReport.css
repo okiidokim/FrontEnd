@@ -21,13 +21,19 @@
   gap: 4px;
 }
 .textname {
+  display: flex;
+  position: relative;
   font-size: 12px;
+  gap: 4px;
 }
 .textcontent {
   font-size: 14px;
   font-weight: bold;
+  word-wrap: break-word;
 }
-
+.descut {
+  font-weight: 100;
+}
 .adminvisitwrap {
   display: flex;
   flex-direction: column;
@@ -70,6 +76,7 @@
     inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
     -1px -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
   padding-top: 4px;
+  margin-bottom: 40px;
 }
 .regis:hover,
 .noregis:hover {
