@@ -7,3 +7,4 @@ export const Map = styled.div`
     flex-grow: 1;
     flex-shrink: 1;
 `;
+

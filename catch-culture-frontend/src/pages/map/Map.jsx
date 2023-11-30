@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import axios from '../../api/axios'
 import CategorySelector from '../../components/categorySelector/CategorySelector';
+import MapOverlay from '../../components/mapOverlay/MapOverlay';
 
 const { kakao } = window;
 
@@ -63,17 +64,19 @@ function Map() {
     for(var i = 0; i < data.length; i++) {
       if(selectedCategories.includes(data[i].category)) {
         var marker = new kakao.maps.Marker({
-          position: new kakao.maps.LatLng(data[i].latitude, data[i].longitude) // 마커의 위치
+          position: new kakao.maps.LatLng(data[i].latitude, data[i].longitude), // 마커의 위치
+          clickable: true
         });
-        marker.setMap(map);
-
+        
         // 마커에 표시할 인포윈도우 설정
         var infowindow = new kakao.maps.InfoWindow({
-          content: data[i].title // 인포윈도우에 표시할 내용
+          content: data[i].title, // 인포윈도우에 표시할 내용
+          removable : true
         });
 
-        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+        kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
+
+        marker.setMap(map);
 
         markers.push(marker);
       }
@@ -104,8 +107,9 @@ function Map() {
 
   return (
     <>
+      
       <S.Map id="map" style={{width:'100%', height:'100%'}}>
-
+      <MapOverlay/>
       </S.Map>
       <CategorySelector
         selectedCategories={selectedCategories}
