@@ -3,6 +3,9 @@ import Backitem from '../../components/Backitem';
 import './PointHistory.css';
 import { BiSolidCoinStack } from 'react-icons/bi';
 import NoPointHistory from '../../components/search/noResult/NoPointHistory';
+import axios from '../../api/axios';
+import { NavLink } from 'react-router-dom';
+import { TbShoppingBag } from 'react-icons/tb';
 
 function Pointeach() {
   const ppm = '+'; //api
@@ -25,7 +28,7 @@ function Pointeach() {
 }
 
 function PointHistory() {
-  const cnt = 10;
+  const cnt = 7;
   const currpoint = 150;
   return (
     <div class="phisall">
@@ -46,6 +49,12 @@ function PointHistory() {
       ) : (
         <div className="pointhislist">{Array(cnt).fill(<Pointeach />)}</div>
       )}
+      <NavLink to="/pointusage">
+        <div className="gopointusage">
+          <TbShoppingBag size="48" />
+          <p>포인트 사용처</p>
+        </div>
+      </NavLink>
     </div>
   );
 }

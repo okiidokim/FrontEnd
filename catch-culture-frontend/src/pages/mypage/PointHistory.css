@@ -6,7 +6,7 @@
   align-items: center;
 }
 .pointbox {
-  padding-top: 40px;
+  padding-top: 12px;
 }
 .currentpoint {
   display: flex;
@@ -78,4 +78,26 @@
   display: flex;
   position: relative;
   flex-direction: column;
+}
+.gopointusage {
+  position: absolute;
+  top: 660px;
+  padding-top: 8px;
+  right: 52px;
+  height: 72px;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: #d9d9d9;
+  border-radius: 40px;
+  align-items: center;
+  box-shadow: inset 4px 4px 4px 0 rgba(255, 255, 255, 0.2),
+    inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
+    -2px -2px 2px 0 rgba(255, 255, 255, 0.2), 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+.gopointusage:hover {
+  background-color: #018c0d;
+  color: white;
 }
