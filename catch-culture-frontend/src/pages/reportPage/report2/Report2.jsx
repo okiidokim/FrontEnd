@@ -26,7 +26,6 @@ function Report2() {
 
   // 드롭다운 선택 시 카테고리 변경
   const handleCategoryChange = event => {
-    console.log(event.target.value);
     setSelectedCategory(event.target.value);
   };
 
@@ -100,8 +99,6 @@ function Report2() {
       wayToCome: eventWayToCome,
     };
 
-    console.log('무료인가 유료인가:', free);
-
     // Form 데이터 생성
     const requestBody = new FormData();
 
@@ -112,8 +109,6 @@ function Report2() {
         type: 'application/json',
       })
     );
-
-    console.log('이걸 전달', data);
 
     try {
       const response = await axios({

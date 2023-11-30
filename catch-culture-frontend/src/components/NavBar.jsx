@@ -49,10 +49,9 @@ const NavTab = styled(NavLink)`
 
 function NavBar() {
   const location = useLocation();
-  const isLoginPage = location.pathname ==="/";
-  console.log(isLoginPage);
-  
-  if(isLoginPage){
+  const isLoginPage = location.pathname === '/';
+
+  if (isLoginPage) {
     return null;
   }
 
