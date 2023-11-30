@@ -53,7 +53,7 @@ function Search() {
 
   const fetchData = async () => {
     try {
-      if (!selectedCategories.length === 0 || keyword) {
+      if (!(selectedCategories.length === 0) || keyword) {
         // URL 만들기 - 카테고리 선택
         const categoryUrl = selectedCategories
           .map(item => 'category=' + item)
@@ -67,7 +67,7 @@ function Search() {
 
         // 데이터 저장
         setData(response.data.content);
-        setCount(response.data.content.length);
+        setCount(response.data.totalElements);
 
       } else {
         setCount(0);
