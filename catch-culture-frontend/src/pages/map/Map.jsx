@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import axios from '../../api/axios'
 import CategorySelector from '../../components/categorySelector/CategorySelector';
-import MapOverlay from '../../components/mapOverlay/MapOverlay';
+import OverlayCard from '../../components/overlayCard/OverlayCard';
 
 const { kakao } = window;
 
@@ -109,7 +109,7 @@ function Map() {
     <>
       
       <S.Map id="map" style={{width:'100%', height:'100%'}}>
-      <MapOverlay/>
+      <OverlayCard/>
       </S.Map>
       <CategorySelector
         selectedCategories={selectedCategories}
