@@ -294,3 +294,34 @@ export const ReportEventInputDate = styled.input`
     color: #018c0d;
   }
 `;
+
+// 카테고리 선택 드롭박스
+export const ReportCategoryDropBox = styled.select`
+  display: flex;
+  width: 160px; /* 원하는 너비 값으로 설정 */
+  border-radius: 4px;
+  background-color: white;
+  text-decoration: none;
+  border: none;
+  border: 1px solid #000;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  padding: 10px 8px;
+  font-family: NotoSansKR_Regular;
+  cursor: pointer;
+  &:focus {
+    border: none;
+    outline: 2px solid #71be77;
+    border-radius: 3px;
+    color: #018c0d;
+  }
+`;
+
+export const ReportCategoryDropBoxOption = styled.option`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
