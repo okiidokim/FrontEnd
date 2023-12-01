@@ -82,9 +82,9 @@
 .gopointusage {
   position: absolute;
   top: 660px;
-  padding-top: 8px;
+  padding-top: 10px;
   right: 52px;
-  height: 72px;
+  height: 70px;
   width: 80px;
   display: flex;
   flex-direction: column;
