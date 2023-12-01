@@ -1,11 +1,10 @@
 import React from 'react';
 import Backitem from '../../components/Backitem';
 import './PointHistory.css';
-import { BiSolidCoinStack } from 'react-icons/bi';
 import NoPointHistory from '../../components/search/noResult/NoPointHistory';
 import axios from '../../api/axios';
 import { NavLink } from 'react-router-dom';
-import { TbShoppingBag } from 'react-icons/tb';
+import { TbShoppingCart, TbCoins } from 'react-icons/tb';
 
 function Pointeach() {
   const ppm = '+'; //api
@@ -35,9 +34,9 @@ function PointHistory() {
       <Backitem />
       <div className="pointbox">
         <div className="currentpoint">
-          <div className="textcp">현재포인트</div>
+          <div className="textcp">현재 포인트</div>
           <div className="curricon">
-            <BiSolidCoinStack />
+            <TbCoins />
             {currpoint}
           </div>
         </div>
@@ -51,7 +50,7 @@ function PointHistory() {
       )}
       <NavLink to="/pointusage">
         <div className="gopointusage">
-          <TbShoppingBag size="48" />
+          <TbShoppingCart size="44" />
           <p>포인트 사용처</p>
         </div>
       </NavLink>

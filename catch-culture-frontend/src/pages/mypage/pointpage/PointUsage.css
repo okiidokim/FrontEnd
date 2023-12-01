@@ -1,0 +1,100 @@
+.usagewrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 52px;
+}
+.usagebody {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+}
+
+.sellitems {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  font-weight: bold;
+}
+.emogee,
+.coffee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.emogeedetailbutton {
+  text-decoration: underline;
+  font-size: 10px;
+}
+.emogeeimg,
+.coffeeimg {
+  height: 120px;
+  border-radius: 60px;
+}
+.emogeetext,
+.coffeetext {
+  padding-top: 4px;
+  text-align: center;
+  font-size: 14px;
+}
+.buybutton {
+  font-size: 14px;
+  background-color: #d9d9d9;
+  height: 20px;
+  width: 100px;
+  border-radius: 12px;
+  text-align: center;
+  padding-top: 4px;
+  cursor: pointer;
+  box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
+    inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
+    -1px -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+.buybutton:hover {
+  background-color: #018c0d;
+}
+
+.modalbody {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 44%;
+  background-color: #d9d9d9;
+  height: 88px;
+  width: 216px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.yesorno {
+  display: flex;
+  gap: 12px;
+}
+.yesbutton,
+.nobutton {
+  width: 80px;
+  height: 18px;
+  padding-top: 2px;
+  border-radius: 10px;
+  background-color: #acacac;
+  cursor: pointer;
+  box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
+    inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
+    -1px -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+.yesbutton:hover,
+.nobutton:hover {
+  background-color: #018c0d;
+  font-weight: bold;
+  color: white;
+}
