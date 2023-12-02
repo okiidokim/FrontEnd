@@ -61,16 +61,16 @@ function PointLevel() {
         </div>
       </div>
       <div className="mylevel">
-        <div className="mylevtext">현재 내 등급</div>
-        <div className="mylevimg">
-          <img className="mylevimgbig" src={Level0} />
-          <div className="mylevtextbig">
-            Catchy
-            <br />
-            Green
-          </div>
-        </div>
+        <div className="mylevtext">포인트 등급 안내</div>
         <div className="restlev">
+          <div className="mylevimg">
+            <img className="mylevimgbig" src={Level0} />
+            <div className="mylevtextbig">
+              Catchy
+              <br />
+              Green
+            </div>
+          </div>
           <div className="rest1">
             <img className="mylevimg1" src={Level1} />
             <div className="mylevtext1">
@@ -79,6 +79,8 @@ function PointLevel() {
               Yellow
             </div>
           </div>
+        </div>
+        <div className="restlev">
           <div className="rest2">
             <img className="mylevimg2" src={Level2} />
             <div className="mylevtext2">
