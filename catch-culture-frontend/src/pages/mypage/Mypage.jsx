@@ -76,19 +76,19 @@ function Mypage() {
             <div className="row1">
               <NavLink to="/report/list">
                 <button className="notify">
-                  <TbFileImport size="40" />
+                  <TbFileImport size="44" />
                   제보
                 </button>
               </NavLink>
               <NavLink to="/point-history">
                 <button className="pointhis">
-                  <TbCoin size="40" />
+                  <TbCoin size="44" />
                   <p>포인트 내역</p>
                 </button>
               </NavLink>
               <NavLink to="/review/list">
                 <button className="myreviews">
-                  <TbMessage size="40" />
+                  <TbMessage size="44" />
                   <p>리뷰 내역</p>
                 </button>
               </NavLink>
@@ -96,19 +96,19 @@ function Mypage() {
             <div className="row2">
               <NavLink to="/like/list">
                 <button className="mylikes">
-                  <TbHeart size="40" />
+                  <TbHeart size="44" />
                   <p>좋아요</p>
                 </button>
               </NavLink>
               <NavLink to="/bookmark/list">
                 <button className="mybookmarks">
-                  <TbStar size="40" />
+                  <TbStar size="44" />
                   <p>즐겨찾기</p>
                 </button>
               </NavLink>
               <NavLink to="/visited/list">
                 <button className="visited">
-                  <TbMapPin size="40" />
+                  <TbMapPin size="44" />
                   <p>방문 내역</p>
                 </button>
               </NavLink>
@@ -118,7 +118,7 @@ function Mypage() {
             <div className="pointlevelwrap">
               <img className="level0img" src={Level0} />
               <NavLink to="/level">
-                <button className="level">catchy 레벨 확인</button>
+                <button className="level">포인트 레벨 안내</button>
               </NavLink>
             </div>
           </div>

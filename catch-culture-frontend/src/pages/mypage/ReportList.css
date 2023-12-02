@@ -1,12 +1,12 @@
-.reportcontent {
+.reportwrap {
   display: flex;
   position: relative;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 .reptitle {
-  padding-top: 12px;
   font-weight: bold;
+  padding-top: 4px;
 }
 .repduration {
   font-size: 14px;
@@ -16,35 +16,41 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  gap: 12px;
+  gap: 16px;
   align-items: center;
   width: 320px;
 }
 .reporttext {
   display: flex;
+  flex-direction: column;
   position: relative;
   font-weight: bold;
   font-size: 20px;
   justify-content: center;
-  padding-top: 14px;
+  align-items: center;
+  padding-top: 12px;
+  gap: 4px;
 }
-.repinfo {
+.repinfo,
+.reportcnt {
   font-size: 12px;
   display: flex;
   position: relative;
   text-align: center;
+  font-weight: 100;
 }
 .replist {
   display: flex;
   flex-direction: column;
   position: relative;
   gap: 12px;
-  padding-bottom: 12px;
+  padding-bottom: 16px;
 }
 
 .repb {
   justify-content: center;
   display: flex;
+  padding-bottom: 4px;
 }
 .reportbutton {
   width: 140px;

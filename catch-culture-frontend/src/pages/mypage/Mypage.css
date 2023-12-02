@@ -12,7 +12,7 @@
   justify-content: center;
   gap: 72px;
   text-decoration: none;
-  padding-top: 64px;
+  padding-top: 52px;
 }
 
 /* 개인정보 수정 */
@@ -34,12 +34,12 @@
 .logout {
   cursor: pointer;
   width: 160px;
-  height: 32px;
+  height: 28px;
   border: none;
   background-color: #d9d9d9;
-  border-radius: 4px;
-  box-shadow: inset 4px 4px 4px 0 rgba(255, 255, 255, 0.2),
-    inset -4px -4px 4px 0 rgba(116, 125, 136, 0.2),
+  border-radius: 16px;
+  box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
+    inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
     -1px -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -56,14 +56,14 @@
   position: relative;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 12px;
 }
 
 .row1,
 .row2 {
   display: flex;
   flex-direction: row;
-  gap: 24px;
+  gap: 12px;
 }
 
 .notify,
@@ -74,18 +74,18 @@
 .visited {
   display: flex;
   flex-direction: column;
-  width: 88px;
-  height: 88px;
+  width: 100px;
+  height: 100px;
   border: none;
-  border-radius: 4px;
+  border-radius: 24px;
+  gap: 4px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  gap: 8px;
   background-color: #d9d9d9;
   text-decoration: none;
-  box-shadow: inset 4px 4px 4px 0 rgba(255, 255, 255, 0.2),
-    inset -4px -4px 4px 0 rgba(116, 125, 136, 0.2),
+  box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
+    inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
     -1px -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -114,22 +114,24 @@
   position: relative;
   flex-direction: row;
   justify-content: center;
+  padding-top: 16px;
+  padding-bottom: 20px;
 }
 
 .pointlevelwrap {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 16px;
 }
 
 .level {
   cursor: pointer;
   width: 160px;
-  height: 32px;
+  height: 28px;
   background-color: #d9d9d9;
   border: none;
-  border-radius: 4px;
-  box-shadow: inset 4px 4px 4px 0 rgba(255, 255, 255, 0.2),
-    inset -4px -4px 4px 0 rgba(116, 125, 136, 0.2),
+  border-radius: 14px;
+  box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
+    inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
     -1px -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
