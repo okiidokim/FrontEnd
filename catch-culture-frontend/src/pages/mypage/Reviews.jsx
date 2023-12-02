@@ -3,46 +3,45 @@ import Backitem from '../../components/Backitem';
 import NoReviews from '../../components/search/noResult/NoReviews';
 import './Reviews.css';
 import axios from '../../api/axios';
-import { TbStar, TbStarFilled } from 'react-icons/tb';
+import { TbStarFilled } from 'react-icons/tb';
 
 function MyReviewCard({ data }) {
   const setRatingStar = (rating) => {
     if (rating === 1) {
       return (
         <>
-          <TbStarFilled />
-          <TbStar />
-          <TbStar />
-          <TbStar />
-          <TbStar />
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#d9d9d9" />
+          <TbStarFilled color="#d9d9d9" />
+          <TbStarFilled color="#d9d9d9" />
+          <TbStarFilled color="#d9d9d9" />
         </>
       );
     } else if (rating === 2) {
       return (
         <>
-          <TbStarFilled />
-          <TbStarFilled />
-
-          <TbStar />
-          <TbStar />
-          <TbStar />
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#d9d9d9" />
+          <TbStarFilled color="#d9d9d9" />
+          <TbStarFilled color="#d9d9d9" />
         </>
       );
     } else if (rating === 3) {
       <>
-        <TbStarFilled />
-        <TbStarFilled />
-        <TbStarFilled />
-        <TbStar />
-        <TbStar />
+        <TbStarFilled color="#fff000" />
+        <TbStarFilled color="#fff000" />
+        <TbStarFilled color="#fff000" />
+        <TbStarFilled color="#d9d9d9" />
+        <TbStarFilled color="#d9d9d9" />
       </>;
     } else if (rating === 4) {
       <>
-        <TbStarFilled />
-        <TbStarFilled />
-        <TbStarFilled />
-        <TbStarFilled />
-        <TbStar />
+        <TbStarFilled color="#fff000" />
+        <TbStarFilled color="#fff000" />
+        <TbStarFilled color="#fff000" />
+        <TbStarFilled color="#fff000" />
+        <TbStarFilled color="#d9d9d9" />
       </>;
     } else {
       <>
