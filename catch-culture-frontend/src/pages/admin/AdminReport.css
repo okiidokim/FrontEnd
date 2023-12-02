@@ -8,6 +8,8 @@
   border-radius: 8px;
 }
 .reportcontent {
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 .reportname,

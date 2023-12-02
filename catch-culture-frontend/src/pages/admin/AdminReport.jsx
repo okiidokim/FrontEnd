@@ -47,6 +47,13 @@ function ReportInfo(params) {
           </p>
           <p className="textcontent">{d.title} </p>
         </div>
+        <div className="reportcate">
+          <p className="textname">
+            <TbCategory />
+            행사 카테고리
+          </p>
+          <p className="textcontent">{d.cate}</p>
+        </div>
         <div className="reportplace">
           <p className="textname">
             <TbLocation />
@@ -62,13 +69,6 @@ function ReportInfo(params) {
           <p className="textcontent">
             {d.startDate} ~ {d.endDate}
           </p>
-        </div>
-        <div className="reportcate">
-          <p className="textname">
-            <TbCategory />
-            행사 카테고리
-          </p>
-          <p className="textcontent">{d.cate}</p>
         </div>
         <div className="reportdes">
           <p className="textname">
@@ -145,15 +145,6 @@ function ReportInfo(params) {
           </div>
         )}
       </div>
-
-      <div className="regisbuttonrow">
-        <NavLink to="/reportauth/list">
-          <div className="regis">등록</div>
-        </NavLink>
-        <NavLink to="/reportauth/list">
-          <div className="noregis">미등록</div>
-        </NavLink>
-      </div>
     </div>
   );
 }
@@ -163,6 +154,7 @@ export default function AdminReport() {
   const params = useParams();
   const reportId = params.id;
   const [nickname, setNickname] = useState('');
+  const [userId, setUserid] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -187,6 +179,7 @@ export default function AdminReport() {
           longitude: res.data.culturalEventDetail.longitude,
           eventLink: res.data.culturalEventDetail.reservationLink,
         };
+        setUserid(res.data.userId);
         setNickname(res.data.nickname);
       } catch (e) {
         console.log(e);
@@ -194,6 +187,14 @@ export default function AdminReport() {
     };
     fetchData();
   }, []);
+
+  const reportSubmit = async (e) => {
+    try {
+      axios.post(`/admin/event-report/${parseInt(reportId)}?userId=${userId}`);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div className="adminvisitwrap">
@@ -203,6 +204,18 @@ export default function AdminReport() {
           <p>제보자 : </p> <p className="reporter">{nickname}</p>
         </div>
         <ReportInfo data={data} />
+        <div className="regisbuttonrow">
+          <NavLink to="/reportauth/list">
+            <div className="regis" type="submit" onClick={reportSubmit}>
+              등록
+            </div>
+          </NavLink>
+          <NavLink to="/reportauth/list">
+            <div className="noregis" type="submit">
+              미등록
+            </div>
+          </NavLink>
+        </div>
       </div>
     </div>
   );
