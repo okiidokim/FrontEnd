@@ -9,7 +9,7 @@ import axios from '../../../api/axios';
 
 function SellItem({ data }) {
   const [modal, setModal] = useState(false);
-  const [name, setName] = useState(data.name);
+  const [name, setName] = useState(data.desc);
   const [price, setPrice] = useState(data.price);
 
   return (
@@ -25,13 +25,13 @@ function SellItem({ data }) {
           )}
           <img className="emogeeimg" src={e.photoUrl}></img>
           <p className="emogeetext">
-            {e.name} <br /> {e.price}p
+            {e.description} <br /> {e.price}p
           </p>
           <div
             className="buybutton"
             onClick={() => {
               setModal(true);
-              setName(e.name);
+              setName(e.description);
               setPrice(e.price);
             }}
           >
@@ -67,6 +67,7 @@ export default function PointUsage() {
       const resCurrpoint = await axios.get(`/user/point`);
       setCurrpoint(resCurrpoint.data);
       setData(res.data);
+      console.log(res.data);
     };
     fetchData();
   }, []);
