@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 52px;
+  gap: 60px;
 }
 .usagebody {
   width: 320px;
@@ -10,6 +10,18 @@
   flex-direction: column;
   align-items: center;
   gap: 100px;
+}
+
+.usagecurrentpoint {
+  background-color: #d9d9d9;
+  width: 120px;
+  height: 52px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-radius: 8px;
 }
 
 .sellitems {
@@ -62,7 +74,7 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 44%;
+  top: 40%;
   background-color: #d9d9d9;
   height: 88px;
   width: 216px;
