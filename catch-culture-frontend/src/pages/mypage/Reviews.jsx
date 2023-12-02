@@ -1,12 +1,96 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
 import Backitem from '../../components/Backitem';
-import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import NoReviews from '../../components/search/noResult/NoReviews';
 import './Reviews.css';
+import axios from '../../api/axios';
+import { TbStar, TbStarFilled } from 'react-icons/tb';
+
+function MyReviewCard({ data }) {
+  const setRatingStar = (rating) => {
+    if (rating === 1) {
+      return (
+        <>
+          <TbStarFilled />
+          <TbStar />
+          <TbStar />
+          <TbStar />
+          <TbStar />
+        </>
+      );
+    } else if (rating === 2) {
+      return (
+        <>
+          <TbStarFilled />
+          <TbStarFilled />
+
+          <TbStar />
+          <TbStar />
+          <TbStar />
+        </>
+      );
+    } else if (rating === 3) {
+      <>
+        <TbStarFilled />
+        <TbStarFilled />
+        <TbStarFilled />
+        <TbStar />
+        <TbStar />
+      </>;
+    } else if (rating === 4) {
+      <>
+        <TbStarFilled />
+        <TbStarFilled />
+        <TbStarFilled />
+        <TbStarFilled />
+        <TbStar />
+      </>;
+    } else {
+      <>
+        <TbStarFilled />
+        <TbStarFilled />
+        <TbStarFilled />
+        <TbStarFilled />
+        <TbStarFilled />
+      </>;
+    }
+  };
+
+  return (
+    <>
+      {data.map((e) => (
+        <div className="reviewcardwrap" key={e.id}>
+          <div className="createdAtfirstrow">{e.createdAt}</div>
+          <div className="reviewcontentrow">
+            <img className="reviewimg" src={e.reviewStoredFileUrl} />
+            <div className="reviewdescrip">{e.description}</div>
+          </div>
+          <div className="myratingstar">{setRatingStar(e.rating)}</div>
+          <div className="eventinfoinR">
+            <img className="eventimginR" src={e.eventStoredFileUrl} />
+            <div className="eventnameinR">
+              <p className="nametext">행사명</p>
+              {e.culturalEventTitle}
+            </div>
+          </div>
+        </div>
+      ))}
+    </>
+  );
+}
 
 function Reviews() {
-  const cnt = 9;
+  const [cnt, setCnt] = useState(0);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(`/user/my-reviews?page=0&size=5`);
+      setCnt(res.data.totalElements);
+      setData(res.data.content);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="reviewall">
       <Backitem />
@@ -22,23 +106,7 @@ function Reviews() {
             </div>
           ) : (
             <div>
-              {Array(cnt).fill(
-                <ReviewCard
-                  data={{
-                    id: 1,
-                    nickname: 'string',
-                    description: 'string',
-                    storedFileUrl: [
-                      'https://storage.googleapis.com/elegant-bucket/KakaoTalk_20231109_140116686_01.jpg',
-                    ],
-                    rating: 3,
-                    createdAt: '2023-11-22',
-                    eventImgUrl: null,
-                    eventTitle: null,
-                    isMyReview: false,
-                  }}
-                />
-              )}
+              <MyReviewCard data={data} />
             </div>
           )}
         </div>
