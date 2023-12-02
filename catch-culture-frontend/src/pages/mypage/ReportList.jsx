@@ -45,7 +45,8 @@ function ReportList() {
       </div>
       <div className="repinfo">
         내가 제보한 목록을 확인할 수 있는 페이지입니다. <br />
-        제보하기 버튼을 누르면 새 문화행사를 제보할 수 있습니다.
+        제보하기 버튼을 누르면 새 문화행사를 제보할 수 있습니다. <br />
+        미등록된 제보 내역만 표시됩니다.
       </div>
       <div className="reportcntcheck">
         {cnt === 0 ? (
