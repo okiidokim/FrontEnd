@@ -45,22 +45,37 @@ function PointHistory() {
   const [data, setData] = useState([]);
   const [cnt, setCnt] = useState(0);
   const [currpoint, setCurrpoint] = useState(0);
-  const page = 0;
-  const size = 7;
+  const [pagenum, setPageNum] = useState(0);
+  const [dataList, setDataList] = useState([]);
+
+  const onScroll = () => {
+    if (
+      window.scrollY + window.innerHeight >
+      document.documentElement.scrollHeight - 40
+    ) {
+      setPageNum(pagenum + 1);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('touchmove', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('touchmove', onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(
-        `/user/point-history?page=${page}&size=${size}`
-      );
+      const res = await axios.get(`/user/point-history?page=${pagenum}&size=9`);
       const respoint = await axios.get(`/user/point`);
       setCnt(res.data.totalElements);
       setData(res.data.content);
+      setDataList(dataList.concat(res.data.content));
       setCurrpoint(respoint.data);
     };
     fetchData();
-  }, []);
-  console.log(currpoint);
+  }, [pagenum]);
 
   return (
     <div class="phisall">
@@ -88,7 +103,7 @@ function PointHistory() {
             </>
           ) : (
             <>
-              <Pointeach data={data} />
+              <Pointeach data={dataList} />
             </>
           )}
         </div>

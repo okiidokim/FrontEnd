@@ -31,7 +31,7 @@ function ReportList() {
   const onScroll = () => {
     if (
       window.scrollY + window.innerHeight >
-      document.documentElement.scrollHeight - 40
+      document.documentElement.scrollHeight - 10
     ) {
       setPageNum(pagenum + 1);
     }

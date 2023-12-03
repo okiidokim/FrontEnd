@@ -10,7 +10,6 @@ import './BookmarkList.css';
 function Likes() {
   const { state } = useLocation();
   const [cnt, setCnt] = useState(0);
-  const offsetnum = 0;
   const category = state && state.category;
 
   // state 값 유무에 따른 초기값 설정
@@ -22,16 +21,32 @@ function Likes() {
 
   // data
   const [data, setData] = useState([]);
+  const [pagenum, setPageNum] = useState(0);
+  const [dataList, setDataList] = useState([]);
+  const [pagecnt, setPagecnt] = useState(0);
+  const onScroll = () => {
+    if (pagecnt === 8) {
+      setPageNum(pagenum + 1);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('touchmove', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('touchmove', onScroll);
+    };
+  }, []);
 
   // 카테고리 바뀔 때 마다 리렌더링
   useEffect(() => {
     fetchData();
-  }, [selectedCategories]);
+  }, [selectedCategories, pagenum]);
 
   // 초기
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [pagenum]);
 
   const fetchData = async () => {
     try {
@@ -41,12 +56,14 @@ function Likes() {
         .join('&');
 
       const response = await axios.get(
-        `/user/cultural-event?${categoryUrl}&offset=${offsetnum}&classification=LIKE`
+        `/user/cultural-event?${categoryUrl}&offset=${pagenum}&classification=LIKE`
       );
 
       // 데이터 저장
       setData(response.data.content);
-      setCnt(response.data.numberOfElements);
+      setCnt(response.data.totalElements);
+      setDataList(dataList.concat(res.data.content));
+      setPagecnt(response.data.numberOfElements);
     } catch (e) {
       console.log(e);
     }
