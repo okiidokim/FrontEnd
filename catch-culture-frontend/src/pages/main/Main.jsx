@@ -6,7 +6,6 @@ import { SyncLoader } from 'react-spinners';
 
 import BannerImg1 from '../../assets/images/main/banner1.png';
 import BannerImg2 from '../../assets/images/main/banner2.png';
-import BannerImg3 from '../../assets/images/main/banner3.png';
 import EventCard from '../../components/eventCard/EventCard';
 import SearchBox from '../../components/search/searchBox/SearchBox';
 
@@ -56,17 +55,10 @@ function Main() {
         <S.Banner>
           <S.MySwiper pagination={true} modules={[Pagination]}>
             <SwiperSlide>
-              {/* <S.SwiperSlideImg src={BannerImg1} alt="배너 이미지" /> */}
-              <S.SwiperSlideImg
-                src="https://storage.googleapis.com/elegant-bucket/jinwoo.png"
-                alt="배너 이미지"
-              />
+              <S.SwiperSlideImg src={BannerImg1} alt="배너 이미지" />
             </SwiperSlide>
             <SwiperSlide>
               <S.SwiperSlideImg src={BannerImg2} alt="배너 이미지" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <S.SwiperSlideImg src={BannerImg3} alt="배너 이미지" />
             </SwiperSlide>
           </S.MySwiper>
         </S.Banner>
