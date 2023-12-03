@@ -1,5 +1,5 @@
 import * as S from './style.jsx';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { TbMessageOff } from 'react-icons/tb';
 
 import ReviewCard from '../../../components/ReviewCard/ReviewCard';
@@ -103,6 +103,22 @@ function EventReview ( params ) {
         setIsLoading(true);
         fetchReviewList();
     }
+
+    // 행사 설명 더보기 스위치
+    const [isShowMoreTitle, setIsShowMoreTitle] = useState(false);
+    // 글자 수 제한
+    const titleLimit = 14;
+
+    // 글자 자르기
+    const getTitle = useMemo(() => {
+        if (params.data.title.length > titleLimit) {
+            if (isShowMoreTitle)
+                return params.data.title;
+            else
+                return params.data.title.slice(0, titleLimit);
+        }
+        return params.data.title;
+    }, [isShowMoreTitle]);
 
     // 카테고리 한글로 변환
     const printCategory = (category) => {
@@ -233,8 +249,12 @@ function EventReview ( params ) {
     return (
         <S.EventInfo>
             {/* 행사 제목 */}
-            <S.TitleArea>
-                {title}
+            <S.TitleArea onClick={() => setIsShowMoreTitle(!isShowMoreTitle)}>
+                { getTitle }
+                {/* 더보기 버튼 */}
+                <span style={{color:'grey'}}>
+                    {params.data.title.length > titleLimit ? (isShowMoreTitle ? '' : ' ...') : null}
+                </span>
             </S.TitleArea>
 
             {/* 카테고리 영역 */}

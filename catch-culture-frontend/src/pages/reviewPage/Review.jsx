@@ -19,6 +19,8 @@ function Review ( ) {
     const [imageData, setImageData] = useState();
     const [description, setDescription] = useState("");
 
+    const [isMoreTitle, setIsMoreTitle] = useState(false);
+
     useEffect(() => {
         fetchData();
     }, []);
@@ -92,7 +94,19 @@ function Review ( ) {
             <S.Content onSubmit={handleSubmit}>
                 {/* 행사 제목 */}
                 <S.TitleArea>
-                    {title}
+                    {title == null ? 
+                        title
+                        :
+                        (
+                            title.length < 14 ? 
+                            title 
+                            :
+                            <div onClick={() => setIsMoreTitle(!isMoreTitle)}>
+                                {!isMoreTitle && `${title.slice(0, 14)}...`}
+                                {isMoreTitle && title}
+                            </div>
+                        )
+                    }
                 </S.TitleArea>
 
                 <SetRating setRating={handleRating} required/>
