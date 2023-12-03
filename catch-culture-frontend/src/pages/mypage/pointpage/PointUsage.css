@@ -93,11 +93,12 @@
   gap: 12px;
 }
 .yesbutton,
-.nobutton {
+.nobutton,
+.checkbutton {
   width: 80px;
   height: 18px;
-  padding-top: 2px;
-  border-radius: 10px;
+  padding-top: 4px;
+  border-radius: 11px;
   background-color: #acacac;
   cursor: pointer;
   box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
@@ -105,7 +106,8 @@
     -1px -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 .yesbutton:hover,
-.nobutton:hover {
+.nobutton:hover,
+.checkbutton:hover {
   background-color: #018c0d;
   font-weight: bold;
   color: white;
