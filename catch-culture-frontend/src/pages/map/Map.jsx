@@ -260,7 +260,7 @@ function Map() {
   // 카테고리별 색 지정
   const getCategoryMarker = category => {
     switch (category) {
-      case 'POPUP-STORE':
+      case 'POPUP_STORE':
         return m1;
       case 'FESTIVAL':
         return m2;

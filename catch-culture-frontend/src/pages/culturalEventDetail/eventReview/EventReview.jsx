@@ -123,7 +123,7 @@ function EventReview ( params ) {
     // 카테고리 한글로 변환
     const printCategory = (category) => {
         switch(category) {
-            case "POPUP-STORE" : return "팝업 스토어";
+            case "POPUP_STORE" : return "팝업 스토어";
             case "FESTIVAL" : return "축제";
             case "TRADITIONAL_MUSIC" : return "국악";
             case "ORCHESTRA_CLASSIC" : return "오케스트라 / 클래식";
