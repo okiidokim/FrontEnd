@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { SyncLoader } from 'react-spinners';
 
 // 검색 페이지
 export const SearchWrapper = styled.div`
@@ -35,4 +36,11 @@ export const SortSelectorWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   margin: 20px 0px 28px 0px;
+`;
+
+export const SyncLoaderWrapper = styled.div`
+  display: flex;
+  min-height: 300px;
+  justify-content: center;
+  align-items: center;
 `;

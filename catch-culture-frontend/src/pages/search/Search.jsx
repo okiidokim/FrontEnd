@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as S from './style';
 import { useLocation } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
+import { FadeLoader, SyncLoader } from 'react-spinners';
 
 // 컴포넌트
 import SearchBox from '../../components/search/searchBox/SearchBox';
@@ -53,8 +54,11 @@ function Search() {
     }
   }, [inView]);
 
+  // 초기 데이터
   const fetchData = async () => {
     try {
+      setIsLoading(true);
+
       if (!(selectedCategories.length === 0) || keyword) {
         // URL 만들기 - 카테고리 선택
         const categoryUrl = selectedCategories
@@ -76,11 +80,14 @@ function Search() {
       } else {
         setCount(0);
       }
+      setIsLoading(false);
     } catch (e) {
       console.log(e);
+      setIsLoading(false);
     }
   };
 
+  // 무한 스크롤
   const fetchScroll = async () => {
     try {
       if (!(selectedCategories.length === 0) || keyword) {
@@ -146,7 +153,11 @@ function Search() {
         </S.SortSelectorWrapper>
 
         {/* 문화 행사 출력 */}
-        {count === 0 ? (
+        {isLoading ? (
+          <S.SyncLoaderWrapper>
+            <SyncLoader color="#018C0D" />
+          </S.SyncLoaderWrapper>
+        ) : count === 0 ? (
           <>
             <NoResult />
           </>
