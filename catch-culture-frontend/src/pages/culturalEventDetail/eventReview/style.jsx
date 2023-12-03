@@ -14,11 +14,10 @@ export const EventInfo = styled.div`
 `;
 
 export const TitleArea = styled.div`
-    max-width: 300px;
+    width: 300px;
     min-height: 38px;
     text-align: center;
-    font: 16px bold;
-    font-weight: bold;
+    font: 24px bold;
     font-family: NotoSansKR_Bold;
     margin-top: 20px;
     margin-bottom: 10px;

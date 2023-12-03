@@ -16,6 +16,8 @@ function VisitAuth() {
     const [imageSrc3, setImageSrc3] = useState();
     const [imagefiles, setImagefiles] = useState();
 
+    const [isMoreTitle, setIsMoreTitle] = useState(false);
+
     useEffect(() => {
         fetchData();
     }, []);
@@ -123,7 +125,19 @@ function VisitAuth() {
 
             <S.Container onSubmit={handleSubmit}>
                 <S.TitleArea>
-                    {title}
+                    {title == null ? 
+                        title
+                        :
+                        (
+                            title.length < 14 ? 
+                            title 
+                            :
+                            <div onClick={() => setIsMoreTitle(!isMoreTitle)}>
+                                {!isMoreTitle && `${title.slice(0, 14)}...`}
+                                {isMoreTitle && title}
+                            </div>
+                        )
+                    }
                 </S.TitleArea>
                 <S.SubTitle>
                     사진 등록 (최대 3개)
