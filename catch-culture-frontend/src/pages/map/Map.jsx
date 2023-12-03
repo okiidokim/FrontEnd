@@ -4,16 +4,20 @@ import './style.css'
 import { Navigate, useLocation } from 'react-router-dom';
 import axios from '../../api/axios'
 import CategorySelector from '../../components/categorySelector/CategorySelector';
-import OverlayCard from '../../components/overlayCard/OverlayCard';
+
+import m1 from '../../assets/images/marker/m1.PNG'
+import m2 from '../../assets/images/marker/m2.PNG'
+import m3 from '../../assets/images/marker/m3.PNG'
+import m4 from '../../assets/images/marker/m4.PNG'
+import m5 from '../../assets/images/marker/m5.PNG'
+import m6 from '../../assets/images/marker/m6.PNG'
+import m7 from '../../assets/images/marker/m7.PNG'
+import m8 from '../../assets/images/marker/m8.PNG'
+import m9 from '../../assets/images/marker/m9.PNG'
+import m10 from '../../assets/images/marker/m10.PNG'
+import m11 from '../../assets/images/marker/m11.PNG'
 
 const { kakao } = window;
-
-/**
- * TODO
- * closeOverlay() 함수 생성
- * OverlayCard params에 closeOverlay, data
- * overlaycard 생성
- */
 
 function Map() {
   const [map, setMap] = useState();
@@ -27,6 +31,12 @@ function Map() {
   const category = state && state.category;
   const initialCategories = category ? category : [];
   const [selectedCategories, setSelectedCategories] = useState(initialCategories);
+
+  const imageSize = new kakao.maps.Size(24, 32);
+  const imageOption = {  
+    spriteOrigin: new kakao.maps.Point(0, 0),    
+    spriteSize: new kakao.maps.Size(24, 32)  
+  };    
 
   useEffect(() => {
     initMap();
@@ -47,7 +57,7 @@ function Map() {
       const response = await axios.get(
         `cultural-event/map`
       )
-      handleEventData(response.data)
+      handleEventData(response.data);
     } catch(e) {
 
     }
@@ -72,10 +82,6 @@ function Map() {
       return '#018C0D';
     }
   };
-  //TODO react icons 담기
-  // closeOverlay 적용
-  // react-dom 오류
-  // 값 적용
 
   const makeMarker = (data) => {
     clearScreen();
@@ -86,10 +92,12 @@ function Map() {
     data.forEach(data => {
       if(selectedCategories.includes(data.category)) {
 
+        var markerImage = new kakao.maps.MarkerImage(getCategoryMarker(data.category), imageSize, imageOption);
+
         // 마커 생성
         var marker = new kakao.maps.Marker({
           position: new kakao.maps.LatLng(data.latitude, data.longitude), // 마커의 위치
-          clickable: true
+          image: markerImage
         });
 
         // 마커에 표시할 커스텀오버레이
@@ -98,7 +106,6 @@ function Map() {
         });
 
         // Overlay 정보 생성
-        // overlay card container
         const overlayCard = document.createElement('div');
         overlayCard.classList.add('overlayCard');
 
@@ -107,7 +114,6 @@ function Map() {
         overlayContent.classList.add('overlayContent');
         overlayCard.appendChild(overlayContent);
 
-        // close button
         const closeBtn = document.createElement('div');
         closeBtn.classList.add('close');
         closeBtn.innerHTML = `
@@ -236,6 +242,25 @@ function Map() {
     markers.splice(0);
     overlays.splice(0);
   }
+
+  // 카테고리별 색 지정
+  const getCategoryMarker = (category) => {
+    switch(category) {
+        case "POPUP-STORE" : return m1;
+        case "FESTIVAL" : return m2;
+        case "TRADITIONAL_MUSIC" : return m3;
+        case "ORCHESTRA_CLASSIC" : return m4;
+        case "RECITAL" : return m4;
+        case "DANCE" : return m5;
+        case "CONCERT" : return m6;
+        case "MOVIE" : return m7;
+        case "THEATER" : return m8;
+        case "MUSICAL_OPERA" : return m9;
+        case "EDUCATION_EXPERIENCE" : return m10;
+        case "EXHIBITION_ART" : return m10;
+        default : return m11;
+    }
+}
 
   return (
     <>
