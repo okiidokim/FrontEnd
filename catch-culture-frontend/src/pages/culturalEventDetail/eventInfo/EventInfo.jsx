@@ -47,6 +47,22 @@ function EventInfo (params) {
         }
     }
 
+    // 행사 제목 더보기 스위치
+    const [isShowMoreTitle, setIsShowMoreTitle] = useState(false);
+    // 글자 수 제한
+    const titleLimit = 14;
+
+    // 글자 자르기
+    const getTitle = useMemo(() => {
+        if (params.data.title.length > titleLimit) {
+            if (isShowMoreTitle)
+                return params.data.title;
+            else
+                return params.data.title.slice(0, titleLimit);
+        }
+        return params.data.title;
+    }, [isShowMoreTitle]);
+
     // 행사 설명 더보기 스위치
     const [isShowMore, setIsShowMore] = useState(false);
     // 글자 수 제한
@@ -88,12 +104,13 @@ function EventInfo (params) {
         }
     }
 
-    // 좋아요 버튼 클릭
+    // 즐겨찾기 버튼 클릭
     const onClickBookmarkButton = () => {
         setIsBookmark(!isBookmark);
         fetchBookMark();
     }
 
+    
     const fetchBookMark = () => {
         try {
             if(!isBookmark) {
@@ -120,8 +137,12 @@ function EventInfo (params) {
     return (
         <S.EventInfo>
             {/* 행사 제목 */}
-            <S.TitleArea>
-                {params.data.title}
+            <S.TitleArea onClick={() => setIsShowMoreTitle(!isShowMoreTitle)}>
+                { getTitle }
+                {/* 더보기 버튼 */}
+                <span style={{color:'grey'}}>
+                    {params.data.title.length > titleLimit ? (isShowMoreTitle ? '' : ' ...') : null}
+                </span>
             </S.TitleArea>
 
             {/* 카테고리 영역 */}

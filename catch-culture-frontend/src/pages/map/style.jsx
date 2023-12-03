@@ -7,3 +7,9 @@ export const Map = styled.div`
     flex-grow: 1;
     flex-shrink: 1;
 `;
+
+export const CategoryArea = styled.div`
+    position: absolute;
+    bottom: 100px;
+    z-index: 5;
+`;

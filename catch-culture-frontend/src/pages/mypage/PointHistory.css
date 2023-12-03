@@ -1,29 +1,30 @@
 .phisall {
   display: flex;
   position: relative;
-  gap: 40px;
+  gap: 16px;
   flex-direction: column;
   align-items: center;
 }
-.pointbox {
-  padding-top: 40px;
+.phisbody {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .currentpoint {
   display: flex;
   position: relative;
-  flex-direction: column;
-  width: 112px;
-  height: 48px;
-  gap: 8px;
+  width: 320px;
+  height: 24px;
+  gap: 12px;
   align-items: center;
   justify-content: center;
-  background-color: #d9d9d9;
-  border-radius: 12px;
-  padding: 2px;
+  border-radius: 4px;
 }
 .textcp {
   font-weight: 600;
-  font-size: 12px;
+  font-size: 14px;
 }
 .curricon {
   display: flex;
@@ -42,12 +43,12 @@
 .pointrow1 {
   display: flex;
   position: relative;
-  gap: 160px;
+  justify-content: space-between;
   height: 20px;
   align-items: center;
 }
 .phdate {
-  font-size: 16px;
+  font-size: 14px;
 }
 .pointplus {
   background-color: #e00000;
@@ -78,4 +79,23 @@
   display: flex;
   position: relative;
   flex-direction: column;
+}
+.gopointusage {
+  height: 40px;
+  width: 160px;
+  border-radius: 40px;
+  gap: 12px;
+  display: flex;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #d9d9d9;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 4px 4px 4px 0 rgba(255, 255, 255, 0.2),
+    inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
+    -2px -2px 2px 0 rgba(255, 255, 255, 0.2), 2px 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+.gopointusage:hover {
+  background-color: #018c0d;
+  color: white;
 }

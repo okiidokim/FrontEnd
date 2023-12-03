@@ -34,15 +34,15 @@ export const Container = styled.form`
 `;
 
 export const TitleArea = styled.div`
-    width: auto;
-    height: 38px;
+    width: 300px;
+    min-height: 38px;
     text-align: center;
-    font: 16px bold;
-    font-weight: bold;
+    font: 24px bold;
     font-family: NotoSansKR_Bold;
     margin-top: 20px;
     margin-bottom: 10px;
     border-bottom: 2px solid black;
+    padding-bottom: 10px;
 `;
 
 

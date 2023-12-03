@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  gap: 68px;
+  gap: 60px;
 }
 .reviewwrap {
   width: 320px;
@@ -12,6 +12,7 @@
   display: flex;
   gap: 8px;
   align-items: baseline;
+  padding-bottom: 12px;
 }
 .reviewtext {
   font-size: 20px;
@@ -23,4 +24,58 @@
 .reviewcard {
   display: flex;
   justify-content: center;
+  width: 320px;
+}
+
+.reviewcardwrap {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.createdAtfirstrow {
+  border-top: 1px solid #444444;
+  padding-top: 8px;
+  font-size: 12px;
+}
+.reviewcontentrow {
+  display: flex;
+  gap: 12px;
+  height: 68px;
+}
+.reviewimg {
+  width: 68px;
+  height: 68px;
+  border-radius: 8px;
+}
+.reviewdescrip {
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+.myratingstar {
+  font-size: 16px;
+}
+.eventinfoinR {
+  display: flex;
+  padding-bottom: 8px;
+  gap: 12px;
+  align-items: center;
+}
+.eventimginR {
+  height: 44px;
+  width: 44px;
+  border-radius: 4px;
+}
+.nametext {
+  font-weight: 100;
+  padding-bottom: 4px;
+  font-size: 10px;
+}
+.eventnameinR {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  font-weight: bold;
 }

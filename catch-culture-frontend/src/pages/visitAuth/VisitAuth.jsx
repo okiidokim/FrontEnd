@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import * as S from './VisitAuthStyle';
 import Backitem from '../../components/Backitem';
 
@@ -7,13 +7,16 @@ import axios from '../../api/axios';
 
 function VisitAuth() {
     const params = useParams();
+    const navigate = useNavigate();
+    const eventId = params.id;
 
     const [title, setTitle] = useState();
     const [imageSrc1, setImageSrc1] = useState();
     const [imageSrc2, setImageSrc2] = useState();
     const [imageSrc3, setImageSrc3] = useState();
-    const [disabled, setDisabled] = useState(false);
-    const formData = new FormData();
+    const [imagefiles, setImagefiles] = useState();
+
+    const [isMoreTitle, setIsMoreTitle] = useState(false);
 
     useEffect(() => {
         fetchData();
@@ -28,33 +31,37 @@ function VisitAuth() {
         setTitle(response.data);
     }
 
-    const handleImgFile = (file, index) => {
-        formData.append('file'+index, file);
-        // for (var key of formData.entries()) {
-        //     console.log(key[0] + ', ' + key[1]);
-        // }
+    const handleImgFile = (file) => {
+        setImagefiles(file);
     }
 
-    const handleSubmit = (event) => {
-        setDisabled(true);
-
+    const handleSubmit = async(event) => {
         event.preventDefault();
-        try {
-            axios.post(
-                `gcs/uploadImage`,
-                formData,
-                {
+            const requestBody = new FormData();
+            
+            requestBody.append('eventId', eventId);
+            requestBody.append('fileList', imagefiles);
+            //  for (var key of requestBody.entries()) {
+            //      console.log(key[0] + ', ' + key[1]);
+            //  }
+
+            try {
+                const request = await axios({
+                    method: "POST",
+                    url: `cultural-event/visit-auth`,
+                    mode: "cors",
                     headers: {
-                      'Content-Type': 'multipart/form-data', 
+                        'Content-Type': 'multipart/form-data',     
                     },
-                }
-            );
+                    data: requestBody,
+                }).then(
+                    console.log(requestBody),
+                    navigate(`/event/${eventId}`)
+                )
 
-        } catch (e) {
-            console.log(e);
-        }
-
-        setDisabled(false);
+            } catch (e) {
+                console.log(e);
+            }
     }
 
     const ImgSvg = (size) => (
@@ -118,7 +125,19 @@ function VisitAuth() {
 
             <S.Container onSubmit={handleSubmit}>
                 <S.TitleArea>
-                    {title}
+                    {title == null ? 
+                        title
+                        :
+                        (
+                            title.length < 14 ? 
+                            title 
+                            :
+                            <div onClick={() => setIsMoreTitle(!isMoreTitle)}>
+                                {!isMoreTitle && `${title.slice(0, 14)}...`}
+                                {isMoreTitle && title}
+                            </div>
+                        )
+                    }
                 </S.TitleArea>
                 <S.SubTitle>
                     사진 등록 (최대 3개)
@@ -144,7 +163,7 @@ function VisitAuth() {
                 </S.ImageArea>
 
                 <S.ButtonArea>           
-                    <button type='submit' disabled={disabled && formData==null} style={ formData == null ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
+                    <button type='submit' disabled={imagefiles==null} style={ imagefiles == null ? {backgroundColor: '#A7A7A7'} : {backgroundColor: '#018C0D'}}>
                         방문 인증 요청
                     </button>
                 </S.ButtonArea>

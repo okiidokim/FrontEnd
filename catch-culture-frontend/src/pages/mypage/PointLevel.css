@@ -74,29 +74,20 @@
   flex-direction: column;
   position: relative;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
+  padding-bottom: 24px;
 }
 .mylevtext {
   display: flex;
   flex-direction: column;
   position: relative;
   font-weight: bold;
+  padding-bottom: 12px;
 }
-.mylevimg {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-  gap: 12px;
-}
-.mylevimgbig {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 120px;
-  border-radius: 60px;
-}
-.mylevtextbig {
+.mylevtextbig,
+.mylevtext1,
+.mylevtext2,
+.mylevtext3 {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -107,8 +98,8 @@
   display: flex;
   gap: 32px;
   position: relative;
-  padding-top: 24px;
 }
+.mylevimg,
 .rest1,
 .rest2,
 .rest3 {
@@ -116,23 +107,15 @@
   flex-direction: column;
   position: relative;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
+.mylevimgbig,
 .mylevimg1,
 .mylevimg2,
 .mylevimg3 {
-  width: 60px;
-  border-radius: 30px;
+  width: 80px;
+  border-radius: 40px;
   display: flex;
   flex-direction: column;
   position: relative;
-}
-.mylevtext1,
-.mylevtext2,
-.mylevtext3 {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  text-align: center;
-  font-size: 12px;
 }

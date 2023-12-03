@@ -23,14 +23,12 @@ function ReportItem({ data }) {
                   <></>
                 ) : (
                   <>
-                    {dayjs(`${e.createdAt}`).format(
-                      'YY/MM/DD - dddd - HH:mm:ss'
-                    )}
+                    {dayjs(`${e.createdAt}`).format('YY/MM/DD - dddd - HH:mm')}
                   </>
                 )}
               </p>
             </div>
-            <p>{e.title}</p>
+            <p className="visitadmintitle">{e.title}</p>
           </div>
         </NavLink>
       ))}

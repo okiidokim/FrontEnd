@@ -25,6 +25,8 @@ import VistiAuthList from './pages/admin/VisitAuthList';
 import ReportAuthList from './pages/admin/ReportAuthList';
 import AdminReport from './pages/admin/AdminReport';
 import AdminVisit from './pages/admin/AdminVisit';
+import PointUsage from './pages/mypage/pointpage/PointUsage';
+import Emogee from './pages/mypage/pointpage/Emogee';
 
 const router = createBrowserRouter([
   {
@@ -123,10 +125,17 @@ const router = createBrowserRouter([
         path: '/reportauth/:id',
         element: <AdminReport />,
       },
-
       {
         path: '/visitauth/:id',
         element: <AdminVisit />,
+      },
+      {
+        path: '/pointusage',
+        element: <PointUsage />,
+      },
+      {
+        path: '/pointusage/emogee',
+        element: <Emogee />,
       },
     ],
   },

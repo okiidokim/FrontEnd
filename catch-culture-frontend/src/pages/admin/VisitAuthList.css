@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
+  width: 320px;
 }
 .visitauthtextrow {
   font-size: 20px;
@@ -44,14 +45,15 @@
 .visitautheach {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding-bottom: 12px;
+  gap: 4px;
+  padding-bottom: 16px;
 }
 .nickdayrow {
+  padding-top: 12px;
   display: flex;
   position: relative;
   flex-direction: row;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   justify-content: space-between;
 }
@@ -60,4 +62,11 @@
   position: relative;
   font-weight: 100;
   font-size: 12px;
+}
+.visitadmintitle {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 320px;
+  text-overflow: ellipsis;
 }
