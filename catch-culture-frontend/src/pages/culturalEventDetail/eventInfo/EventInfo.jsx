@@ -1,5 +1,5 @@
 import * as S from './style.jsx';
-import { useEffect, useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { AiOutlineHeart, AiFillHeart, AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,17 +16,16 @@ import axios from '../../../api/axios';
 function EventInfo (params) {
     const navigate = useNavigate();
 
-    const [likeCount, setLikeCount] = useState(0) // int: 좋아요 수
-    const [bookmarkCount, setBookmarkCount] = useState(0) // int: 즐겨찾기 수
-    const [isLike, setIsLike] = useState(false) // Boolean: 좋아요 여부
-    const [isBookmark, setIsBookmark] = useState(false) // Boolean: 즐겨찾기 여부        
+    const [likeCount, setLikeCount] = useState(params.data.likeCount) // int: 좋아요 수
+    const [bookmarkCount, setBookmarkCount] = useState(params.data.bookmarkCount) // int: 즐겨찾기 수
+    const [isLike, setIsLike] = useState(params.data.liked) // Boolean: 좋아요 여부
+    const [isBookmark, setIsBookmark] = useState(params.data.bookmarked) // Boolean: 즐겨찾기 여부        
 
-    useEffect(() => {
-        setLikeCount(params.data.likeCount);
-        setBookmarkCount(params.data.bookmarkCount);
-        setIsLike(params.data.liked);
-        setIsBookmark(params.data.bookmarked);
-    }, []);
+    const [isShowMoreTitle, setIsShowMoreTitle] = useState(false); // 행사 제목 더보기 스위치  
+    const [isShowMoreDes, setIsShowMoreDes] = useState(false); // 행사 설명 더보기 스위치
+    
+    const titleLimit = 14; // 제목 글자 수 제한
+    const textLimit = 85; // 설명 글자 수 제한
 
     // 카테고리 한글로 변환
     const printCategory = (category) => {
@@ -47,12 +46,7 @@ function EventInfo (params) {
         }
     }
 
-    // 행사 제목 더보기 스위치
-    const [isShowMoreTitle, setIsShowMoreTitle] = useState(false);
-    // 글자 수 제한
-    const titleLimit = 14;
-
-    // 글자 자르기
+    // 제목 글자 자르기
     const getTitle = useMemo(() => {
         if (params.data.title.length > titleLimit) {
             if (isShowMoreTitle)
@@ -63,45 +57,74 @@ function EventInfo (params) {
         return params.data.title;
     }, [isShowMoreTitle]);
 
-    // 행사 설명 더보기 스위치
-    const [isShowMore, setIsShowMore] = useState(false);
-    // 글자 수 제한
-    const textLimit = 85;
-
-    // 글자 자르기
+    // 설명 글자 자르기
     const commenter = useMemo(() => {
         const shortView = params.data.description.slice(0, textLimit);
         if (params.data.description.length > textLimit) {
-            if (isShowMore)
+            if (isShowMoreDes)
                 return params.data.description;
             else
                 return shortView;
         }
         return params.data.description;
-    }, [isShowMore]);
+    }, [isShowMoreDes]);
 
-    // 좋아요 버튼 클릭
-    const onClickLikeButton = () => {
-        setIsLike(!isLike);
-        fetchLike();
-    }
-
+    // 좋아요 api 호출
     const fetchLike = () => {
         try {
             if(!isLike) {
-                const response = axios.post(
+                axios.post(
                     `cultural-event/${parseInt(params.data.EventId)}/like`,
                 );
                 setLikeCount(likeCount+1);
             } else {
-                const response = axios.delete(
+                axios.delete(
                     `cultural-event/${parseInt(params.data.EventId)}/like`
                 );
                 setLikeCount(likeCount-1);
             }
         } catch (e) {
-            console.log(e);
+            if(e.response.data.code === "LOGIN_FAIL") {
+                alert('로그인 만료! 다시 로그인 해주세요.');
+                navigate(`/`);
+            }
+            if(e.response.data.code === "ALREADY_LIKE" || e.response.data.code === "NOT_LIKE") {
+                alert('좋아요 오류 발생! 페이지를 다시 로딩합니다.');
+                navigate(0);
+            }
         }
+    }
+
+    // 즐겨찾기 api 호출
+    const fetchBookMark = () => {
+        try {
+            if(!isBookmark) {
+                axios.post(
+                    `cultural-event/${parseInt(params.data.EventId)}/star`
+                );
+                setBookmarkCount(bookmarkCount+1);
+            } else {
+                axios.delete(
+                    `cultural-event/${parseInt(params.data.EventId)}/star`
+                );
+                setBookmarkCount(bookmarkCount-1);
+            }
+        } catch (e) {
+            if(e.response.data.code === "LOGIN_FAIL") {
+                alert('로그인 만료! 다시 로그인 해주세요.');
+                navigate(`/`);
+            }
+            if(e.response.data.code === "ALREADY_STAR" || e.response.data.code === "NOT_STAR") {
+                alert('즐겨찾기 오류 발생! 페이지를 다시 로딩합니다.');
+                navigate(0);
+            }
+        }
+    }
+
+    // 좋아요 버튼 클릭
+    const onClickLikeButton = () => {
+        setIsLike(!isLike);
+        fetchLike();
     }
 
     // 즐겨찾기 버튼 클릭
@@ -110,28 +133,9 @@ function EventInfo (params) {
         fetchBookMark();
     }
 
-    
-    const fetchBookMark = () => {
-        try {
-            if(!isBookmark) {
-                const response = axios.post(
-                    `cultural-event/${parseInt(params.data.EventId)}/star`
-                );
-                setBookmarkCount(bookmarkCount+1);
-            } else {
-                const response = axios.delete(
-                    `cultural-event/${parseInt(params.data.EventId)}/star`
-                );
-                setBookmarkCount(bookmarkCount-1);
-            }
-        } catch (e) {
-            console.log(e);
-        }
-    }
-    
     // 방문인증 버튼 클릭
     const onClickAuthButton = () => {
-            navigate(`/event/${parseInt(params.data.EventId)}/visit`);
+        navigate(`/event/${parseInt(params.data.EventId)}/visit`);
     }
 
     return (
@@ -159,7 +163,7 @@ function EventInfo (params) {
                 <S.MySwiper pagination={true} modules={[Pagination]} slidesPerView={1} loop={true}>
                     {params.data.storedFileUrl.map((Url, index) => (
                         <SwiperSlide key={index}>
-                            <S.SwiperSlideImg src={Url} alt="배너 이미지" />
+                            <S.SwiperSlideImg src={Url} alt="이미지" />
                         </SwiperSlide>
                     ))}
                 </S.MySwiper>
@@ -183,12 +187,12 @@ function EventInfo (params) {
                     행사 소개
                 </S.SubTitle>
                 <S.InfoValue>
-                    <div id="descriptionInfo" onClick={() => setIsShowMore(!isShowMore)}>
+                    <div id="descriptionInfo" onClick={() => setIsShowMoreDes(!isShowMoreDes)}>
                         { commenter }
 
                         {/* 더보기 버튼 */}
                         <span style={{color:'grey'}}>
-                            {params.data.description.length > textLimit ? (isShowMore ? ' 닫기' : ' ...더보기') : null}
+                            {params.data.description.length > textLimit ? (isShowMoreDes ? ' 닫기' : ' ...더보기') : null}
                         </span>
                     </div>
                 </S.InfoValue>

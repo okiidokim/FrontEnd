@@ -1,9 +1,4 @@
 import { styled } from 'styled-components';
-import NotoSansKR_Thin from '../../assets/fonts/NotoSansKR-Thin.ttf';
-import NotoSansKR_Light from '../../assets/fonts/NotoSansKR-Light.ttf';
-import NotoSansKR_Regular from '../../assets/fonts/NotoSansKR-Regular.ttf';
-import NotoSansKR_Medium from '../../assets/fonts/NotoSansKR-Medium.ttf';
-import NotoSansKR_Bold from '../../assets/fonts/NotoSansKR-Bold.ttf';
 
 
 export const Wrapper = styled.div`
@@ -24,15 +19,15 @@ export const Content = styled.form`
 `;
 
 export const TitleArea = styled.div`
-    width: auto;
-    height: 38px;
+    width: 300px;
+    min-height: 38px;
     text-align: center;
-    font: 16px bold;
-    font-weight: bold;
+    font: 24px bold;
     font-family: NotoSansKR_Bold;
     margin-top: 20px;
     margin-bottom: 10px;
     border-bottom: 2px solid black;
+    padding-bottom: 10px;
 `;
 
 export const SubTitle = styled.div`

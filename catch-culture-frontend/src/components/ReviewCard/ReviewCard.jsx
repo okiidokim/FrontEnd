@@ -122,7 +122,6 @@ export default function ReviewCard(data) {
             다시 원래대로 실행돼서 복구
           .substr(0,data.data.storedFileUrl.length-2)
         */}
-        {console.log(data.data.storedFileUrl[0] == null)}
         <S.RvImg src={data.data.storedFileUrl[0] == null ? null : data.data.storedFileUrl} style={{display : data.data.storedFileUrl[0] == null ? 'none': "flex"}}/>
         <S.RvComment>{data.data.description}</S.RvComment>
       </S.ReviewRow>
