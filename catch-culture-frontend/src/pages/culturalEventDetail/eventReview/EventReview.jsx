@@ -79,7 +79,6 @@ function EventReview ( params ) {
             setStarCount([response.data.countOne, response.data.countTwo, response.data.countThree, response.data.countFour, response.data.countFive]);
             setStarAvg(response.data.avgRating);
         } catch (e) {
-            console.log(e);
             if(e.response.data.code === "LOGIN_FAIL") {
                 alert('로그인 만료! 다시 로그인 해주세요.');
                 navigate(`/`);
