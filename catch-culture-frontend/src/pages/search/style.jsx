@@ -36,3 +36,10 @@ export const SortSelectorWrapper = styled.div`
   justify-content: flex-end;
   margin: 20px 0px 28px 0px;
 `;
+
+export const SyncLoaderWrapper = styled.div`
+  display: flex;
+  min-height: 300px;
+  justify-content: center;
+  align-items: center;
+`;
