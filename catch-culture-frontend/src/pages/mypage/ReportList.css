@@ -5,8 +5,12 @@
   gap: 8px;
 }
 .reptitle {
+  width: 320px;
   font-weight: bold;
   padding-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .repduration {
   font-size: 14px;

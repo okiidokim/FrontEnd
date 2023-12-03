@@ -43,7 +43,7 @@ function ReportList() {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('touchmove', onScroll);
     };
-  }, []);
+  }, [data]);
 
   const fetchData = async () => {
     const res = await axios.get(`/user/my-reports?page=${pagenum}&size=8`);

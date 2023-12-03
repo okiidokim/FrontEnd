@@ -28,29 +28,35 @@ function MyReviewCard({ data }) {
         </>
       );
     } else if (rating === 3) {
-      <>
-        <TbStarFilled color="#fff000" />
-        <TbStarFilled color="#fff000" />
-        <TbStarFilled color="#fff000" />
-        <TbStarFilled color="#d9d9d9" />
-        <TbStarFilled color="#d9d9d9" />
-      </>;
+      return (
+        <>
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#d9d9d9" />
+          <TbStarFilled color="#d9d9d9" />
+        </>
+      );
     } else if (rating === 4) {
-      <>
-        <TbStarFilled color="#fff000" />
-        <TbStarFilled color="#fff000" />
-        <TbStarFilled color="#fff000" />
-        <TbStarFilled color="#fff000" />
-        <TbStarFilled color="#d9d9d9" />
-      </>;
-    } else {
-      <>
-        <TbStarFilled />
-        <TbStarFilled />
-        <TbStarFilled />
-        <TbStarFilled />
-        <TbStarFilled />
-      </>;
+      return (
+        <>
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#d9d9d9" />
+        </>
+      );
+    } else if (rating === 5) {
+      return (
+        <>
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#fff000" />
+          <TbStarFilled color="#fff000" />
+        </>
+      );
     }
   };
 
@@ -60,7 +66,11 @@ function MyReviewCard({ data }) {
         <div className="reviewcardwrap" key={e.id}>
           <div className="createdAtfirstrow">{e.createdAt}</div>
           <div className="reviewcontentrow">
-            <img className="reviewimg" src={e.reviewStoredFileUrl} />
+            {e.eventStoredFileUrl === null ? (
+              <></>
+            ) : (
+              <img className="reviewimg" src={e.reviewStoredFileUrl} />
+            )}
             <div className="reviewdescrip">{e.description}</div>
           </div>
           <div className="myratingstar">{setRatingStar(e.rating)}</div>

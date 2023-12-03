@@ -36,18 +36,38 @@ function VisitAuthItem({ data }) {
 }
 
 export default function VistiAuthList() {
-  const [cnt, setCnt] = useState(0);
   const [data, setData] = useState([]);
-
+  const [cnt, setCnt] = useState(100);
+  const [last, setLast] = useState(false);
+  const [pagenum, setPagenum] = useState(0);
+  const [dataList, setDatalist] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(`admin/visit-auth/list?lastId=${cnt}`);
-      setCnt(res.data.numberOfElements);
       setData(res.data.content);
-      console.log(res.data.content);
+      setLast(res.data.last);
+      setPagenum(res.data.pageable.pageNumber);
+      console.log(pagenum);
     };
     fetchData();
-  }, []);
+  }, [last]);
+
+  const onScroll = () => {
+    if (last === false) {
+      {
+        setPagenum(pagenum + 1);
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('touchmove', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('touchmove', onScroll);
+    };
+  }, [data]);
 
   return (
     <div className="authlistwrap">
@@ -55,7 +75,6 @@ export default function VistiAuthList() {
       <div className="authlistcontent">
         <div className="visitauthtextrow">
           <p>방문 인증 요청</p>
-          <div className="visitauthcnt">총 {cnt}개 </div>
         </div>
         <div className="visitauthlist">
           {cnt === 0 ? (

@@ -46,7 +46,7 @@ function Visited() {
 
       // 데이터 저장
       setData(response.data.content);
-      setCnt(response.data.numberOfElements);
+      setCnt(response.data.totalElements);
     } catch (e) {
       console.log(e);
     }
