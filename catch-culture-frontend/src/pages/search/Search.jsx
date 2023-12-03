@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './style';
 import { useLocation } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
 
 // 컴포넌트
 import SearchBox from '../../components/search/searchBox/SearchBox';
@@ -13,6 +14,12 @@ import NoResult from '../../components/search/noResult/NoResult';
 import axios from '../../api/axios';
 
 function Search() {
+  // 무한 스크롤
+  const [pageNum, setPageNum] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [ref, inView] = useInView();
+  const [isLast, setIsLast] = useState(false);
+
   const { state } = useLocation();
   const category = state && state.category;
   const keyword = state && state.keyword;
@@ -39,17 +46,12 @@ function Search() {
   // data
   const [data, setData] = useState([]);
 
-  // 카테고리 바뀔 때 마다 리렌더링
-  useEffect(() => {
-    // console.log(selectedCategories);
-    // console.log(options[selectedSort].name);
-    fetchData();
-  }, [selectedCategories, selectedSort, keyword]);
-
   // 초기
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (!(data.length === 0) && inView && !isLast) {
+      setTimeout(fetchScroll, 300);
+    }
+  }, [inView]);
 
   const fetchData = async () => {
     try {
@@ -64,11 +66,13 @@ function Search() {
             ? `cultural-event/search?keyword=${keyword}&${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
             : `cultural-event/list?${categoryUrl}&offset=0&sortType=${options[selectedSort].label}`
         );
-
         // 데이터 저장
-        setData(response.data.content);
         setCount(response.data.totalElements);
-
+        setData(prevData => [...prevData, ...response.data.content]);
+        setIsLast(response.data.last);
+        if (!response.data.last) {
+          setPageNum(pageNum => pageNum + 1);
+        }
       } else {
         setCount(0);
       }
@@ -76,6 +80,43 @@ function Search() {
       console.log(e);
     }
   };
+
+  const fetchScroll = async () => {
+    try {
+      if (!(selectedCategories.length === 0) || keyword) {
+        // URL 만들기 - 카테고리 선택
+        const categoryUrl = selectedCategories
+          .map(item => 'category=' + item)
+          .join('&');
+
+        const response = await axios.get(
+          keyword
+            ? `cultural-event/search?keyword=${keyword}&${categoryUrl}&offset=${pageNum}&sortType=${options[selectedSort].label}`
+            : `cultural-event/list?${categoryUrl}&offset=${pageNum}&sortType=${options[selectedSort].label}`
+        );
+
+        // 데이터 저장
+        setCount(response.data.totalElements);
+        setData(prevData => [...prevData, ...response.data.content]);
+        setIsLast(response.data.last);
+        if (!response.data.last) {
+          setPageNum(pageNum => pageNum + 1);
+        }
+      } else {
+        setCount(0);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  // 카테고리 바뀔 때 마다 리렌더링
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setData([]);
+    setPageNum(0);
+    fetchData();
+  }, [selectedCategories, selectedSort, keyword]);
 
   return (
     <>
@@ -115,6 +156,7 @@ function Search() {
           </>
         )}
       </S.SearchWrapper>
+      <div ref={ref}></div>
     </>
   );
 }
