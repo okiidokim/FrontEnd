@@ -36,7 +36,7 @@ function Report1() {
 
           <S.ReportTitle>제보 승낙 시, 혜택</S.ReportTitle>
           <S.ReportNumber>
-            1. 500 포인트 지급 <br />
+            1. 100 포인트 지급 <br />
             2. 제보한 행사가 서비스에 등록 <br />
           </S.ReportNumber>
 

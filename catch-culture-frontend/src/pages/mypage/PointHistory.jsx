@@ -56,6 +56,20 @@ function PointHistory() {
       setPageNum(pagenum + 1);
     }
   };
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`/user/point-history?page=${pagenum}&size=9`);
+      const respoint = await axios.get(`/user/point`);
+      setCnt(res.data.totalElements);
+      setData(res.data.content);
+      setDataList(dataList.concat(res.data.content));
+      setCurrpoint(respoint.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     window.addEventListener('scroll', onScroll);
     window.addEventListener('touchmove', onScroll);
@@ -63,17 +77,9 @@ function PointHistory() {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('touchmove', onScroll);
     };
-  }, []);
+  }, [data]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get(`/user/point-history?page=${pagenum}&size=9`);
-      const respoint = await axios.get(`/user/point`);
-      setCnt(res.data.totalElements);
-      setData(res.data.content);
-      setDataList(dataList.concat(res.data.content));
-      setCurrpoint(respoint.data);
-    };
     fetchData();
   }, [pagenum]);
 

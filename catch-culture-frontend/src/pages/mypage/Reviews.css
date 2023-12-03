@@ -28,7 +28,7 @@
 }
 
 .reviewcardwrap {
-  width: 300px;
+  width: 320px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -42,6 +42,7 @@
   display: flex;
   gap: 12px;
   height: 68px;
+  align-items: center;
 }
 .reviewimg {
   width: 68px;
@@ -49,10 +50,13 @@
   border-radius: 8px;
 }
 .reviewdescrip {
-  word-wrap: break-word;
+  width: 240px;
+  height: 40px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 14px;
+  font-size: 13px;
 }
 .myratingstar {
   font-size: 16px;
@@ -76,6 +80,7 @@
 .eventnameinR {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 12px;
   font-weight: bold;
 }

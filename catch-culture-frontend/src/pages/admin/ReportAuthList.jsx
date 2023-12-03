@@ -36,18 +36,32 @@ function ReportItem({ data }) {
   );
 }
 export default function ReportAuthList() {
-  const [cnt, setCnt] = useState(0);
-
   const [data, setData] = useState([]);
+  const [cnt, setCnt] = useState(100);
+  const [pagenum, setPagenum] = useState(0);
+  const [last, setLast] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(`admin/event-report/list?lastId=${cnt}`);
-      setCnt(res.data.numberOfElements);
       setData(res.data.content);
+      setPagenum(res.data.pageable.pageNumber);
+      setLast(res.data.last);
     };
     fetchData();
-  }, []);
+  }, [pagenum, last]);
+
+  const onScroll = () => {
+    if (last === false) {
+      {
+        setPagenum(pagenum + 1);
+      }
+    }
+  };
+
+  useEffect(() => {
+    onScroll();
+  }, [data]);
 
   return (
     <div className="authlistwrap">
@@ -55,7 +69,6 @@ export default function ReportAuthList() {
       <div className="authlistcontent">
         <div className="visitauthtextrow">
           <p>문화행사 제보</p>
-          <div className="visitauthcnt">총 {cnt}개 </div>
         </div>
         <div className="visitauthlist">
           {cnt === 0 ? (
