@@ -3,6 +3,20 @@
   flex-direction: column;
   gap: 20px;
 }
+.reportimglist {
+  overflow-x: auto;
+  display: flex;
+}
+.reportimglist::-webkit-scrollbar {
+  height: 8px;
+  background-color: #d9d9d9;
+  border-radius: 4px;
+}
+.reportimglist::-webkit-scrollbar-thumb {
+  height: 8px;
+  background-color: #acacac;
+  border-radius: 4px;
+}
 .reportimg {
   width: 320px;
   border-radius: 8px;
