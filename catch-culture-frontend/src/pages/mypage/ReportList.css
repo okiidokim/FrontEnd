@@ -15,7 +15,6 @@
 .reportall {
   display: flex;
   flex-direction: column;
-  position: relative;
   gap: 16px;
   align-items: center;
   width: 320px;

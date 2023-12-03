@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Backitem from '../../components/Backitem';
 import { NavLink } from 'react-router-dom/dist';
 import './ReportList.css';
@@ -9,7 +9,7 @@ function Reporteach({ data }) {
   return (
     <>
       {data.map((e) => (
-        <div className="reportwrap" key={e.startDate}>
+        <div className="reportwrap" key={e.reportId}>
           <hr />
           <div className="reptitle">{e.eventName}</div>
           <div className="reploc">{e.eventLocation}</div>
@@ -25,16 +25,36 @@ function Reporteach({ data }) {
 function ReportList() {
   const [cnt, setCnt] = useState(0);
   const [data, setData] = useState([]);
+  const [pagenum, setPageNum] = useState(0);
+  const [dataList, setDataList] = useState([]);
+
+  const onScroll = () => {
+    if (
+      window.scrollY + window.innerHeight >
+      document.documentElement.scrollHeight - 40
+    ) {
+      setPageNum(pagenum + 1);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('touchmove', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('touchmove', onScroll);
+    };
+  }, []);
+
+  const fetchData = async () => {
+    const res = await axios.get(`/user/my-reports?page=${pagenum}&size=8`);
+    setCnt(res.data.totalElements);
+    setData(res.data.content);
+    setDataList(dataList.concat(res.data.content));
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get(`/user/my-reports?page=0&size=7`);
-      setCnt(res.data.numberOfElements);
-      setData(res.data.content);
-      console.log(res.data.content);
-    };
     fetchData();
-  }, []);
+  }, [pagenum]);
 
   return (
     <div className="reportall">
@@ -60,7 +80,7 @@ function ReportList() {
                 <div className="reportbutton">제보하기</div>
               </NavLink>
             </div>
-            <Reporteach data={data} />
+            <Reporteach data={dataList} />
           </div>
         )}
       </div>
