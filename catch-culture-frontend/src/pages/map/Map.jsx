@@ -266,10 +266,12 @@ function Map() {
     <>
       <S.Map id="map" style={{width:'100%', height:'100%'}}>
       </S.Map>
-      <CategorySelector
-        selectedCategories={selectedCategories}
-        setSelectedCategories={setSelectedCategories}
-      />
+      <S.CategoryArea>
+        <CategorySelector
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}
+        />
+      </S.CategoryArea>
     </>
   );
 }
