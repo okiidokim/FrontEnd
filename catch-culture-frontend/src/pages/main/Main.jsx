@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 import LogoImg from '../../assets/images/logo.png';
+import { SyncLoader } from 'react-spinners';
 
 import BannerImg1 from '../../assets/images/main/banner1.png';
 import BannerImg2 from '../../assets/images/main/banner2.png';
@@ -21,6 +22,7 @@ import axios from '../../api/axios';
 function Main() {
   // data
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // 초기
   useEffect(() => {
@@ -29,12 +31,15 @@ function Main() {
 
   const fetchData = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get('cultural-event');
 
       //데이터 저장
       setData(response.data);
+      setIsLoading(false);
     } catch (e) {
       console.log(e);
+      setIsLoading(false);
     }
   };
 
@@ -74,7 +79,14 @@ function Main() {
               <S.EventHeaderMore>더보기</S.EventHeaderMore>
             </Link>
           </S.EventHeader>
-          <EventCard data={data} />
+
+          {isLoading ? (
+            <S.SyncLoaderWrapper>
+              <SyncLoader color="#018C0D" />
+            </S.SyncLoaderWrapper>
+          ) : (
+            <EventCard data={data} />
+          )}
         </S.EventWrapper>
       </S.MainWrapper>
     </>

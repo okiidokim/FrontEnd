@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as S from './style';
 import { useLocation } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
-import { FadeLoader, SyncLoader } from 'react-spinners';
+import { SyncLoader } from 'react-spinners';
 
 // 컴포넌트
 import SearchBox from '../../components/search/searchBox/SearchBox';

@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import { SyncLoader } from 'react-spinners';
 
 // 검색 페이지
 export const SearchWrapper = styled.div`

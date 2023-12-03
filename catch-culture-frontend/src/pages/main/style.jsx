@@ -74,3 +74,10 @@ export const EventHeaderMore = styled.div`
   font-weight: 700;
   line-height: normal;
 `;
+
+export const SyncLoaderWrapper = styled.div`
+  display: flex;
+  min-height: 300px;
+  justify-content: center;
+  align-items: center;
+`;
