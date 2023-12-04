@@ -25,7 +25,7 @@ export const UserName = styled.div`
   font-weight: bold;
 `;
 
-export const Date = styled.div`
+export const DateArea = styled.div`
   font-size: 12px;
 `;
 
@@ -58,11 +58,39 @@ export const ReviewRow = styled.div`
   width: 100%;
 `;
 
+export const ModifyForm = styled.div`
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ModifyTextArea = styled.textarea`
+  width: 230px;
+  height: 50px;
+  resize: none;
+`;
+
+export const ModifyButtonArea = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+`;
+
+export const ModifyButton = styled.button`
+  width: 60px;
+  height: 20px;
+  border-radius: 10px;
+  border: 0px;
+  background-color: #018c0d;
+  color: white;
+`;
+
 export const RvComment = styled.div`
-  width: auto;
+  width: 230px;
   min-height: 56px;
   overflow: scroll;
   word-break: break-all;
+  text-align: left;
 
   &::-webkit-scrollbar {
     display: none;

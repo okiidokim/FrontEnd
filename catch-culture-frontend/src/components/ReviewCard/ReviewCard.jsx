@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HiOutlineTrash } from "react-icons/hi";
 import { FaRegPenToSquare } from "react-icons/fa6";
 
 import * as S from './style';
 import DeleteModal from './deleteModal/DeleteModal';
-import { useNavigate } from 'react-router-dom';
+
+import axios from '../../api/axios'
 
 /******************************************************
  * @param data = {                                    *
@@ -22,21 +23,27 @@ import { useNavigate } from 'react-router-dom';
  ******************************************************/ 
 
 export default function ReviewCard(data) {
-  
-  const navigate = useNavigate();
-  const [isModal, setIsModal] = useState(false)
+  const [isModal, setIsModal] = useState(false);
+  const [isModify, setIsModify] = useState(false);
+  const [modifyText, setModifyText] = useState(data.data.description);
+  const [description, setDescription] = useState(data.data.description);
 
   const onClickDeleteBtn = () => {
     setIsModal(true);
   };
 
   const onClickModifyBtn = () => {
-    navigate(`/event/${data.data.id}/review`)
+    setModifyText(description)
+    setIsModify(true);
   }
 
   const changeModal = () => {
     setIsModal(false);
   };
+
+  const handleModifyText = ({ target: {value}}) => {
+    setModifyText(value);
+  }
 
   const printStar = (rating) => {
     switch (rating) {
@@ -103,15 +110,53 @@ export default function ReviewCard(data) {
     }
   };
 
+  const handleModify = async() => {
+    if(modifyText.length >= 30) {
+      try {
+        const requestBody = {
+          "reviewId": data.data.reviewId,
+          "description": modifyText
+        }
+
+        const response = await axios({
+          method: "PUT",
+          url: `review/${data.data.id}/my-review`,
+          mode: "cors",
+          data: requestBody,
+        });
+
+        if(response.status === 200) {
+          setDescription(modifyText)
+          setIsModify(false)
+        }
+        
+      } catch (e) {
+        console.log(e);
+        if(e.data.code === "LOGIN_FAIL") {
+            alert('로그인 만료! 다시 로그인 해주세요.');
+            navigate(`/`);
+        }
+        if(e.data.code === "INVALID_EVENT_ID") {
+            alert("존재하지 않는 문화 행사 ID 입니다.");
+            navigate(`/main`);
+        }
+      }
+    }
+  }
+
   return (
     <S.ReviewCard>
       <S.UserInfo>
         <S.UserName>{data.data.nickname}</S.UserName>
-        <S.Date>{data.data.createdAt}</S.Date>
+        <S.DateArea>{data.data.createdAt}</S.DateArea>
         {data.data.isMyReview ?
           <S.MyReview>
-            <FaRegPenToSquare onClick={onClickModifyBtn}/>
-            <HiOutlineTrash onClick={onClickDeleteBtn}/>
+            {!isModify && (
+              <>
+              <FaRegPenToSquare onClick={onClickModifyBtn}/>
+              <HiOutlineTrash onClick={onClickDeleteBtn}/>
+              </>
+            )}
           </S.MyReview>
           :
           null
@@ -123,14 +168,39 @@ export default function ReviewCard(data) {
           .substr(0,data.data.storedFileUrl.length-2)
         */}
         <S.RvImg src={data.data.storedFileUrl[0] == null ? null : data.data.storedFileUrl} style={{display : data.data.storedFileUrl[0] == null ? 'none': "flex"}}/>
-        <S.RvComment>{data.data.description}</S.RvComment>
+        {
+          isModify ? 
+          <S.ModifyForm>
+            <S.ModifyTextArea
+              minLength={30}
+              value={modifyText}
+              onChange={handleModifyText}
+              required
+            >
+              {modifyText}
+            </S.ModifyTextArea>
+            <S.ModifyButtonArea>
+              <S.ModifyButton onClick={(e) => {setIsModify(false)}}>
+                취소
+              </S.ModifyButton>
+              <S.ModifyButton onClick={handleModify}>
+                변경
+              </S.ModifyButton>
+            </S.ModifyButtonArea>
+          </S.ModifyForm>
+          :
+          <S.RvComment>{description}</S.RvComment>
+        }
       </S.ReviewRow>
-      <S.Star>{printStar(data.data.rating)}</S.Star>
-      <S.Event style={{display : data.data.eventImgUrl == null || data.data.eventTitle == null ? 'none' : 'flex'}} >
-        <S.EventImg src={data.data.eventImgUrl} />
-        <S.EventTitle>{data.data.eventTitle}</S.EventTitle>
-      </S.Event>
-      
+      {!isModify &&(
+      <>
+        <S.Star>{printStar(data.data.rating)}</S.Star>
+        <S.Event style={{display : data.data.eventImgUrl == null || data.data.eventTitle == null ? 'none' : 'flex'}} >
+          <S.EventImg src={data.data.eventImgUrl} />
+          <S.EventTitle>{data.data.eventTitle}</S.EventTitle>
+        </S.Event>
+      </>
+      )}
       {isModal && (
         <DeleteModal reviewId={data.data.reviewId} EventId={data.data.id} setModal={changeModal} fetchMyReview={data.fetchMyReview}/>
       )}
