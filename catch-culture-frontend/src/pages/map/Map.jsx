@@ -277,11 +277,11 @@ function Map() {
       case 'MOVIE':
         return m7;
       case 'THEATER':
-        return m8;
+        return m7;
       case 'MUSICAL_OPERA':
-        return m9;
+        return m8;
       case 'EDUCATION_EXPERIENCE':
-        return m10;
+        return m9;
       case 'EXHIBITION_ART':
         return m10;
       default:

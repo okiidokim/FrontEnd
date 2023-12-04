@@ -9,22 +9,26 @@ import axios from '../../../api/axios'
 import { useNavigate, redirect } from 'react-router-dom';
 
 function EventReview ( params ) {
+    const navigate = useNavigate();
 
-    const [title, setTitle] = useState();
     const [myData, setMyData] = useState();
     const [starCount, setStarCount] = useState([0, 0, 0, 0, 0]);
     const [starAvg, setStarAvg] = useState(0.0);
     const [isLoading, setIsLoading] = useState(false);
     const [reviewList, setReviewList] = useState([]);
-    const navigate = useNavigate();
 
+    const [isShowMoreTitle, setIsShowMoreTitle] = useState(false); // 행사 설명 더보기 스위치
+
+    // 리뷰 더 있는지 판별
     let countReviewList = 0;
     let isLast = false;
 
+    // 글자 수 제한
+    const titleLimit = 14;
+
     useEffect(() => {
-        fetchData();
         fetchMyReview();
-        getStar();
+        fetchStar();
         fetchReviewList();
         window.addEventListener('scroll', handleScroll, {capture:true});
         return () => {
@@ -32,43 +36,42 @@ function EventReview ( params ) {
         };
     }, []);
 
-    const fetchData = async() => {
-        const response = await axios.get(
-            `cultural-event/${parseInt(params.data.EventId)}/title`
-        )
-
-        setTitle(response.data);
-    }
-
     const fetchMyReview = async () => {
         setMyData(null);
         try {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/my-review`
             )
-                
-            if(response.data != "") {
-                setMyData({
-                    "id": params.data.EventId,
-                    "nickname": response.data.nickname,
-                    "description": response.data.description,
-                    "storedFileUrl": response.data.storedFileUrl,
-                    "rating": response.data.rating,
-                    "createdAt": response.data.createdAt,
-                    "eventImgUrl" : null,
-                    "eventTitle": null,
-                    "isMyReview": true,
-                    "reviewId": response.data.id,
-                });
+
+            if(response.status === 200) {
+                if(response.data != "") {
+                    setMyData({
+                        "id": params.data.EventId,
+                        "nickname": response.data.nickname,
+                        "description": response.data.description,
+                        "storedFileUrl": response.data.storedFileUrl,
+                        "rating": response.data.rating,
+                        "createdAt": response.data.createdAt,
+                        "eventImgUrl" : null,
+                        "eventTitle": null,
+                        "isMyReview": true,
+                        "reviewId": response.data.id,
+                    });
+                }
             }
-        } catch (e) {
-            console.log(e);
-        } finally {
-            
+        } catch (error) {
+            if(e.response.data.code === "LOGIN_FAIL") {
+                alert('로그인 만료! 다시 로그인 해주세요.');
+                navigate(`/`);
+            }
+            if(e.response.data.code === "ALREADY_LIKE" || e.response.data.code === "NOT_LIKE") {
+                alert('좋아요 오류 발생! 페이지를 다시 로딩합니다.');
+                navigate(0);
+            }
         }
     }
 
-    const getStar = async () => {
+    const fetchStar = async () => {
         try {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/rating`
@@ -76,7 +79,10 @@ function EventReview ( params ) {
             setStarCount([response.data.countOne, response.data.countTwo, response.data.countThree, response.data.countFour, response.data.countFive]);
             setStarAvg(response.data.avgRating);
         } catch (e) {
-            console.log(e);
+            if(e.response.data.code === "LOGIN_FAIL") {
+                alert('로그인 만료! 다시 로그인 해주세요.');
+                navigate(`/`);
+            }
         }
     }
 
@@ -85,16 +91,24 @@ function EventReview ( params ) {
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/list?lastId=${countReviewList}`
             )
-            // response.data 값이 [{},{},{}] 형식으로 되어있음
-            // -> []를 지운 값을 추가
-            for(let i = 0; i < response.data.content.length; i++) {
-                reviewList.push(response.data.content[i]);
-            }
-            isLast = response.data.last;
 
-            countReviewList = reviewList[reviewList.length-1].id;
+            if(response.status === 200) {
+                if(!response.data.empty) {
+                    // response.data 값이 [{},{},{}] 형식으로 되어있음
+                    // -> []를 지운 값을 추가
+                    for(let i = 0; i < response.data.content.length; i++) {
+                        reviewList.push(response.data.content[i]);
+                    }
+                    isLast = response.data.last;
+
+                    countReviewList = reviewList[reviewList.length-1].id;
+                }
+            }
         } catch (e) {
-            console.log(e);
+            if(e.response.data.code === "LOGIN_FAIL") {
+                alert('로그인 만료! 다시 로그인 해주세요.');
+                navigate(`/`);
+            }
         } 
         setIsLoading(false);
     }
@@ -103,11 +117,6 @@ function EventReview ( params ) {
         setIsLoading(true);
         fetchReviewList();
     }
-
-    // 행사 설명 더보기 스위치
-    const [isShowMoreTitle, setIsShowMoreTitle] = useState(false);
-    // 글자 수 제한
-    const titleLimit = 14;
 
     // 글자 자르기
     const getTitle = useMemo(() => {
@@ -139,6 +148,7 @@ function EventReview ( params ) {
         }
     }
 
+    // 별점 평균 출력
     const printAvgStar = (starAvg) => {
         return(
             <>
@@ -170,6 +180,7 @@ function EventReview ( params ) {
         )
     };
 
+    // 별점 갯수 출력
     const printStar = (rating) => {
         switch (rating) {
           case 0:
@@ -235,10 +246,12 @@ function EventReview ( params ) {
         }
     };
 
+    // 리뷰하기 버튼 클릭
     const onClickReviewButton = () => {
         navigate(`/event/${params.data.EventId}/review`)
     }
 
+    // 스크롤 판별
     const handleScroll = () => {
         if(window.innerHeight + document.documentElement.scrollTop <= document.documentElement.offsetHeight-1 || isLoading || isLast) {
             return;

@@ -43,7 +43,7 @@ export const PictureArea = styled.div`
 `;
 
 export const MySwiper = styled(Swiper)`
-    width: 336px;
+    width: auto;
     height: auto;
     padding-bottom: 30px;
 

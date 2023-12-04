@@ -41,12 +41,9 @@ function VisitAuth() {
             
             requestBody.append('eventId', eventId);
             requestBody.append('fileList', imagefiles);
-            //  for (var key of requestBody.entries()) {
-            //      console.log(key[0] + ', ' + key[1]);
-            //  }
 
             try {
-                const request = await axios({
+                await axios({
                     method: "POST",
                     url: `cultural-event/visit-auth`,
                     mode: "cors",
@@ -55,12 +52,18 @@ function VisitAuth() {
                     },
                     data: requestBody,
                 }).then(
-                    console.log(requestBody),
                     navigate(`/event/${eventId}`)
                 )
 
             } catch (e) {
-                console.log(e);
+                if(e.response.data.code === "LOGIN_FAIL") {
+                    alert('로그인 만료! 다시 로그인 해주세요.');
+                    navigate(`/`);
+                }
+                if(e.response.data.code === "ALREADY_VISIT_AUTH_SUBMITTED") {
+                    alert('이미 방문인증 요청을 했습니다.');
+                    navigate(`/event/${eventId}`);
+                }
             }
     }
 

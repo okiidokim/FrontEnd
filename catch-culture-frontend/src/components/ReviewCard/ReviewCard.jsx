@@ -122,7 +122,7 @@ export default function ReviewCard(data) {
             다시 원래대로 실행돼서 복구
           .substr(0,data.data.storedFileUrl.length-2)
         */}
-        <S.RvImg src={data.data.storedFileUrl[0] == null ? null : data.data.storedFileUrl} style={{display : data.data.storedFileUrl == null ? 'none': "flex"}}/>
+        <S.RvImg src={data.data.storedFileUrl[0] == null ? null : data.data.storedFileUrl} style={{display : data.data.storedFileUrl[0] == null ? 'none': "flex"}}/>
         <S.RvComment>{data.data.description}</S.RvComment>
       </S.ReviewRow>
       <S.Star>{printStar(data.data.rating)}</S.Star>

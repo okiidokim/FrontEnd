@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './CulturalEventDetailStyle';
 
@@ -15,6 +15,7 @@ let data = "sample";
 function culturalEventDetail() {
     const params = useParams();
     const culturalEventId = params.id;
+    const navigate = useNavigate();
     
     const [_isInit, setInit] = useState(false);
 
@@ -52,7 +53,14 @@ function culturalEventDetail() {
             };
             selectorHandler(0);
         } catch (e) {
-            console.log(e);
+            if(e.response.data.code === "LOGIN_FAIL") {
+                alert('로그인 만료! 다시 로그인 해주세요.');
+                navigate(`/`);
+            }
+            if(e.response.data.code === "INVALID_EVENT_ID") {
+                alert('존재하지 않는 문화 행사 입니다.');
+                navigate(`/main`);
+            }
         }
     }
 

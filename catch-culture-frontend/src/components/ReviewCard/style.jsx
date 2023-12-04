@@ -47,7 +47,7 @@ export const MyButton = styled.button`
 `;
 
 export const RvImg = styled.img`
-  width: 80px;
+  width: 56px;
   height: 56px;
 `;
 
@@ -60,8 +60,14 @@ export const ReviewRow = styled.div`
 `;
 
 export const RvComment = styled.div`
-  width: max-content;
+  width: auto;
   min-height: 56px;
+  overflow: scroll;
+  word-break: break-all;
+
+  &::-webkit-scrollbar {
+    display: none;
+}
 `;
 
 export const Star = styled.div`
