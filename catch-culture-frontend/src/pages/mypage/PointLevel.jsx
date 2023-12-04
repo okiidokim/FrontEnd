@@ -4,7 +4,6 @@ import Level0 from '../../assets/pointimg/level0.png';
 import Level1 from '../../assets/pointimg/level1.png';
 import Level2 from '../../assets/pointimg/level2.png';
 import Level3 from '../../assets/pointimg/level3.png';
-import axios from '../../api/axios';
 import './PointLevel.css';
 
 function PointLevel() {

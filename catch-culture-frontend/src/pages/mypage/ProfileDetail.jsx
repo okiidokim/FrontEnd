@@ -12,7 +12,6 @@ function NickUpdate(props) {
       await axios.patch(`user/profile/nickname?nickName=${nick}`, {
         nickName: props.nick,
       });
-      console.log();
     } catch (e) {
       console.log(e);
     }
@@ -93,14 +92,6 @@ function ProfileEdit() {
     };
     fetchData();
   }, []);
-
-  // const nickPut = async () => {
-  //   try {
-  //     await axios.patch(`user/profile/nickname`, { nickname: { nick } });
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
 
   return (
     <div className="allcontents">
