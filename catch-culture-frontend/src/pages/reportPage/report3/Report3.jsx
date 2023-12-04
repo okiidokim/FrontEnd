@@ -25,7 +25,7 @@ function Report3() {
             제보하신 행사의 등록 여부는 3~7일 안에 <br />
             마이페이지에서 확인 가능합니다 :)
           </S.ReportSuccessContent>
-          <Link to="/main">
+          <Link to="/report/list">
             <S.ReportButton>완료</S.ReportButton>
           </Link>
         </S.ReportContent>

@@ -17,14 +17,17 @@ export default function AdminVisit() {
   const [description, setdes] = useState('');
 
   const fetchData = async () => {
-    const res = await axios.get(`/admin/visit-auth/${parseInt(visitAuthId)}`);
-    setNickname(res.data.nickname);
-    setTitle(res.data.title);
-    setAuthimg(res.data.storedFileUrl);
-    setUserid(res.data.userId);
-    setEventid(res.data.culturalEventId);
-    setdes(res.data.description);
-    console.log(res.data.storedFileUrl);
+    try {
+      const res = await axios.get(`/admin/visit-auth/${parseInt(visitAuthId)}`);
+      setNickname(res.data.nickname);
+      setTitle(res.data.title);
+      setAuthimg(res.data.storedFileUrl);
+      setUserid(res.data.userId);
+      setEventid(res.data.culturalEventId);
+      setdes(res.data.description);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

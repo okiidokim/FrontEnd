@@ -37,25 +37,54 @@ function VisitAuthItem({ data }) {
 
 export default function VistiAuthList() {
   const [data, setData] = useState([]);
-  const [cnt, setCnt] = useState(100);
+  const [lastid, setLastid] = useState(0);
   const [last, setLast] = useState(false);
-  const [pagenum, setPagenum] = useState(0);
-  const [dataList, setDatalist] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get(`admin/visit-auth/list?lastId=${cnt}`);
+  const [first, setFirst] = useState(true);
+  const [empty, setEmpty] = useState(false);
+  const [numElem, setNum] = useState(0);
+  const [size, setSize] = useState(0);
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`admin/visit-auth/list?lastId=${lastid}`);
       setData(res.data.content);
       setLast(res.data.last);
-      setPagenum(res.data.pageable.pageNumber);
-      console.log(pagenum);
-    };
-    fetchData();
-  }, [last]);
+      setFirst(res.data.first);
+      setEmpty(res.data.empty);
+      setNum(res.data.numberOfElements);
+      setSize(res.data.size);
+      setLastid(res.data.content[12].id);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-  const onScroll = () => {
-    if (last === false) {
-      {
-        setPagenum(pagenum + 1);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const onScroll = async () => {
+    if (
+      window.scrollY + window.innerHeight >
+      document.documentElement.scrollHeight - 40
+    ) {
+      if (last === false && numElem === size) {
+        try {
+          {
+            const res = await axios.get(
+              `admin/visit-auth/list?lastId=${lastid}`
+            );
+            setLast(res.data.last);
+            setFirst(res.data.first);
+            setEmpty(res.data.empty);
+            setNum(res.data.numberOfElements);
+            setSize(res.data.size);
+            setData(data.concat(res.data.content));
+            setLastid(res.data.content[12].id);
+          }
+        } catch (e) {
+          console.log(e);
+        }
       }
     }
   };
@@ -67,7 +96,7 @@ export default function VistiAuthList() {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('touchmove', onScroll);
     };
-  }, [data]);
+  }, [lastid, numElem]);
 
   return (
     <div className="authlistwrap">
@@ -77,7 +106,7 @@ export default function VistiAuthList() {
           <p>방문 인증 요청</p>
         </div>
         <div className="visitauthlist">
-          {cnt === 0 ? (
+          {first === true && empty === true ? (
             <div className="novisiticon">
               <TbMapPinOff size="140" color="#018c0d" />
               <p div className="novisitauthtext">
