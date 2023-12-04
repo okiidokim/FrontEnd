@@ -73,7 +73,7 @@ function Review () {
                     requestBody.append('fileList', imageData);
                     requestBody.append('reviewDetail', new Blob([JSON.stringify(data)], { type: "application/json" }));
                     
-                    const request = await axios({
+                    await axios({
                         method: "POST",
                         url: `review/${eventId}/my-review`,
                         mode: "cors",
