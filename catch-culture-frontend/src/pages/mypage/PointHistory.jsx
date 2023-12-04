@@ -8,8 +8,6 @@ import { TbShoppingCart, TbCoins } from 'react-icons/tb';
 import * as dayjs from 'dayjs';
 
 function Pointeach({ data }) {
-  const [ppm, setppm] = useState('+');
-
   return (
     <>
       {data.map((e) => (
@@ -19,22 +17,14 @@ function Pointeach({ data }) {
             <div className="phdate">
               {dayjs(`${e.createdAt}`).format('YY.MM.DD')}
             </div>
-            {e.description === '문화행사 등록' ||
-            e.description === '방문 인증' ||
-            e.description === '리뷰 작성'
-              ? () => setppm('-')
-              : () => setppm('+')}
-            {ppm === '+' ? (
-              <div className="pointplus">포인트 지급</div>
-            ) : (
+            {e.pointChange === -3000 || e.pointChange === -5000 ? (
               <div className="pointminus">포인트 차감</div>
+            ) : (
+              <div className="pointplus">포인트 지급</div>
             )}
           </div>
           <div className="pointcontent">{e.description}</div>
-          <div className="pointnum">
-            {ppm}
-            {e.pointChange}p
-          </div>
+          <div className="pointnum">{e.pointChange}p</div>
         </div>
       ))}
     </>
@@ -47,14 +37,16 @@ function PointHistory() {
   const [currpoint, setCurrpoint] = useState(0);
   const [pagenum, setPageNum] = useState(0);
   const [dataList, setDataList] = useState([]);
+  const [islast, setLast] = useState(false);
 
   const onScroll = () => {
     if (
       window.scrollY + window.innerHeight >
       document.documentElement.scrollHeight - 40
-    ) {
-      setPageNum(pagenum + 1);
-    }
+    )
+      if (islast === false) {
+        setPageNum(pagenum + 1);
+      }
   };
 
   const fetchData = async () => {
@@ -65,6 +57,7 @@ function PointHistory() {
       setData(res.data.content);
       setDataList(dataList.concat(res.data.content));
       setCurrpoint(respoint.data);
+      setLast(res.data.last);
     } catch (e) {
       console.log(e);
     }
