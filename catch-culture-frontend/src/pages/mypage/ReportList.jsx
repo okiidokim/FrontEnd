@@ -48,11 +48,15 @@ function ReportList() {
   }, [data]);
 
   const fetchData = async () => {
-    const res = await axios.get(`/user/my-reports?page=${pagenum}&size=8`);
-    setCnt(res.data.totalElements);
-    setData(res.data.content);
-    setDataList(dataList.concat(res.data.content));
-    setLast(res.data.last);
+    try {
+      const res = await axios.get(`/user/my-reports?page=${pagenum}&size=8`);
+      setCnt(res.data.totalElements);
+      setData(res.data.content);
+      setDataList(dataList.concat(res.data.content));
+      setLast(res.data.last);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

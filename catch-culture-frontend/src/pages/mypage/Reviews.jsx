@@ -112,10 +112,14 @@ function Reviews() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`/user/my-reviews?page=${pagenum}&size=5`);
-      setCnt(res.data.totalElements);
-      setData(res.data.content);
-      setDataList(dataList.concat(res.data.content));
+      try {
+        const res = await axios.get(`/user/my-reviews?page=${pagenum}&size=5`);
+        setCnt(res.data.totalElements);
+        setData(res.data.content);
+        setDataList(dataList.concat(res.data.content));
+      } catch (e) {
+        console.log(e);
+      }
     };
     fetchData();
   }, [pagenum]);
