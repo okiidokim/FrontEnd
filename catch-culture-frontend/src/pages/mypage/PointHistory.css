@@ -50,11 +50,11 @@
 .phdate {
   font-size: 14px;
 }
-.pointplus {
+.pointminus {
   background-color: #e00000;
   color: #ffffff;
 }
-.pointminus {
+.pointplus {
   background-color: green;
   color: #ffffff;
 }
