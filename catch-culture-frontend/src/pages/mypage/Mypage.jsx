@@ -7,7 +7,6 @@ import {
   TbCoin,
   TbFileImport,
 } from 'react-icons/tb';
-
 import { NavLink } from 'react-router-dom';
 import './Mypage.css';
 import Level0 from '../../assets/pointimg/level0.png';
@@ -34,8 +33,13 @@ function Mypage() {
     fetchData();
   }, []);
 
-  console.log(nick);
-  console.log(img);
+  const fetchLogout = async () => {
+    try {
+      await axios.get(`/user/logout`);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div className="mypageall">
@@ -50,7 +54,7 @@ function Mypage() {
                 <NavLink to="/profile-edit">
                   <button className="putprofile">개인정보 수정</button>
                 </NavLink>
-                <NavLink to="/">
+                <NavLink to="/" onClick={fetchLogout}>
                   <button className="logout">로그아웃</button>
                 </NavLink>
               </div>
@@ -67,7 +71,7 @@ function Mypage() {
               <NavLink to="/profile-edit">
                 <button className="putprofile">개인정보 수정</button>
               </NavLink>
-              <NavLink to="/">
+              <NavLink to="/" onClick={fetchLogout}>
                 <button className="logout">로그아웃</button>
               </NavLink>
             </div>

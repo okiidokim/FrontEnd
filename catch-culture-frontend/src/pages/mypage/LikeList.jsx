@@ -48,15 +48,15 @@ function Likes() {
     <div className="listall">
       <Backitem />
       <div className="wrap">
+        <div className="textrow">
+          <div className="liketext">좋아요 목록</div>
+          <div className="bookmarkCnt">총 {cnt}개</div>
+        </div>
         <div className="cateSel">
           <CategorySelector
             selectedCategories={selectedCategories}
             setSelectedCategories={setSelectedCategories}
           />
-        </div>
-        <div className="textrow">
-          <div className="liketext">좋아요 목록</div>
-          <div className="bookmarkCnt">총 {cnt}개</div>
         </div>
         <div className="eventlist">
           {/* 문화 행사 출력 */}
