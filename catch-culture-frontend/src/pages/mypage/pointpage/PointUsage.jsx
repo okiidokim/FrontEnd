@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Backitem from '../../../components/Backitem';
-import Coffeepng from '../../../assets/images/coffee.png';
-import Level0 from '../../../assets/pointimg/level0.png';
 import { TbCoins } from 'react-icons/tb';
 import './PointUsage.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import axios from '../../../api/axios';
 
 function SellItem({ data }) {
@@ -16,11 +14,17 @@ function SellItem({ data }) {
   const [buyType, setBuytype] = useState('');
 
   const itemBuy = async (e) => {
-    const res = await axios.post(
-      `/user/purchase-reward?pointChange=${buyType}`
-    );
-    setResponse(res.data);
+    try {
+      const res = await axios.post(
+        `/user/purchase-reward?pointChange=${buyType}`
+      );
+      setResponse(res.data);
+    } catch (e) {
+      console.log(e);
+    }
   };
+
+  const navi = useNavigate();
   return (
     <>
       {data.map((e) => (
@@ -63,7 +67,13 @@ function SellItem({ data }) {
                 >
                   예
                 </div>
-                <div className="nobutton" onClick={() => setModal(false)}>
+                <div
+                  className="nobutton"
+                  onClick={() => {
+                    setModal(false);
+                    navi('/point-history');
+                  }}
+                >
                   아니오
                 </div>
               </div>
@@ -89,11 +99,14 @@ export default function PointUsage() {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`/user/point-usage`);
-      const resCurrpoint = await axios.get(`/user/point`);
-      setCurrpoint(resCurrpoint.data);
-      setData(res.data);
-      console.log(res.data);
+      try {
+        const res = await axios.get(`/user/point-usage`);
+        const resCurrpoint = await axios.get(`/user/point`);
+        setCurrpoint(resCurrpoint.data);
+        setData(res.data);
+      } catch (e) {
+        console.log(e);
+      }
     };
     fetchData();
   }, []);

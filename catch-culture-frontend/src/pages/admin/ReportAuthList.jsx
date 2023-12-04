@@ -37,31 +37,66 @@ function ReportItem({ data }) {
 }
 export default function ReportAuthList() {
   const [data, setData] = useState([]);
-  const [cnt, setCnt] = useState(100);
-  const [pagenum, setPagenum] = useState(0);
+  const [lastid, setLastid] = useState(0);
   const [last, setLast] = useState(false);
+  const [first, setFirst] = useState(true);
+  const [empty, setEmpty] = useState(false);
+  const [numElem, setNum] = useState(0);
+  const [size, setSize] = useState(0);
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.get(`admin/event-report/list?lastId=${lastid}`);
+      setData(res.data.content);
+      setLast(res.data.last);
+      setFirst(res.data.first);
+      setEmpty(res.data.empty);
+      setNum(res.data.numberOfElements);
+      setSize(res.data.size);
+      setLastid(res.data.content[12].id);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get(`admin/event-report/list?lastId=${cnt}`);
-      setData(res.data.content);
-      setPagenum(res.data.pageable.pageNumber);
-      setLast(res.data.last);
-    };
     fetchData();
-  }, [pagenum, last]);
+  }, []);
 
-  const onScroll = () => {
-    if (last === false) {
-      {
-        setPagenum(pagenum + 1);
+  const onScroll = async () => {
+    if (
+      window.scrollY + window.innerHeight >
+      document.documentElement.scrollHeight - 40
+    ) {
+      if (last === false && numElem === size) {
+        {
+          try {
+            const res = await axios.get(
+              `admin/event-report/list?lastId=${lastid}`
+            );
+            setLast(res.data.last);
+            setFirst(res.data.first);
+            setEmpty(res.data.empty);
+            setNum(res.data.numberOfElements);
+            setSize(res.data.size);
+            setData(data.concat(res.data.content));
+            setLastid(res.data.content[12].id);
+          } catch (e) {
+            console.log(e);
+          }
+        }
       }
     }
   };
 
   useEffect(() => {
-    onScroll();
-  }, [data]);
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('touchmove', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('touchmove', onScroll);
+    };
+  }, [lastid, numElem]);
 
   return (
     <div className="authlistwrap">
@@ -71,7 +106,7 @@ export default function ReportAuthList() {
           <p>문화행사 제보</p>
         </div>
         <div className="visitauthlist">
-          {cnt === 0 ? (
+          {first === true && empty === true ? (
             <div className="novisiticon">
               <TbReportOff size="140" color="#018c0d" />
               <p div className="novisitauthtext">
