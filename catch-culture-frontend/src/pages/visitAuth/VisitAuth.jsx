@@ -24,11 +24,22 @@ function VisitAuth() {
 
     const fetchData = async() => {
         
-        const response = await axios.get(
-            `cultural-event/${parseInt(params.id)}/title`
-        )
+        try{
+            const response = await axios.get(
+                `cultural-event/${parseInt(params.id)}/title`
+            )
 
-        setTitle(response.data);
+            setTitle(response.data);
+        } catch(e) {
+            if(e.response.data.code === "LOGIN_FAIL") {
+                alert('로그인 만료! 다시 로그인 해주세요.');
+                navigate(`/`);
+            }
+            if(e.response.data.code === "INVALID_EVENT_ID") {
+                alert("존재하지 않는 문화 행사 ID 입니다.");
+                navigate(`/main`);
+            }
+        }
     }
 
     const handleImgFile = (file) => {
@@ -129,7 +140,7 @@ function VisitAuth() {
             <S.Container onSubmit={handleSubmit}>
                 <S.TitleArea>
                     {title == null ? 
-                        title
+                        " "
                         :
                         (
                             title.length < 14 ? 

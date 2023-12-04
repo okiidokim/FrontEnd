@@ -27,3 +27,6 @@ dist-ssr
 
 #api keys
 .env
+catch-culture-frontend/sonar-project.properties
+catch-culture-frontend/.scannerwork/.sonar_lock
+catch-culture-frontend/.scannerwork/report-task.txt
