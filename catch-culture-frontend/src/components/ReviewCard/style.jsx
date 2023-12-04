@@ -18,7 +18,6 @@ export const UserInfo = styled.div`
   flex-direction: row;
   gap: 12px;
   align-items: flex-start;
-  width: max-content;
   width: 300px;
 `;
 

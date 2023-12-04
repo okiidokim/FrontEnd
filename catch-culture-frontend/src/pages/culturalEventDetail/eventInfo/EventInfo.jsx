@@ -2,6 +2,8 @@ import * as S from './style.jsx';
 import { useState, useMemo } from 'react';
 import { AiOutlineHeart, AiFillHeart, AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 import { SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -133,10 +135,30 @@ function EventInfo (params) {
         fetchBookMark();
     }
 
+    // 링크 복사 클릭
+    const handleCopyClipBoard = (text) => {
+        try {
+          navigator.clipboard.writeText(text);
+          
+          toast.success("복사 성공!", {
+            autoClose: 1000,
+            position: toast.POSITION.TOP_CENTER,
+            hideProgressBar: true
+          });
+        } catch (error) {
+          toast.error("복사 실패!", {
+            autoClose: 1000,
+            position: toast.POSITION.TOP_CENTER,
+            hideProgressBar: true
+          });
+        }
+      };
+
     // 방문인증 버튼 클릭
     const onClickAuthButton = () => {
         navigate(`/event/${parseInt(params.data.EventId)}/visit`);
     }
+
 
     return (
         <S.EventInfo>
@@ -242,7 +264,20 @@ function EventInfo (params) {
                     예약 정보
                 </S.SubTitle>
                 <S.InfoValue>
-                    { params.data.reservationLink != null ? "예약링크 : " + params.data.reservationLink : "없음" }
+                    
+                    { params.data.reservationLink != null ? 
+                        (
+                            <>
+                            예약링크 <br/> 
+                            <div onClick={() => handleCopyClipBoard(params.data.reservationLink)}>   
+                                {params.data.reservationLink}
+                            </div>
+                            <ToastContainer />
+                            </>
+                        )
+                        : 
+                        "없음" 
+                    }
                 </S.InfoValue>
 
                 {/* 예약 버튼 */}
