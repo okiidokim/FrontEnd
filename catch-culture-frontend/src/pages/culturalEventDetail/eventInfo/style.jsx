@@ -118,6 +118,11 @@ export const InfoValue = styled.div`
     flex-direction: column;
     line-height: 20px;
     overflow: hidden; 
+    word-break: break-all;
+`;
+
+export const CopyResolvation = styled.div`
+
 `;
 
 export const ReservationButton = styled.button`
