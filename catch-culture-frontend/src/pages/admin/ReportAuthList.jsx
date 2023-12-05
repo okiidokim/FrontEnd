@@ -26,7 +26,7 @@ function ReportItem({ data }) {
                   <></>
                 ) : (
                   <>
-                    {dayjs(`${e.createdAt}`).format('YY/MM/DD - dddd - HH:mm')}
+                    {dayjs(`${e.createdAt}`).format('YYYY.MM.DD - ddd - HH:mm')}
                   </>
                 )}
               </p>
@@ -114,7 +114,7 @@ export default function ReportAuthList() {
             </div>
           ) : (
             <>
-              <ReportItem data={[data]} />
+              <ReportItem data={data} />
               <div className="nomore">
                 <hr />
                 <div className="nomorewicon">

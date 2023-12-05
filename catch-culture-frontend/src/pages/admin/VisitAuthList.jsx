@@ -24,7 +24,7 @@ function VisitAuthItem({ data }) {
                   <></>
                 ) : (
                   <>
-                    {dayjs(`${e.createdAt}`).format('YY/MM/DD - dddd - HH:mm')}
+                    {dayjs(`${e.createdAt}`).format('YYYY.MM.DD - ddd - HH:mm')}
                   </>
                 )}
               </p>
