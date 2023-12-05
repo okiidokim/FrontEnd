@@ -75,6 +75,7 @@ export const ReportButton = styled.div`
   width: 300px;
   height: 38px;
   border-radius: 8px;
+  margin-bottom: 60px;
   border: 1px solid #018c0d;
   background: #018c0d;
 
