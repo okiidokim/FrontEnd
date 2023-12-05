@@ -28,14 +28,14 @@ function ReportList() {
   const [data, setData] = useState([]);
   const [pagenum, setPageNum] = useState(0);
   const [dataList, setDataList] = useState([]);
-  const [islast, setLast] = useState(false);
+  const [isLast, setIsLast] = useState(false);
 
   const onScroll = () => {
     if (
       window.scrollY + window.innerHeight >
       document.documentElement.scrollHeight - 10
     )
-      if (islast === false) {
+      if (isLast === false) {
         setPageNum(pagenum + 1);
       }
   };
@@ -54,7 +54,7 @@ function ReportList() {
       setCnt(res.data.totalElements);
       setData(res.data.content);
       setDataList(dataList.concat(res.data.content));
-      setLast(res.data.last);
+      setIsLast(res.data.last);
     } catch (e) {
       console.log(e);
     }

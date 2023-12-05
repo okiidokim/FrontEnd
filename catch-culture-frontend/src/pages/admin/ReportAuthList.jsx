@@ -9,31 +9,32 @@ import { NavLink } from 'react-router-dom';
 function ReportItem([data]) {
   dayjs.locale('ko');
 
+  if (!data) {
+    return;
+  }
+
   return (
     <>
-      {data &&
-        data.map((e) => (
-          <NavLink to={`/reportauth/${e.id}`} key={e.index}>
-            <div className="visitautheach" key={e.id}>
-              <hr />
-              <div className="nickdayrow">
-                <p>{e.nickname}</p>
-                <p className="visitauthday">
-                  {e.createdAt === null ? (
-                    <></>
-                  ) : (
-                    <>
-                      {dayjs(`${e.createdAt}`).format(
-                        'YY/MM/DD - dddd - HH:mm'
-                      )}
-                    </>
-                  )}
-                </p>
-              </div>
-              <p className="visitadmintitle">{e.title}</p>
+      {data.map((e) => (
+        <NavLink to={`/reportauth/${e.id}`} key={e.index}>
+          <div className="visitautheach" key={e.id}>
+            <hr />
+            <div className="nickdayrow">
+              <p>{e.nickname}</p>
+              <p className="visitauthday">
+                {e.createdAt === null ? (
+                  <></>
+                ) : (
+                  <>
+                    {dayjs(`${e.createdAt}`).format('YY/MM/DD - dddd - HH:mm')}
+                  </>
+                )}
+              </p>
             </div>
-          </NavLink>
-        ))}
+            <p className="visitadmintitle">{e.title}</p>
+          </div>
+        </NavLink>
+      ))}
     </>
   );
 }
