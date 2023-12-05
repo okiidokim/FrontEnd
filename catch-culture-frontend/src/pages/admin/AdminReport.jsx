@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Backitem from '../../components/Backitem';
 import axios from '../../api/axios';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import './AdminReport.css';
-import { NavLink } from 'react-router-dom';
 import {
   TbBalloon,
   TbLocation,

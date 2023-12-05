@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TbClipboardCheck } from 'react-icons/tb';
-import { TbMapPinCheck } from 'react-icons/tb';
+import { TbClipboardCheck, TbMapPinCheck } from 'react-icons/tb';
 import './Admin.css';
 import { NavLink } from 'react-router-dom/dist';
 

@@ -5,7 +5,7 @@ import './PointUsage.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from '../../../api/axios';
 
-function SellItem({ data }) {
+function SellItem([data]) {
   const [modal, setModal] = useState(false);
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);

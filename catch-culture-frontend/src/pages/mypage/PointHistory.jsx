@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { TbShoppingCart, TbCoins, TbAlertCircleFilled } from 'react-icons/tb';
 import * as dayjs from 'dayjs';
 
-function Pointeach({ data }) {
+function Pointeach([data]) {
   return (
     <>
       {data.map((e) => (

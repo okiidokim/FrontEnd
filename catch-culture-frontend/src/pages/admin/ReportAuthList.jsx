@@ -7,13 +7,13 @@ import axios from '../../api/axios';
 import { NavLink } from 'react-router-dom';
 import 'dayjs/locale/ko';
 
-function ReportItem({ data }) {
+function ReportItem([data]) {
   dayjs.locale('ko');
 
   return (
     <>
-      {data.map((e, index) => (
-        <NavLink to={`/reportauth/${e.id}`} key={index}>
+      {data.map((e) => (
+        <NavLink to={`/reportauth/${e.id}`} key={e.index}>
           <div className="visitautheach" key={e.id}>
             <hr />
             <div className="nickdayrow">
@@ -69,32 +69,30 @@ export default function ReportAuthList() {
       document.documentElement.scrollHeight - 40
     ) {
       if (last === false && numElem === size) {
-        {
-          try {
-            const res = await axios.get(
-              `admin/event-report/list?lastId=${lastid}`
-            );
-            setLast(res.data.last);
-            setFirst(res.data.first);
-            setEmpty(res.data.empty);
-            setNum(res.data.numberOfElements);
-            setSize(res.data.size);
-            setData(data.concat(res.data.content));
-            setLastid(res.data.content[12].id);
-          } catch (e) {
-            console.log(e);
-          }
+        try {
+          const res = await axios.get(
+            `admin/event-report/list?lastId=${lastid}`
+          );
+          setLast(res.data.last);
+          setFirst(res.data.first);
+          setEmpty(res.data.empty);
+          setNum(res.data.numberOfElements);
+          setSize(res.data.size);
+          setData(data.concat(res.data.content));
+          setLastid(res.data.content[12].id);
+        } catch (e) {
+          console.log(e);
         }
       }
     }
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', onScroll);
-    window.addEventListener('touchmove', onScroll);
+    window.addEventListener('scroll', onScroll());
+    window.addEventListener('touchmove', onScroll());
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('touchmove', onScroll);
+      window.removeEventListener('scroll', onScroll());
+      window.removeEventListener('touchmove', onScroll());
     };
   }, [lastid, numElem]);
 
@@ -109,13 +107,11 @@ export default function ReportAuthList() {
           {first === true && empty === true ? (
             <div className="novisiticon">
               <TbReportOff size="140" color="#018c0d" />
-              <p div className="novisitauthtext">
-                제보 받은 문화 행사 없음
-              </p>
+              <p className="novisitauthtext">제보 받은 문화 행사 없음</p>
             </div>
           ) : (
             <>
-              <ReportItem data={data} />
+              <ReportItem data={[data]} />
               <div className="nomore">
                 <hr />
                 <div className="nomorewicon">
