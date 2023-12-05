@@ -13,8 +13,8 @@ import axios from '../../api/axios';
 let data = "sample";
 
 function culturalEventDetail() {
-    const { params } = useParams();
-    const culturalEventId = params.id;
+    const culturalEventId = useParams().id;
+    
     const navigate = useNavigate();
     
     const [_isInit, setInit] = useState(false);
@@ -22,6 +22,7 @@ function culturalEventDetail() {
     // 최초 로딩시 값 불러오기
     useEffect(() => {
         fetchData();
+        console.log(culturalEventId)
     }, []);
 
     const fetchData = async () => {
