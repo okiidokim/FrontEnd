@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Backitem from '../../components/Backitem';
 import { NavLink } from 'react-router-dom/dist';
 import './ReportList.css';
@@ -6,7 +6,7 @@ import NoReport from '../../components/search/noResult/NoReport';
 import axios from '../../api/axios';
 import { TbAlertCircleFilled } from 'react-icons/tb';
 
-function Reporteach({ data }) {
+function Reporteach([data]) {
   return (
     <>
       {data.map((e) => (
@@ -26,7 +26,7 @@ function Reporteach({ data }) {
 function ReportList() {
   const [cnt, setCnt] = useState(0);
   const [data, setData] = useState([]);
-  const [pagenum, setPageNum] = useState(0);
+  const [pageNum, setPageNum] = useState(0);
   const [dataList, setDataList] = useState([]);
   const [isLast, setIsLast] = useState(false);
 
@@ -36,7 +36,7 @@ function ReportList() {
       document.documentElement.scrollHeight - 10
     )
       if (isLast === false) {
-        setPageNum(pagenum + 1);
+        setPageNum(pageNum + 1);
       }
   };
   useEffect(() => {
@@ -50,7 +50,7 @@ function ReportList() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`/user/my-reports?page=${pagenum}&size=8`);
+      const res = await axios.get(`/user/my-reports?page=${pageNum}&size=8`);
       setCnt(res.data.totalElements);
       setData(res.data.content);
       setDataList(dataList.concat(res.data.content));
@@ -62,7 +62,7 @@ function ReportList() {
 
   useEffect(() => {
     fetchData();
-  }, [pagenum]);
+  }, [pageNum]);
 
   return (
     <div className="reportall">
@@ -78,9 +78,7 @@ function ReportList() {
       </div>
       <div className="reportcntcheck">
         {cnt === 0 ? (
-          <>
-            <NoReport />
-          </>
+          <NoReport />
         ) : (
           <div className="replist">
             <div className="repb">

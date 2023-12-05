@@ -6,7 +6,7 @@ import './VisitAuthList.css';
 import axios from '../../api/axios';
 import { NavLink } from 'react-router-dom';
 
-function VisitAuthItem([data]) {
+function VisitAuthItem({ data }) {
   dayjs.locale('ko');
   if (!data) {
     return;
