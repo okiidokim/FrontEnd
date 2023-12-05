@@ -4,7 +4,7 @@ import './PointHistory.css';
 import NoPointHistory from '../../components/search/noResult/NoPointHistory';
 import axios from '../../api/axios';
 import { NavLink } from 'react-router-dom';
-import { TbShoppingCart, TbCoins } from 'react-icons/tb';
+import { TbShoppingCart, TbCoins, TbAlertCircleFilled } from 'react-icons/tb';
 import * as dayjs from 'dayjs';
 
 function Pointeach({ data }) {
@@ -103,6 +103,13 @@ function PointHistory() {
           ) : (
             <>
               <Pointeach data={dataList} />
+              <div className="nomore">
+                <hr />
+                <div className="nomorewicon">
+                  <TbAlertCircleFilled />
+                  결과 없음
+                </div>
+              </div>
             </>
           )}
         </div>

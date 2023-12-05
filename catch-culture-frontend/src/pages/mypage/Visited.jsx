@@ -6,6 +6,7 @@ import CategorySelector from '../../components/categorySelector/CategorySelector
 import EventCard from '../../components/eventCard/EventCard';
 import NoVisits from '../../components/search/noResult/NoVisits';
 import axios from '../../api/axios';
+import { TbAlertCircleFilled } from 'react-icons/tb';
 
 function Visited() {
   const { state } = useLocation();
@@ -65,6 +66,13 @@ function Visited() {
           ) : (
             <>
               <EventCard data={data} />
+              <div className="nomore">
+                <hr />
+                <div className="nomorewicon">
+                  <TbAlertCircleFilled />
+                  결과 없음
+                </div>
+              </div>
             </>
           )}
         </div>

@@ -7,6 +7,7 @@ import CategorySelector from '../../components/categorySelector/CategorySelector
 import EventCard from '../../components/eventCard/EventCard';
 import NoBookmarks from '../../components/search/noResult/NoBookmarks';
 import axios from '../../api/axios';
+import { TbAlertCircleFilled } from 'react-icons/tb';
 
 function Bookmarks() {
   const { state } = useLocation();
@@ -66,6 +67,13 @@ function Bookmarks() {
           ) : (
             <>
               <EventCard data={data} />
+              <div className="nomore">
+                <hr />
+                <div className="nomorewicon">
+                  <TbAlertCircleFilled />
+                  결과 없음
+                </div>
+              </div>
             </>
           )}
         </div>
