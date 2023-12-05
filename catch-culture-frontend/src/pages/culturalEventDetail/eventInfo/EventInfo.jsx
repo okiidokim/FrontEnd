@@ -163,7 +163,7 @@ function EventInfo (params) {
     return (
         <S.EventInfo>
             {/* 행사 제목 */}
-            <S.TitleArea onClick={() => setIsShowMoreTitle(!isShowMoreTitle)}>
+            <S.TitleArea onClick={(e) => setIsShowMoreTitle(!isShowMoreTitle)}>
                 { getTitle }
                 {/* 더보기 버튼 */}
                 <span style={{color:'grey'}}>
@@ -209,7 +209,7 @@ function EventInfo (params) {
                     행사 소개
                 </S.SubTitle>
                 <S.InfoValue>
-                    <div id="descriptionInfo" onClick={() => setIsShowMoreDes(!isShowMoreDes)}>
+                    <div id="descriptionInfo" onClick={(e) => setIsShowMoreDes(!isShowMoreDes)}>
                         { commenter }
 
                         {/* 더보기 버튼 */}
@@ -269,7 +269,7 @@ function EventInfo (params) {
                         (
                             <>
                             예약링크 <br/> 
-                            <div onClick={() => handleCopyClipBoard(params.data.reservationLink)}>   
+                            <div onClick={(e) => handleCopyClipBoard(params.data.reservationLink)}>   
                                 {params.data.reservationLink}
                             </div>
                             <ToastContainer />
@@ -282,7 +282,7 @@ function EventInfo (params) {
 
                 {/* 예약 버튼 */}
                 <S.ButtonSection style={params.data. reservationLink != null ? null : {display:'none'}}>
-                    <button onClick={() => {window.open(params.data.reservationLink,'_blank')}}>
+                    <button onClick={(e) => {window.open(params.data.reservationLink,'_blank')}}>
                         이동하기
                     </button>
                 </S.ButtonSection>

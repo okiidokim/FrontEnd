@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { AiFillHeart, AiFillEye } from 'react-icons/ai';
 import { RxCross2 } from "react-icons/rx";
 
-export const Map = styled.div`
+export const OverlayArea = styled.div`
     position: absolute;
     left: 0;
     bottom: 40px;

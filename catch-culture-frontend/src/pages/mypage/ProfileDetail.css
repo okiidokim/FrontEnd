@@ -93,8 +93,6 @@ hr {
   border-radius: 2px;
   border-width: 0.5px;
   border-color: #acacac;
-
-  font-family: NotoSansKR_Regular;
   font-size: 13px;
   font-weight: 400;
   &:focus {
