@@ -10,7 +10,7 @@ function VisitAuth() {
     const navigate = useNavigate();
     const eventId = params.id;
 
-    const [title, setTitle] = useState();
+    const [title, setTitle] = useState("");
     const [imageSrc1, setImageSrc1] = useState();
     const [imageSrc2, setImageSrc2] = useState();
     const [imageSrc3, setImageSrc3] = useState();
@@ -78,6 +78,10 @@ function VisitAuth() {
             }
     }
 
+    const handleIsMoreTitle = () => {
+        setIsMoreTitle(!isMoreTitle)
+    }
+
     const ImgSvg = (size) => (
         <svg xmlns="http://www.w3.org/2000/svg" width={size.size} height={size.size} viewBox="0 0 38 38" fill="none">
             <g clipPath="url(#clip0_1_1302)">
@@ -96,7 +100,7 @@ function VisitAuth() {
         const file = e.target.files;
         
         if(!file[0]) return;
-        if ((file.length) > 3) {
+        if (file.length > 3) {
             return alert('최대 3개 사진만 첨부할 수 있습니다.')
         }
 
@@ -139,18 +143,13 @@ function VisitAuth() {
 
             <S.Container onSubmit={handleSubmit}>
                 <S.TitleArea>
-                    {title === null ? 
-                        " "
+                    {title && title.length < 14 ? 
+                        title
                         :
-                        (
-                            title.length < 14 ? 
-                            title
-                            :
-                            <div onClick={(e) => setIsMoreTitle(!isMoreTitle)}>
-                                {!isMoreTitle && `${title.slice(0, 14)}...`}
-                                {isMoreTitle && title}
-                            </div>
-                        )
+                        <div onClick={handleIsMoreTitle} onKeyDown={handleIsMoreTitle}>
+                            {!isMoreTitle && `${title.slice(0, 14)}...`}
+                            {isMoreTitle && title}
+                        </div>
                     }
                 </S.TitleArea>
                 <S.SubTitle>
