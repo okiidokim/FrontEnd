@@ -40,14 +40,14 @@ function PointHistory() {
   const [currpoint, setCurrpoint] = useState(0);
   const [pagenum, setPageNum] = useState(0);
   const [dataList, setDataList] = useState([]);
-  const [islast, setLast] = useState(false);
+  const [isLast, setIsLast] = useState(false);
 
   const onScroll = () => {
     if (
       window.scrollY + window.innerHeight >
       document.documentElement.scrollHeight - 40
     )
-      if (islast === false) {
+      if (isLast === false) {
         setPageNum(pagenum + 1);
       }
   };
@@ -60,7 +60,7 @@ function PointHistory() {
       setData(res.data.content);
       setDataList(dataList.concat(res.data.content));
       setCurrpoint(respoint.data);
-      setLast(res.data.last);
+      setIsLast(res.data.last);
     } catch (e) {
       console.log(e);
     }
