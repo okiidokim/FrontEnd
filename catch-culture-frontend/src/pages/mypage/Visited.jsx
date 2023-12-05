@@ -6,37 +6,43 @@ import CategorySelector from '../../components/categorySelector/CategorySelector
 import EventCard from '../../components/eventCard/EventCard';
 import NoVisits from '../../components/search/noResult/NoVisits';
 import axios from '../../api/axios';
-import { TbAlertCircleFilled } from 'react-icons/tb';
 
 function Visited() {
   const { state } = useLocation();
   const category = state && state.category;
+  const [trueData, setTrueData] = useState([]);
+  const [falseData, setFalseData] = useState([]);
   const [cnt, setCnt] = useState(0);
   const initialCategories = category ? category : [];
   const [selectedCategories, setSelectedCategories] =
     useState(initialCategories);
-
-  // data
-  const [data, setData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(true);
 
   useEffect(() => {
     fetchData();
   }, [selectedCategories]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     try {
       const categoryUrl = selectedCategories
-        .map((item) => 'category=' + item)
+        .map(item => 'category=' + item)
         .join('&');
 
       const response = await axios.get(
         `user/cultural-event?${categoryUrl}&offset=0&classification=VISIT_AUTH`
       );
-      setData(response.data.content);
+
+      if (isLoaded) {
+        response.data.content.forEach(event => {
+          if (event.authenticated === false) {
+            falseData.push(event);
+          } else {
+            trueData.push(event);
+          }
+        });
+        setIsLoaded(false);
+      }
+
       setCnt(response.data.totalElements);
     } catch (e) {
       console.log(e);
@@ -58,21 +64,29 @@ function Visited() {
           />
         </div>
         <div className="eventlist">
-          {/* 문화 행사 출력 */}
+          {/* 승인 문화 행사 출력 */}
+          <div className="authenticated-true">승인</div>
           {cnt === 0 ? (
             <div className="nors">
               <NoVisits />
             </div>
           ) : (
             <>
-              <EventCard data={data} />
-              <div className="nomore">
-                <hr />
-                <div className="nomorewicon">
-                  <TbAlertCircleFilled />
-                  결과 없음
-                </div>
-              </div>
+              <EventCard data={trueData} />
+            </>
+          )}
+
+          <hr />
+
+          {/* 미승인 문화 행사 출력 */}
+          <div className="authenticated-false">미승인</div>
+          {cnt === 0 ? (
+            <div className="nors">
+              <NoVisits />
+            </div>
+          ) : (
+            <>
+              <EventCard data={falseData} />
             </>
           )}
         </div>
