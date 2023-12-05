@@ -90,7 +90,7 @@ function MyReviewCard({ data }) {
 function Reviews() {
   const [cnt, setCnt] = useState(0);
   const [data, setData] = useState([]);
-  const [pagenum, setPageNum] = useState(0);
+  const [pageNum, setPageNum] = useState(0);
   const [dataList, setDataList] = useState([]);
 
   const onScroll = () => {
@@ -98,7 +98,7 @@ function Reviews() {
       window.scrollY + window.innerHeight >
       document.documentElement.scrollHeight - 40
     ) {
-      setPageNum(pagenum + 1);
+      setPageNum(pageNum + 1);
     }
   };
   useEffect(() => {
@@ -113,7 +113,7 @@ function Reviews() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/user/my-reviews?page=${pagenum}&size=5`);
+        const res = await axios.get(`/user/my-reviews?page=${pageNum}&size=5`);
         setCnt(res.data.totalElements);
         setData(res.data.content);
         setDataList(dataList.concat(res.data.content));
@@ -122,7 +122,7 @@ function Reviews() {
       }
     };
     fetchData();
-  }, [pagenum]);
+  }, [pageNum]);
 
   return (
     <div className="reviewall">
