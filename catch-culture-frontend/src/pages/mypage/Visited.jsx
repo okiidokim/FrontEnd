@@ -82,33 +82,6 @@ function Visited() {
               </>
             )
           }
-
-          {/* 승인 문화 행사 출력 */}
-          {/* <div className="authenticated-true">승인</div>
-          {cnt === 0 ? (
-            <div className="nors">
-              <NoVisits />
-            </div>
-          ) : (
-            <>
-              <EventCard data={trueData} />
-            </>
-          )}
-
-          <hr /> */}
-
-          {/* 미승인 문화 행사 출력 */}
-          {/* <div className="authenticated-false">미승인</div>
-          {cnt === 0 ? (
-            <div className="nors">
-              <NoVisits />
-            </div>
-          ) : (
-            <>
-            {console.log(falseData)}
-              <EventCard data={falseData} />
-            </>
-          )} */}
         </div>
       </div>
     </div>
