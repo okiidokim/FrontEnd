@@ -6,12 +6,10 @@ import CategorySelector from '../../components/categorySelector/CategorySelector
 import EventCard from '../../components/eventCard/EventCard';
 import NoVisits from '../../components/search/noResult/NoVisits';
 import axios from '../../api/axios';
-import { TbAlertCircleFilled } from 'react-icons/tb';
 
 function Visited() {
   const { state } = useLocation();
   const category = state && state.category;
-  const [isAuthenticated, setIsauthenticated] = useState(false);
   const [trueData, setTrueData] = useState([]);
   const [falseData, setFalseData] = useState([]);
   const [cnt, setCnt] = useState(0);
@@ -66,9 +64,8 @@ function Visited() {
           />
         </div>
         <div className="eventlist">
-          <div className="authenticated-true">승인</div>
-
           {/* 승인 문화 행사 출력 */}
+          <div className="authenticated-true">승인</div>
           {cnt === 0 ? (
             <div className="nors">
               <NoVisits />
@@ -81,8 +78,8 @@ function Visited() {
 
           <hr />
 
-          <div className="authenticated-false">미승인</div>
           {/* 미승인 문화 행사 출력 */}
+          <div className="authenticated-false">미승인</div>
           {cnt === 0 ? (
             <div className="nors">
               <NoVisits />
