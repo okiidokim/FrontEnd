@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useNavigate, UseParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import * as S from './CulturalEventDetailStyle';
 
@@ -13,7 +13,7 @@ import axios from '../../api/axios';
 let data = "sample";
 
 function culturalEventDetail() {
-    const { params } = UseParams();
+    const { params } = useParams();
     const culturalEventId = params.id;
     const navigate = useNavigate();
     
