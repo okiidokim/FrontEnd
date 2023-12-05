@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Backitem from '../../components/Backitem';
-import * as dayjs from 'dayjs'; //api 반환 받았을 때 사용 예정
+import dayjs from 'dayjs'; //api 반환 받았을 때 사용 예정
 import { TbReportOff, TbAlertCircleFilled } from 'react-icons/tb';
 import './VisitAuthList.css';
 import axios from '../../api/axios';
