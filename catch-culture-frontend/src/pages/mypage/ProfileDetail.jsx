@@ -12,6 +12,8 @@ function NickUpdate(props) {
       await axios.patch(`user/profile/nickname?nickName=${nick}`, {
         nickName: props.nick,
       });
+
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }
@@ -22,7 +24,6 @@ function NickUpdate(props) {
       try {
         const response = await axios.get(`user`);
         setNick(response.data.nickname);
-        console.log(response);
       } catch (e) {
         console.log(response);
       }
@@ -55,19 +56,11 @@ function NickUpdate(props) {
             placeholder="닉네임을 설정하세요."
             value={nick}
             onChange={(e) => {
-              console.log(e.target.value);
               setNick(e.target.value);
             }}
             className="nicktextbox"
           ></input>
         </p>
-        <NavLink
-          to="/profile-edit"
-          onClick="location.reload();"
-          className="pagereload"
-        >
-          닉네임 저장 후 페이지 새로고침
-        </NavLink>
       </form>
     </div>
   );
@@ -85,7 +78,6 @@ function ProfileEdit() {
         setNick(response.data.nickname);
         setImg(response.data.storedFileUrl);
         setSctype(response.data.socialType);
-        console.log(response);
       } catch (e) {
         console.log(response);
       }
