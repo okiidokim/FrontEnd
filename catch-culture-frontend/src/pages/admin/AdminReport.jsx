@@ -16,8 +16,8 @@ import {
   TbLink,
 } from 'react-icons/tb';
 
-function ReportInfo(params) {
-  const d = params.data;
+function ReportInfo(data) {
+  const d = data.data;
 
   const [isShowMore, setIsShowMore] = useState(false);
   const textLimit = 78;
@@ -150,8 +150,7 @@ function ReportInfo(params) {
 
 let data = 'sample';
 export default function AdminReport() {
-  const params = useParams();
-  const reportId = params.id;
+  const reportId = useParams().id;
   const [nickname, setNickname] = useState('');
   const [userId, setUserId] = useState(0);
 
