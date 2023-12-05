@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import Backitem from '../../components/Backitem';
 import './AdminReport.css';
-import * as dayjs from 'dayjs';
 import axios from '../../api/axios';
-import { NavLink } from 'react-router-dom';
 import { TbBalloon, TbNotes } from 'react-icons/tb';
 
 export default function AdminVisit() {
@@ -68,8 +66,8 @@ export default function AdminVisit() {
         <div className="reportinfowrap">
           <hr />
           <div className="reportimglist">
-            {authimg.map((e, index) => (
-              <span key={index}>
+            {authimg.map((e) => (
+              <span key={e.index}>
                 <img className="reportimg" src={e} />
               </span>
             ))}

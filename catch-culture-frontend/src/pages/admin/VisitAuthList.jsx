@@ -6,13 +6,13 @@ import './VisitAuthList.css';
 import axios from '../../api/axios';
 import { NavLink } from 'react-router-dom';
 
-function VisitAuthItem({ data }) {
+function VisitAuthItem([data]) {
   dayjs.locale('ko');
 
   return (
     <>
-      {data.map((e, index) => (
-        <NavLink to={`/visitauth/${e.id}`} key={index}>
+      {data.map((e) => (
+        <NavLink to={`/visitauth/${e.id}`} key={e.index}>
           <div className="visitautheach" key={e.id}>
             <hr />
             <div className="nickdayrow">
@@ -70,18 +70,14 @@ export default function VistiAuthList() {
     ) {
       if (last === false && numElem === size) {
         try {
-          {
-            const res = await axios.get(
-              `admin/visit-auth/list?lastId=${lastid}`
-            );
-            setLast(res.data.last);
-            setFirst(res.data.first);
-            setEmpty(res.data.empty);
-            setNum(res.data.numberOfElements);
-            setSize(res.data.size);
-            setData(data.concat(res.data.content));
-            setLastid(res.data.content[12].id);
-          }
+          const res = await axios.get(`admin/visit-auth/list?lastId=${lastid}`);
+          setLast(res.data.last);
+          setFirst(res.data.first);
+          setEmpty(res.data.empty);
+          setNum(res.data.numberOfElements);
+          setSize(res.data.size);
+          setData(data.concat(res.data.content));
+          setLastid(res.data.content[12].id);
         } catch (e) {
           console.log(e);
         }
@@ -90,11 +86,11 @@ export default function VistiAuthList() {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', onScroll);
-    window.addEventListener('touchmove', onScroll);
+    window.addEventListener('scroll', onScroll());
+    window.addEventListener('touchmove', onScroll());
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('touchmove', onScroll);
+      window.removeEventListener('scroll', onScroll());
+      window.removeEventListener('touchmove', onScroll());
     };
   }, [lastid, numElem]);
 
@@ -109,9 +105,7 @@ export default function VistiAuthList() {
           {first === true && empty === true ? (
             <div className="novisiticon">
               <TbMapPinOff size="140" color="#018c0d" />
-              <p div className="novisitauthtext">
-                방문 인증 요청 없음
-              </p>
+              <p className="novisitauthtext">방문 인증 요청 없음</p>
             </div>
           ) : (
             <>
