@@ -25,7 +25,7 @@ function Visited() {
   const fetchData = async () => {
     try {
       const categoryUrl = selectedCategories
-        .map(item => 'category=' + item)
+        .map((item) => 'category=' + item)
         .join('&');
 
       const response = await axios.get(
@@ -33,14 +33,18 @@ function Visited() {
       )
       resetData();
 
-      response.data.content.forEach(event => {
-        if (event.authenticated === false) {
-          falseData.push(event);
-        } else {
-          trueData.push(event);
-        }
-      });
-      setCnt(response.data.totalElements)
+      if (isLoaded) {
+        response.data.content.forEach((event) => {
+          if (event.authenticated === false) {
+            falseData.push(event);
+          } else {
+            trueData.push(event);
+          }
+        });
+        setIsLoaded(false);
+      }
+
+      setCnt(response.data.totalElements);
     } catch (e) {
       console.log(e);
     }
@@ -66,22 +70,32 @@ function Visited() {
           />
         </div>
         <div className="eventlist">
-          {
-            cnt === 0 ? (
-              <div className="nors">
-                <NoVisits />
-              </div>
-            ) : (
-              <>
-              
-                <div className="authenticated-true">승인</div>
-                <EventCard data={trueData} />
-                <hr/>
-                <div className="authenticated-false">미승인</div>
-                <EventCard data={falseData} />
-              </>
-            )
-          }
+          {/* 승인 문화 행사 출력 */}
+          <div className="authenticated-true">승인</div>
+          {cnt === 0 ? (
+            <div className="norsvisited">
+              <NoVisits />
+            </div>
+          ) : (
+            <>
+              <EventCard data={trueData} />
+            </>
+          )}
+
+          <hr />
+
+          {/* 미승인 문화 행사 출력 */}
+          <div className="authenticated-false">미승인</div>
+          {cnt === 0 ? (
+            <div className="norsvisited">
+              <NoVisits />
+            </div>
+          ) : (
+            <>
+              <EventCard data={falseData} />
+            </>
+          )}
+
         </div>
       </div>
     </div>
