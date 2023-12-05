@@ -12,6 +12,8 @@ function NickUpdate(props) {
       await axios.patch(`user/profile/nickname?nickName=${nick}`, {
         nickName: props.nick,
       });
+
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }
@@ -61,13 +63,6 @@ function NickUpdate(props) {
             className="nicktextbox"
           ></input>
         </p>
-        <NavLink
-          to="/profile-edit"
-          onClick="location.reload();"
-          className="pagereload"
-        >
-          닉네임 저장 후 페이지 새로고침
-        </NavLink>
       </form>
     </div>
   );
