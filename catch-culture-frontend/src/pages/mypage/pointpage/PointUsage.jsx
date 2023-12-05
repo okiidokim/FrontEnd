@@ -5,11 +5,11 @@ import './PointUsage.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from '../../../api/axios';
 
-function SellItem([data]) {
+function SellItem({ data }) {
   const [modal, setModal] = useState(false);
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
-  const [buyresponse, setResponse] = useState('');
+  const [buyResponse, setBuyResponse] = useState('');
   const [resModal, setResModal] = useState(false);
   const [buyType, setBuytype] = useState('');
 
@@ -18,7 +18,7 @@ function SellItem([data]) {
       const res = await axios.post(
         `/user/purchase-reward?pointChange=${buyType}`
       );
-      setResponse(res.data);
+      setBuyResponse(res.data);
     } catch (e) {
       console.log(e);
     }
@@ -81,7 +81,7 @@ function SellItem([data]) {
           ) : null}
           {resModal === true ? (
             <div className="modalbody">
-              <div className="resmodaltext">{buyresponse}</div>
+              <div className="resmodaltext">{buyResponse}</div>
               <div className="checkbutton" onClick={() => setResModal(false)}>
                 확인
               </div>

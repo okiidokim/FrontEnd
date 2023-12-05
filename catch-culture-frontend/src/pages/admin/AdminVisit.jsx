@@ -10,9 +10,9 @@ export default function AdminVisit() {
   const [nickname, setNickname] = useState('');
   const [title, setTitle] = useState('');
   const [authimg, setAuthimg] = useState([]);
-  const [userId, setUserid] = useState(0);
-  const [eventId, setEventid] = useState(0);
-  const [description, setdes] = useState('');
+  const [userId, setUserId] = useState(0);
+  const [eventId, setEventId] = useState(0);
+  const [description, setDescription] = useState('');
 
   const fetchData = async () => {
     try {
@@ -20,9 +20,9 @@ export default function AdminVisit() {
       setNickname(res.data.nickname);
       setTitle(res.data.title);
       setAuthimg(res.data.storedFileUrl);
-      setUserid(res.data.userId);
-      setEventid(res.data.culturalEventId);
-      setdes(res.data.description);
+      setUserId(res.data.userId);
+      setEventId(res.data.culturalEventId);
+      setDescription(res.data.description);
     } catch (e) {
       console.log(e);
     }

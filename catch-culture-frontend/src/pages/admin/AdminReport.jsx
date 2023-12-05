@@ -153,7 +153,7 @@ export default function AdminReport() {
   const params = useParams();
   const reportId = params.id;
   const [nickname, setNickname] = useState('');
-  const [userId, setUserid] = useState(0);
+  const [userId, setUserId] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -178,7 +178,7 @@ export default function AdminReport() {
           longitude: res.data.culturalEventDetail.longitude,
           eventLink: res.data.culturalEventDetail.reservationLink,
         };
-        setUserid(res.data.userId);
+        setUserId(res.data.userId);
         setNickname(res.data.nickname);
       } catch (e) {
         console.log(e);
