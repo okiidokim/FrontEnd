@@ -25,7 +25,7 @@ function Visited() {
   const fetchData = async () => {
     try {
       const categoryUrl = selectedCategories
-        .map(item => 'category=' + item)
+        .map((item) => 'category=' + item)
         .join('&');
 
       const response = await axios.get(
@@ -33,7 +33,7 @@ function Visited() {
       );
 
       if (isLoaded) {
-        response.data.content.forEach(event => {
+        response.data.content.forEach((event) => {
           if (event.authenticated === false) {
             falseData.push(event);
           } else {
@@ -67,7 +67,7 @@ function Visited() {
           {/* 승인 문화 행사 출력 */}
           <div className="authenticated-true">승인</div>
           {cnt === 0 ? (
-            <div className="nors">
+            <div className="norsvisited">
               <NoVisits />
             </div>
           ) : (
@@ -81,7 +81,7 @@ function Visited() {
           {/* 미승인 문화 행사 출력 */}
           <div className="authenticated-false">미승인</div>
           {cnt === 0 ? (
-            <div className="nors">
+            <div className="norsvisited">
               <NoVisits />
             </div>
           ) : (

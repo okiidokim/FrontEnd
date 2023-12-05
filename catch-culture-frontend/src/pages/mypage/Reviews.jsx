@@ -64,7 +64,7 @@ function MyReviewCard({ data }) {
     <>
       {data.map((e) => (
         <div className="reviewcardwrap" key={e.id}>
-          <div className="createdAtfirstrow">{e.createdAt}</div>
+          <div className="createdAtfirstrow"> {e.createdAt}</div>
           <div className="reviewcontentrow">
             {e.eventStoredFileUrl === null ? (
               <></>
