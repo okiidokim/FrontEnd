@@ -24,7 +24,6 @@ function NickUpdate(props) {
       try {
         const response = await axios.get(`user`);
         setNick(response.data.nickname);
-        console.log(response);
       } catch (e) {
         console.log(response);
       }
@@ -57,7 +56,6 @@ function NickUpdate(props) {
             placeholder="닉네임을 설정하세요."
             value={nick}
             onChange={(e) => {
-              console.log(e.target.value);
               setNick(e.target.value);
             }}
             className="nicktextbox"
@@ -80,7 +78,6 @@ function ProfileEdit() {
         setNick(response.data.nickname);
         setImg(response.data.storedFileUrl);
         setSctype(response.data.socialType);
-        console.log(response);
       } catch (e) {
         console.log(response);
       }
