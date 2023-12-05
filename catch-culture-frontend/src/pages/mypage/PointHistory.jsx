@@ -8,26 +8,28 @@ import { TbShoppingCart, TbCoins, TbAlertCircleFilled } from 'react-icons/tb';
 import * as dayjs from 'dayjs';
 
 function Pointeach([data]) {
+  if (!data) {
+    return;
+  }
   return (
     <>
-      {data &&
-        data.map((e) => (
-          <div className="pointinfo" key={e.id}>
-            <hr />
-            <div className="pointrow1">
-              <div className="phdate">
-                {dayjs(`${e.createdAt}`).format('YY.MM.DD')}
-              </div>
-              {e.pointChange === -3000 || e.pointChange === -5000 ? (
-                <div className="pointminus">포인트 차감</div>
-              ) : (
-                <div className="pointplus">포인트 지급</div>
-              )}
+      {data.map((e) => (
+        <div className="pointinfo" key={e.id}>
+          <hr />
+          <div className="pointrow1">
+            <div className="phdate">
+              {dayjs(`${e.createdAt}`).format('YY.MM.DD')}
             </div>
-            <div className="pointcontent">{e.description}</div>
-            <div className="pointnum">{e.pointChange}p</div>
+            {e.pointChange === -3000 || e.pointChange === -5000 ? (
+              <div className="pointminus">포인트 차감</div>
+            ) : (
+              <div className="pointplus">포인트 지급</div>
+            )}
           </div>
-        ))}
+          <div className="pointcontent">{e.description}</div>
+          <div className="pointnum">{e.pointChange}p</div>
+        </div>
+      ))}
     </>
   );
 }
