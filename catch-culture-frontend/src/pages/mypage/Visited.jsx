@@ -19,7 +19,7 @@ function Visited() {
 
   useEffect(() => {
     fetchData();
-    console.log("selectedCategories")
+    console.log('selectedCategories');
   }, [selectedCategories]);
 
   const fetchData = async () => {
@@ -30,7 +30,7 @@ function Visited() {
 
       const response = await axios.get(
         `user/cultural-event?${categoryUrl}&offset=0&classification=VISIT_AUTH`
-      )
+      );
       resetData();
 
       if (isLoaded) {
@@ -51,9 +51,9 @@ function Visited() {
   };
 
   const resetData = () => {
-    trueData.splice(0)
-    falseData.splice(0)
-  }
+    trueData.splice(0);
+    falseData.splice(0);
+  };
 
   return (
     <div className="listall">
@@ -95,7 +95,6 @@ function Visited() {
               <EventCard data={falseData} />
             </>
           )}
-
         </div>
       </div>
     </div>

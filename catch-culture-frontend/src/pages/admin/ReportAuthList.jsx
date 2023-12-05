@@ -8,9 +8,11 @@ import { NavLink } from 'react-router-dom';
 
 function ReportItem({ data }) {
   dayjs.locale('ko');
+
   if (!data) {
     return;
   }
+
   return (
     <>
       {data.map((e) => (
@@ -24,7 +26,7 @@ function ReportItem({ data }) {
                   <></>
                 ) : (
                   <>
-                    {dayjs(`${e.createdAt}`).format('YY/MM/DD - dddd - HH:mm')}
+                    {dayjs(`${e.createdAt}`).format('YYYY.MM.DD - ddd - HH:mm')}
                   </>
                 )}
               </p>

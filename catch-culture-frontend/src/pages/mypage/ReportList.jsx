@@ -27,8 +27,8 @@ function ReportList() {
   const [cnt, setCnt] = useState(0);
   const [data, setData] = useState([]);
   const [pageNum, setPageNum] = useState(0);
-  const [isLast, setIsLast] = useState(true);
   const [dataList, setDataList] = useState([]);
+  const [isLast, setIsLast] = useState(true);
 
   const fetchData = async () => {
     try {
@@ -49,7 +49,7 @@ function ReportList() {
   const onScroll = () => {
     if (
       window.scrollY + window.innerHeight >
-      document.documentElement.scrollHeight - 100
+      document.documentElement.scrollHeight - 40
     )
       if (isLast === false) {
         setPageNum(pageNum + 1);
