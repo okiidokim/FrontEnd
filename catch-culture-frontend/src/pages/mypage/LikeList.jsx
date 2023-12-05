@@ -6,6 +6,7 @@ import EventCard from '../../components/eventCard/EventCard';
 import NoLikes from '../../components/search/noResult/NoLikes';
 import axios from '../../api/axios';
 import './BookmarkList.css';
+import { TbAlertCircleFilled } from 'react-icons/tb';
 
 function Likes() {
   const { state } = useLocation();
@@ -67,6 +68,13 @@ function Likes() {
           ) : (
             <>
               <EventCard data={data} />
+              <div className="nomore">
+                <hr />
+                <div className="nomorewicon">
+                  <TbAlertCircleFilled />
+                  결과 없음
+                </div>
+              </div>
             </>
           )}
         </div>

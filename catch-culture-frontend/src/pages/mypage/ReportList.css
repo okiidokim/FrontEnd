@@ -73,3 +73,14 @@
 .reportbutton:hover {
   background-color: #018c0d;
 }
+.nomore {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.nomorewicon {
+  display: flex;
+  gap: 8px;
+}

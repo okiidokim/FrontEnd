@@ -3,7 +3,7 @@ import Backitem from '../../components/Backitem';
 import NoReviews from '../../components/search/noResult/NoReviews';
 import './Reviews.css';
 import axios from '../../api/axios';
-import { TbStarFilled } from 'react-icons/tb';
+import { TbStarFilled, TbAlertCircleFilled } from 'react-icons/tb';
 
 function MyReviewCard({ data }) {
   const setRatingStar = (rating) => {
@@ -140,6 +140,13 @@ function Reviews() {
           ) : (
             <div>
               <MyReviewCard data={dataList} />
+              <div className="nomore">
+                <hr />
+                <div className="nomorewicon">
+                  <TbAlertCircleFilled />
+                  결과 없음
+                </div>
+              </div>
             </div>
           )}
         </div>

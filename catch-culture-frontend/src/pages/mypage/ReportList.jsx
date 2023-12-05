@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom/dist';
 import './ReportList.css';
 import NoReport from '../../components/search/noResult/NoReport';
 import axios from '../../api/axios';
+import { TbAlertCircleFilled } from 'react-icons/tb';
 
 function Reporteach({ data }) {
   return (
@@ -88,6 +89,13 @@ function ReportList() {
               </NavLink>
             </div>
             <Reporteach data={dataList} />
+            <div className="nomore">
+              <hr />
+              <div className="nomorewicon">
+                <TbAlertCircleFilled />
+                결과 없음
+              </div>
+            </div>
           </div>
         )}
       </div>

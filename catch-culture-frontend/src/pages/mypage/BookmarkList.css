@@ -35,6 +35,8 @@
   display: flex;
   position: relative;
   justify-content: center;
+  flex-direction: column;
+  gap: 12px;
 }
 .nors {
   display: flex;
