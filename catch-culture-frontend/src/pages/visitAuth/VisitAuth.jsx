@@ -111,11 +111,11 @@ function VisitAuth() {
         
         switch(file.length) {
             case 3: reader3.readAsDataURL(file[2]);
-                    handleImgFile(file[2], 2);
+                    handleImgFile(file[2]);
             case 2: reader2.readAsDataURL(file[1]);
-                    handleImgFile(file[1], 1);
+                    handleImgFile(file[1]);
             case 1: reader1.readAsDataURL(file[0]);
-                    handleImgFile(file[0], 0); 
+                    handleImgFile(file[0]); 
                     break;
         }
         
@@ -139,14 +139,14 @@ function VisitAuth() {
 
             <S.Container onSubmit={handleSubmit}>
                 <S.TitleArea>
-                    {title == null ? 
+                    {title === null ? 
                         " "
                         :
                         (
                             title.length < 14 ? 
-                            title 
+                            title
                             :
-                            <div onClick={() => setIsMoreTitle(!isMoreTitle)}>
+                            <div onClick={(e) => setIsMoreTitle(!isMoreTitle)}>
                                 {!isMoreTitle && `${title.slice(0, 14)}...`}
                                 {isMoreTitle && title}
                             </div>

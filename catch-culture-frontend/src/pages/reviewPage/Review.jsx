@@ -122,7 +122,7 @@ function Review () {
                             title.length < 14 ? 
                             title 
                             :
-                            <div onClick={() => setIsMoreTitle(!isMoreTitle)}>
+                            <div onClick={(e) => setIsMoreTitle(!isMoreTitle)}>
                                 {!isMoreTitle && `${title.slice(0, 14)}...`}
                                 {isMoreTitle && title}
                             </div>
