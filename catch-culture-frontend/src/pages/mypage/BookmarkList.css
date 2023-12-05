@@ -23,9 +23,11 @@
   justify-content: center;
   padding-bottom: 20px;
 }
+
 .bookmarkCnt {
   font-size: 12px;
 }
+
 .liketext {
   font-size: 20px;
   font-weight: bold;
@@ -38,10 +40,27 @@
   flex-direction: column;
   gap: 12px;
 }
+
 .nors {
   display: flex;
   position: relative;
   padding-top: 40px;
   width: 100%;
   justify-content: center;
+}
+
+.authenticated-true {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #018C01;
+  margin-bottom: -10px;
+}
+
+.authenticated-false {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #ff0000;
+  margin-bottom: -10px;
 }

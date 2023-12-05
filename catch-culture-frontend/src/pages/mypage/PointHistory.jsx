@@ -11,6 +11,7 @@ function Pointeach({ data }) {
   if (!data) {
     return;
   }
+
   return (
     <>
       {data.map((e) => (
