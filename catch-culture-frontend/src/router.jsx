@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import Main from './pages/main/Main';
-import Map from './pages/map/Map';
+import MapPage from './pages/map/MapPage';
 import Category from './pages/category/Category';
 import Mypage from './pages/mypage/Mypage';
 import CulturalEventDetail from './pages/culturalEventDetail/CulturalEventDetail';
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/map',
-        element: <Map />,
+        element: <MapPage />,
       },
       {
         path: '/category',

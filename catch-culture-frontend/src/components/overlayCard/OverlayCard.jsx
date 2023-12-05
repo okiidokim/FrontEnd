@@ -26,7 +26,7 @@ function OverlayCard(params) {
     };
 
     return(
-        <S.Map>
+        <S.OverlayArea>
             <S.Close onclick="closeOverlay()" title="닫기"/>
             <S.ImageArea>
                 <S.Image src="https://storage.googleapis.com/elegant-bucket/jinwoo.png" alt="행사 이미지"/>
@@ -71,7 +71,7 @@ function OverlayCard(params) {
                     </S.OverlayCardInfo>
                 </S.OverlayCardContentWrapper>
             </S.TextArea>
-        </S.Map>
+        </S.OverlayArea>
     );
 }
 

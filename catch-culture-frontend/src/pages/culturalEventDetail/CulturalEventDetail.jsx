@@ -13,7 +13,7 @@ import axios from '../../api/axios';
 let data = "sample";
 
 function culturalEventDetail() {
-    const params = useParams();
+    const { params } = useParams();
     const culturalEventId = params.id;
     const navigate = useNavigate();
     

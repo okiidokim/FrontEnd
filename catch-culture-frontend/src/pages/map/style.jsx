@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const Map = styled.div`
+export const MapArea = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;

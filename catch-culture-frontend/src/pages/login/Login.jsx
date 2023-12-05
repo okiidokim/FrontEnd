@@ -9,24 +9,24 @@ import { Link } from 'react-router-dom';
 
 function Login() {
   return (
-    <div class="loginwrap">
-      <img class="header" src={LogoImg} alt="로고이미지" />
-      <div class="buttonlist">
+    <div className="loginwrap">
+      <img className="header" src={LogoImg} alt="로고이미지" />
+      <div className="buttonlist">
         <Link to={'https://elegant.kro.kr/oauth2/authorization/kakao'}>
-          <button class="kakao">
-            <img class="kl" src={KakaoImg} />
+          <button className="kakao">
+            <img className="kl" src={KakaoImg} />
             Kakao로 시작하기
           </button>
         </Link>
         <Link to={'https://elegant.kro.kr/oauth2/authorization/google'}>
-          <button class="google">
-            <img class="gl" src={GoogleImg} />
+          <button className="google">
+            <img className="gl" src={GoogleImg} />
             Google로 시작하기
           </button>
         </Link>
         <Link to={'https://elegant.kro.kr/oauth2/authorization/naver'}>
-          <button class="naver">
-            <img class="nl" src={NaverImg} />
+          <button className="naver">
+            <img className="nl" src={NaverImg} />
             Naver로 시작하기
           </button>
         </Link>

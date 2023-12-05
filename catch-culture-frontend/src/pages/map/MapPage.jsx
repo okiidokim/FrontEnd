@@ -19,7 +19,7 @@ import m11 from '../../assets/images/marker/m11.png';
 
 const { kakao } = window;
 
-function Map() {
+function MapPage() {
   const [map, setMap] = useState();
   const [markers, setMarkers] = useState([]);
   const [overlays, setOverlays] = useState([]);
@@ -291,7 +291,7 @@ function Map() {
 
   return (
     <>
-      <S.Map id="map" style={{ width: '100%', height: '100%' }}></S.Map>
+      <S.MapArea id="map" style={{ width: '100%', height: '100%' }}></S.MapArea>
       <S.CategoryArea>
         <CategorySelector
           selectedCategories={selectedCategories}
@@ -302,4 +302,4 @@ function Map() {
   );
 }
 
-export default Map;
+export default MapPage;
