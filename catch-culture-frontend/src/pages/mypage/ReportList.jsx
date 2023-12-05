@@ -6,7 +6,7 @@ import NoReport from '../../components/search/noResult/NoReport';
 import axios from '../../api/axios';
 import { TbAlertCircleFilled } from 'react-icons/tb';
 
-function Reporteach({ data }) {
+function Reporteach([data]) {
   return (
     <>
       {data.map((e) => (
@@ -27,8 +27,26 @@ function ReportList() {
   const [cnt, setCnt] = useState(0);
   const [data, setData] = useState([]);
   const [pageNum, setPageNum] = useState(0);
-  const [isLast, setIsLast] = useState(true);
   const [dataList, setDataList] = useState([]);
+  const [isLast, setIsLast] = useState(false);
+
+  const onScroll = () => {
+    if (
+      window.scrollY + window.innerHeight >
+      document.documentElement.scrollHeight - 10
+    )
+      if (isLast === false) {
+        setPageNum(pageNum + 1);
+      }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('touchmove', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('touchmove', onScroll);
+    };
+  }, [data]);
 
   const fetchData = async () => {
     try {
@@ -45,25 +63,6 @@ function ReportList() {
   useEffect(() => {
     fetchData();
   }, [pageNum]);
-
-  const onScroll = () => {
-    if (
-      window.scrollY + window.innerHeight >
-      document.documentElement.scrollHeight - 100
-    )
-      if (isLast === false) {
-        setPageNum(pageNum + 1);
-      }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', onScroll);
-    window.addEventListener('touchmove', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('touchmove', onScroll);
-    };
-  }, [data]);
 
   return (
     <div className="reportall">

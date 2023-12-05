@@ -8,9 +8,11 @@ import { NavLink } from 'react-router-dom';
 
 function ReportItem({ data }) {
   dayjs.locale('ko');
+
   if (!data) {
     return;
   }
+
   return (
     <>
       {data.map((e) => (
@@ -112,7 +114,7 @@ export default function ReportAuthList() {
             </div>
           ) : (
             <>
-              <ReportItem data={data} />
+              <ReportItem data={[data]} />
               <div className="nomore">
                 <hr />
                 <div className="nomorewicon">

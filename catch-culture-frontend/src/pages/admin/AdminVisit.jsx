@@ -16,7 +16,7 @@ export default function AdminVisit() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`/admin/visit-auth/${visitAuthId}`);
+      const res = await axios.get(`/admin/visit-auth/${parseInt(visitAuthId)}`);
       setNickname(res.data.nickname);
       setTitle(res.data.title);
       setAuthimg(res.data.storedFileUrl);
@@ -35,16 +35,10 @@ export default function AdminVisit() {
   const visitAuthSubmit = async (e) => {
     try {
       axios.put(
-        `/admin/visit-auth/${visitAuthId}?userId=${userId}&culturalEventId=${eventId}`
+        `/admin/visit-auth/${parseInt(
+          visitAuthId
+        )}?userId=${userId}&culturalEventId=${eventId}`
       );
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const visitAuthReject = async (e) => {
-    try {
-      axios.delete(`/admin/visit-auth/${visitAuthId}`);
     } catch (e) {
       console.log(e);
     }
@@ -121,11 +115,11 @@ export default function AdminVisit() {
         <div className="regisbuttonrow">
           <NavLink to="/visitauth/list">
             <div className="regis" type="submit" onClick={visitAuthSubmit}>
-              승인
+              수락
             </div>
           </NavLink>
-          <NavLink to="/visitauth/list" type="submit" onClick={visitAuthReject}>
-            <div className="noregis">미승인</div>
+          <NavLink to="/visitauth/list">
+            <div className="noregis">거절</div>
           </NavLink>
         </div>
       </div>
