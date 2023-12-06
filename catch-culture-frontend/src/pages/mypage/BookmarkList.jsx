@@ -11,8 +11,8 @@ import { TbAlertCircleFilled } from 'react-icons/tb';
 function Bookmarks() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const category = state && state.category;
-  const initialCategories = category ? category : [];
+  const category = state?.category;
+  const initialCategories = category || [];
   const [selectedCategories, setSelectedCategories] =
     useState(initialCategories);
 
@@ -42,10 +42,10 @@ function Bookmarks() {
       setCnt(response.data.numberOfElements);
     } catch (e) {
       console.log(e);
-      if(e.response.data.code === "LOGIN_FAIL") {
+      if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
-    }
+      }
     }
   };
 

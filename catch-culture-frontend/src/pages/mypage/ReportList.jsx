@@ -5,8 +5,12 @@ import './ReportList.css';
 import NoReport from '../../components/search/noResult/NoReport';
 import axios from '../../api/axios';
 import { TbAlertCircleFilled } from 'react-icons/tb';
+import PropTypes from 'prop-types';
 
 function Reporteach({ data }) {
+  Reporteach.propTypes = {
+    data: PropTypes.any,
+  };
   return (
     <>
       {data.map((e) => (

@@ -12,8 +12,8 @@ function Likes() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [cnt, setCnt] = useState(0);
-  const category = state && state.category;
-  const initialCategories = category ? category : [];
+  const category = state?.category;
+  const initialCategories = category || [];
   const [selectedCategories, setSelectedCategories] =
     useState(initialCategories);
 
@@ -43,10 +43,10 @@ function Likes() {
       setDataList(dataList.concat(res.data.content));
     } catch (e) {
       console.log(e);
-      if(e.response.data.code === "LOGIN_FAIL") {
+      if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
-    }
+      }
     }
   };
 

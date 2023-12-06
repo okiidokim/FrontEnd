@@ -21,7 +21,7 @@ function Mypage() {
   const navigate = useNavigate();
   const [nick, setNick] = useState('');
   const [img, setImg] = useState('');
-  const [isadmin, setAdmin] = useState('');
+  const [isAdmin, setIsAdmin] = useState('');
   const [pointGrade, setPointGrade] = useState('');
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function Mypage() {
 
         setNick(response.data.nickname);
         setImg(response.data.storedFileUrl);
-        setAdmin(response.data.role);
+        setIsAdmin(response.data.role);
         setPointGrade(pointres.data);
       } catch (e) {
         console.log(e);
@@ -99,24 +99,22 @@ function Mypage() {
   return (
     <div className="mypageall">
       <Backitem />
-      {isadmin === 'ADMIN' ? (
-        <>
-          <div className="mypage-body">
-            <div className="infomypage">
-              <img className="profileimage" src={img}></img>
-              {nick}
-              <div className="twobutton">
-                <NavLink to="/profile-edit">
-                  <button className="putprofile">개인정보 수정</button>
-                </NavLink>
-                <NavLink to="/" onClick={fetchLogout}>
-                  <button className="logout">로그아웃</button>
-                </NavLink>
-              </div>
+      {isAdmin === 'ADMIN' ? (
+        <div className="mypage-body">
+          <div className="infomypage">
+            <img className="profileimage" src={img}></img>
+            {nick}
+            <div className="twobutton">
+              <NavLink to="/profile-edit">
+                <button className="putprofile">개인정보 수정</button>
+              </NavLink>
+              <NavLink to="/" onClick={fetchLogout}>
+                <button className="logout">로그아웃</button>
+              </NavLink>
             </div>
-            <Admin />
           </div>
-        </>
+          <Admin />
+        </div>
       ) : (
         <div className="mypage-body">
           <div className="infomypage">

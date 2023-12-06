@@ -6,8 +6,13 @@ import axios from '../../api/axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { TbShoppingCart, TbCoins, TbAlertCircleFilled } from 'react-icons/tb';
 import dayjs from 'dayjs';
+import PropTypes from 'prop-types';
 
 function Pointeach({ data }) {
+  Pointeach.propTypes = {
+    data: PropTypes.any,
+  };
+
   if (!data) {
     return;
   }
@@ -40,7 +45,7 @@ function PointHistory() {
   const [data, setData] = useState([]);
   const [cnt, setCnt] = useState(0);
   const [currpoint, setCurrpoint] = useState(0);
-  const [pagenum, setPageNum] = useState(0);
+  const [pageNum, setPageNum] = useState(0);
   const [dataList, setDataList] = useState([]);
   const [isLast, setIsLast] = useState(false);
 
@@ -50,13 +55,13 @@ function PointHistory() {
       document.documentElement.scrollHeight - 40
     )
       if (isLast === false) {
-        setPageNum(pagenum + 1);
+        setPageNum(pageNum + 1);
       }
   };
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`/user/point-history?page=${pagenum}&size=9`);
+      const res = await axios.get(`/user/point-history?page=${pageNum}&size=9`);
       const respoint = await axios.get(`/user/point`);
       setCnt(res.data.totalElements);
       setData(res.data.content);
@@ -64,11 +69,11 @@ function PointHistory() {
       setCurrpoint(respoint.data);
       setIsLast(res.data.last);
     } catch (e) {
-      console.log(e);      
-      if(e.response.data.code === "LOGIN_FAIL") {
+      console.log(e);
+      if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
-    }
+      }
     }
   };
 
@@ -83,10 +88,10 @@ function PointHistory() {
 
   useEffect(() => {
     fetchData();
-  }, [pagenum]);
+  }, [pageNum]);
 
   return (
-    <div class="phisall">
+    <div className="phisall">
       <Backitem />
       <div className="phisbody">
         <NavLink to="/pointusage">
@@ -106,9 +111,9 @@ function PointHistory() {
         </div>
         <div>
           {cnt === 0 ? (
-            <>
+            <div>
               <NoPointHistory />
-            </>
+            </div>
           ) : (
             <>
               <Pointeach data={dataList} />
