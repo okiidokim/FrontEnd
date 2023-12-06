@@ -9,6 +9,7 @@ import './BookmarkList.css';
 import { TbAlertCircleFilled } from 'react-icons/tb';
 
 function Likes() {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const [cnt, setCnt] = useState(0);
   const category = state && state.category;
