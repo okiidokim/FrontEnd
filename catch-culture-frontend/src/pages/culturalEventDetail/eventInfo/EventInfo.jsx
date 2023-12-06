@@ -209,7 +209,11 @@ function EventInfo (params) {
                     행사 소개
                 </S.SubTitle>
                 <S.InfoValue>
-                    <div id="descriptionInfo" onClick={(e) => setIsShowMoreDes(!isShowMoreDes)}>
+                    <div 
+                        id="descriptionInfo" 
+                        onClick={() => setIsShowMoreDes(!isShowMoreDes)}
+                        onKeyDown={() => setIsShowMoreDes(!isShowMoreDes)}
+                    >
                         { commenter }
 
                         {/* 더보기 버튼 */}
@@ -269,7 +273,10 @@ function EventInfo (params) {
                         (
                             <>
                             예약링크 <br/> 
-                            <div onClick={(e) => handleCopyClipBoard(params.data.reservationLink)}>   
+                            <div 
+                                onClick={() => handleCopyClipBoard(params.data.reservationLink)} 
+                                onKeyDown={() => handleCopyClipBoard(params.data.reservationLink)}
+                            >   
                                 {params.data.reservationLink}
                             </div>
                             <ToastContainer />

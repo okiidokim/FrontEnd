@@ -59,10 +59,10 @@ function Review () {
     
     const handleSubmit = async() => {
         if(description.length < 30 || imageData == null || rating == 0) {
-
+            console.log("none");
         } else {
             try {
-                if(!(imageData === null)) {
+                if(imageData !== null) {
                     let data = {
                         description: description,
                         rating: rating
@@ -89,18 +89,18 @@ function Review () {
                 if(e.response.data.code === "ALREADY_REVIEW") {
                     alert("이미 리뷰를 작성한 문화 행사 입니다.");
                 }
-                if(e.response.data.code === "LOGIN_FAIL") {
+                else if(e.response.data.code === "LOGIN_FAIL") {
                     alert('로그인 만료! 다시 로그인 해주세요.');
                     navigate(`/`);
                 }
-                if(e.response.data.code === "INVALID_EVENT_ID") {
+                else if(e.response.data.code === "INVALID_EVENT_ID") {
                     alert("존재하지 않는 문화 행사 ID 입니다.");
                     navigate(`/main`);
                 }
-                if(e.response.data.code === "INVALID_REVIEW_RATING") {
+                else if(e.response.data.code === "INVALID_REVIEW_RATING") {
                     alert("리뷰 평점을 선택해 주세요.");
                 }
-                if(e.response.data.code === "INVALID_VISIT_AUTH_ID" || e.response.data.code === "NOT_AUTHENTICATED") {
+                else if(e.response.data.code === "INVALID_VISIT_AUTH_ID" || e.response.data.code === "NOT_AUTHENTICATED") {
                     alert("리뷰 작성을 위해 방문 인증을 해주세요");
                     navigate(`/event/${eventId}/visit`);
                 }
@@ -115,18 +115,17 @@ function Review () {
             <S.Content onSubmit={handleSubmit}>
                 {/* 행사 제목 */}
                 <S.TitleArea>
-                    {title == null ? 
-                        title
+                    {
+                        title && title.length < 14 ? 
+                        title 
                         :
-                        (
-                            title.length < 14 ? 
-                            title 
-                            :
-                            <div onClick={(e) => setIsMoreTitle(!isMoreTitle)}>
-                                {!isMoreTitle && `${title.slice(0, 14)}...`}
-                                {isMoreTitle && title}
-                            </div>
-                        )
+                        <div 
+                            onClick={() => setIsMoreTitle(!isMoreTitle)}
+                            onKeyDown={() => setIsMoreTitle(!isMoreTitle)}
+                        >
+                            {!isMoreTitle && `${title.slice(0, 14)}...`}
+                            {isMoreTitle && title}
+                        </div>
                     }
                 </S.TitleArea>
 

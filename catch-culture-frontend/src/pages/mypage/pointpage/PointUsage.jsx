@@ -11,7 +11,7 @@ function SellItem({ data }) {
   const [price, setPrice] = useState(0);
   const [buyResponse, setBuyResponse] = useState('');
   const [resModal, setResModal] = useState(false);
-  const [buyType, setBuytype] = useState('');
+  const [buyType, setBuyType] = useState('');
 
   const itemBuy = async (e) => {
     try {
@@ -45,7 +45,13 @@ function SellItem({ data }) {
             onClick={() => {
               setModal(true);
               setName(e.description);
-              setBuytype(e.name);
+              setBuyType(e.name);
+              setPrice(e.price);
+            }}
+            onKeyDown={() => {
+              setModal(true);
+              setName(e.description);
+              setBuyType(e.name);
               setPrice(e.price);
             }}
           >
@@ -64,12 +70,21 @@ function SellItem({ data }) {
                     setModal(false);
                     setResModal(true);
                   }}
+                  onKeyDown={() => {
+                    itemBuy(e.name);
+                    setModal(false);
+                    setResModal(true);
+                  }}
                 >
                   예
                 </div>
                 <div
                   className="nobutton"
                   onClick={() => {
+                    setModal(false);
+                    navi('/point-history');
+                  }}
+                  onKeyDown={() => {
                     setModal(false);
                     navi('/point-history');
                   }}
@@ -82,7 +97,11 @@ function SellItem({ data }) {
           {resModal === true ? (
             <div className="modalbody">
               <div className="resmodaltext">{buyResponse}</div>
-              <div className="checkbutton" onClick={() => setResModal(false)}>
+              <div 
+                className="checkbutton" 
+                onClick={() => setResModal(false)} 
+                onKeyDown={() => setResModal(false)}  
+              >
                 확인
               </div>
             </div>
