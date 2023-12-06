@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function CategorySelector(props) {
   CategorySelector.propTypes = {
     setSelectedCategories: PropTypes.func,
-    selectedCategories: PropTypes.func,
+    selectedCategories: PropTypes.array,
   };
 
   const handlerClickCategory = (selectedCategory) => {

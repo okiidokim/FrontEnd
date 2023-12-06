@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 function CategorySelectorItem(props) {
   CategorySelectorItem.propTypes = {
-    category: PropTypes.array,
+    category: PropTypes.string,
     name: PropTypes.string,
     handlerClickCategory: PropTypes.func,
-    selectedCategories: PropTypes.func,
+    selectedCategories: PropTypes.array,
   };
 
   return (

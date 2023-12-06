@@ -41,8 +41,6 @@ function MapPage() {
   };
 
   useEffect(() => {
-    setMarkers([]);
-    setOverlays([]);
     initMap();
     fetchMapData();
   }, []);
@@ -104,7 +102,7 @@ function MapPage() {
 
         // 마커 생성
         let marker = new kakao.maps.Marker({
-          position: new kakao.maps.LatLng(data.latitude, data.longitude), // 마커의 위치
+          position: new kakao.maps.LatLng(data.longitude, data.latitude), // 마커의 위치
           image: markerImage,
         });
 
@@ -246,7 +244,7 @@ function MapPage() {
         kakao.maps.event.addListener(marker, 'click', function () {
           overlay.setMap(map);
         });
-
+        console.log(data.latitude, data.longitude)
         marker.setMap(map);
 
         overlays.push(overlay);
