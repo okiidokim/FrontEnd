@@ -34,7 +34,7 @@ function MapPage() {
   const [selectedCategories, setSelectedCategories] =
     useState(initialCategories);
 
-  const imageSize = new kakao.maps.Size(24, 32);
+  const imageSize = new kakao.maps.Size(32, 32);
   const imageOption = {
     spriteOrigin: new kakao.maps.Point(0, 0),
     spriteSize: new kakao.maps.Size(24, 32),
