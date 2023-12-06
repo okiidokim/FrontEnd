@@ -1,4 +1,4 @@
-<div><img src="https://capsule-render.vercel.app/api?type=waving&color=0:99cc99,100:009630&height=200&section=header&text=Catch Culture&fontSize=60" /></div>
+![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=Catch Culture%20render&fontSize=60)
 
 캐치컬처(Catch Culture) 
 프론트엔드 Repo 입니다 :)
