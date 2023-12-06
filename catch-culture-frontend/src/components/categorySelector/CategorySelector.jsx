@@ -1,9 +1,15 @@
 import React from 'react';
 import * as S from './style';
 import CategorySelectorItem from './categorySelectorItem/CategorySelectorItem';
+import PropTypes from 'prop-types';
 
 function CategorySelector(props) {
-  const handlerClickCategory = selectedCategory => {
+  CategorySelector.propTypes = {
+    setSelectedCategories: PropTypes.func,
+    selectedCategories: PropTypes.func,
+  };
+
+  const handlerClickCategory = (selectedCategory) => {
     if (selectedCategory === 'ALL') {
       const allCategories =
         props.selectedCategories.length === 13
@@ -30,7 +36,7 @@ function CategorySelector(props) {
       isSelected
         ? props.setSelectedCategories(
             props.selectedCategories.filter(
-              category => category !== selectedCategory
+              (category) => category !== selectedCategory
             )
           )
         : props.setSelectedCategories([
