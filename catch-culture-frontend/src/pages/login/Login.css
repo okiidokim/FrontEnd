@@ -1,8 +1,24 @@
+@keyframes slidein {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-2rem);
+  }
+}
+
+
 .loginwrap {
   display: flex;
   position: relative;
   flex-direction: column;
   gap: 150px;
+
+  animation-duration: 1s ease-in-out;
+  animation-name: slidein;
 }
 
 .header {
@@ -11,6 +27,7 @@
   padding-top: 100px;
   width: 300px;
 }
+
 .buttonlist {
   top: 50%;
   display: flex;
