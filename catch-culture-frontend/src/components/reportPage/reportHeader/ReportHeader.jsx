@@ -2,7 +2,9 @@ import React from 'react';
 import * as S from './style';
 import Backitem from '../../Backitem';
 
-function ReportHeader(ReportPaginationIcon) {
+function ReportHeader({ReportPaginationIcon}) {
+
+  console.log(ReportPaginationIcon);
   return (
     <>
       <Backitem />
@@ -14,5 +16,9 @@ function ReportHeader(ReportPaginationIcon) {
     </>
   );
 }
+
+ReportHeader.propTypes = {
+  ReportPaginationIcon: PropTypes.string.isRequired 
+};
 
 export default ReportHeader;
