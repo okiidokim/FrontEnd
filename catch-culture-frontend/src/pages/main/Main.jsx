@@ -43,7 +43,7 @@ function Main() {
   };
 
   return (
-    <>
+    <div>
       <S.MainWrapper>
         {/* 헤더 */}
         <S.Header>
@@ -81,7 +81,7 @@ function Main() {
           )}
         </S.EventWrapper>
       </S.MainWrapper>
-    </>
+    </div>
   );
 }
 
