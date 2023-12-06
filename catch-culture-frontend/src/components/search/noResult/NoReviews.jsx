@@ -21,12 +21,10 @@ const NoResultTitle = styled.div`
 
 function NoReviews() {
   return (
-    <>
-      <NoResultWrapper>
-        <TbMessageOff size="140" color="018c0d" />
-        <NoResultTitle>리뷰 작성 내역이 없습니다.</NoResultTitle>
-      </NoResultWrapper>
-    </>
+    <NoResultWrapper>
+      <TbMessageOff size="140" color="018c0d" />
+      <NoResultTitle>리뷰 작성 내역이 없습니다.</NoResultTitle>
+    </NoResultWrapper>
   );
 }
 

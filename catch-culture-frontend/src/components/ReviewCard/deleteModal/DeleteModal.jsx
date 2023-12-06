@@ -15,11 +15,10 @@ export const DeleteModal = (params) => {
       params.setModal();
     } catch (e) {
       console.log(e);
-
     }
   };
 
-  const onClickCancle = () => {
+  const onClickCancel = () => {
     params.setModal();
   };
 
@@ -29,7 +28,7 @@ export const DeleteModal = (params) => {
         <S.ModalView>
           <p>리뷰를 삭제 하시겠습니까?</p>
           <S.ButtonSection>
-            <S.MyBtn onClick={onClickCancle}>취소</S.MyBtn>
+            <S.MyBtn onClick={onClickCancel}>취소</S.MyBtn>
             <S.MyBtn onClick={onClickDelete}>삭제</S.MyBtn>
           </S.ButtonSection>
         </S.ModalView>
