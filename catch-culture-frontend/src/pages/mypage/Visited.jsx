@@ -9,13 +9,18 @@ import axios from '../../api/axios';
 
 function Visited() {
   const { state } = useLocation();
-  const category = state && state.category;
+  const category = state?.category;
   const [trueData, setTrueData] = useState([]);
   const [falseData, setFalseData] = useState([]);
   const [cnt, setCnt] = useState(0);
-  const initialCategories = category ? category : [];
+  const initialCategories = category || [];
   const [selectedCategories, setSelectedCategories] =
     useState(initialCategories);
+
+  useEffect(() => {
+    setFalseData([]);
+    setTrueData([]);
+  }, []);
 
   useEffect(() => {
     fetchData();
@@ -25,7 +30,7 @@ function Visited() {
   const fetchData = async () => {
     try {
       const categoryUrl = selectedCategories
-        .map((item) => 'category=' + item)
+        .map(item => 'category=' + item)
         .join('&');
 
       const response = await axios.get(
@@ -34,7 +39,7 @@ function Visited() {
       resetData();
 
       if (isLoaded) {
-        response.data.content.forEach((event) => {
+        response.data.content.forEach(event => {
           if (event.authenticated === false) {
             falseData.push(event);
           } else {
@@ -77,9 +82,9 @@ function Visited() {
               <NoVisits />
             </div>
           ) : (
-            <>
+            <div>
               <EventCard data={trueData} />
-            </>
+            </div>
           )}
 
           <hr />
@@ -91,9 +96,9 @@ function Visited() {
               <NoVisits />
             </div>
           ) : (
-            <>
+            <div>
               <EventCard data={falseData} />
-            </>
+            </div>
           )}
         </div>
       </div>

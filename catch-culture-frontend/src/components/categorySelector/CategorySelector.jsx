@@ -41,7 +41,7 @@ function CategorySelector(props) {
   };
 
   return (
-    <>
+    <div>
       <S.CategorySelector>
         <CategorySelectorItem
           name="전체"
@@ -141,7 +141,7 @@ function CategorySelector(props) {
           selectedCategories={props.selectedCategories}
         />
       </S.CategorySelector>
-    </>
+    </div>
   );
 }
 
