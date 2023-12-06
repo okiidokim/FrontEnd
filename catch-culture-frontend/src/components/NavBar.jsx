@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import { AiFillHome } from 'react-icons/ai';
 import { MdLocationPin } from 'react-icons/md';
 import { TbCategory } from 'react-icons/tb';
