@@ -2,23 +2,17 @@ import React from 'react';
 import * as S from './style';
 import Backitem from '../../Backitem';
 
-function ReportHeader({ReportPaginationIcon}) {
-
-  console.log(ReportPaginationIcon);
+function ReportHeader(ReportPaginationIcon) {
   return (
     <>
       <Backitem />
       <S.ReportHeader>
         <S.ReportHeaderTitle>제보하기</S.ReportHeaderTitle>
 
-        <S.ReportHeaderPagination src={ReportPaginationIcon} />
+        <S.ReportHeaderPagination src={ReportPaginationIcon.ReportPaginationIcon} />
       </S.ReportHeader>
     </>
   );
 }
-
-ReportHeader.propTypes = {
-  ReportPaginationIcon: PropTypes.string.isRequired 
-};
 
 export default ReportHeader;
