@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './style';
 import CategorySelectorItem from './categorySelectorItem/CategorySelectorItem';
 import PropTypes from 'prop-types';
