@@ -244,7 +244,6 @@ function MapPage() {
         kakao.maps.event.addListener(marker, 'click', function () {
           overlay.setMap(map);
         });
-        console.log(data.latitude, data.longitude)
         marker.setMap(map);
 
         overlays.push(overlay);

@@ -9,7 +9,7 @@ export const MapArea = styled.div`
 `;
 
 export const CategoryArea = styled.div`
-    position: absolute;
+    position: fixed;
     bottom: 100px;
     z-index: 5;
 `;
