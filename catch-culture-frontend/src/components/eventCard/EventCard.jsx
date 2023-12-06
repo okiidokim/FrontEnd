@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
+import PropTypes from 'prop-types';
 
 function EventCard({ data }) {
+  EventCard.propTypes = {
+    data: PropTypes.any,
+  };
 
   if (!data) {
     return null;
   }
 
-  const getTagColor = remainDay => {
+  const getTagColor = (remainDay) => {
     if (remainDay === 0) {
       return '#E00000';
     } else if (remainDay >= 1 && remainDay <= 3) {
@@ -24,8 +28,8 @@ function EventCard({ data }) {
     <>
       {/* 문화 행사 목록 */}
       <S.EventList>
-        {data.map((event, index) => (
-          <Link to={`/event/${event.culturalEventId}`} key={index}>
+        {data.map((event) => (
+          <Link to={`/event/${event.culturalEventId}`} key={event.index}>
             {/* 문화 행사 카드 */}
             <S.EventCard key={index}>
               {/* 문화 행사 카드 - 이미지 */}

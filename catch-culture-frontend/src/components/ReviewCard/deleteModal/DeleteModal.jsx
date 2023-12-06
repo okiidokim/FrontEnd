@@ -27,27 +27,23 @@ export const DeleteModal = (params) => {
         }
     }
 
-    const onClickCancle = () => {
-        params.setModal();
-    }
+  const onClickCancel = () => {
+    params.setModal();
+  };
 
-    return (
-        <S.ModalBackdrop>
-            <S.ModalContainer>
-                <S.ModalView>
-                    <p>리뷰를 삭제 하시겠습니까?</p>
-                    <S.ButtonSection>
-                        <S.MyBtn onClick={onClickCancle}>
-                            취소
-                        </S.MyBtn>
-                        <S.MyBtn onClick={onClickDelete}>
-                            삭제
-                        </S.MyBtn>
-                    </S.ButtonSection>
-                </S.ModalView>
-            </S.ModalContainer>
-        </S.ModalBackdrop>
-    )
-}
+  return (
+    <S.ModalBackdrop>
+      <S.ModalContainer>
+        <S.ModalView>
+          <p>리뷰를 삭제 하시겠습니까?</p>
+          <S.ButtonSection>
+            <S.MyBtn onClick={onClickCancel}>취소</S.MyBtn>
+            <S.MyBtn onClick={onClickDelete}>삭제</S.MyBtn>
+          </S.ButtonSection>
+        </S.ModalView>
+      </S.ModalContainer>
+    </S.ModalBackdrop>
+  );
+};
 
 export default DeleteModal;

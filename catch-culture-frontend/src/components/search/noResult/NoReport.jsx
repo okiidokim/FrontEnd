@@ -44,24 +44,21 @@ const RepbuttonText = styled.div`
 `;
 
 // 아이콘
-import { TbReportOff } from 'react-icons/tb';
-import { TbArrowBigRightFilled } from 'react-icons/tb';
+import { TbReportOff, TbArrowBigRightFilled } from 'react-icons/tb';
 
 function NoReport() {
   return (
-    <>
-      <NoResultWrapper>
-        <TbReportOff size="140" color="018c0d" />
-        <NoResultTitle>제보한 내역이 없습니다.</NoResultTitle>
-        <RepButton>
-          <NavLink to="/report1">
-            <RepbuttonText>
-              제보하러 가기 <TbArrowBigRightFilled />
-            </RepbuttonText>
-          </NavLink>
-        </RepButton>
-      </NoResultWrapper>
-    </>
+    <NoResultWrapper>
+      <TbReportOff size="140" color="018c0d" />
+      <NoResultTitle>제보한 내역이 없습니다.</NoResultTitle>
+      <RepButton>
+        <NavLink to="/report1">
+          <RepbuttonText>
+            제보하러 가기 <TbArrowBigRightFilled />
+          </RepbuttonText>
+        </NavLink>
+      </RepButton>
+    </NoResultWrapper>
   );
 }
 

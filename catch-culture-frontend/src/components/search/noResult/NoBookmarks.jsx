@@ -23,12 +23,10 @@ import { TbBookmarkOff } from 'react-icons/tb';
 
 function NoBookmarks() {
   return (
-    <>
-      <NoResultWrapper>
-        <TbBookmarkOff size="140" color="018c0d" />
-        <NoResultTitle>북마크 내역이 없습니다.</NoResultTitle>
-      </NoResultWrapper>
-    </>
+    <NoResultWrapper>
+      <TbBookmarkOff size="140" color="018c0d" />
+      <NoResultTitle>북마크 내역이 없습니다.</NoResultTitle>
+    </NoResultWrapper>
   );
 }
 

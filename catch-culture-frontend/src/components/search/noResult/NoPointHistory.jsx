@@ -23,12 +23,10 @@ import { TbCoinOff } from 'react-icons/tb';
 
 function NoPointHistory() {
   return (
-    <>
-      <NoResultWrapper>
-        <TbCoinOff size="140" color="018c0d" />
-        <NoResultTitle>포인트 거래 내역이 없습니다.</NoResultTitle>
-      </NoResultWrapper>
-    </>
+    <NoResultWrapper>
+      <TbCoinOff size="140" color="018c0d" />
+      <NoResultTitle>포인트 거래 내역이 없습니다.</NoResultTitle>
+    </NoResultWrapper>
   );
 }
 
