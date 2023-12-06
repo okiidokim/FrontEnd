@@ -27,10 +27,10 @@ function NickUpdate(props) {
         setNick(response.data.nickname);
       } catch (e) {
         console.log(response);
-        if(e.response.data.code === "LOGIN_FAIL") {
+        if (e.response.data.code === 'LOGIN_FAIL') {
           alert('로그인 만료! 다시 로그인 해주세요.');
           navigate(`/`);
-      }
+        }
       }
     };
     fetchData();
@@ -75,6 +75,17 @@ function ProfileEdit() {
   const [img, setImg] = useState('');
   const [socialType, setSocialType] = useState('');
 
+  const signOut = async (e) => {
+    try {
+      axios.get(`/user/sign-out`);
+    } catch (e) {
+      console.log(response);
+      if (e.response.data.code === 'LOGIN_FAIL') {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+      }
+    }
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -84,10 +95,10 @@ function ProfileEdit() {
         setSocialType(response.data.socialType);
       } catch (e) {
         console.log(response);
-        if(e.response.data.code === "LOGIN_FAIL") {
+        if (e.response.data.code === 'LOGIN_FAIL') {
           alert('로그인 만료! 다시 로그인 해주세요.');
           navigate(`/`);
-      }
+        }
       }
     };
     fetchData();
@@ -107,13 +118,18 @@ function ProfileEdit() {
           <button className="imgchbutton">프로필 이미지 변경</button>
         </div>
         <hr />
-        <NickUpdate
-          nick={nick}
-        />
+        <NickUpdate nick={nick} />
         <hr />
         <div className="withdraw">
           <NavLink to="/">
-            <button className="wdbutton">탈퇴</button>
+            <button
+              className="wdbutton"
+              type="submit"
+              onClick={signOut}
+              onKeyDown={{ signOut }}
+            >
+              탈퇴
+            </button>
           </NavLink>
         </div>
       </div>
