@@ -30,7 +30,7 @@ function Visited() {
   const fetchData = async () => {
     try {
       const categoryUrl = selectedCategories
-        .map(item => 'category=' + item)
+        .map((item) => 'category=' + item)
         .join('&');
 
       const response = await axios.get(
@@ -39,7 +39,7 @@ function Visited() {
       resetData();
 
       if (isLoaded) {
-        response.data.content.forEach(event => {
+        response.data.content.forEach((event) => {
           if (event.authenticated === false) {
             falseData.push(event);
           } else {
@@ -52,6 +52,10 @@ function Visited() {
       setCnt(response.data.totalElements);
     } catch (e) {
       console.log(e);
+      if (e.response.data.code === 'LOGIN_FAIL') {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+      }
     }
   };
 
