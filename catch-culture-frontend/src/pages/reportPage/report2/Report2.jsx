@@ -73,7 +73,7 @@ function Report2() {
     const eventEndDate = document.querySelector('#eventEndDate').value; // 종료일
     const eventDescription = document.querySelector('#eventDescription').value; // 행사 설명
     const eventFee = document.querySelector('#eventFee').value; // 요금 정보
-    const free = eventFee === '무료' ? true : false; // 요금 정보 bool로 전환
+    const free = eventFee === '무료'; // 요금 정보 bool로 전환
 
     // 선택적인 필드 값 확인 후 값 부여
     setValue(document.querySelector('#eventSNS').value, setEventSNS);
