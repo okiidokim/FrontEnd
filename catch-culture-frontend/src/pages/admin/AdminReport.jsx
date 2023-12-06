@@ -182,6 +182,10 @@ export default function AdminReport() {
         setNickname(res.data.nickname);
       } catch (e) {
         console.log(e);
+        if(e.response.data.code === "LOGIN_FAIL") {
+          alert('로그인 만료! 다시 로그인 해주세요.');
+          navigate(`/`);
+      }
       }
     };
     fetchData();
@@ -192,6 +196,10 @@ export default function AdminReport() {
       axios.post(`/admin/event-report/${parseInt(reportId)}?userId=${userId}`);
     } catch (e) {
       console.log(e);
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
     }
   };
 
