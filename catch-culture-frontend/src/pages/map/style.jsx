@@ -10,6 +10,6 @@ export const MapArea = styled.div`
 
 export const CategoryArea = styled.div`
     position: absolute;
-    bottom: 100px;
+    bottom: 75px;
     z-index: 5;
 `;
