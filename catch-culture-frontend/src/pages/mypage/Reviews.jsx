@@ -4,6 +4,7 @@ import NoReviews from '../../components/search/noResult/NoReviews';
 import './Reviews.css';
 import axios from '../../api/axios';
 import { TbStarFilled, TbAlertCircleFilled } from 'react-icons/tb';
+import { useNavigate } from 'react-router-dom';
 
 function MyReviewCard({ data }) {
   const setRatingStar = (rating) => {
@@ -88,6 +89,7 @@ function MyReviewCard({ data }) {
 }
 
 function Reviews() {
+  const navigate = useNavigate();
   const [cnt, setCnt] = useState(0);
   const [data, setData] = useState([]);
   const [pageNum, setPageNum] = useState(0);
@@ -119,6 +121,10 @@ function Reviews() {
         setDataList(dataList.concat(res.data.content));
       } catch (e) {
         console.log(e);
+        if(e.response.data.code === "LOGIN_FAIL") {
+          alert('로그인 만료! 다시 로그인 해주세요.');
+          navigate(`/`);
+      }
       }
     };
     fetchData();

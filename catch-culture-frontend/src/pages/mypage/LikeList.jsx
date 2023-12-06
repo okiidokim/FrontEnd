@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Backitem from '../../components/Backitem';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
 import EventCard from '../../components/eventCard/EventCard';
@@ -9,6 +9,7 @@ import './BookmarkList.css';
 import { TbAlertCircleFilled } from 'react-icons/tb';
 
 function Likes() {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const [cnt, setCnt] = useState(0);
   const category = state && state.category;
@@ -42,6 +43,10 @@ function Likes() {
       setDataList(dataList.concat(res.data.content));
     } catch (e) {
       console.log(e);
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
     }
   };
 

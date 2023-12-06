@@ -1,22 +1,31 @@
-import * as S from './style';
+import * as S from './style'
+import { useNavigate } from 'react-router-dom';
+import axios from '../../../api/axios'
 
-import axios from '../../../api/axios';
+export const DeleteModal = (params) => {  
+    const navigate = useNavigate();
 
-export const DeleteModal = (params) => {
-  const onClickDelete = async () => {
-    try {
-      await axios.delete(`review/${parseInt(params.EventId)}/my-review`, {
-        data: { reviewId: params.reviewId },
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      params.fetchMyReview();
-      params.setModal();
-    } catch (e) {
-      console.log(e);
+    const onClickDelete = async () => {
+        try {
+            await axios.delete(
+                `review/${parseInt(params.EventId)}/my-review`,
+                {
+                    data:{reviewId: params.reviewId},
+                    headers: {
+                        'Content-Type': 'application/json', 
+                    },
+                },
+            )
+            params.fetchMyReview();
+            params.setModal();
+        } catch (e) {
+            console.log(e);
+            if(e.response.data.code === "LOGIN_FAIL") {
+                alert('로그인 만료! 다시 로그인 해주세요.');
+                navigate(`/`);
+            }
+        }
     }
-  };
 
   const onClickCancel = () => {
     params.setModal();

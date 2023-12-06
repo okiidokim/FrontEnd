@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import './style.css';
-import { Navigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from '../../api/axios';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
 
@@ -20,6 +20,7 @@ import m11 from '../../assets/images/marker/m11.png';
 const { kakao } = window;
 
 function MapPage() {
+  const navigate = useNavigate();
   const [map, setMap] = useState();
   const [markers, setMarkers] = useState([]);
   const [overlays, setOverlays] = useState([]);
@@ -57,7 +58,12 @@ function MapPage() {
     try {
       const response = await axios.get(`cultural-event/map`);
       handleEventData(response.data);
-    } catch (e) {}
+    } catch (e) {
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
+    }
   };
 
   const handleEventData = data => {
