@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import Backitem from '../../../components/Backitem.jsx'
 
-function EventHeader ( onSelectorChange ) {
+function EventHeader ( {onSelectorChange} ) {
 
     let [select,setSelect] = useState(0);
 

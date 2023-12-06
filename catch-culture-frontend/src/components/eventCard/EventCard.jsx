@@ -31,7 +31,7 @@ function EventCard({ data }) {
         {data.map((event) => (
           <Link to={`/event/${event.culturalEventId}`} key={event.index}>
             {/* 문화 행사 카드 */}
-            <S.EventCard key={index}>
+            <S.EventCard key={event.index}>
               {/* 문화 행사 카드 - 이미지 */}
               <S.EventCardImgWrapper>
                 <S.EventCardImgTag color={getTagColor(event.remainDay)}>
