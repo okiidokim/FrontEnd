@@ -23,12 +23,10 @@ import { TbHeartOff } from 'react-icons/tb';
 
 function NoLikes() {
   return (
-    <>
-      <NoResultWrapper>
-        <TbHeartOff size="140" color="018c0d" />
-        <NoResultTitle>좋아요 내역이 없습니다.</NoResultTitle>
-      </NoResultWrapper>
-    </>
+    <NoResultWrapper>
+      <TbHeartOff size="140" color="018c0d" />
+      <NoResultTitle>좋아요 내역이 없습니다.</NoResultTitle>
+    </NoResultWrapper>
   );
 }
 

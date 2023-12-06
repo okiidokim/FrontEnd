@@ -20,6 +20,7 @@ import m11 from '../../assets/images/marker/m11.png';
 const { kakao } = window;
 
 function MapPage() {
+  const navigate = useNavigate();
   const [map, setMap] = useState();
   const [markers, setMarkers] = useState([]);
   const [overlays, setOverlays] = useState([]);
@@ -59,7 +60,12 @@ function MapPage() {
     try {
       const response = await axios.get(`cultural-event/map`);
       handleEventData(response.data);
-    } catch (e) {}
+    } catch (e) {
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
+    }
   };
 
   const handleEventData = data => {

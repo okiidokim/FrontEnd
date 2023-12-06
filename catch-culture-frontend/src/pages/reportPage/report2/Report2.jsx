@@ -124,8 +124,12 @@ function Report2() {
       if (response.status === 200) {
         navigate('/report3');
       }
-    } catch (error) {
+    } catch (e) {
       alert('제보 실패 :(');
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
     }
   };
 

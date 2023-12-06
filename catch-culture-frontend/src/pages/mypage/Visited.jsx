@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Backitem from '../../components/Backitem';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './BookmarkList.css';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
 import EventCard from '../../components/eventCard/EventCard';
@@ -8,6 +8,7 @@ import NoVisits from '../../components/search/noResult/NoVisits';
 import axios from '../../api/axios';
 
 function Visited() {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const category = state?.category;
   const [trueData, setTrueData] = useState([]);
@@ -52,6 +53,10 @@ function Visited() {
       setCnt(response.data.totalElements);
     } catch (e) {
       console.log(e);
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
     }
   };
 

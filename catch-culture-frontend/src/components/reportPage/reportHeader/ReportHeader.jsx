@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './style';
-
 import Backitem from '../../Backitem';
 
 function ReportHeader(ReportPaginationIcon) {

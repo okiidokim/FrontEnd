@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Backitem from '../../components/Backitem';
 import axios from '../../api/axios';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import './AdminReport.css';
 import {
   TbBalloon,
@@ -151,6 +151,7 @@ function ReportInfo(data) {
 
 let data = 'sample';
 export default function AdminReport() {
+  const navigate = useNavigate();
   const reportId = useParams().id;
   const [nickname, setNickname] = useState('');
   const [userId, setUserId] = useState(0);
@@ -182,6 +183,10 @@ export default function AdminReport() {
         setNickname(res.data.nickname);
       } catch (e) {
         console.log(e);
+        if(e.response.data.code === "LOGIN_FAIL") {
+          alert('로그인 만료! 다시 로그인 해주세요.');
+          navigate(`/`);
+      }
       }
     };
     fetchData();
@@ -192,6 +197,10 @@ export default function AdminReport() {
       axios.post(`/admin/event-report/${parseInt(reportId)}?userId=${userId}`);
     } catch (e) {
       console.log(e);
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
     }
   };
 
