@@ -3,7 +3,7 @@
 캐치컬처(Catch Culture) 
 프론트엔드 Repo 입니다 :)
 <br/> <br/>
-백엔드 Repo는 여기로
+백엔드 Repo는 여기로 <br/>
 📌 https://github.com/ElegantChildren/BackEnd
 
 # 👋 팀원 소개
