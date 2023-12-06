@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import './style.css';
-import { Navigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from '../../api/axios';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
 
@@ -20,6 +20,7 @@ import m11 from '../../assets/images/marker/m11.png';
 const { kakao } = window;
 
 function MapPage() {
+  const navigate = useNavigate();
   const [map, setMap] = useState();
   const [markers, setMarkers] = useState([]);
   const [overlays, setOverlays] = useState([]);
@@ -28,8 +29,8 @@ function MapPage() {
   const { state } = useLocation();
   // state 값 유무에 따른 초기값 설정
 
-  const category = state && state.category;
-  const initialCategories = category ? category : [];
+  const category = state?.category;
+  const initialCategories = category || [];
   const [selectedCategories, setSelectedCategories] =
     useState(initialCategories);
 
@@ -40,6 +41,8 @@ function MapPage() {
   };
 
   useEffect(() => {
+    setMarkers([]);
+    setOverlays([]);
     initMap();
     fetchMapData();
   }, []);
@@ -57,7 +60,12 @@ function MapPage() {
     try {
       const response = await axios.get(`cultural-event/map`);
       handleEventData(response.data);
-    } catch (e) {}
+    } catch (e) {
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
+    }
   };
 
   const handleEventData = data => {
@@ -88,20 +96,20 @@ function MapPage() {
 
     data.forEach(data => {
       if (selectedCategories.includes(data.category)) {
-        var markerImage = new kakao.maps.MarkerImage(
+        let markerImage = new kakao.maps.MarkerImage(
           getCategoryMarker(data.category),
           imageSize,
           imageOption
         );
 
         // 마커 생성
-        var marker = new kakao.maps.Marker({
+        let marker = new kakao.maps.Marker({
           position: new kakao.maps.LatLng(data.latitude, data.longitude), // 마커의 위치
           image: markerImage,
         });
 
         // 마커에 표시할 커스텀오버레이
-        var overlay = new kakao.maps.CustomOverlay({
+        let overlay = new kakao.maps.CustomOverlay({
           position: marker.getPosition(),
         });
 
@@ -248,7 +256,7 @@ function MapPage() {
   };
 
   function clearScreen() {
-    for (var i = 0; i < markers.length; i++) {
+    for (let i = 0; i < markers.length; i++) {
       markers[i].setMap(null);
       overlays[i].setMap(null);
     }

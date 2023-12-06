@@ -90,7 +90,7 @@ function EventInfo (params) {
                 alert('로그인 만료! 다시 로그인 해주세요.');
                 navigate(`/`);
             }
-            if(e.response.data.code === "ALREADY_LIKE" || e.response.data.code === "NOT_LIKE") {
+            else if(e.response.data.code === "ALREADY_LIKE" || e.response.data.code === "NOT_LIKE") {
                 alert('좋아요 오류 발생! 페이지를 다시 로딩합니다.');
                 navigate(0);
             }
@@ -183,8 +183,8 @@ function EventInfo (params) {
             {/* 사진 영역 */}
             <S.PictureArea>
                 <S.MySwiper pagination={true} modules={[Pagination]} slidesPerView={1} loop={true}>
-                    {params.data.storedFileUrl.map((Url, index) => (
-                        <SwiperSlide key={index}>
+                    {params.data.storedFileUrl.map((Url) => (
+                        <SwiperSlide key={Url.index}>
                             <S.SwiperSlideImg src={Url} alt="이미지" />
                         </SwiperSlide>
                     ))}

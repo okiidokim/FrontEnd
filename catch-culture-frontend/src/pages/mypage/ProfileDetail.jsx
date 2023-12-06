@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './ProfileDetail.css';
 import Backitem from '../../components/Backitem';
 import axios from '../../api/axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function NickUpdate(props) {
+  const navigate = useNavigate();
   const [nick, setNick] = useState('');
 
   const nickPut = async (nickname) => {
@@ -26,6 +27,10 @@ function NickUpdate(props) {
         setNick(response.data.nickname);
       } catch (e) {
         console.log(response);
+        if(e.response.data.code === "LOGIN_FAIL") {
+          alert('로그인 만료! 다시 로그인 해주세요.');
+          navigate(`/`);
+      }
       }
     };
     fetchData();
@@ -79,6 +84,10 @@ function ProfileEdit() {
         setSocialType(response.data.socialType);
       } catch (e) {
         console.log(response);
+        if(e.response.data.code === "LOGIN_FAIL") {
+          alert('로그인 만료! 다시 로그인 해주세요.');
+          navigate(`/`);
+      }
       }
     };
     fetchData();
