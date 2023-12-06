@@ -25,13 +25,13 @@ function EventHeader ( {onSelectorChange} ) {
             <S.PageChangeArea>
                 <S.DetailInfoButton
                     onClick={onClickInfoButton}
-                    className={!select? 'active' : ''} >
+                    className={select == 0 && 'active'} >
                     <RiFileList2Line /> 
                     <b>상세정보</b>
                 </S.DetailInfoButton>
                 <S.EventReviewButton
                     onClick={onClickReviewButton}
-                    className={select? 'active' : ''} >
+                    className={select == 1 && 'active'} >
                     <LiaCommentsSolid /> 
                     <b>리뷰</b>
                 </S.EventReviewButton>
