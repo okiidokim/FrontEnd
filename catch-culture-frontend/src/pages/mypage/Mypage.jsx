@@ -10,6 +10,9 @@ import {
 import { NavLink, useNavigate } from 'react-router-dom';
 import './Mypage.css';
 import Level0 from '../../assets/pointimg/level0.png';
+import Level1 from '../../assets/pointimg/level1.png';
+import Level2 from '../../assets/pointimg/level2.png';
+import Level3 from '../../assets/pointimg/level3.png';
 import Backitem from '../../components/Backitem';
 import Admin from '../admin/Admin';
 import axios from '../../api/axios';
@@ -19,34 +22,77 @@ function Mypage() {
   const [nick, setNick] = useState('');
   const [img, setImg] = useState('');
   const [isadmin, setAdmin] = useState('');
+  const [pointGrade, setPointGrade] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`/user`);
+        const pointres = await axios.get(`/user/point-grade`);
+
         setNick(response.data.nickname);
         setImg(response.data.storedFileUrl);
         setAdmin(response.data.role);
+        setPointGrade(pointres.data);
       } catch (e) {
         console.log(e);
-        if(e.response.data.code === "LOGIN_FAIL") {
+        if (e.response.data.code === 'LOGIN_FAIL') {
           alert('로그인 만료! 다시 로그인 해주세요.');
           navigate(`/`);
-      }
+        }
       }
     };
     fetchData();
   }, []);
 
+  const pointImg = (pointGrade) => {
+    if (pointGrade === 'Green') {
+      return (
+        <div className="pointlevelwrap">
+          <img className="level0img" src={Level0} />
+          <NavLink to="/level">
+            <button className="levelgreen">포인트 레벨 안내</button>
+          </NavLink>
+        </div>
+      );
+    } else if (pointGrade === 'Yellow') {
+      return (
+        <div className="pointlevelwrap">
+          <img className="level0img" src={Level1} />
+          <NavLink to="/level">
+            <button className="levelyellow">포인트 레벨 안내</button>
+          </NavLink>
+        </div>
+      );
+    } else if (pointGrade === 'Pink') {
+      return (
+        <div className="pointlevelwrap">
+          <img className="level0img" src={Level2} />
+          <NavLink to="/level">
+            <button className="levelpink">포인트 레벨 안내</button>
+          </NavLink>
+        </div>
+      );
+    } else {
+      return (
+        <div className="pointlevelwrap">
+          <img className="level0img" src={Level3} />
+          <NavLink to="/level">
+            <button className="levelred">포인트 레벨 안내</button>
+          </NavLink>
+        </div>
+      );
+    }
+  };
   const fetchLogout = async () => {
     try {
       await axios.get(`/user/logout`);
     } catch (e) {
       console.log(e);
-      if(e.response.data.code === "LOGIN_FAIL") {
+      if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
-    }
+      }
     }
   };
 
@@ -128,12 +174,7 @@ function Mypage() {
             </div>
           </div>
           <div className="pointlevel">
-            <div className="pointlevelwrap">
-              <img className="level0img" src={Level0} />
-              <NavLink to="/level">
-                <button className="level">포인트 레벨 안내</button>
-              </NavLink>
-            </div>
+            <div>{pointImg(pointGrade)}</div>
           </div>
         </div>
       )}

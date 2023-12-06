@@ -97,7 +97,7 @@
 .visited:hover,
 .putprofile:hover,
 .logout:hover,
-.level:hover {
+.levelgreen:hover {
   background-color: #018c0d;
   color: white;
   font-weight: bold;
@@ -124,7 +124,10 @@
   gap: 16px;
 }
 
-.level {
+.levelgreen,
+.levelyellow,
+.levelpink,
+.levelred {
   cursor: pointer;
   width: 160px;
   height: 28px;
@@ -134,4 +137,20 @@
   box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
     inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
     -1px -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.levelyellow:hover {
+  background-color: #f0cc00;
+  color: white;
+  font-weight: bold;
+}
+.levelpink:hover {
+  background-color: #eb6565;
+  color: white;
+  font-weight: bold;
+}
+.levelred:hover {
+  background-color: #e00000;
+  color: white;
+  font-weight: bold;
 }
