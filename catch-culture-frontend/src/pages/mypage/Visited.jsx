@@ -19,13 +19,7 @@ function Visited() {
     useState(initialCategories);
 
   useEffect(() => {
-    setFalseData([]);
-    setTrueData([]);
-  }, []);
-
-  useEffect(() => {
     fetchData();
-    console.log('selectedCategories');
   }, [selectedCategories]);
 
   const fetchData = async () => {
@@ -37,32 +31,22 @@ function Visited() {
       const response = await axios.get(
         `user/cultural-event?${categoryUrl}&offset=0&classification=VISIT_AUTH`
       );
-      resetData();
-
-      if (isLoaded) {
-        response.data.content.forEach((event) => {
-          if (event.authenticated === false) {
-            falseData.push(event);
-          } else {
-            trueData.push(event);
-          }
-        });
-        setIsLoaded(false);
-      }
-
       setCnt(response.data.totalElements);
+
+      response.data.content.forEach((e) => {
+        if (e.authenticated === false) {
+          setFalseData(falseData.concat(e));
+        } else {
+          setTrueData(trueData.concat(e));
+        }
+      });
     } catch (e) {
       console.log(e);
-      if(e.response.data.code === "LOGIN_FAIL") {
+      if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
+      }
     }
-    }
-  };
-
-  const resetData = () => {
-    trueData.splice(0);
-    falseData.splice(0);
   };
 
   return (
