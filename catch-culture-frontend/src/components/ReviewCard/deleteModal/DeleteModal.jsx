@@ -1,8 +1,9 @@
 import * as S from './style'
-
+import { useNavigate } from 'react-router-dom';
 import axios from '../../../api/axios'
 
-export const DeleteModal = (params) => {
+export const DeleteModal = (params) => {  
+    const navigate = useNavigate();
 
     const onClickDelete = async () => {
         try {

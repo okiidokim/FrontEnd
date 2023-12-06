@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import './style.css';
-import { Navigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from '../../api/axios';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
 
@@ -20,6 +20,7 @@ import m11 from '../../assets/images/marker/m11.png';
 const { kakao } = window;
 
 function MapPage() {
+  const navigate = useNavigate();
   const [map, setMap] = useState();
   const [markers, setMarkers] = useState([]);
   const [overlays, setOverlays] = useState([]);

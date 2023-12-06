@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Backitem from '../../components/Backitem';
 import axios from '../../api/axios';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import './AdminReport.css';
 import {
   TbBalloon,
@@ -151,6 +151,7 @@ function ReportInfo(data) {
 
 let data = 'sample';
 export default function AdminReport() {
+  const navigate = useNavigate();
   const reportId = useParams().id;
   const [nickname, setNickname] = useState('');
   const [userId, setUserId] = useState(0);

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import Backitem from '../../components/Backitem';
 import './AdminReport.css';
 import axios from '../../api/axios';
 import { TbBalloon, TbNotes } from 'react-icons/tb';
 
 export default function AdminVisit() {
+  const navigate = useNavigate();
   const visitAuthId = useParams().id;
   const [nickname, setNickname] = useState('');
   const [title, setTitle] = useState('');

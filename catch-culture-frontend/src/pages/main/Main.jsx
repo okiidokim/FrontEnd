@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as S from './style';
 import LogoImg from '../../assets/images/logo.png';
 import { SyncLoader } from 'react-spinners';
@@ -19,6 +19,7 @@ import { Pagination } from 'swiper/modules';
 import axios from '../../api/axios';
 
 function Main() {
+  const navigate = useNavigate();
   // data
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

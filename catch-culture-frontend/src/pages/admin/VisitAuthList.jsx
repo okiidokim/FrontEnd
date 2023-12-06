@@ -4,7 +4,7 @@ import dayjs from 'dayjs'; //api 반환 받았을 때 사용 예정
 import { TbMapPinOff, TbAlertCircleFilled } from 'react-icons/tb';
 import './VisitAuthList.css';
 import axios from '../../api/axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function VisitAuthItem({ data }) {
   dayjs.locale('ko');
@@ -37,7 +37,8 @@ function VisitAuthItem({ data }) {
   );
 }
 
-export default function VistiAuthList() {
+export default function VistiAuthList() {  
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [lastid, setLastid] = useState(0);
   const [last, setLast] = useState(false);
