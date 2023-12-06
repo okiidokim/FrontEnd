@@ -6,6 +6,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import axios from '../../../api/axios';
 
 function SellItem({ data }) {
+  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
@@ -21,6 +22,10 @@ function SellItem({ data }) {
       setBuyResponse(res.data);
     } catch (e) {
       console.log(e);
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
     }
   };
 
@@ -125,6 +130,10 @@ export default function PointUsage() {
         setData(res.data);
       } catch (e) {
         console.log(e);
+        if(e.response.data.code === "LOGIN_FAIL") {
+          alert('로그인 만료! 다시 로그인 해주세요.');
+          navigate(`/`);
+      }
       }
     };
     fetchData();
