@@ -12,7 +12,14 @@ function Reporteach({ data }) {
       {data.map((e) => (
         <div className="reportwrap" key={e.reportId}>
           <hr />
-          <div className="reptitle">{e.eventName}</div>
+          <div className="reportedtitlerow">
+            <div className="reptitle">{e.eventName}</div>
+            {e.isReported === true ? (
+              <div className="isreportedtrue">등록</div>
+            ) : (
+              <div className="isreportedfalse">미등록</div>
+            )}
+          </div>
           <div className="reploc">{e.eventLocation}</div>
           <div className="repduration">
             {e.startDate} ~ {e.endDate}
@@ -40,10 +47,10 @@ function ReportList() {
       setIsLast(res.data.last);
     } catch (e) {
       console.log(e);
-      if(e.response.data.code === "LOGIN_FAIL") {
+      if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
-    }
+      }
     }
   };
 
