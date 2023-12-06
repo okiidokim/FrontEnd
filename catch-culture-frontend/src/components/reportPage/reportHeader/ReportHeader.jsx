@@ -9,7 +9,7 @@ function ReportHeader(ReportPaginationIcon) {
       <S.ReportHeader>
         <S.ReportHeaderTitle>제보하기</S.ReportHeaderTitle>
 
-        <S.ReportHeaderPagination src={ReportPaginationIcon} />
+        <S.ReportHeaderPagination src={ReportPaginationIcon.ReportPaginationIcon} />
       </S.ReportHeader>
     </>
   );
