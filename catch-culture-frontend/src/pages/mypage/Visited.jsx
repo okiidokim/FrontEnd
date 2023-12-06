@@ -31,7 +31,7 @@ function Visited() {
   const fetchData = async () => {
     try {
       const categoryUrl = selectedCategories
-        .map(item => 'category=' + item)
+        .map((item) => 'category=' + item)
         .join('&');
 
       const response = await axios.get(
@@ -40,7 +40,7 @@ function Visited() {
       resetData();
 
       if (isLoaded) {
-        response.data.content.forEach(event => {
+        response.data.content.forEach((event) => {
           if (event.authenticated === false) {
             falseData.push(event);
           } else {

@@ -1,16 +1,33 @@
+@keyframes slidein {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 .loginwrap {
   display: flex;
   position: relative;
   flex-direction: column;
-  gap: 180px;
+  gap: 150px;
+
+  animation-duration: 1s;
+  animation-name: slidein;
 }
 
 .header {
   display: flex;
   position: relative;
-  padding-top: 40px;
+  padding-top: 100px;
   width: 300px;
 }
+
 .buttonlist {
   top: 50%;
   display: flex;
@@ -34,7 +51,7 @@
 
   border-radius: 4px;
   cursor: pointer;
-
+  font-family: NotoSansKR_Regular;
 }
 .google {
   cursor: pointer;
@@ -52,6 +69,8 @@
   height: 48px;
 
   background-color: white;
+  font-family: NotoSansKR_Regular;
+  border: 1px solid #D9D9D9;
 }
 .naver {
   cursor: pointer;
@@ -69,6 +88,7 @@
   background: #03c75a;
   border-radius: 4px;
   border: none;
+  font-family: NotoSansKR_Regular;
 }
 .kl {
   width: 24px;

@@ -48,45 +48,43 @@ function Main() {
   };
 
   return (
-    <div>
-      <S.MainWrapper>
-        {/* 헤더 */}
-        <S.Header>
-          <S.HeaderLogo src={LogoImg} alt="로고 이미지" />
-          <SearchBox width={'180px'} />
-        </S.Header>
+    <S.MainWrapper>
+      {/* 헤더 */}
+      <S.Header>
+        <S.HeaderLogo src={LogoImg} alt="로고 이미지" />
+        <SearchBox width={'180px'} />
+      </S.Header>
 
-        {/* 배너 */}
-        <S.Banner>
-          <S.MySwiper pagination={true} modules={[Pagination]}>
-            <SwiperSlide>
-              <S.SwiperSlideImg src={BannerImg1} alt="배너 이미지" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <S.SwiperSlideImg src={BannerImg2} alt="배너 이미지" />
-            </SwiperSlide>
-          </S.MySwiper>
-        </S.Banner>
+      {/* 배너 */}
+      <S.Banner>
+        <S.MySwiper pagination={true} modules={[Pagination]}>
+          <SwiperSlide>
+            <S.SwiperSlideImg src={BannerImg1} alt="배너 이미지" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <S.SwiperSlideImg src={BannerImg2} alt="배너 이미지" />
+          </SwiperSlide>
+        </S.MySwiper>
+      </S.Banner>
 
-        {/*문화 행사 목록*/}
-        <S.EventWrapper>
-          <S.EventHeader>
-            <S.EventHeaderTitle>이런 행사는 어떠세요?</S.EventHeaderTitle>
-            <Link to="/search">
-              <S.EventHeaderMore>더보기</S.EventHeaderMore>
-            </Link>
-          </S.EventHeader>
+      {/*문화 행사 목록*/}
+      <S.EventWrapper>
+        <S.EventHeader>
+          <S.EventHeaderTitle>이런 행사는 어떠세요?</S.EventHeaderTitle>
+          <Link to="/search">
+            <S.EventHeaderMore>더보기</S.EventHeaderMore>
+          </Link>
+        </S.EventHeader>
 
-          {isLoading ? (
-            <S.SyncLoaderWrapper>
-              <SyncLoader color="#018C0D" />
-            </S.SyncLoaderWrapper>
-          ) : (
-            <EventCard data={data} />
-          )}
-        </S.EventWrapper>
-      </S.MainWrapper>
-    </div>
+        {isLoading ? (
+          <S.SyncLoaderWrapper>
+            <SyncLoader color="#018C0D" />
+          </S.SyncLoaderWrapper>
+        ) : (
+          <EventCard data={data} />
+        )}
+      </S.EventWrapper>
+    </S.MainWrapper>
   );
 }
 
