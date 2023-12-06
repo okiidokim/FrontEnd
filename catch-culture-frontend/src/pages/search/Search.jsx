@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './style';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import { SyncLoader } from 'react-spinners';
 
@@ -16,6 +16,7 @@ import axios from '../../api/axios';
 
 function Search() {
   // 무한 스크롤
+  const navigate = useNavigate();
   const [pageNum, setPageNum] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [ref, inView] = useInView();
@@ -84,10 +85,10 @@ function Search() {
     } catch (e) {
       console.log(e);
       setIsLoading(false);
-      if (e.response.data.code === 'LOGIN_FAIL') {
+      if(e.response.data.code === "LOGIN_FAIL") {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
-      }
+    }
     }
   };
 
@@ -118,10 +119,10 @@ function Search() {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.data.code === 'LOGIN_FAIL') {
+      if(e.response.data.code === "LOGIN_FAIL") {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
-      }
+    }
     }
   };
 

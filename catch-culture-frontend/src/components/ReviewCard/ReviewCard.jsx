@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HiOutlineTrash } from "react-icons/hi";
 import { FaRegPenToSquare } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 
 import * as S from './style';
 import DeleteModal from './deleteModal/DeleteModal';
@@ -23,6 +24,7 @@ import axios from '../../api/axios'
  ******************************************************/ 
 
 export default function ReviewCard(data) {
+  const navigate = useNavigate();
   const [isModal, setIsModal] = useState(false);
   const [isModify, setIsModify] = useState(false);
   const [modifyText, setModifyText] = useState(data.data.description);

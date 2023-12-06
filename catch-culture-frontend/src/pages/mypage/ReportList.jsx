@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Backitem from '../../components/Backitem';
-import { NavLink } from 'react-router-dom/dist';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './ReportList.css';
 import NoReport from '../../components/search/noResult/NoReport';
 import axios from '../../api/axios';
@@ -24,6 +24,7 @@ function Reporteach({ data }) {
 }
 
 function ReportList() {
+  const navigate = useNavigate();
   const [cnt, setCnt] = useState(0);
   const [data, setData] = useState([]);
   const [pageNum, setPageNum] = useState(0);
@@ -39,6 +40,10 @@ function ReportList() {
       setIsLast(res.data.last);
     } catch (e) {
       console.log(e);
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
     }
   };
 

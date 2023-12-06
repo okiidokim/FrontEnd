@@ -3,7 +3,7 @@ import Backitem from '../../components/Backitem';
 import './PointHistory.css';
 import NoPointHistory from '../../components/search/noResult/NoPointHistory';
 import axios from '../../api/axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { TbShoppingCart, TbCoins, TbAlertCircleFilled } from 'react-icons/tb';
 import dayjs from 'dayjs';
 
@@ -36,6 +36,7 @@ function Pointeach({ data }) {
 }
 
 function PointHistory() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [cnt, setCnt] = useState(0);
   const [currpoint, setCurrpoint] = useState(0);
@@ -63,7 +64,11 @@ function PointHistory() {
       setCurrpoint(respoint.data);
       setIsLast(res.data.last);
     } catch (e) {
-      console.log(e);
+      console.log(e);      
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
     }
   };
 

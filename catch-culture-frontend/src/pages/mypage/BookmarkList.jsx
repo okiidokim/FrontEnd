@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Backitem from '../../components/Backitem';
 import './BookmarkList.css';
 import CategorySelector from '../../components/categorySelector/CategorySelector';
@@ -9,6 +9,7 @@ import axios from '../../api/axios';
 import { TbAlertCircleFilled } from 'react-icons/tb';
 
 function Bookmarks() {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const category = state && state.category;
   const initialCategories = category ? category : [];
@@ -41,6 +42,10 @@ function Bookmarks() {
       setCnt(response.data.numberOfElements);
     } catch (e) {
       console.log(e);
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
     }
   };
 

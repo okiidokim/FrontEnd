@@ -4,7 +4,7 @@ import dayjs from 'dayjs'; //api 반환 받았을 때 사용 예정
 import { TbReportOff, TbAlertCircleFilled } from 'react-icons/tb';
 import './VisitAuthList.css';
 import axios from '../../api/axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function ReportItem({ data }) {
   dayjs.locale('ko');
@@ -38,7 +38,8 @@ function ReportItem({ data }) {
     </>
   );
 }
-export default function ReportAuthList() {
+export default function ReportAuthList() {  
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [lastid, setLastid] = useState(0);
   const [last, setLast] = useState(false);
@@ -59,6 +60,10 @@ export default function ReportAuthList() {
       setLastid(res.data.content[12].id);
     } catch (e) {
       console.log(e);
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
     }
   };
 
@@ -85,6 +90,10 @@ export default function ReportAuthList() {
           setLastid(res.data.content[12].id);
         } catch (e) {
           console.log(e);
+          if(e.response.data.code === "LOGIN_FAIL") {
+            alert('로그인 만료! 다시 로그인 해주세요.');
+            navigate(`/`);
+        }
         }
       }
     }
