@@ -5,8 +5,13 @@ import { TbReportOff, TbAlertCircleFilled } from 'react-icons/tb';
 import './VisitAuthList.css';
 import axios from '../../api/axios';
 import { NavLink, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function ReportItem({ data }) {
+  ReportItem.propTypes = {
+    data: PropTypes.any,
+  };
+
   dayjs.locale('ko');
 
   if (!data) {
@@ -43,7 +48,7 @@ export default function ReportAuthList() {
   const [last, setLast] = useState(false);
   const [first, setFirst] = useState(true);
   const [empty, setEmpty] = useState(false);
-  const [numElem, setNum] = useState(0);
+  const [numElem, setNumElem] = useState(0);
   const [size, setSize] = useState(0);
 
   const fetchData = async () => {
@@ -53,7 +58,7 @@ export default function ReportAuthList() {
       setLast(res.data.last);
       setFirst(res.data.first);
       setEmpty(res.data.empty);
-      setNum(res.data.numberOfElements);
+      setNumElem(res.data.numberOfElements);
       setSize(res.data.size);
       setLastid(res.data.content[12].id);
     } catch (e) {
@@ -82,7 +87,7 @@ export default function ReportAuthList() {
           setLast(res.data.last);
           setFirst(res.data.first);
           setEmpty(res.data.empty);
-          setNum(res.data.numberOfElements);
+          setNumElem(res.data.numberOfElements);
           setSize(res.data.size);
           setData(data.concat(res.data.content));
           setLastid(res.data.content[12].id);

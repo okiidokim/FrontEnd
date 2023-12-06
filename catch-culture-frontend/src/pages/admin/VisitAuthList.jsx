@@ -5,12 +5,19 @@ import { TbMapPinOff, TbAlertCircleFilled } from 'react-icons/tb';
 import './VisitAuthList.css';
 import axios from '../../api/axios';
 import { NavLink, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function VisitAuthItem({ data }) {
+  VisitAuthItem.propTypes = {
+    data: PropTypes.any,
+  };
+
   dayjs.locale('ko');
+
   if (!data) {
     return;
   }
+
   return (
     <>
       {data.map((e) => (
@@ -37,14 +44,14 @@ function VisitAuthItem({ data }) {
   );
 }
 
-export default function VistiAuthList() {  
+export default function VistiAuthList() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [lastid, setLastid] = useState(0);
   const [last, setLast] = useState(false);
   const [first, setFirst] = useState(true);
   const [empty, setEmpty] = useState(false);
-  const [numElem, setNum] = useState(0);
+  const [numElem, setNumElem] = useState(0);
   const [size, setSize] = useState(0);
 
   const fetchData = async () => {
@@ -54,15 +61,15 @@ export default function VistiAuthList() {
       setLast(res.data.last);
       setFirst(res.data.first);
       setEmpty(res.data.empty);
-      setNum(res.data.numberOfElements);
+      setNumElem(res.data.numberOfElements);
       setSize(res.data.size);
       setLastid(res.data.content[12].id);
     } catch (e) {
       console.log(e);
-      if(e.response.data.code === "LOGIN_FAIL") {
+      if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
-    }
+      }
     }
   };
 
@@ -81,16 +88,16 @@ export default function VistiAuthList() {
           setLast(res.data.last);
           setFirst(res.data.first);
           setEmpty(res.data.empty);
-          setNum(res.data.numberOfElements);
+          setNumElem(res.data.numberOfElements);
           setSize(res.data.size);
           setData(data.concat(res.data.content));
           setLastid(res.data.content[12].id);
         } catch (e) {
           console.log(e);
-          if(e.response.data.code === "LOGIN_FAIL") {
+          if (e.response.data.code === 'LOGIN_FAIL') {
             alert('로그인 만료! 다시 로그인 해주세요.');
             navigate(`/`);
-        }
+          }
         }
       }
     }
