@@ -118,6 +118,7 @@ function SellItem({ data }) {
 }
 
 export default function PointUsage() {
+  const navigate = useNavigate();
   const [currpoint, setCurrpoint] = useState(0);
 
   const [data, setData] = useState([]);
