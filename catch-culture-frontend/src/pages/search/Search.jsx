@@ -22,13 +22,13 @@ function Search() {
   const [isLast, setIsLast] = useState(false);
 
   const { state } = useLocation();
-  const category = state && state.category;
-  const keyword = state && state.keyword;
+  const category = state?.category;
+  const keyword = state?.keyword;
 
   const [count, setCount] = useState(0);
 
   // state 값 유무에 따른 초기값 설정
-  const initialCategories = category ? category : [];
+  const initialCategories = category || [];
 
   // 카테고리 상태
   const [selectedCategories, setSelectedCategories] =
@@ -49,7 +49,7 @@ function Search() {
 
   // 초기
   useEffect(() => {
-    if (!(data.length === 0) && inView && !isLast) {
+    if (data.length !== 0 && inView && !isLast) {
       setTimeout(fetchScroll(), 300);
     }
   }, [inView]);
@@ -59,7 +59,7 @@ function Search() {
     try {
       setIsLoading(true);
 
-      if (!(selectedCategories.length === 0) || keyword) {
+      if (selectedCategories.length !== 0 || keyword) {
         // URL 만들기 - 카테고리 선택
         const categoryUrl = selectedCategories
           .map(item => 'category=' + item)
@@ -90,7 +90,7 @@ function Search() {
   // 무한 스크롤
   const fetchScroll = async () => {
     try {
-      if (!(selectedCategories.length === 0) || keyword) {
+      if (selectedCategories.length !== 0 || keyword) {
         // URL 만들기 - 카테고리 선택
         const categoryUrl = selectedCategories
           .map(item => 'category=' + item)
@@ -158,13 +158,13 @@ function Search() {
             <SyncLoader color="#018C0D" />
           </S.SyncLoaderWrapper>
         ) : count === 0 ? (
-          <>
+          <div>
             <NoResult />
-          </>
+          </div>
         ) : (
-          <>
+          <div>
             <EventCard data={data} />
-          </>
+          </div>
         )}
       </S.SearchWrapper>
       <div ref={ref}></div>
