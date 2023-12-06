@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate as Navi, useParams as Param } from 'react-router-dom';
 
 import * as S from './CulturalEventDetailStyle';
 
@@ -12,12 +12,12 @@ import axios from '../../api/axios';
 
 let data = "sample";
 
+
 function culturalEventDetail() {
-    const culturalEventId = useParams().id;
+    const culturalEventId = Param().id;    
+    const navigate = Navi();
     
-    const navigate = useNavigate();
-    
-    const [_isInit, setInit] = useState(false);
+    const [_isInit, setIsInit] = useState(false);
 
     // 최초 로딩시 값 불러오기
     useEffect(() => {
@@ -30,7 +30,7 @@ function culturalEventDetail() {
             const response = await axios.get(
                 `cultural-event/${parseInt(culturalEventId)}`
             )
-            setInit(true);
+            setIsInit(true);
 
             data = {
                 'EventId' : culturalEventId,

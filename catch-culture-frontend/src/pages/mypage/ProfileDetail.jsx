@@ -7,10 +7,10 @@ import { NavLink } from 'react-router-dom';
 function NickUpdate(props) {
   const [nick, setNick] = useState('');
 
-  const nickPut = async () => {
+  const nickPut = async (nickname) => {
     try {
       await axios.patch(`user/profile/nickname?nickName=${nick}`, {
-        nickName: props.nick,
+        nickName: nickname,
       });
 
       window.location.reload();
@@ -45,7 +45,6 @@ function NickUpdate(props) {
             <input
               type="submit"
               className="nickchangebutton"
-              onClick={nickPut}
               value="저장"
             ></input>
           </p>
@@ -69,7 +68,7 @@ function NickUpdate(props) {
 function ProfileEdit() {
   const [nick, setNick] = useState('');
   const [img, setImg] = useState('');
-  const [socialT, setSctype] = useState('');
+  const [socialType, setSocialType] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,7 +76,7 @@ function ProfileEdit() {
         const response = await axios.get(`user`);
         setNick(response.data.nickname);
         setImg(response.data.storedFileUrl);
-        setSctype(response.data.socialType);
+        setSocialType(response.data.socialType);
       } catch (e) {
         console.log(response);
       }
@@ -90,7 +89,7 @@ function ProfileEdit() {
       <Backitem />
       <div className="editwrap">
         <div className="sctype">
-          {socialT} 로그인
+          {socialType} 로그인
           <hr />
         </div>
         <div className="imgchange">
@@ -101,11 +100,7 @@ function ProfileEdit() {
         <hr />
         <NickUpdate
           nick={nick}
-          // onUpdate={(nick) => {
-          //   const updatedNick = { nick: nick };
-          //   nickPut(updatedNick);
-          // }}
-        ></NickUpdate>
+        />
         <hr />
         <div className="withdraw">
           <NavLink to="/">

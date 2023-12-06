@@ -77,6 +77,7 @@ function ReportInfo(data) {
           <div
             className="textcontent"
             onClick={() => setIsShowMore(!isShowMore)}
+            onKeyDown={() => setIsShowMore(!isShowMore)}
           >
             {descriptionCut}
             <span
@@ -204,7 +205,7 @@ export default function AdminReport() {
         <ReportInfo data={data} />
         <div className="regisbuttonrow">
           <NavLink to="/reportauth/list">
-            <div className="regis" type="submit" onClick={reportSubmit}>
+            <div className="regis" type="submit" onClick={reportSubmit} onKeyDown={{reportSubmit}}>
               등록
             </div>
           </NavLink>

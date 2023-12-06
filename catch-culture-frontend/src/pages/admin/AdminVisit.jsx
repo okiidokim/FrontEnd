@@ -34,7 +34,7 @@ export default function AdminVisit() {
 
   const visitAuthSubmit = async (e) => {
     try {
-      axios.put(
+      await axios.put(
         `/admin/visit-auth/${visitAuthId}?userId=${userId}&culturalEventId=${eventId}`
       );
     } catch (e) {
@@ -44,7 +44,7 @@ export default function AdminVisit() {
 
   const visitAuthReject = async (e) => {
     try {
-      axios.delete(`/admin/visit-auth/${visitAuthId}`);
+      await axios.delete(`/admin/visit-auth/${visitAuthId}`);
     } catch (e) {
       console.log(e);
     }
@@ -98,6 +98,7 @@ export default function AdminVisit() {
                 <div
                   className="textcontent"
                   onClick={() => setIsShowMore(!isShowMore)}
+                  onKeyDown={() => setIsShowMore(!isShowMore)}
                 >
                   {descriptionCut}
                   <span
@@ -120,7 +121,7 @@ export default function AdminVisit() {
         </div>
         <div className="regisbuttonrow">
           <NavLink to="/visitauth/list">
-            <div className="regis" type="submit" onClick={visitAuthSubmit}>
+            <div className="regis" type="submit" onClick={visitAuthSubmit} onKeyDown={visitAuthSubmit}>
               승인
             </div>
           </NavLink>
