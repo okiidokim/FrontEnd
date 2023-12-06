@@ -1,17 +1,21 @@
+import { useState } from 'react';
 import * as S from './style.jsx';
 import { RiFileList2Line } from 'react-icons/ri';
 import { LiaCommentsSolid } from 'react-icons/lia';
 
 import Backitem from '../../../components/Backitem.jsx';
 
-function EventHeader(onSelectorChange) {
+function EventHeader({onSelectorChange}) {
+
+    const [select,setSelect] = useState(false);
+
   const onClickInfoButton = () => {
-    setSelect(0);
+    setSelect(false);
     onSelectorChange(0);
   };
 
   const onClickReviewButton = () => {
-    setSelect(1);
+    setSelect(true);
     onSelectorChange(1);
   };
 
@@ -21,13 +25,13 @@ function EventHeader(onSelectorChange) {
             <S.PageChangeArea>
                 <S.DetailInfoButton
                     onClick={onClickInfoButton}
-                    className={select == 0 && 'active'} >
+                    className={!select && 'active'} >
                     <RiFileList2Line /> 
                     <b>상세정보</b>
                 </S.DetailInfoButton>
                 <S.EventReviewButton
                     onClick={onClickReviewButton}
-                    className={select == 1 && 'active'} >
+                    className={select && 'active'} >
                     <LiaCommentsSolid /> 
                     <b>리뷰</b>
                 </S.EventReviewButton>
