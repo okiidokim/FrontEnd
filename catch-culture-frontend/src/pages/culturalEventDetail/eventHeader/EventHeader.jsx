@@ -1,13 +1,11 @@
 import * as S from './style.jsx';
 import { RiFileList2Line } from 'react-icons/ri';
 import { LiaCommentsSolid } from 'react-icons/lia';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import Backitem from '../../../components/Backitem.jsx'
 
-function EventHeader ( {onSelectorChange} ) {
-    const navigate = useNavigate();
+function EventHeader ( onSelectorChange ) {
 
     let [select,setSelect] = useState(0);
 

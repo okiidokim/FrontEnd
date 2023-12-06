@@ -4,7 +4,7 @@ import CheckIcon from '../../assets/images/category/check.png';
 
 function CategoryItem(props) {
   return (
-    <>
+    <div>
       <S.CategoryItem
         onClick={() => props.handlerClickCategory(props.category)}
         color={
@@ -22,7 +22,7 @@ function CategoryItem(props) {
           }
         />
       </S.CategoryItem>
-    </>
+    </div>
   );
 }
 

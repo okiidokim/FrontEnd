@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './style';
 import CategorySelectorItem from './categorySelectorItem/CategorySelectorItem';
 
@@ -41,7 +41,7 @@ function CategorySelector(props) {
   };
 
   return (
-    <>
+    <div>
       <S.CategorySelector>
         <CategorySelectorItem
           name="전체"
@@ -141,7 +141,7 @@ function CategorySelector(props) {
           selectedCategories={props.selectedCategories}
         />
       </S.CategorySelector>
-    </>
+    </div>
   );
 }
 

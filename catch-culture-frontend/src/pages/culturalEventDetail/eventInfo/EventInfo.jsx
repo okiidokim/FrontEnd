@@ -167,7 +167,7 @@ function EventInfo (params) {
                 { getTitle }
                 {/* 더보기 버튼 */}
                 <span style={{color:'grey'}}>
-                    {params.data.title.length > titleLimit ? (isShowMoreTitle ? '' : ' ...') : null}
+                    {params.data.title.length > titleLimit ? !isShowMoreTitle && ' ...' : null}
                 </span>
             </S.TitleArea>
 
@@ -218,7 +218,8 @@ function EventInfo (params) {
 
                         {/* 더보기 버튼 */}
                         <span style={{color:'grey'}}>
-                            {params.data.description.length > textLimit ? (isShowMoreDes ? ' 닫기' : ' ...더보기') : null}
+
+                            {params.data.description.length > textLimit ? !isShowMoreDes &&' ...더보기' : null}
                         </span>
                     </div>
                 </S.InfoValue>

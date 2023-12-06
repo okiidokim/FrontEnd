@@ -58,7 +58,7 @@ function CulturalEventDetail() {
                 alert('로그인 만료! 다시 로그인 해주세요.');
                 navigate(`/`);
             }
-            if(e.response.data.code === "INVALID_EVENT_ID") {
+            else if(e.response.data.code === "INVALID_EVENT_ID") {
                 alert('존재하지 않는 문화 행사 입니다.');
                 navigate(`/main`);
             }
