@@ -5,7 +5,6 @@
   gap: 8px;
 }
 .reptitle {
-  width: 320px;
   font-weight: bold;
   padding-top: 4px;
   white-space: nowrap;
@@ -83,4 +82,30 @@
 .nomorewicon {
   display: flex;
   gap: 8px;
+}
+.reportedtitlerow {
+  display: flex;
+  justify-content: space-between;
+}
+.isreportedtrue {
+  background-color: #018c0d;
+  font-size: 12px;
+  color: white;
+  width: 80px;
+  height: 16px;
+  text-align: center;
+  border-radius: 10px;
+  padding-top: 4px;
+  font-weight: bold;
+}
+.isreportedfalse {
+  background-color: #e00000;
+  font-size: 12px;
+  color: white;
+  width: 80px;
+  height: 16px;
+  text-align: center;
+  border-radius: 10px;
+  padding-top: 4px;
+  font-weight: bold;
 }

@@ -25,9 +25,7 @@ function ReportItem({ data }) {
                 {e.createdAt === null ? (
                   <></>
                 ) : (
-                  <>
-                    {dayjs(`${e.createdAt}`).format('YYYY.MM.DD - ddd - HH:mm')}
-                  </>
+                  <>{dayjs(`${e.createdAt}`).format('YYYY.MM.DD ddd HH:mm')}</>
                 )}
               </p>
             </div>
@@ -38,7 +36,7 @@ function ReportItem({ data }) {
     </>
   );
 }
-export default function ReportAuthList() {  
+export default function ReportAuthList() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [lastid, setLastid] = useState(0);
@@ -60,10 +58,10 @@ export default function ReportAuthList() {
       setLastid(res.data.content[12].id);
     } catch (e) {
       console.log(e);
-      if(e.response.data.code === "LOGIN_FAIL") {
+      if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
-    }
+      }
     }
   };
 
@@ -90,10 +88,10 @@ export default function ReportAuthList() {
           setLastid(res.data.content[12].id);
         } catch (e) {
           console.log(e);
-          if(e.response.data.code === "LOGIN_FAIL") {
+          if (e.response.data.code === 'LOGIN_FAIL') {
             alert('로그인 만료! 다시 로그인 해주세요.');
             navigate(`/`);
-        }
+          }
         }
       }
     }
