@@ -48,13 +48,13 @@ function PointLevel() {
             </div>
           </div>
           <div className="levtextinfo">
-            Catchy Green : 3달 이내에 누적 1000p 획득
+            Catchy Green : 회원가입 한 유저
             <br />
-            Catchy Yellow : 3달 이내에 누적 3000p 획득
+            Catchy Yellow : 누적 3000p 획득 시 승급
             <br />
-            Catchy Pink : 3달 이내에 누적 5000p 획득
+            Catchy Pink : 누적 6000p 획득 시 승급
             <br />
-            Catchy Red : 3달 이내에 누적 8000p 획득
+            Catchy Red : 누적 10000p 획득 시 승급
           </div>
           <hr />
         </div>
