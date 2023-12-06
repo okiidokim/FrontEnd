@@ -7,7 +7,7 @@ import {
   TbCoin,
   TbFileImport,
 } from 'react-icons/tb';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Mypage.css';
 import Level0 from '../../assets/pointimg/level0.png';
 import Backitem from '../../components/Backitem';
@@ -15,6 +15,7 @@ import Admin from '../admin/Admin';
 import axios from '../../api/axios';
 
 function Mypage() {
+  const navigate = useNavigate();
   const [nick, setNick] = useState('');
   const [img, setImg] = useState('');
   const [isadmin, setAdmin] = useState('');
@@ -28,6 +29,10 @@ function Mypage() {
         setAdmin(response.data.role);
       } catch (e) {
         console.log(e);
+        if(e.response.data.code === "LOGIN_FAIL") {
+          alert('로그인 만료! 다시 로그인 해주세요.');
+          navigate(`/`);
+      }
       }
     };
     fetchData();
@@ -38,6 +43,10 @@ function Mypage() {
       await axios.get(`/user/logout`);
     } catch (e) {
       console.log(e);
+      if(e.response.data.code === "LOGIN_FAIL") {
+        alert('로그인 만료! 다시 로그인 해주세요.');
+        navigate(`/`);
+    }
     }
   };
 
