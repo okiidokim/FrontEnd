@@ -76,7 +76,7 @@ function CulturalEventDetail() {
             return;
         }
 
-        if(selector == 0)
+        if(selector === 0)
             return <EventInfo data={data}/>;
         else
             return <EventReview data={data}/>;
