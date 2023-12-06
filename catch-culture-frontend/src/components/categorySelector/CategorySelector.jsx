@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './style';
 import CategorySelectorItem from './categorySelectorItem/CategorySelectorItem';
 
 function CategorySelector(props) {
-  const handlerClickCategory = selectedCategory => {
+  CategorySelector.propTypes = {
+    setSelectedCategories: PropTypes.func,
+    selectedCategories: PropTypes.func,
+  };
+
+  const handlerClickCategory = (selectedCategory) => {
     if (selectedCategory === 'ALL') {
       const allCategories =
         props.selectedCategories.length === 13
@@ -30,7 +35,7 @@ function CategorySelector(props) {
       isSelected
         ? props.setSelectedCategories(
             props.selectedCategories.filter(
-              category => category !== selectedCategory
+              (category) => category !== selectedCategory
             )
           )
         : props.setSelectedCategories([
@@ -41,7 +46,7 @@ function CategorySelector(props) {
   };
 
   return (
-    <>
+    <div>
       <S.CategorySelector>
         <CategorySelectorItem
           name="전체"
@@ -141,7 +146,7 @@ function CategorySelector(props) {
           selectedCategories={props.selectedCategories}
         />
       </S.CategorySelector>
-    </>
+    </div>
   );
 }
 
