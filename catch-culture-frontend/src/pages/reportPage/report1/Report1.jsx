@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 
@@ -11,7 +11,7 @@ import ReportHeader from '../../../components/reportPage/reportHeader/ReportHead
 
 function Report1() {
   return (
-    <>
+    <div>
       <S.ReportWrapper>
         <ReportHeader ReportPaginationIcon={ReportPaginationIcon} />
         <S.ReportContent>
@@ -45,7 +45,7 @@ function Report1() {
           </Link>
         </S.ReportContent>
       </S.ReportWrapper>
-    </>
+    </div>
   );
 }
 

@@ -15,6 +15,7 @@ export const DeleteModal = (params) => {
       params.setModal();
     } catch (e) {
       console.log(e);
+
     }
   };
 

@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 import { AiFillStar } from 'react-icons/ai';
 
-
 export const ReviewCard = styled.div`
   position: relative;
   display: block;

@@ -3,17 +3,14 @@ import * as S from './style';
 import Backitem from '../../Backitem';
 import PropTypes from 'prop-types';
 
-function ReportHeader(props) {
-  ReportHeader.propTypes = {
-    ReportPaginationIcon: PropTypes.any,
-  };
+function ReportHeader(ReportPaginationIcon) {
   return (
     <>
       <Backitem />
       <S.ReportHeader>
         <S.ReportHeaderTitle>제보하기</S.ReportHeaderTitle>
 
-        <S.ReportHeaderPagination src={props.ReportPaginationIcon} />
+        <S.ReportHeaderPagination src={ReportPaginationIcon} />
       </S.ReportHeader>
     </>
   );

@@ -163,10 +163,6 @@ export default function ReviewCard(data) {
         }
       </S.UserInfo>
       <S.ReviewRow>
-        {/* src는 이미지 파일에서 양쪽 ''가 있으면 경로 오류 때문에 substr로 ''를 제거하고 지정 
-            다시 원래대로 실행돼서 복구
-          .substr(0,data.data.storedFileUrl.length-2)
-        */}
         <S.RvImg src={data.data.storedFileUrl[0] == null ? null : data.data.storedFileUrl} style={{display : data.data.storedFileUrl[0] == null ? 'none': "flex"}}/>
         {
           isModify ? 
