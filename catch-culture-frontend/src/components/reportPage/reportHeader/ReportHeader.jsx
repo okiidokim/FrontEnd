@@ -1,9 +1,12 @@
 import React from 'react';
 import * as S from './style';
-
 import Backitem from '../../Backitem';
+import PropTypes from 'prop-types';
 
 function ReportHeader(props) {
+  ReportHeader.propTypes = {
+    ReportPaginationIcon: PropTypes.any,
+  };
   return (
     <>
       <Backitem />
