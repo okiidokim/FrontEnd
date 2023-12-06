@@ -17,7 +17,7 @@ const Nav = styled.nav`
 `;
 
 const NavTab = styled(NavLink)`
-  width: 97.5px;
+  width: 25%;
   height: 100%;
   display: flex;
   flex-direction: column;
