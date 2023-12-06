@@ -27,7 +27,6 @@ function EventReview ( params ) {
     const showMoreTitleContent = isShowMoreTitle ? '' : ' ...';
 
     useEffect(() => {
-        setReviewList([]);
         fetchMyReview();
         fetchStar();
         fetchReviewList();
@@ -89,23 +88,29 @@ function EventReview ( params ) {
 
     const fetchReviewList = async () => {
         try {
+            
             const response = await axios.get(
                 `review/${parseInt(params.data.EventId)}/list?lastId=${countReviewList}`
             )
+            
 
             if(response.status === 200) {
+                
                 if(!response.data.empty) {
                     // response.data 값이 [{},{},{}] 형식으로 되어있음
                     // -> []를 지운 값을 추가
-                    for(let i of response.data.content.length) {
+                    
+                    for(let i = 0; i < response.data.content.length; i++) {
                         reviewList.push(response.data.content[i]);
                     }
+                    
                     isLast = response.data.last;
-
+                    
                     countReviewList = reviewList[reviewList.length-1].id;
                 }
             }
         } catch (e) {
+            console.log(e);
             if(e.response.data.code === "LOGIN_FAIL") {
                 alert('로그인 만료! 다시 로그인 해주세요.');
                 navigate(`/`);
@@ -353,7 +358,7 @@ function EventReview ( params ) {
             {
                 reviewList.map((info) => {
                     return (
-                        <ReviewCard key={info.index} data={{
+                        <ReviewCard key={info.index+"key"} data={{
                             "id": params.data.eventId,
                             "nickname": info.nickname,
                             "description": info.description,
