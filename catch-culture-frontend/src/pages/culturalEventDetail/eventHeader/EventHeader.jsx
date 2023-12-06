@@ -15,16 +15,6 @@ function EventHeader(onSelectorChange) {
     onSelectorChange(1);
   };
 
-    const onClickInfoButton = () => {
-        setSelect(0);
-        onSelectorChange(0);
-    }
-
-    const onClickReviewButton = () => {
-        setSelect(1);
-        onSelectorChange(1)
-    }
-
     return (
         <S.Header>
             <Backitem />
