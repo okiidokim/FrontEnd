@@ -14,19 +14,19 @@ function Login() {
       <div className="buttonlist">
         <Link to={'https://elegant.kro.kr/oauth2/authorization/kakao'}>
           <button className="kakao">
-            <img className="kl" src={KakaoImg} />
+            <image className="kl" src={KakaoImg} />
             Kakao로 시작하기
           </button>
         </Link>
         <Link to={'https://elegant.kro.kr/oauth2/authorization/google'}>
           <button className="google">
-            <img className="gl" src={GoogleImg} />
+            <image className="gl" src={GoogleImg} />
             Google로 시작하기
           </button>
         </Link>
         <Link to={'https://elegant.kro.kr/oauth2/authorization/naver'}>
           <button className="naver">
-            <img className="nl" src={NaverImg} />
+            <image className="nl" src={NaverImg} />
             Naver로 시작하기
           </button>
         </Link>

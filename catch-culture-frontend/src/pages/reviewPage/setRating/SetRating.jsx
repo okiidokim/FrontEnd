@@ -9,9 +9,8 @@ function SetRating (props) {
 
     const handleClickRating = (index) => {
         let clickStates = [...rating];
-        let count = 0;
         for (let i = 0; i < 5; i++) {
-            clickStates[i] = i <= index ? true : false;         
+            clickStates[i] = (i <= index);
         }
         setRating(clickStates);
     };
@@ -27,10 +26,10 @@ function SetRating (props) {
 
     return (
         <S.Stars>
-            {array.map((el, idx) =>{
+            {array.map((el) =>{
                 return(
                     <AiFillStar
-                        key={idx}
+                        key={el.index}
                         onClick={() => handleClickRating(el)}
                         className={rating[el] && 'activeStar'}
                     />

@@ -3,10 +3,9 @@ import { useEffect, useState, useMemo } from 'react';
 import { TbMessageOff } from 'react-icons/tb';
 
 import ReviewCard from '../../../components/ReviewCard/ReviewCard';
-import SortSelector from '../../../components/sortSelector/SortSelector.jsx';
 
 import axios from '../../../api/axios'
-import { useNavigate, redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function EventReview ( params ) {
     const navigate = useNavigate();
@@ -25,8 +24,10 @@ function EventReview ( params ) {
 
     // 글자 수 제한
     const titleLimit = 14;
+    const showMoreTitleContent = isShowMoreTitle ? '' : ' ...';
 
     useEffect(() => {
+        setReviewList([]);
         fetchMyReview();
         fetchStar();
         fetchReviewList();
@@ -96,7 +97,7 @@ function EventReview ( params ) {
                 if(!response.data.empty) {
                     // response.data 값이 [{},{},{}] 형식으로 되어있음
                     // -> []를 지운 값을 추가
-                    for(let i = 0; i < response.data.content.length; i++) {
+                    for(let i of response.data.content.length) {
                         reviewList.push(response.data.content[i]);
                     }
                     isLast = response.data.last;
@@ -266,7 +267,7 @@ function EventReview ( params ) {
                 { getTitle }
                 {/* 더보기 버튼 */}
                 <span style={{color:'grey'}}>
-                    {params.data.title.length > titleLimit ? (isShowMoreTitle ? '' : ' ...') : null}
+                    {params.data.title.length > titleLimit ? showMoreTitleContent : null}
                 </span>
             </S.TitleArea>
 
@@ -336,19 +337,23 @@ function EventReview ( params ) {
                 </S.StarArea>
                 <S.PictureArea>
                     {
-                        reviewList.map((info, index) => {
-                            return(
-                                info.storedFileUrl == null ? "" : <S.RvImg key={index} src={info.storedFileUrl} />
-                            )
+                        reviewList.map((info) => {
+                            if (info.storedFileUrl == null) {
+                                return null; // or any other default value if needed
+                            }
+                        
+                            return (
+                                <S.RvImg key={info.index} src={info.storedFileUrl} />
+                            );
                         })
                     }
                 </S.PictureArea>
             </S.MiddleContent>
 
             {
-                reviewList.map((info, index) => {
+                reviewList.map((info) => {
                     return (
-                        <ReviewCard key={index} data={{
+                        <ReviewCard key={info.index} data={{
                             "id": params.data.eventId,
                             "nickname": info.nickname,
                             "description": info.description,
