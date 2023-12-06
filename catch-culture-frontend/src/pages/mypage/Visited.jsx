@@ -17,6 +17,7 @@ function Visited() {
   const initialCategories = category || [];
   const [selectedCategories, setSelectedCategories] =
     useState(initialCategories);
+  const [isLoaded, setIsLoaded] = useState(true);
 
   useEffect(() => {
     fetchData();
@@ -33,13 +34,16 @@ function Visited() {
       );
       setCnt(response.data.totalElements);
 
-      response.data.content.forEach((e) => {
-        if (e.authenticated === false) {
-          setFalseData(falseData.concat(e));
-        } else {
-          setTrueData(trueData.concat(e));
-        }
-      });
+      if (isLoaded) {
+        response.data.content.forEach((e) => {
+          if (e.authenticated === false) {
+            setFalseData(falseData.concat(e));
+          } else {
+            setTrueData(trueData.concat(e));
+          }
+        });
+        setIsLoaded(false);
+      }
     } catch (e) {
       console.log(e);
       if (e.response.data.code === 'LOGIN_FAIL') {
