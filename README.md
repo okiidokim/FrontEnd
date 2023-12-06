@@ -5,7 +5,7 @@
 <br/> <br/>
 백엔드 Repo는 여기로 <br/>
 📌 https://github.com/ElegantChildren/BackEnd
-
+<br/><br/>
 # 👋 팀원 소개
 
 ## Catch-Culture Front-End 팀
@@ -19,7 +19,8 @@
 
 # 🛠️ Tech
 React, jsx
-
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
 ## 1. 프로젝트 명
 
