@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=venom&color=018C0D&height=300&section=header&text=Catch%20Culture&fontSize=90&fontColor=fff&stroke=018C0D&strokeWidth=2)
+![header](https://capsule-render.vercel.app/api?type=venom&color=DFF2E1&height=300&section=header&text=Catch%20Culture&fontSize=90&fontColor=018C0D)
 
 캐치컬처(Catch Culture) 
 프론트엔드 Repo 입니다 :)
