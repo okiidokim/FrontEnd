@@ -19,6 +19,10 @@ export const DeleteModal = (params) => {
             params.setModal();
         } catch (e) {
             console.log(e);
+            if(e.response.data.code === "LOGIN_FAIL") {
+                alert('로그인 만료! 다시 로그인 해주세요.');
+                navigate(`/`);
+            }
         }
     }
 
