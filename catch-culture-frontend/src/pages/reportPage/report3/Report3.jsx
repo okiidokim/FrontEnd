@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
-import Backitem from '../../../components/Backitem';
 
 // 아이콘
 import ReportPaginationIcon from '../../../assets/images/reportPage/report3.png';
@@ -12,7 +11,7 @@ import ReportHeader from '../../../components/reportPage/reportHeader/ReportHead
 
 function Report3() {
   return (
-    <>
+    <div>
       <S.ReportWrapper>
         {/* 헤더 */}
         <ReportHeader ReportPaginationIcon={ReportPaginationIcon} />
@@ -30,7 +29,7 @@ function Report3() {
           </Link>
         </S.ReportContent>
       </S.ReportWrapper>
-    </>
+    </div>
   );
 }
 
