@@ -21,7 +21,7 @@ React, jsx
 ## 1. 프로젝트 명
 
 캐치컬처 (Catch Culture)
-<br/>
+<br/><br/><br/>
 ![banner1](https://github.com/ElegantChildren/FrontEnd/assets/98758209/24ae0424-fcfc-4daa-8522-49ef52896736)
 
 
