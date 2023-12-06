@@ -1,9 +1,17 @@
 import React from 'react';
 import * as S from './style';
+import PropTypes from 'prop-types';
 
 function CategorySelectorItem(props) {
+  CategorySelectorItem.propTypes = {
+    category: PropTypes.array,
+    name: PropTypes.string,
+    handlerClickCategory: PropTypes.func,
+    selectedCategories: PropTypes.func,
+  };
+
   return (
-    <>
+    <div>
       <S.CategorySelectorItem
         onClick={() => props.handlerClickCategory(props.category)}
         color={
@@ -27,7 +35,7 @@ function CategorySelectorItem(props) {
       >
         {props.name}
       </S.CategorySelectorItem>
-    </>
+    </div>
   );
 }
 
