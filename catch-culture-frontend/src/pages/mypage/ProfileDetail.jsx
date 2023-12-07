@@ -26,7 +26,6 @@ function NickUpdate(props) {
         const response = await axios.get(`user`);
         setNick(response.data.nickname);
       } catch (e) {
-        console.log(response);
         if (e.response.data.code === 'LOGIN_FAIL') {
           alert('로그인 만료! 다시 로그인 해주세요.');
           navigate(`/`);
@@ -79,7 +78,6 @@ function ProfileEdit() {
     try {
       await axios.get(`/user/sign-out`);
     } catch (e) {
-      console.log(response);
       if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
@@ -94,7 +92,6 @@ function ProfileEdit() {
         setImg(response.data.storedFileUrl);
         setSocialType(response.data.socialType);
       } catch (e) {
-        console.log(response);
         if (e.response.data.code === 'LOGIN_FAIL') {
           alert('로그인 만료! 다시 로그인 해주세요.');
           navigate(`/`);
