@@ -51,7 +51,7 @@ function Search() {
   // 초기
   useEffect(() => {
     if (data.length !== 0 && inView && !isLast) {
-      setTimeout(fetchScroll(), 300);
+      setTimeout(fetchScroll, 300);
     }
   }, [inView]);
 
