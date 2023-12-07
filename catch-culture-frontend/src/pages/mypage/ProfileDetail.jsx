@@ -89,7 +89,7 @@ function ProfileEdit() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`user`);
+        const response = await axios.get(`/user/profile`);
         setNick(response.data.nickname);
         setImg(response.data.storedFileUrl);
         setSocialType(response.data.socialType);
