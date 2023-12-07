@@ -27,7 +27,7 @@ function Mypage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/user`);
+        const response = await axios.get(`/user/profile`);
         const pointres = await axios.get(`/user/point-grade`);
 
         setNick(response.data.nickname);
