@@ -20,22 +20,6 @@ function NickUpdate(props) {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`user`);
-        setNick(response.data.nickname);
-      } catch (e) {
-        console.log(response);
-        if (e.response.data.code === 'LOGIN_FAIL') {
-          alert('로그인 만료! 다시 로그인 해주세요.');
-          navigate(`/`);
-        }
-      }
-    };
-    fetchData();
-  }, []);
-
   return (
     <div className="nickchangebox">
       <form
@@ -79,7 +63,6 @@ function ProfileEdit() {
     try {
       await axios.get(`/user/sign-out`);
     } catch (e) {
-      console.log(response);
       if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
@@ -94,7 +77,6 @@ function ProfileEdit() {
         setImg(response.data.storedFileUrl);
         setSocialType(response.data.socialType);
       } catch (e) {
-        console.log(response);
         if (e.response.data.code === 'LOGIN_FAIL') {
           alert('로그인 만료! 다시 로그인 해주세요.');
           navigate(`/`);
@@ -115,7 +97,6 @@ function ProfileEdit() {
         <div className="imgchange">
           <img className="profimg" src={img} />
           <p>{nick}</p>
-          <button className="imgchbutton">프로필 이미지 변경</button>
         </div>
         <hr />
         <NickUpdate nick={nick} />

@@ -17,7 +17,6 @@ function Visited() {
   const initialCategories = category || [];
   const [selectedCategories, setSelectedCategories] =
     useState(initialCategories);
-  const [isLoaded, setIsLoaded] = useState(true);
 
   useEffect(() => {
     fetchData();
@@ -34,23 +33,27 @@ function Visited() {
       );
       setCnt(response.data.totalElements);
 
-      if (isLoaded) {
-        response.data.content.forEach((e) => {
-          if (e.authenticated === false) {
-            setFalseData(falseData.concat(e));
-          } else {
-            setTrueData(trueData.concat(e));
-          }
-        });
-        setIsLoaded(false);
-      }
+      resetData();
+      console.log(response.data.content)
+      response.data.content.forEach((e) => {
+        if (e.authenticated === false) {
+          console.log(e);
+          falseData.push(e);
+        } else {
+          trueData.push(e);
+        }
+      });
     } catch (e) {
-      console.log(e);
       if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
       }
     }
+  };
+
+  const resetData = () => {
+    trueData.splice(0);
+    falseData.splice(0);
   };
 
   return (
@@ -67,6 +70,7 @@ function Visited() {
             setSelectedCategories={setSelectedCategories}
           />
         </div>
+        
         <div className="eventlist">
           {/* 승인 문화 행사 출력 */}
           <div className="authenticated-true">승인</div>
