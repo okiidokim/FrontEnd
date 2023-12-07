@@ -77,7 +77,7 @@ function ProfileEdit() {
 
   const signOut = async (e) => {
     try {
-      axios.get(`/user/sign-out`);
+      await axios.get(`/user/sign-out`);
     } catch (e) {
       console.log(response);
       if (e.response.data.code === 'LOGIN_FAIL') {
