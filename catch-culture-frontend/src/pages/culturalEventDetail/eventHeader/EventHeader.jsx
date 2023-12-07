@@ -2,12 +2,16 @@ import { useState } from 'react';
 import * as S from './style.jsx';
 import { RiFileList2Line } from 'react-icons/ri';
 import { LiaCommentsSolid } from 'react-icons/lia';
+import PropTypes from 'prop-types';
 
 import Backitem from '../../../components/Backitem.jsx';
 
 function EventHeader({onSelectorChange}) {
+  EventHeader.propTypes = {
+    onSelectorChange: PropTypes.func,
+  };
 
-    const [select,setSelect] = useState(false);
+  const [select,setSelect] = useState(false);
 
   const onClickInfoButton = () => {
     setSelect(false);
