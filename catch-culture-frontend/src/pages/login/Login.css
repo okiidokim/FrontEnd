@@ -51,7 +51,6 @@
 
   border-radius: 4px;
   cursor: pointer;
-  font-family: NotoSansKR_Regular;
 }
 .google {
   cursor: pointer;
@@ -69,7 +68,6 @@
   height: 48px;
 
   background-color: white;
-  font-family: NotoSansKR_Regular;
   border: 1px solid #D9D9D9;
 }
 .naver {
@@ -88,7 +86,6 @@
   background: #03c75a;
   border-radius: 4px;
   border: none;
-  font-family: NotoSansKR_Regular;
 }
 .kl {
   width: 24px;

@@ -46,6 +46,8 @@ function MapPage() {
   }, []);
 
   const initMap = () => {
+    setMarkers([]);
+    setOverlays([])
     const container = document.getElementById('map');
     const options = {
       center: new kakao.maps.LatLng(37.558288, 127.000173),
