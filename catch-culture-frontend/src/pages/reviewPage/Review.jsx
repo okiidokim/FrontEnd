@@ -59,7 +59,7 @@ function Review () {
     
     const handleSubmit = async() => {
         if(description.length < 30 || imageData == null || rating == 0) {
-            console.log(" ");
+            console.log("");
         } else {
             try {
                 if(imageData !== null) {

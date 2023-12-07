@@ -22,7 +22,6 @@ function CulturalEventDetail() {
     // 최초 로딩시 값 불러오기
     useEffect(() => {
         fetchData();
-        console.log(culturalEventId)
     }, []);
 
     const fetchData = async () => {
