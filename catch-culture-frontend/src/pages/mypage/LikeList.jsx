@@ -40,7 +40,7 @@ function Likes() {
 
       setData(response.data.content);
       setCnt(response.data.totalElements);
-      setDataList(dataList.concat(res.data.content));
+      setDataList(dataList.concat(response.data.content));
     } catch (e) {
       console.log(e);
       if (e.response.data.code === 'LOGIN_FAIL') {
