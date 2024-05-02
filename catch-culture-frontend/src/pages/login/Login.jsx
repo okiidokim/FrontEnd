@@ -16,19 +16,19 @@ function Login() {
     <div className="loginwrap">
       <img className="header" src={LogoImg} alt="로고이미지" />
       <div className="buttonlist">
-        <Link to={'https://elegant.kro.kr/oauth2/authorization/kakao'}>
+        <Link to={'https://catch-culture.com/oauth2/authorization/kakao'}>
           <button className="kakao">
             <StyledImg className="kl" src={KakaoImg} />
             Kakao로 시작하기
           </button>
         </Link>
-        <Link to={'https://elegant.kro.kr/oauth2/authorization/google'}>
+        <Link to={'https://catch-culture.com/oauth2/authorization/google'}>
           <button className="google">
             <StyledImg className="gl" src={GoogleImg} />
             Google로 시작하기
           </button>
         </Link>
-        <Link to={'https://elegant.kro.kr/oauth2/authorization/naver'}>
+        <Link to={'https://catch-culture.com/oauth2/authorization/naver'}>
           <button className="naver">
             <StyledImg className="nl" src={NaverImg} />
             Naver로 시작하기
