@@ -20,7 +20,7 @@ function ReportItem({ data }) {
 
   return (
     <>
-      {data.map((e) => (
+      {data.map(e => (
         <NavLink to={`/reportauth/${e.id}`} key={e.index}>
           <div className="visitautheach" key={e.id}>
             <hr />
@@ -127,13 +127,7 @@ export default function ReportAuthList() {
           ) : (
             <>
               <ReportItem data={data} />
-              <div className="nomore">
-                <hr />
-                <div className="nomorewicon">
-                  <TbAlertCircleFilled />
-                  결과 없음
-                </div>
-              </div>
+              <hr />
             </>
           )}
         </div>
