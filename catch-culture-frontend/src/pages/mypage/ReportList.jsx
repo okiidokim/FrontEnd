@@ -13,7 +13,7 @@ function Reporteach({ data }) {
   };
   return (
     <>
-      {data.map((e) => (
+      {data.map(e => (
         <div className="reportwrap" key={e.reportId}>
           <hr />
           <div className="reportedtitlerow">
@@ -104,13 +104,7 @@ function ReportList() {
               </NavLink>
             </div>
             <Reporteach data={dataList} />
-            <div className="nomore">
-              <hr />
-              <div className="nomorewicon">
-                <TbAlertCircleFilled />
-                결과 없음
-              </div>
-            </div>
+            <hr />
           </div>
         )}
       </div>
