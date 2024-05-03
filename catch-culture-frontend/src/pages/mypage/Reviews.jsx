@@ -12,7 +12,7 @@ function MyReviewCard({ data }) {
     data: PropTypes.any,
   };
 
-  const setRatingStar = (rating) => {
+  const setRatingStar = rating => {
     if (rating === 1) {
       return (
         <>
@@ -68,7 +68,7 @@ function MyReviewCard({ data }) {
 
   return (
     <>
-      {data.map((e) => (
+      {data.map(e => (
         <div className="reviewcardwrap" key={e.id}>
           <div className="createdAtfirstrow">{e.createdAt}</div>
           <div className="reviewcontentrow">
@@ -151,13 +151,7 @@ function Reviews() {
           ) : (
             <div>
               <MyReviewCard data={dataList} />
-              <div className="nomore">
-                <hr />
-                <div className="nomorewicon">
-                  <TbAlertCircleFilled />
-                  결과 없음
-                </div>
-              </div>
+              <hr />
             </div>
           )}
         </div>
