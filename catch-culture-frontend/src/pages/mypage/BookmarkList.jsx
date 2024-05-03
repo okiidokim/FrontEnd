@@ -31,7 +31,7 @@ function Bookmarks() {
   const fetchData = async () => {
     try {
       const categoryUrl = selectedCategories
-        .map((item) => 'category=' + item)
+        .map(item => 'category=' + item)
         .join('&');
 
       const response = await axios.get(
@@ -71,13 +71,6 @@ function Bookmarks() {
           ) : (
             <>
               <EventCard data={data} />
-              <div className="nomore">
-                <hr />
-                <div className="nomorewicon">
-                  <TbAlertCircleFilled />
-                  결과 없음
-                </div>
-              </div>
             </>
           )}
         </div>

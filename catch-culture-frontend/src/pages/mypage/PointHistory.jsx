@@ -19,7 +19,7 @@ function Pointeach({ data }) {
 
   return (
     <>
-      {data.map((e) => (
+      {data.map(e => (
         <div className="pointinfo" key={e.id}>
           <hr />
           <div className="pointrow1">
@@ -117,13 +117,7 @@ function PointHistory() {
           ) : (
             <>
               <Pointeach data={dataList} />
-              <div className="nomore">
-                <hr />
-                <div className="nomorewicon">
-                  <TbAlertCircleFilled />
-                  결과 없음
-                </div>
-              </div>
+              <hr />
             </>
           )}
         </div>

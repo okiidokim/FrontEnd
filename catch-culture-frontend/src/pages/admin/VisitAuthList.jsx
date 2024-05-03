@@ -20,7 +20,7 @@ function VisitAuthItem({ data }) {
 
   return (
     <>
-      {data.map((e) => (
+      {data.map(e => (
         <NavLink to={`/visitauth/${e.id}`} key={e.index}>
           <div className="visitautheach" key={e.id}>
             <hr />
@@ -128,13 +128,7 @@ export default function VistiAuthList() {
           ) : (
             <>
               <VisitAuthItem data={data} />
-              <div className="nomore">
-                <hr />
-                <div className="nomorewicon">
-                  <TbAlertCircleFilled />
-                  결과 없음
-                </div>
-              </div>
+              <hr />
             </>
           )}
         </div>
