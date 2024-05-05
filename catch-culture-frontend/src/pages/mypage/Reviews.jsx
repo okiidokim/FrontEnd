@@ -4,7 +4,7 @@ import NoReviews from '../../components/search/noResult/NoReviews';
 import './Reviews.css';
 import axios from '../../api/axios';
 import { TbStarFilled, TbAlertCircleFilled } from 'react-icons/tb';
-import { useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function MyReviewCard({ data }) {
@@ -80,13 +80,15 @@ function MyReviewCard({ data }) {
             <div className="reviewdescrip">{e.description}</div>
           </div>
           <div className="myratingstar">{setRatingStar(e.rating)}</div>
-          <div className="eventinfoinR">
-            <img className="eventimginR" src={e.eventStoredFileUrl} />
-            <div className="eventnameinR">
-              <p className="nametext">행사명</p>
-              {e.culturalEventTitle}
-            </div>
-          </div>
+            <Link to={`/event/${e.culturalEventId}`} key={e.id}>
+              <div className="eventinfoinR">
+                <img className="eventimginR" src={e.eventStoredFileUrl} />
+                <div className="eventnameinR">
+                  <p className="nametext">행사명</p>
+                  {e.culturalEventTitle}
+                </div>
+              </div>
+            </Link>
         </div>
       ))}
     </>
@@ -140,7 +142,7 @@ function Reviews() {
       <Backitem />
       <div className="reviewwrap">
         <div className="reviewrow">
-          <div className="reviewtext">리뷰 목록</div>
+          <div className="reviewtext">리뷰 내역</div>
           <div className="reviewCnt">총 {cnt} 개</div>
         </div>
         <div className="reviewcard">
