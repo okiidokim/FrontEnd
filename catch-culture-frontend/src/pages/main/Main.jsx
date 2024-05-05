@@ -62,7 +62,9 @@ function Main() {
             <S.SwiperSlideImg src={BannerImg1} alt="배너 이미지" />
           </SwiperSlide>
           <SwiperSlide>
-            <S.SwiperSlideImg src={BannerImg2} alt="배너 이미지" />
+            <Link to="/event/167">
+              <S.SwiperSlideImg src={BannerImg2} alt="배너 이미지" />
+            </Link>
           </SwiperSlide>
         </S.MySwiper>
       </S.Banner>
