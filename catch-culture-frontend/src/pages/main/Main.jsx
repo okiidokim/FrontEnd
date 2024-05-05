@@ -5,7 +5,7 @@ import LogoImg from '../../assets/images/logo.png';
 import { SyncLoader } from 'react-spinners';
 
 import BannerImg1 from '../../assets/images/main/banner1.png';
-import BannerImg2 from '../../assets/images/main/banner2.png';
+import BannerImg2 from '../../assets/images/main/2024.png';
 import EventCard from '../../components/eventCard/EventCard';
 import SearchBox from '../../components/search/searchBox/SearchBox';
 
@@ -40,10 +40,10 @@ function Main() {
     } catch (e) {
       console.log(e);
       setIsLoading(false);
-      if(e.response.data.code === "LOGIN_FAIL") {
+      if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate('/');
-    }
+      }
     }
   };
 
@@ -62,7 +62,9 @@ function Main() {
             <S.SwiperSlideImg src={BannerImg1} alt="배너 이미지" />
           </SwiperSlide>
           <SwiperSlide>
-            <S.SwiperSlideImg src={BannerImg2} alt="배너 이미지" />
+            <Link to="/event/167">
+              <S.SwiperSlideImg src={BannerImg2} alt="배너 이미지" />
+            </Link>
           </SwiperSlide>
         </S.MySwiper>
       </S.Banner>
