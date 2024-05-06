@@ -16,25 +16,27 @@ const StyledImg = styled.img`
 
 function Login() {
   return (
-    <div className="loginwrap">
-      <img className="header" src={titleImg} alt="타이틀이미지" />
+    <div className="loginBackground" >
+        <div className="loginwrap">
+          <img className="header" src={titleImg} alt="타이틀이미지" />
 
-      <img className="bannerImg" src={LoginImg} alt="배너이미지" />
+          <img className="bannerImg" src={LoginImg} alt="배너이미지" />
 
-      <div className="buttonlist">
-        <Link to={'https://catch-culture.com/oauth2/authorization/kakao'}>
-          <button className="kakao">
-            <StyledImg className="kl" src={KakaoImg} />
-            Kakao로 시작하기
-          </button>
-        </Link>
-        <Link to={'https://catch-culture.com/oauth2/authorization/google'}>
-          <button className="google">
-            <StyledImg className="gl" src={GoogleImg} />
-            Google로 시작하기
-          </button>
-        </Link>
-      </div>
+          <div className="buttonlist">
+            <Link to={'https://catch-culture.com/oauth2/authorization/kakao'}>
+              <button className="kakao">
+                <StyledImg className="kl" src={KakaoImg} />
+                Kakao로 시작하기
+              </button>
+            </Link>
+            <Link to={'https://catch-culture.com/oauth2/authorization/google'}>
+              <button className="google">
+                <StyledImg className="gl" src={GoogleImg} />
+                Google로 시작하기
+              </button>
+            </Link>
+          </div>
+        </div>
     </div>
   );
 }
