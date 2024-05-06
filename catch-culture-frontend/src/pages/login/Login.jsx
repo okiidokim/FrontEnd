@@ -28,12 +28,6 @@ function Login() {
             Google로 시작하기
           </button>
         </Link>
-        <Link to={'https://catch-culture.com/oauth2/authorization/naver'}>
-          <button className="naver">
-            <StyledImg className="nl" src={NaverImg} />
-            Naver로 시작하기
-          </button>
-        </Link>
       </div>
     </div>
   );
