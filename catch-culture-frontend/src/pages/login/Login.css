@@ -10,8 +10,13 @@
   }
 }
 
-.content {
+.loginBackground {
   background: linear-gradient(to top, #00C47D, #005E3C);
+  top: 0;
+  left: 0;
+
+  height: 100%;
+  position: relative;
 }
 
 .loginwrap {
