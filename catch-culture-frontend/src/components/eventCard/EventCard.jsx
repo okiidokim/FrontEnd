@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import * as S from './style';
 import PropTypes from 'prop-types';
 
+import defaultImg from '../../assets/pointimg/level0.png'
+
 function EventCard({ data }) {
   EventCard.propTypes = {
     data: PropTypes.any,
@@ -37,7 +39,7 @@ function EventCard({ data }) {
                 <S.EventCardImgTag color={getTagColor(event.remainDay)}>
                   D-{event.remainDay === 0 ? 'Day' : event.remainDay}
                 </S.EventCardImgTag>
-                <S.EventCardImg src={event.storedFileUrl} alt="카드 이미지" />
+                <S.EventCardImg src={event.storedFileUrl ? event.storedFileUrl : defaultImg} alt="카드 이미지" />
               </S.EventCardImgWrapper>
 
               {/* 문화 행사 카드 - 내용 */}

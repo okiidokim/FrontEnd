@@ -10,22 +10,31 @@
   }
 }
 
+.content {
+  background: linear-gradient(to top, #00C47D, #005E3C);
+}
 
 .loginwrap {
   display: flex;
   position: relative;
   flex-direction: column;
-  gap: 150px;
+  gap: 80px;
 
   animation-duration: 1s;
   animation-name: slidein;
 }
 
 .header {
-  display: flex;
+  display: inline-block;
   position: relative;
   padding-top: 100px;
-  width: 300px;
+  width: 100%;
+}
+
+.bannerImg {
+  display: flex;
+  position: relative;
+  width: 320px;
 }
 
 .buttonlist {
@@ -34,8 +43,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 28px;
+  gap: 15px;
 }
+
+.buttonlist > a {
+  box-shadow: 0px 17.745px 32.956px 0px rgba(0, 0, 0, 0.07);
+}
+
+.buttonlist > * > button {
+  border-radius: 15px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.70);
+  text-align: center;
+}
+
 .kakao {
   display: flex;
   flex-direction: row;
@@ -48,6 +69,7 @@
 
   width: 300px;
   height: 48px;
+
 
   border-radius: 4px;
   cursor: pointer;
