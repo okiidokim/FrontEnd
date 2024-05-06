@@ -26,6 +26,10 @@ function EventCard({ data }) {
     }
   };
 
+  const addDefaultImg = (e) => {
+    e.target.src = defaultImg;
+  }
+
   return (
     <>
       {/* 문화 행사 목록 */}
@@ -39,7 +43,7 @@ function EventCard({ data }) {
                 <S.EventCardImgTag color={getTagColor(event.remainDay)}>
                   D-{event.remainDay === 0 ? 'Day' : event.remainDay}
                 </S.EventCardImgTag>
-                <S.EventCardImg src={event.storedFileUrl ? event.storedFileUrl : defaultImg} alt="카드 이미지" />
+                <S.EventCardImg src={event.storedFileUrl} onError={addDefaultImg} />
               </S.EventCardImgWrapper>
 
               {/* 문화 행사 카드 - 내용 */}

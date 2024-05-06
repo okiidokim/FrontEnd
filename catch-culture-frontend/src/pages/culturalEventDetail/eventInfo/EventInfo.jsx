@@ -13,6 +13,7 @@ import { Pagination } from 'swiper/modules';
 
 // api
 import axios from '../../../api/axios';
+import defaultImg from "../../../assets/pointimg/level0.png";
 
 
 function EventInfo (params) {
@@ -159,6 +160,9 @@ function EventInfo (params) {
         navigate(`/event/${parseInt(params.data.EventId)}/visit`);
     }
 
+    const addDefaultImg = (e) => {
+        e.target.src = defaultImg;
+    }
 
     return (
         <S.EventInfo>
@@ -185,7 +189,7 @@ function EventInfo (params) {
                 <S.MySwiper pagination={true} modules={[Pagination]} slidesPerView={1} loop={true}>
                     {params.data.storedFileUrl.map((Url) => (
                         <SwiperSlide key={Url.index}>
-                            <S.SwiperSlideImg src={Url} alt="이미지" />
+                            <S.SwiperSlideImg src={Url} onError={addDefaultImg} />
                         </SwiperSlide>
                     ))}
                 </S.MySwiper>
