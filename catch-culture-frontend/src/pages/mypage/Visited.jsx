@@ -34,7 +34,6 @@ function Visited() {
       setCnt(response.data.totalElements);
 
       resetData();
-      console.log(response.data.content)
       response.data.content.forEach((e) => {
         if (e.authenticated === false) {
           console.log(e);
