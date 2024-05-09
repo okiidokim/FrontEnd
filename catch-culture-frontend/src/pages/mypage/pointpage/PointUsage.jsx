@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Backitem from '../../../components/Backitem';
 import { TbCoins } from 'react-icons/tb';
 import './PointUsage.css';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from '../../../api/axios';
 
 function SellItem({ data }) {
@@ -22,10 +22,10 @@ function SellItem({ data }) {
       setBuyResponse(res.data);
     } catch (e) {
       console.log(e);
-      if(e.response.data.code === "LOGIN_FAIL") {
+      if (e.response.data.code === 'LOGIN_FAIL') {
         alert('로그인 만료! 다시 로그인 해주세요.');
         navigate(`/`);
-    }
+      }
     }
   };
 
@@ -34,13 +34,6 @@ function SellItem({ data }) {
     <>
       {data.map((e) => (
         <div className="emogee" key={e.id}>
-          {e.id === 1 ? (
-            <NavLink to="emogee">
-              <p className="emogeedetailbutton">캐치티콘 상세보기</p>
-            </NavLink>
-          ) : (
-            <></>
-          )}
           <img className="emogeeimg" src={e.photoUrl}></img>
           <p className="emogeetext">
             {e.description} <br /> {e.price}p
@@ -102,10 +95,10 @@ function SellItem({ data }) {
           {resModal === true ? (
             <div className="modalbody">
               <div className="resmodaltext">{buyResponse}</div>
-              <div 
-                className="checkbutton" 
-                onClick={() => setResModal(false)} 
-                onKeyDown={() => setResModal(false)}  
+              <div
+                className="checkbutton"
+                onClick={() => setResModal(false)}
+                onKeyDown={() => setResModal(false)}
               >
                 확인
               </div>
@@ -131,10 +124,10 @@ export default function PointUsage() {
         setData(res.data);
       } catch (e) {
         console.log(e);
-        if(e.response.data.code === "LOGIN_FAIL") {
+        if (e.response.data.code === 'LOGIN_FAIL') {
           alert('로그인 만료! 다시 로그인 해주세요.');
           navigate(`/`);
-      }
+        }
       }
     };
     fetchData();

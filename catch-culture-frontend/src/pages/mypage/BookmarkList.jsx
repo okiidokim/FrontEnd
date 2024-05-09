@@ -6,7 +6,6 @@ import CategorySelector from '../../components/categorySelector/CategorySelector
 import EventCard from '../../components/eventCard/EventCard';
 import NoBookmarks from '../../components/search/noResult/NoBookmarks';
 import axios from '../../api/axios';
-import { TbAlertCircleFilled } from 'react-icons/tb';
 
 function Bookmarks() {
   const navigate = useNavigate();
@@ -31,7 +30,7 @@ function Bookmarks() {
   const fetchData = async () => {
     try {
       const categoryUrl = selectedCategories
-        .map(item => 'category=' + item)
+        .map((item) => 'category=' + item)
         .join('&');
 
       const response = await axios.get(
