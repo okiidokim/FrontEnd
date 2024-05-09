@@ -36,7 +36,7 @@ function SellItem({ data }) {
         <div className="emogee" key={e.id}>
           <img className="emogeeimg" src={e.photoUrl}></img>
           <p className="emogeetext">
-            {e.description} <br /> {e.price}p
+            {e.description.substring(0, -2)} <br /> {e.price}p
           </p>
           <div
             className="buybutton"
