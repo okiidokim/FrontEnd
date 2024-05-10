@@ -94,7 +94,7 @@ function SellItem({ data }) {
           {resModal === true ? (
             <div className="modalbody">
               {buyResponse === '포인트가 부족합니다.' ? (
-                <div>
+                <div className="modalbody">
                   <div className="resmodaltext">{buyResponse}</div>
                   <div
                     className="checkbutton"
