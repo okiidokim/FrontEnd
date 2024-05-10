@@ -93,14 +93,38 @@ function SellItem({ data }) {
           ) : null}
           {resModal === true ? (
             <div className="modalbody">
-              <div className="resmodaltext">{buyResponse}</div>
-              <div
-                className="checkbutton"
-                onClick={() => setResModal(false)}
-                onKeyDown={() => setResModal(false)}
-              >
-                확인
-              </div>
+              {buyResponse === '포인트가 부족합니다.' ? (
+                <div>
+                  <div className="resmodaltext">{buyResponse}</div>
+                  <div
+                    className="checkbutton"
+                    onClick={() => {
+                      setResModal(false);
+                      navi('/pointusage/infotoget');
+                    }}
+                    onKeyDown={() => {
+                      setResModal(false);
+                      navi('/pointusage/infotoget');
+                    }}
+                  >
+                    확인
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className="checkbutton"
+                  onClick={() => {
+                    setResModal(false);
+                    navi('/pointusage/infotoget');
+                  }}
+                  onKeyDown={() => {
+                    setResModal(false);
+                    navi('/pointusage/infotoget');
+                  }}
+                >
+                  확인
+                </div>
+              )}
             </div>
           ) : null}
         </div>
