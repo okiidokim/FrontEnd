@@ -59,8 +59,7 @@ function SellItem({ data }) {
           {modal === true ? (
             <div className="modalbody">
               <div className="questtext">
-                {price.slice(1)}p를 사용하여 {name.slice(0, -2)}을(를)
-                구매하시겠습니까?
+                {price}p를 사용하여 {name.slice(0, -2)}을(를) 구매하시겠습니까?
               </div>
               <div className="yesorno">
                 <div
