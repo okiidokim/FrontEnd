@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from '../../../api/axios';
+import React from 'react';
 import Backitem from '../../../components/Backitem';
+import './WriteYourInfo.css';
 
 export default function WriteYourInfo() {
   return (
