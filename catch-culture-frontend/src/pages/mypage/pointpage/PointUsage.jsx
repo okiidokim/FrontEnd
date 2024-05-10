@@ -37,7 +37,7 @@ function SellItem({ data }) {
           <img className="emogeeimg" src={e.photoUrl}></img>
           <p className="emogeetext">
             {e.description.slice(0, -2)} <br />
-            {e.price.slice(1)}p
+            {e.price}p
           </p>
           <div
             className="buybutton"
