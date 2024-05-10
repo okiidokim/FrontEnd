@@ -37,7 +37,7 @@ function SellItem({ data }) {
           <img className="emogeeimg" src={e.photoUrl}></img>
           <p className="emogeetext">
             {e.description.slice(0, -2)} <br />
-            {e.price}p
+            {e.price.slice(1)}p
           </p>
           <div
             className="buybutton"
@@ -59,7 +59,8 @@ function SellItem({ data }) {
           {modal === true ? (
             <div className="modalbody">
               <div className="questtext">
-                {price}p를 사용하여 {name}을(를) 구매하시겠습니까?
+                {price.slice(1)}p를 사용하여 {name.slice(0, -2)}을(를)
+                구매하시겠습니까?
               </div>
               <div className="yesorno">
                 <div
