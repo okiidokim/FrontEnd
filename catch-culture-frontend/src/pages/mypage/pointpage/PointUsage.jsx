@@ -37,7 +37,7 @@ function SellItem({ data }) {
           <img className="emogeeimg" src={e.photoUrl}></img>
           <p className="emogeetext">
             {e.description.slice(0, -2)} <br />
-            {e.price.substr(1)}p
+            {e.price}p
           </p>
           <div
             className="buybutton"
@@ -59,7 +59,7 @@ function SellItem({ data }) {
           {modal === true ? (
             <div className="modalbody">
               <div className="questtext">
-                {price.substr(1)}p를 사용하여 {name}을(를) 구매하시겠습니까?
+                {price}p를 사용하여 {name}을(를) 구매하시겠습니까?
               </div>
               <div className="yesorno">
                 <div
@@ -81,11 +81,9 @@ function SellItem({ data }) {
                   className="nobutton"
                   onClick={() => {
                     setModal(false);
-                    navi('/point-history');
                   }}
                   onKeyDown={() => {
                     setModal(false);
-                    navi('/point-history');
                   }}
                 >
                   아니오
