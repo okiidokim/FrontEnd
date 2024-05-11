@@ -11,7 +11,7 @@ export default function WriteYourInfo() {
     }
   };
   useEffect(() => {
-    if (inputValue.length === 10) {
+    if (phoneNum.length === 10) {
       setPhoneNum(phoneNum.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
     }
     if (phoneNum.length === 13) {
@@ -24,7 +24,7 @@ export default function WriteYourInfo() {
     <div className="phonewrap">
       <Backitem />
       <div>구매하시려는 상품의 쿠폰을 받을 연락처를 입력하세요.</div>
-      <input type="text" onChange={handleChange} value={inputValue} />
+      <input type="text" onChange={handleChange} value={phoneNum} />
     </div>
   );
 }
