@@ -92,9 +92,9 @@ function SellItem({ data }) {
             </div>
           ) : null}
           {resModal === true ? (
-            <div>
+            <div className="modalbody">
               {buyResponse === '포인트가 부족합니다.' ? (
-                <div className="modalbody">
+                <div className="modaldetail">
                   <div className="resmodaltext">{buyResponse}</div>
                   <div
                     className="checkbutton"
@@ -111,7 +111,7 @@ function SellItem({ data }) {
                   </div>
                 </div>
               ) : (
-                <div className="modalbody">
+                <div className="modaldetail">
                   <div
                     className="checkbutton"
                     onClick={() => {

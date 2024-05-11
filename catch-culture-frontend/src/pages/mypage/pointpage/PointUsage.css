@@ -89,6 +89,14 @@
   font-size: 14px;
 }
 
+.modaldetail {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
 .yesorno {
   display: flex;
   gap: 12px;
