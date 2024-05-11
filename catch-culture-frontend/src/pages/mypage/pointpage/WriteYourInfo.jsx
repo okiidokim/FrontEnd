@@ -1,26 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Backitem from '../../../components/Backitem';
 import './WriteYourInfo.css';
 
 export default function WriteYourInfo() {
+  const [phoneNum, setPhoneNum] = useState('');
   const handleChange = (e) => {
     const regex = /^[0-9\b -]{0,13}$/;
     if (regex.test(e.target.value)) {
-      setInputValue(e.target.value);
+      setPhoneNum(e.target.value);
     }
   };
   useEffect(() => {
     if (inputValue.length === 10) {
-      setInputValue(inputValue.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
+      setPhoneNum(phoneNum.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
     }
-    if (inputValue.length === 13) {
-      setInputValue(
-        inputValue
-          .replace(/-/g, '')
-          .replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
+    if (phoneNum.length === 13) {
+      setPhoneNum(
+        phoneNum.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
       );
     }
-  }, [inputValue]);
+  }, [phoneNum]);
   return (
     <div className="phonewrap">
       <Backitem />
