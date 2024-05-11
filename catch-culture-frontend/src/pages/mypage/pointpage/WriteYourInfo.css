@@ -4,3 +4,10 @@
   align-items: center;
   gap: 60px;
 }
+.phoneinput {
+  gap: 12px;
+  justify-content: left;
+}
+.explanation {
+  font-size: 12px;
+}

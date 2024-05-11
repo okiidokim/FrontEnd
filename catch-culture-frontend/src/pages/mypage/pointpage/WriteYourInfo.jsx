@@ -23,8 +23,10 @@ export default function WriteYourInfo() {
   return (
     <div className="phonewrap">
       <Backitem />
-      <div>구매하시려는 상품의 쿠폰을 받을 연락처를 입력하세요.</div>
-      <input type="text" onChange={handleChange} value={phoneNum} />
+      <div className="phoneinput">
+        <div>구매하시려는 상품의 쿠폰을 받을 연락처를 입력하세요.</div>
+        <input type="text" onChange={handleChange} value={phoneNum} />
+      </div>
     </div>
   );
 }
