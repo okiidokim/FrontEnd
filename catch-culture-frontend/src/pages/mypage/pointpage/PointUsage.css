@@ -90,11 +90,14 @@
 }
 
 .modaldetail {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
   padding-left: 12px;
   padding-right: 12px;
+  gap: 12px;
 }
 
 .yesorno {
