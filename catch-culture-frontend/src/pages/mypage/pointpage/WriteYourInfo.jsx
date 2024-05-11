@@ -24,8 +24,11 @@ export default function WriteYourInfo() {
     <div className="phonewrap">
       <Backitem />
       <div className="phoneinput">
-        <div>구매하시려는 상품의 쿠폰을 받을 연락처를 입력하세요.</div>
+        <div className="explanation">
+          구매하시려는 상품의 쿠폰을 받을 연락처를 입력하세요.
+        </div>
         <input type="text" onChange={handleChange} value={phoneNum} />
+        <div className="giveinfo">해당 상품은 3일 내로 지급 예정입니다.</div>
       </div>
     </div>
   );

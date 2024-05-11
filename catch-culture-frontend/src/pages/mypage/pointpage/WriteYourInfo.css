@@ -5,9 +5,13 @@
   gap: 60px;
 }
 .phoneinput {
-  gap: 12px;
+  display: flex;
+  gap: 8px;
   justify-content: left;
 }
 .explanation {
   font-size: 12px;
+}
+.giveinfo {
+  font-size: 8px;
 }
