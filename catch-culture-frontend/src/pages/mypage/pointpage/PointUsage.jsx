@@ -100,11 +100,9 @@ function SellItem({ data }) {
                     className="checkbutton"
                     onClick={() => {
                       setResModal(false);
-                      navi('/pointusage/infotoget');
                     }}
                     onKeyDown={() => {
                       setResModal(false);
-                      navi('/pointusage/infotoget');
                     }}
                   >
                     확인
