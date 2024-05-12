@@ -16,3 +16,9 @@
 .giveinfo {
   font-size: 8px;
 }
+.storebut {
+  width: 200px;
+  height: 40px;
+  background-color: #018c0d;
+  color: white;
+}

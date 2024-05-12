@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Backitem from '../../../components/Backitem';
 import './WriteYourInfo.css';
-
+import { useNavigate } from 'react-router-dom';
 export default function WriteYourInfo() {
   const [phoneNum, setPhoneNum] = useState('');
   const handleChange = (e) => {
@@ -20,6 +20,7 @@ export default function WriteYourInfo() {
       );
     }
   }, [phoneNum]);
+  const navi = useNavigate();
   return (
     <div className="phonewrap">
       <Backitem />
@@ -28,7 +29,10 @@ export default function WriteYourInfo() {
           구매하시려는 상품의 쿠폰을 받을 연락처를 입력하세요.
         </div>
         <input type="text" onChange={handleChange} value={phoneNum} />
-        <div className="giveinfo">해당 상품은 3일 내로 지급 예정입니다.</div>
+        <div className="giveinfo">*해당 상품은 3일 내로 지급 예정입니다.</div>
+      </div>
+      <div className="storebut" onClick={navi('/pointusage')}>
+        저장
       </div>
     </div>
   );
