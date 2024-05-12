@@ -33,8 +33,8 @@ export default function WriteYourInfo() {
       </div>
       <div
         className="storebut"
-        onClick={navi('/pointusage')}
-        onKeyDown={navi('/pointusage')}
+        onClick={() => navi('/pointusage')}
+        onKeyDown={() => navi('/pointusage')}
       >
         저장
       </div>
