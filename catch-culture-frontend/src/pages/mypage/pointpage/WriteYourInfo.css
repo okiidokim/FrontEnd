@@ -17,12 +17,14 @@
   font-size: 8px;
 }
 .storebut {
-  border-radius: 16px;
+  border-radius: 10px;
   width: 120px;
-  height: 32px;
+  height: 20px;
   background-color: #018c0d;
   color: white;
   text-align: center;
   align-items: center;
   cursor: pointer;
+  padding-top: 4px;
+  font-size: 12px;
 }
