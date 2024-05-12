@@ -21,11 +21,19 @@
   border-radius: 12px;
   width: 120px;
   height: 18px;
-  background-color: #018c0d;
-  color: white;
   text-align: center;
   align-items: center;
   cursor: pointer;
   padding-top: 6px;
   font-size: 12px;
+  background-color: #d9d9d9;
+  text-decoration: none;
+  box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.2),
+    inset -2px -2px 2px 0 rgba(116, 125, 136, 0.2),
+    -1px -1px 1px 0 rgba(255, 255, 255, 0.2), 1px 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+.storebut:hover {
+  background-color: #018c0d;
+  color: white;
+  font-weight: bold;
 }
