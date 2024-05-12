@@ -17,9 +17,10 @@
   font-size: 8px;
 }
 .storebut {
-  width: 200px;
-  height: 40px;
+  border-radius: 16px;
+  width: 120px;
+  height: 32px;
   background-color: #018c0d;
   color: white;
-  justify-content: center;
+  text-align: center;
 }
