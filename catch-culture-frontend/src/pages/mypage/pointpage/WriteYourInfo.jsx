@@ -31,7 +31,11 @@ export default function WriteYourInfo() {
         <input type="text" onChange={handleChange} value={phoneNum} />
         <div className="giveinfo">*해당 상품은 3일 내로 지급 예정입니다.</div>
       </div>
-      <div className="storebut" onClick={navi('/pointusage')}>
+      <div
+        className="storebut"
+        onClick={navi('/pointusage')}
+        onKeyDown={navi('/pointusage')}
+      >
         저장
       </div>
     </div>
